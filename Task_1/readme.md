@@ -51,6 +51,8 @@ sudo apt install git build-essential libtool-bin pkg-config autoconf automake te
 ```bash
 # clone the openocd repository
 git clone https://github.com/openocd-org/openocd.git
+# checkout the latest release v0.12.0
+git checkout 9ea7f3d647c8ecf6b0f1424002dfc3f4504a162
 # navigate into the folder
 cd openocd
 # needed when building from the git repository
@@ -83,13 +85,14 @@ targets
 ```
 
 - The following Pins are involved in the SWD communication:
+- @todo check the pins on the Cortex-A53, the Raspberry [Pi], the extension board, and the Cortex-M0 involved in the SWD communication
 
-| Name                  | Pin  |
-| --------------------- | ---- |
-| SWD  on Raspberry pi  | 6    |
-| SWCLK on Raspberry pi | 5    |
-| SWCLK on STM32f0      | PA14 |
-| SWDIO on STM32f       | PA13 |
+| Name                  | Pin  | Source                                                                                                                                                    |
+| --------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SWD  on Raspberry pi  | 6    | [Raspberry pi documentation]([Raspberry Pi hardware - Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html)) |
+| SWCLK on Raspberry pi | 5    |                                                                                                                                                           |
+| SWCLK on STM32f0      | PA14 | [ STM32f0 Manual](http://www.st.com/resource/en/reference_manual/dm00031936.pdf) page 151                                                                 |
+| SWDIO on STM32f       | PA13 |                                                                                                                                                           |
 
 - outout after running `openocd -f stm32f0raspberry.cfg`
 
@@ -115,9 +118,9 @@ Info : Listening on port 4444 for telnet connections
 
 ## Task 1.3 Compile a Linux Kernel
 
-#### Cross Compile on a x86 maschine
+#### Cross Compile on a x86 machine
 
-- To cross-compile the Linux kernel on a x86 maschine, we use the `gcc-arm-linux-gnu` cross-compiler. 
+- To cross-compile the Linux kernel on a x86 machine, we use the `gcc-arm-linux-gnu` cross-compiler. 
 
 - First, we clone the Raspberry Pi Linux kernel repository with 
   
@@ -153,6 +156,7 @@ Info : Listening on port 4444 for telnet connections
 ### compile on the Raspberry pi
 
 - To compile the kernel
+  
   ```bash
   # set environment variable with the target kernel version
   KERNEL=kernel7
@@ -163,3 +167,5 @@ Info : Listening on port 4444 for telnet connections
   # compile the kernel
   make ARCH=arm -j2 zImage modules
   ```
+
+- 
