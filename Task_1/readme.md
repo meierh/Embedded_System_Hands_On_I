@@ -128,7 +128,7 @@ Info : Listening on port 4444 for telnet connections
 - In the meantime, we install the cross-compiler package (on a fedora Linux):
   
   ```bash
-  sudo dnf install gcc-arm-linux-gnu`
+  sudo dnf install gcc-arm-linux-gnu
   ```
 
 - To compile the kernel: 
