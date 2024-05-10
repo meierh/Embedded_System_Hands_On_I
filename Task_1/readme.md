@@ -151,3 +151,15 @@ Info : Listening on port 4444 for telnet connections
 - the final kernel image is then located at `[...]/linux/arch/arm/boot/Image`
 
 ### compile on the Raspberry pi
+
+- To compile the kernel
+  ```bash
+  # set environment variable with the target kernel version
+  KERNEL=kernel7
+  #create config
+  make ARCH=arm bcm2709_defconfig
+  #show config and close it afterwards
+  make ARCH=arm menuconfig
+  # compile the kernel
+  make ARCH=arm -j2 zImage modules
+  ```

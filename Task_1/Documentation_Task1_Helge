@@ -1,0 +1,80 @@
+1)  Install Raspherry pi imager using sudo apt install rpi-imager
+    Take sd card with reader and insert in pc
+    Open imager and select sd card and Raspherry pi os lite 32 bit
+    Press Str-Shift-X:
+        Activate Hostname
+        Activate SSH - Password
+        Username: pi
+        Password: RasPi
+    Press Write
+    Put SD card in Raspherry pi and activate power with ethernet connection online
+    Run ssh pi@raspberrypi to connect
+
+2)  sudo apt update
+    sudo apt upgrade
+    sudo apt install build-essential libtool-bin pkg-config autoconf automake texinfo flex bison libncurses-dev bc sshuttle libssl-dev git vim gcc-arm*
+    git clone  https://github.com/openocd-org/openocd.git
+    git checkout 9ea7f3d647c8ecf6b0f1424002dfc3f4504a162c
+    
+    In openocd repo:
+        ./bootstrap
+        ./configure --enable-bcm2835gpio
+        make
+        sudo make install
+    openocd -f stm32f0raspberry.cfg
+        Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64 (2024-05-08-19:50)
+        Licensed under GNU GPL v2
+        For bug reports, read
+                http://openocd.org/doc/doxygen/bugs.html
+        Info : BCM2835 GPIO JTAG/SWD bitbang driver
+        Info : clock speed 1006 kHz
+        Info : SWD DPIDR 0x0bb11477
+        Info : [stm32f0x.cpu] Cortex-M0 r0p0 processor detected
+        Info : [stm32f0x.cpu] target has 4 breakpoints, 2 watchpoints
+        Info : starting gdb server for stm32f0x.cpu on 3333
+        Info : Listening on port 3333 for gdb connections
+            TargetName         Type       Endian TapName            State       
+        --  ------------------ ---------- ------ ------------------ ------------
+        0* stm32f0x.cpu       cortex_m   little stm32f0x.cpu       running
+
+        Info : Listening on port 6666 for tcl connections
+        Info : Listening on port 4444 for telnet connections
+
+
+3)  Download Linux Kernel: git clone https://github.com/raspberrypi/linux.git
+    Install cross compiler: sudo apt-get install gcc-arm-linux-gnueabihf
+                            sudo apt-get install gcc-aarch64-linux-gnu
+                            
+    Execute:    KERNEL=kernel7
+                make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2709_defconfig
+                
+                make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+                press exit
+                
+                (with time measurement)
+                time make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 zImage modules
+                took:   real    26m45,496s
+                        user    62m0,869s
+                        sys     9m4,078s            on x86
+                        real    167m29.066s
+                        user    616m37.755s
+                        sys     33m2.246s           on Raspherry
+                
+    Problem:    In file included from fs/btrfs/super.c:30:
+                fs/btrfs/delayed-inode.h:127:38: error: stray ‘\343’ in program
+                    127 | void btrfs_balance_delayed_items(stru�t btrfs_fs_info *fs_info);
+                        |                                      ^
+                fs/btrfs/delayed-inode.h:127:34: error: unknown type name ‘stru’; did you mean ‘struct’?
+                    127 | void btrfs_balance_delayed_items(stru�t btrfs_fs_info *fs_info);
+                        |                                  ^~~~
+                        |                                  struct
+                        
+    In repo file fs/btrfs/delayed-inode.h:127: void btrfs_balance_delayed_items(struãt btrfs_fs_info *fs_info);
+    Corrected to: void btrfs_balance_delayed_items(struct btrfs_fs_info *fs_info);
+    
+    Execute again:  make ARCH=arm CROSS_COMPILE=arm-linux-g´nueabihf- -j4 zImage modules
+    
+    .... work to do: Install finished kernel on raspi ...
+
+
+
