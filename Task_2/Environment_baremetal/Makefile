@@ -40,6 +40,6 @@ clean:
 
 flash:
 	# TODO add openocd command to program ELF file
-	openocd -f _.cfg -c "program 
+	#openocd -f _.cfg -c "program 
 
 .PHONY: all setup build clean flash
