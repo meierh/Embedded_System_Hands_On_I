@@ -3,7 +3,7 @@ CC		= $(ARM_PREFIX)-gcc
 LD		= $(ARM_PREFIX)-gcc
 
 # TODO add path of CMSIS base directory
-CMSIS = 
+CMSIS = ../../utils/STM32CubeF0/Drivers/CMSIS
 
 INCLUDE		= -I$(CMSIS)/Include
 INCLUDE		+= -I$(CMSIS)/Device/ST/STM32F0xx/Include
@@ -40,5 +40,6 @@ clean:
 
 flash:
 	# TODO add openocd command to program ELF file
+	openocd -f _.cfg -c "program 
 
 .PHONY: all setup build clean flash
