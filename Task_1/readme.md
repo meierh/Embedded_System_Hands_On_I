@@ -51,10 +51,10 @@ sudo apt install git build-essential libtool-bin pkg-config autoconf automake te
 ```bash
 # clone the openocd repository
 git clone https://github.com/openocd-org/openocd.git
-# checkout the latest release v0.12.0
-git checkout 9ea7f3d647c8ecf6b0f1424002dfc3f4504a162
 # navigate into the folder
 cd openocd
+# checkout the latest release v0.12.0
+git checkout 9ea7f3d647c8ecf6b0f1424002dfc3f4504a162
 # needed when building from the git repository
 ./bootstrap
 # generates the Makefiles required to build. We enable the bcm2835gpio interface
@@ -65,7 +65,8 @@ make
 sudo make install
 ```
 
-- with openocd installed, we can run it with the config file
+- with openocd installed, we can run it with the config file:
+
 - FILE:stm32f0raspberry.cfg:
 
 ```stm32f0raspberry.cfg:
