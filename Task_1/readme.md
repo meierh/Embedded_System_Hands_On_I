@@ -74,7 +74,7 @@ sudo make install
 | --- | --- | --- | --- |
 | Pins on the Cortex-M0 | PA13 | PA14 | [STM32F0 Reference Manual](http://www.st.com/resource/en/reference_manual/dm00031936.pdf), page 922 |
 | Pin numbers of the STM32F0 on the extension board | 34 | 37 | ESA Board Documentation, PCB Schematic (U11) |
-| Signals on the extension board | JTAG_SWD | JTAG_SWCLK | ESA Board Documentation, PCB Schematic (U11) |
+| Wires on the extension board | JTAG_SWD | JTAG_SWCLK | ESA Board Documentation, PCB Schematic (U11) |
 | Pin numbers on the J1 header on the extension board / on the 40-pin header on the Raspberry Pi | 31 | 29 | ESA Board Documentation, PCB Schematic (J1) |
 | GPIO pins on the Cortex-A53 | GPIO 6 | GPIO 5 | [Raspberry Pi hardware - Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) |
 
