@@ -4,29 +4,29 @@
 
 ### Hardware preparations:
 
-- Install Raspherry pi imager using sudo apt install rpi-imager
+- Install Raspherry Pi Imager using `sudo apt install rpi-imager` (on Debian-based distros)
 
 - Take sd card with reader and insert in pc
 
-- Open imager and select sd card and Raspherry pi os lite 32 bit
+- Open "Imager" and select sd card and Raspherry Pi OS Lite 32 bit
 
-- Press Str-Shift-X:
+- Press `Ctrl`+`Shift`+`X`:
 
 - Activate Hostname
 
 - Activate SSH - Password
 
-- Username: pi
+- Username: pi-esho
 
 - Password: RasPi
 
 - Press Write
 
-- insert the SD card in the Raspherry pi and connect power and ethernet 
+- insert the SD card in the Raspberry Pi and connect power and ethernet 
 
-- we can now run `ssh pi@raspberrypi` to connect to the raspberry pi
+- we can now run `ssh pi-esho@raspberrypi` to connect to the Raspberry Pi
 
-### software preparations
+### Software preparations
 
 - update the software with:
 
@@ -37,13 +37,14 @@ sudo apt upgrade -y
 
 ## Task 1.2 OpenOCD
 
-- We follow the instructions on the [Repository]([GitHub - openocd-org/openocd: Official OpenOCD Read-Only Mirror (no pull requests)](https://github.com/openocd-org/openocd/))
-- to build openOCD from source we first have to install some dependencies
+- We follow the instructions on the [OpenOCD GitHub Repository](https://github.com/openocd-org/openocd/)
+
+- To build OpenOCD from source we first have to install some dependencies
 
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt install git build-essential libtool-bin pkg-config autoconf automake texinfo
+sudo apt install git build-essential libtool libtool-bin pkg-config autoconf automake texinfo
 ```
 
 - after that we can clone the repository, configure openocd to enable the `bcm2835gpio` interface, build and install openocd
@@ -65,9 +66,19 @@ make
 sudo make install
 ```
 
-- with openocd installed, we can run it with the config file:
+- Compilation succeded without any errors noticed.
 
-- FILE:stm32f0raspberry.cfg:
+- The following pins are involved in the SWD communication:
+
+| | SWDIO | SWCLK | (Source) |
+| --- | --- | --- | --- |
+| Pins on the Cortex-M0 | PA13 | PA14 | [STM32F0 Reference Manual](http://www.st.com/resource/en/reference_manual/dm00031936.pdf), page 922 |
+| Pin numbers of the STM32F0 on the extension board | 34 | 37 | ESA Board Documentation, PCB Schematic (U11) |
+| Signals on the extension board | JTAG_SWD | JTAG_SWCLK | ESA Board Documentation, PCB Schematic (U11) |
+| Pin numbers on the J1 header on the extension board / on the 40-pin header on the Raspberry Pi | 31 | 29 | ESA Board Documentation, PCB Schematic (J1) |
+| GPIO pins on the Cortex-A53 | GPIO 6 | GPIO 5 | [Raspberry Pi hardware - Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) |
+
+- Thus, GPIO 5 will be used for SWDLK and GPIO 6 for SWDIO. Our configuration file `stm32f0raspberry.cfg` looks like this:
 
 ```stm32f0raspberry.cfg:
 adapter driver bcm2835gpio
@@ -85,36 +96,27 @@ init
 targets
 ```
 
-- The following Pins are involved in the SWD communication:
-- @todo check the pins on the Cortex-A53, the Raspberry [Pi], the extension board, and the Cortex-M0 involved in the SWD communication
+- With openocd installed, we can run it with our config file. Output after running `openocd -f stm32f0raspberry.cfg`:
 
-| Name                  | Pin  | Source                                                                                                                                                    |
-| --------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SWD  on Raspberry pi  | 6    | [Raspberry pi documentation]([Raspberry Pi hardware - Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html)) |
-| SWCLK on Raspberry pi | 5    |                                                                                                                                                           |
-| SWCLK on STM32f0      | PA14 | [ STM32f0 Manual](http://www.st.com/resource/en/reference_manual/dm00031936.pdf) page 151                                                                 |
-| SWDIO on STM32f       | PA13 |                                                                                                                                                           |
-
-- outout after running `openocd -f stm32f0raspberry.cfg`
-
-```bash
-Open On-Chip Debugger 0.12.0+dev-01573-gbc9ca5f4a (2024-05-08-12:11)
+```
+Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64 (2024-05-16-10:11)
 Licensed under GNU GPL v2
 For bug reports, read
-        http://openocd.org/doc/doxygen/bugs.html
+	http://openocd.org/doc/doxygen/bugs.html
 Info : BCM2835 GPIO JTAG/SWD bitbang driver
-Info : clock speed 997 kHz
+Info : clock speed 1006 kHz
 Info : SWD DPIDR 0x0bb11477
 Info : [stm32f0x.cpu] Cortex-M0 r0p0 processor detected
 Info : [stm32f0x.cpu] target has 4 breakpoints, 2 watchpoints
-Info : [stm32f0x.cpu] Examination succeed
 Info : starting gdb server for stm32f0x.cpu on 3333
 Info : Listening on port 3333 for gdb connections
     TargetName         Type       Endian TapName            State       
 --  ------------------ ---------- ------ ------------------ ------------
- 0* stm32f0x.cpu       cortex_m   little stm32f0x.cpu       unknown
+ 0* stm32f0x.cpu       cortex_m   little stm32f0x.cpu       running
+
 Info : Listening on port 6666 for tcl connections
 Info : Listening on port 4444 for telnet connections
+
 ```
 
 ## Task 1.3 Compile a Linux Kernel
