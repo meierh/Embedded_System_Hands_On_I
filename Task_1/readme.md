@@ -123,7 +123,7 @@ Info : Listening on port 4444 for telnet connections
 
 ### Cross-Compile on a x86 machine
 
-- To cross-compile the Linux kernel on a x86 machine, we mainly follow the steps descriped in [the Raspberry Pi Linux Kernel Documentation](https://www.raspberrypi.com/documentation/computers/linux_kernel.html#building-the-kernel-locally).
+- To cross-compile the Linux kernel on a x86 machine, we mainly follow the steps descriped in [the Raspberry Pi Linux Kernel Documentation](https://www.raspberrypi.com/documentation/computers/linux_kernel.html).
 
 - First, we ensure all necessary dependencies and the cross-compiler are installed on our system:  
   ```bash
@@ -151,7 +151,7 @@ Info : Listening on port 4444 for telnet connections
   make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j36 zImage modules dtbs
   ```
 
-- The config file is attached as `raspi-linux-kernel-config`
+- The config file is attached as `raspberry-pi-linux-kernel-config_cross-compiling`
 
 - the final kernel image is then located at `./arch/arm/boot/Image`
 
@@ -198,7 +198,7 @@ Info : Listening on port 4444 for telnet connections
 
 #### Compile Time
 
-- On a system with an Intel Core i7-13700k (where the CPU is power-limited to 155 watts), compilation took around 2.5 mins. `time` returned:
+- On a system with an Intel Core i7-13700k (where the CPU is power-limited to 155 watts), compilation took around 2.5 mins. `time make ARCH=arm ...` returned:
   ```
   real	2m28,310s
   user	52m23,139s
@@ -207,19 +207,49 @@ Info : Listening on port 4444 for telnet connections
   
 - In contrast, compiling with 12 threads on a Laptop took about 28 min and 12 sec.
 
-### compile on the Raspberry pi
+### Compile on the Raspberry pi
 
-- To compile the kernel
+- To compile and install the kernel directly on the Raspberry Pi, we again mainly follow the steps descriped in [the Raspberry Pi Linux Kernel Documentation](https://www.raspberrypi.com/documentation/computers/linux_kernel.html). We execute the following steps:
   
   ```bash
-  # set environment variable with the target kernel version
+  # install git and build dependencies
+  sudo apt install git bc bison flex libssl-dev make libncurses5-dev libncursesw5-dev
+
+  # clone the repository
+  git clone --depth=1 https://github.com/raspberrypi/linux
+
+  # set shell variable with the target kernel version
   KERNEL=kernel7
-  #create config
-  make ARCH=arm bcm2709_defconfig
-  #show config and close it afterwards
-  make ARCH=arm menuconfig
+  # create config
+  make bcm2709_defconfig
+  # show config and close it afterwards
+  make menuconfig
+
   # compile the kernel
-  make ARCH=arm -j2 zImage modules
+  make -j4 zImage modules dtbs
+
+  # install the kernel
+  sudo make modules_install
+  sudo cp arch/arm/boot/dts/broadcom/*.dtb /boot/firmware/
+  sudo cp arch/arm/boot/dts/overlays/*.dtb* /boot/firmware/overlays/
+  sudo cp arch/arm/boot/dts/overlays/README /boot/firmware/overlays/
+  sudo rm /boot/firmware/*.img
+  sudo cp arch/arm/boot/zImage /boot/firmware/$KERNEL.img
   ```
 
-- 
+- The config file is attached as `raspberry-pi-linux-kernel-config_local`.
+
+- After a reboot, `uname -a` returns
+  ```
+  Linux esa-pi 6.6.30-v7+ #1 SMP Thu May 16 22:35:38 CEST 2024 armv7l GNU/Linux
+  ```
+  so compilation succeeded.
+
+#### Compile Time
+
+- On our Raspberry Pi 3s, compilation took almost 3 hours. During compilation, the Pi operated at its thermal limit of 85°C so the Cortex-A53 most likely got throttled heavily. `time make -j4 ...` returned:
+  ```
+  real    167m29.066s
+  user    616m37.755s
+  sys     33m2.246s
+  ```
