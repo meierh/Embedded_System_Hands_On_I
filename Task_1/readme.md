@@ -121,40 +121,91 @@ Info : Listening on port 4444 for telnet connections
 
 ## Task 1.3 Compile a Linux Kernel
 
-#### Cross Compile on a x86 machine
+### Cross-Compile on a x86 machine
 
-- To cross-compile the Linux kernel on a x86 machine, we use the `gcc-arm-linux-gnu` cross-compiler. 
+- To cross-compile the Linux kernel on a x86 machine, we mainly follow the steps descriped in [the Raspberry Pi Linux Kernel Documentation](https://www.raspberrypi.com/documentation/computers/linux_kernel.html#building-the-kernel-locally).
 
-- First, we clone the Raspberry Pi Linux kernel repository with 
-  
+- First, we ensure all necessary dependencies and the cross-compiler are installed on our system:  
   ```bash
-  git clone https://github.com/raspberrypi/linux.git
+  sudo apt install git bc bison flex libssl-dev make libc6-dev libncurses5-dev libncursesw5-dev
+  sudo apt install crossbuild-essential-armhf # this installs the 32-bit cross-compiler
   ```
 
-- In the meantime, we install the cross-compiler package (on a fedora Linux):
+- In the meantime, we clone the Raspberry Pi Linux kernel repository with 
   
   ```bash
-  sudo dnf install gcc-arm-linux-gnu
+  git clone --depth=1 https://github.com/raspberrypi/linux
+  cd linux
   ```
 
 - To compile the kernel: 
   
   ```bash
-  # set environment variable with the target kernel version
+  # set shell variable with the target kernel version
   KERNEL=kernel7
   # create config
-  make ARCH=arm CROSS_COMPILE=arm-linux-gnu- bcm2709_defconfig
+  make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2709_defconfig
   # show config and close it afterwards
-  make ARCH=arm CROSS_COMPILE=arm-linux-gnu- menuconfig
+  make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
   # compile the kernel
-  make ARCH=arm CROSS_COMPILE=arm-linux-gnu- -j12 zImage modules
+  make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j36 zImage modules dtbs
   ```
 
-- The config file is attached and can be found inside the file `raspi-linux-kernel-config`
+- The config file is attached as `raspi-linux-kernel-config`
 
-- the compiling with 12 threads on a Laptop  takes about 28 min and 12 sec
+- the final kernel image is then located at `./arch/arm/boot/Image`
 
-- the final kernel image is then located at `[...]/linux/arch/arm/boot/Image`
+- To install the kernel, we insert the Pi's SD card back into our computer and mount both partitions to a subfolder of our local repository for convenient access:
+  ```bash
+  mkdir mnt
+  mkdir mnt/{fat32,ext4}
+  sudo lsblk # => sdcard is sdf on my system
+  sudo umount /dev/sdf{1,2} # sdcard was already mounted automatically elsewhere by the OS
+  sudo mount /dev/sdf1 mnt/fat32/
+  sudo mount /dev/sdf2 mnt/ext4/
+  ```
+
+- We can then remove all the kernel images currently stored on the SD card and install our self-compiled kernel:
+  ```bash
+  sudo rm mnt/fat32/kernel*.img
+
+  sudo env PATH=$PATH make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=mnt/ext4 modules_install # install kernel modules
+
+  # copy kernel and device tree blobs onto the sdcard
+  sudo cp arch/arm/boot/zImage mnt/fat32/$KERNEL.img
+  sudo cp arch/arm/boot/dts/broadcom/*.dtb mnt/fat32/
+  sudo cp arch/arm/boot/dts/overlays/*.dtb* mnt/fat32/overlays/
+  sudo cp arch/arm/boot/dts/overlays/README mnt/fat32/overlays/
+
+  sudo umount /dev/sdf{1,2}
+  ```
+
+- After all that, we insert the SD card back into our Raspberry Pi and it powers on normally. `uname -a` returns
+  ```
+  Linux esa-pi 6.6.30-v7+ #1 SMP Thu May 16 16:26:36 CEST 2024 armv7l GNU/Linux
+  ```
+  so we are now indeed using our self-compiled kernel.
+
+#### Cross-Compilation on a fedora Linux
+
+- Not everyone in our group uses a Debian-based Linux. On fedora, the build depencencies have to be installed via `dnf`. 
+
+- On fedora, we use the `gcc-arm-linux-gnu` cross-compiler. The cross-compiler package can be installed with
+  ```bash
+  sudo dnf install gcc-arm-linux-gnu
+  ```
+  and in every `make` command, we have to use `CROSS_COMPILE=arm-linux-gnu-` instead of `CROSS_COMPILE=arm-linux-gnueabihf-`.
+
+#### Compile Time
+
+- On a system with an Intel Core i7-13700k (where the CPU is power-limited to 155 watts), compilation took around 2.5 mins. `time` returned:
+  ```
+  real	2m28,310s
+  user	52m23,139s
+  sys 	4m46,420s
+  ```
+  
+- In contrast, compiling with 12 threads on a Laptop took about 28 min and 12 sec.
 
 ### compile on the Raspberry pi
 
