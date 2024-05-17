@@ -209,7 +209,7 @@ Info : Listening on port 4444 for telnet connections
 
 ### Compile on the Raspberry pi
 
-- To compile and install the kernel directly on the Raspberry Pi, we again mainly follow the steps descriped in [the Raspberry Pi Linux Kernel Documentation](https://www.raspberrypi.com/documentation/computers/linux_kernel.html). We execute the following steps:
+- To compile and install the kernel directly on the Raspberry Pi, we again mainly follow the steps described in [the Raspberry Pi Linux Kernel Documentation](https://www.raspberrypi.com/documentation/computers/linux_kernel.html). We execute the following steps:
   
   ```bash
   # install git and build dependencies
