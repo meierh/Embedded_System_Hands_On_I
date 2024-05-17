@@ -2,7 +2,7 @@ ARM_PREFIX	= arm-none-eabi
 CC		= $(ARM_PREFIX)-gcc
 LD		= $(ARM_PREFIX)-gcc
 
-# TODO add path of CMSIS base directory
+# TODOne: add path of CMSIS base directory
 CMSIS = ../../utils/STM32CubeF0/Drivers/CMSIS
 
 INCLUDE		= -I$(CMSIS)/Include
