@@ -4,9 +4,9 @@
 #define LED_0_PIN     		 (7) // PA7 (green)
 #define LED_1_PIN			 (0) // PB0 (red)
 #define LED_2_PIN			 (1) // PB1 (green)
-#define JOYSTICK_LEFT_PIN   (11) // PB11
-#define JOYSTICK_RIGHT_PIN 	 (9) // PB9
-#define JOYSTICK_UP_PIN  	(10) // PB10
+#define JOYSTICK_RIGHT_PIN 	(10) // PB10
+#define JOYSTICK_UP_PIN  	(11) // PB11
+#define JOYSTICK_LEFT_PIN   (12) // PB12
 #define JOYSTICK_DOWN_PIN 	(13) // PB13
 volatile uint32_t core_clock_hz;
 
