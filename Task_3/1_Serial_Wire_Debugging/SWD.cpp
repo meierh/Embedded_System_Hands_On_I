@@ -1,5 +1,7 @@
 #include "SWD.h"
 
+bool SWD::activeInstance = false;
+
 SWD::SWD
 (
     std::string logName,
@@ -7,10 +9,34 @@ SWD::SWD
 ):
 throwExcep(throwExcep)
 {
-    log = std::ofstream(logName);
-    log<<"----------------------SWD setup----------------------"<<'\n';
-    reset();
-    log<<"-------------------SWD setup done--------------------"<<'\n';
+    if(!activeInstance)
+    {        
+        activeInstance = true;
+        log = std::ofstream(logName);        
+        log<<"----------------------SWD setup----------------------"<<'\n';
+        if (gpioInitialise() < 0)
+        {
+            log<<"------------------SWD setup failed------------------"<<'\n';
+            throw std::logic_error("pigpio initialisation failed");        
+        }
+        else
+        {
+            if(gpioSetMode(SWCLK_GPIO, PI_INPUT) != 0)
+                throw std::logic_error("SWCLK_GPIO mode setting failed");
+            if(gpioSetMode(SWD_GPIO, PI_INPUT) != 0)
+                throw std::logic_error("SWD_GPIO mode setting failed");
+            reset();
+            log<<"-------------------SWD setup done--------------------"<<'\n';
+        }
+    }
+    else
+        throw std::logic_error("SWD must be a singleton");        
+}
+
+SWD::~SWD()
+{
+    gpioTerminate();
+    activeInstance = false;
 }
 
 ACK SWD::write
@@ -130,6 +156,9 @@ void SWD::request
     std::bitset<8> req
 )
 {
+    if(gpioSetMode(SWD_GPIO, PI_INPUT) != 0)
+        throw std::logic_error("SWD_GPIO mode setting for request failed");
+    
     for(int i=req.size()-1; i>=0; i--)
     {
         bool bit = req[i];
@@ -140,6 +169,9 @@ void SWD::request
 
 ACK SWD::acknowledge()
 {
+    if(gpioSetMode(SWD_GPIO, PI_OUTPUT) != 0)
+        throw std::logic_error("SWD_GPIO mode setting for acknowledgement failed");
+    
     std::bitset<3> ack;
     for(int i=ack.size()-1; i>=0; i--)
     {
@@ -170,6 +202,9 @@ void SWD::sendData
     std::bitset<33> data
 )
 {
+    if(gpioSetMode(SWD_GPIO, PI_INPUT) != 0)
+        throw std::logic_error("SWD_GPIO mode setting for sending failed");
+    
     for(int i=data.size()-1; i>=0; i--)
     {
         bool bit = data[i];
@@ -185,6 +220,9 @@ void SWD::recvData
     std::bitset<33>& data
 )
 {
+    if(gpioSetMode(SWD_GPIO, PI_OUTPUT) != 0)
+        throw std::logic_error("SWD_GPIO mode setting for receiving failed");
+    
     for(int i=data.size()-1; i>=0; i--)
     {
         bool bit;
@@ -207,6 +245,8 @@ void SWD::turnaround
 
 void SWD::lineReset()
 {
+    if(gpioSetMode(SWD_GPIO, PI_OUTPUT) != 0)
+        throw std::logic_error("SWD_GPIO mode setting for lineReset failed");
     for(int i=0; i<51; i++)
         writeBit(true);
     log<<"Line Reset"<<'\n';
@@ -214,39 +254,56 @@ void SWD::lineReset()
 
 void SWD::JTAG_to_SWD()
 {
-    
+    if(gpioSetMode(SWD_GPIO, PI_OUTPUT) != 0)
+        throw std::logic_error("SWD_GPIO mode setting for JTAG_to_SWD failed");
+    std::bitset<16> jtag_to_swd_sequence = 0x79e7;
+    for(int i=jtag_to_swd_sequence.size()-1; i>=0; i--)
+    {
+        bool bit = jtag_to_swd_sequence[i];
+        writeBit(bit);
+    }
     log<<"JTAG_to_SWD"<<'\n';
 }
 
 void SWD::empty()
 {
-    // Clock -> 1 toggleClock
-    // Clock -> 0 toggleClock
+    toggleClock();
+    toggleClock();
 }
 
 void SWD::writeBit(bool bit)
 {
-    // Write bit to pin
-    // Clock -> 1 toggleClock
-    // Clock -> 0 toggleClock
+    int level = bit;
+    if(gpioWrite(SWD_GPIO,level) != 0) // Write bit to pin
+        throw std::logic_error("SWD_GPIO write failed");
+    toggleClock();
+    toggleClock();
 }
 
 void SWD::readBit(bool& bit)
 {
-    // Clock -> 1 toggleClock()
-    // Read bit from pin
-    // Clock -> 0 toggleClock
+    toggleClock();
+    int level = gpioRead(SWD_GPIO);    // Write bit to pin
+    bit = level;
+    toggleClock();
 }
 
 void SWD::toggleClock()
 {
-    // delay(...)
-    /* if (clock=0)
-     *  clock = 1
-     * else
-     *  clock = 0;
-     */
-    // delay(...)
+    gpioDelay(DELAY);
+    if(SWCLK_GPIO_LEVEL==0)
+    {
+        if(gpioWrite(SWCLK_GPIO,1) != 0) // Write high to clock
+            throw std::logic_error("SWCLK_GPIO write failed");
+        SWCLK_GPIO_LEVEL=1;
+    }
+    else
+    {
+        if(gpioWrite(SWCLK_GPIO,0) != 0) // Write high to clock
+            throw std::logic_error("SWCLK_GPIO write failed");
+        SWCLK_GPIO_LEVEL=0;
+    }
+    gpioDelay(DELAY);
 }
 
 bool SWD::parity
