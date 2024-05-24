@@ -214,12 +214,40 @@ void SWD::lineReset()
 
 void SWD::JTAG_to_SWD()
 {
+    
     log<<"JTAG_to_SWD"<<'\n';
 }
 
-void SWD::empty(){}
-void SWD::writeBit(bool bit){}
-void SWD::readBit(bool& bit){}
+void SWD::empty()
+{
+    // Clock -> 1 toggleClock
+    // Clock -> 0 toggleClock
+}
+
+void SWD::writeBit(bool bit)
+{
+    // Write bit to pin
+    // Clock -> 1 toggleClock
+    // Clock -> 0 toggleClock
+}
+
+void SWD::readBit(bool& bit)
+{
+    // Clock -> 1 toggleClock()
+    // Read bit from pin
+    // Clock -> 0 toggleClock
+}
+
+void SWD::toggleClock()
+{
+    // delay(...)
+    /* if (clock=0)
+     *  clock = 1
+     * else
+     *  clock = 0;
+     */
+    // delay(...)
+}
 
 bool SWD::parity
 (

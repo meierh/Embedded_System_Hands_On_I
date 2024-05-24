@@ -1,16 +1,15 @@
 # Documentation of Task 03
 
+## Task 3.1
+-  google: Programming Internal Flash Over the Serial Wire Debug Interface: https://www.silabs.com/documents/public/application-notes/an0062.pdf
+
 ## Task 3.2 
 
 ### Software preparations
-- Install on host
-  ```bash
-  sudo apt-get install gcc-arm-none-eabi
-  sudo apt-get install gdb-multiarch
-  ```
+
 - Download gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2 from https://developer.arm.com/downloads/-/gnu-rm
 - Extract via sudo tar xjf gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
-- Execute ./arm-none-eabi-gdb
+- Execute ./arm-none-eabi-gdb ( found in bin )
 
 - Start openocd on Raspberry pi by running:
   ```bash

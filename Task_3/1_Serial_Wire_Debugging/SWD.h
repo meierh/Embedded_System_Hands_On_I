@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include <wiringPi.h>
 
 enum AccessRegister
 {
