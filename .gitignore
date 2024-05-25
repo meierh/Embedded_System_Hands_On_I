@@ -1,5 +1,6 @@
-# exclude build folder
+# exclude build folder and binary files
 **/build/
+main.elf
 
 # exclude LOCAL folder
 **/LOCAL/
