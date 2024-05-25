@@ -15,7 +15,7 @@ int main(void) {
 	GPIOA->MODER  &= ~(0x3 << (LED_PIN*2));
 	// set the register to output mode
 	GPIOA->MODER  |= (0x1 << (LED_PIN*2));
-	// set output type register to outout open-drain
+	// set output type register to outout push-pull
 	GPIOA->OTYPER &= ~(1 << LED_PIN);
 	// enable the LED
 	GPIOA->ODR |= (1 << LED_PIN);
