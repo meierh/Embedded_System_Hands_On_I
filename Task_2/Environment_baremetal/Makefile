@@ -38,9 +38,12 @@ $(AOBJS): $(BUILDDIR)/%.o : %.s
 clean:
 	rm -rf $(BUILDDIR)
 
-flash:
-	# TODO add openocd command to program ELF file
+flash: build
+	# TODOne add openocd command to program ELF file
 	#openocd -f _.cfg -c "program 
 	openocd -f stm32f0raspberry.cfg -c "program $(ELFFILE) verify reset"
+
+halt:
+	openocd -f stm32f0raspberry.cfg -c "reset halt" -c "exit"
 
 .PHONY: all setup build clean flash
