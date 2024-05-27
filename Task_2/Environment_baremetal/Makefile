@@ -43,7 +43,7 @@ flash: build
 	#openocd -f _.cfg -c "program 
 	openocd -f stm32f0raspberry.cfg -c "program $(ELFFILE) verify reset"
 
-reset:
-	openocd -f stm32f0raspberry.cfg -c "reset halt" -c "flash erase_sector 0 0 last" -c "exit"
+halt:
+	openocd -f stm32f0raspberry.cfg -c "reset halt" -c "exit"
 
 .PHONY: all setup build clean flash
