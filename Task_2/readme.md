@@ -16,6 +16,11 @@ The following additions were made:
 - Line 44: the full command to download the compiled ELF file to the Cortex-M0. Therefore, the `stm32f0raspberry.cfg` file is needed, which we created in Task 1. Information on how the program command works can be found in the [OpenOCD Documentation](https://openocd.org/doc-release/pdf/openocd.pdf) at page 126.
 
 
+## CMSIS
+
+The CMSIS library for our M0 processor is located at `STM32CubeF0/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f030xc.h`.  
+
+Note: There is also a device-independant header file in the same folder `stm32f0xx.h` which by itself includes the actual device-specific header file based on a predefined macro.
 
 ## Important registers
 
