@@ -14,7 +14,7 @@ LDFLAGS		+= -TSTM32F030xC_FLASH.ld -nostartfiles -nostdlib
 
 BUILDDIR = build
 
-CSRC = main.c
+CSRC = test_leds.c
 ASRC = startup_stm32f030xc.s
 ELFFILE = main.elf
 
@@ -46,4 +46,4 @@ flash: build
 halt:
 	openocd -f stm32f0raspberry.cfg -c "reset halt" -c "exit"
 
-.PHONY: all setup build clean flash
+.PHONY: all setup build clean flash halt
