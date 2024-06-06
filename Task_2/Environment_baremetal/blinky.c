@@ -88,6 +88,7 @@ void setup_led(void) {
 	GPIOA->MODER  |=  (0x1 << (LED_PIN*2));
 	// set output type register to outout open-drain
 	GPIOA->OTYPER &= ~(1 << LED_PIN);
+	// reset PUDR to no pull-up, pull down (as pin is already permanently connected to ground through the LED)
 	GPIOA->PUPDR   &= ~(3 << (LED_PIN*2));
 }
 
