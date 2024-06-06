@@ -14,7 +14,7 @@ LDFLAGS		+= -TSTM32F030xC_FLASH.ld -nostartfiles -nostdlib
 
 BUILDDIR = build
 
-CSRC = test_leds.c
+CSRC = blinky.c
 ASRC = startup_stm32f030xc.s
 ELFFILE = main.elf
 
