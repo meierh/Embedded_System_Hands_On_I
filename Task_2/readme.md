@@ -1,12 +1,25 @@
 # Documentation of Task 02
 
-Prerequisites:
+**Prerequisites**:
 
 - Install `gcc-arm-none-eabi` on the Raspberry Pi so that we are able to cross-compile to the Cortex-M0 from the Pi itself:
   
   ```
   sudo apt install gcc-arm-none-eabi
   ```
+
+**Compilation and Flashing**:
+
+In the Makefile, `better-blinky.c` (Task 2) is set up as the default source code to compile and execute on the extension board.
+To compile or flash `blinky.c` (Task 1) instead, run
+```
+make CSRC=blinky.c
+```
+and
+```
+make flash CSRC=blinky.c
+```
+respectively.
 
 ## Makefile
 
