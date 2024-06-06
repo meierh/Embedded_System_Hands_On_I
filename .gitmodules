@@ -1,3 +1,6 @@
 [submodule "utils/STM32CubeF0"]
 	path = utils/STM32CubeF0
 	url = https://github.com/STMicroelectronics/STM32CubeF0.git
+[submodule "utils/pigpio"]
+	path = utils/pigpio
+	url = https://github.com/joan2937/pigpio.git
