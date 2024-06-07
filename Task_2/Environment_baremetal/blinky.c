@@ -28,7 +28,7 @@ int main(void) {
     while (true) {
         toggle_led();
         while (!(TIM3->SR & TIM_SR_UIF));             // busy-wait until an update interrupt occurs (i.e. the counter overflows)
-        TIM3->SR &= ~TIM_SR_UIF;					  // clear the update interrupt flag
+        TIM3->SR &= ~TIM_SR_UIF;                      // clear the update interrupt flag
     }
 
     return 0;
