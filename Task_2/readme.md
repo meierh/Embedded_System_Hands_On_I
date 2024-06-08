@@ -35,6 +35,17 @@ The CMSIS library for our M0 processor is located at `STM32CubeF0/Drivers/CMSIS/
 
 Note: There is also a device-independant header file in the same folder `stm32f0xx.h` which by itself includes the actual device-specific header file based on a predefined macro.
 
+
+## Some Remarks About `better-blinky`
+
+- We think of "LED toggle _period_" as the time a whole blinking cycle takes, i.e. the time between the LED being turned on and the time it is being turned on next.  
+E.g., if the period is 1000 ms, then the LED gets turned on for 500 ms, turned off for 500 ms and then back on again.
+
+- We decided to limit the period setting to 50 to 10000 ms. 
+
+- The joystick pins are configured s.t. the movements seem natural when J2 is facing upwards. This is different to the STICK_UP, STICK_LEFT, ... signals on the extension board.
+
+
 ## Important registers
 
 - `MODER` mode register (p. 134)
