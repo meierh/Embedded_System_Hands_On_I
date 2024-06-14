@@ -1,119 +1,107 @@
-#include "stm32f030xc.h"
-#include <stdint.h>
+// include CMSIS library for our Cortex-M0 processor
+#define STM32F030xC
+#include "stm32f0xx.h"
+
+#include <stdbool.h>
 
 #define LED_PIN    (7)
 
-// overrides the interrupt handler. The methode name is determined by CMSIS.
-// see [...]/STM32CubeF0/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/gcc/startup_stm32f030xc.s
-void TIM3_IRQHandler(void) {
-	if(TIM3->SR & TIM_SR_UIF) {
-		TIM3->SR &= ~(TIM_SR_UIF);
-		// toggle the led
-		GPIOA->ODR ^= (1 << LED_PIN);
-	}
-}
+void setup_sys_clk(void);
 
+void setup_timer(void);
 
-void start_timer(TIM_TypeDef *TIMx, uint16_t ms, uint32_t core_clock_hz){
-	// make sure that the timer's counter is off
-	TIMx->CR1 &= ~(TIM_CR1_CEN);
-	// reset the peripheral
-	if(TIMx == TIM3) {
-		RCC->APB1RSTR |= (RCC_APB1RSTR_TIM3RST);
-		RCC->APB1RSTR &= ~(RCC_APB1RSTR_TIM3RST);
-	} else if (TIMx == TIM14) {
-    	RCC->APB1RSTR |= (RCC_APB1RSTR_TIM14RST);
-    	RCC->APB1RSTR &= ~(RCC_APB1RSTR_TIM14RST);
-	} else if (TIMx == TIM16) {
-		RCC->APB2RSTR |=  (RCC_APB2RSTR_TIM16RST);
-		RCC->APB2RSTR &= ~(RCC_APB2RSTR_TIM16RST);
-	} else if (TIMx == TIM17) {
-		RCC->APB2RSTR |=  (RCC_APB2RSTR_TIM17RST);
-		RCC->APB2RSTR &= ~(RCC_APB2RSTR_TIM17RST);
-	}
+void setup_led(void);
+void turn_led_on(void);
+void turn_led_off(void);
+void toggle_led(void);
 
-	// set the timer prescaler register to count up every millisecond
-	TIMx->PSC = core_clock_hz / 100;
-	// set the timer auto-reload register. This is the time between the interrupt triggers
-	TIMx->ARR = ms;
-	// send an update event to reset the timer and apply settings
-	TIMx->EGR |= TIM_EGR_UG;
-	// enable the hardware interrupt
-	TIMx->DIER |=TIM_DIER_UIE;
-	// enable the timer
-	TIMx->CR1 |= TIM_CR1_CEN;
-}
-
-
-void setup_led(void) {
-	// Enable the GPIOA peripheral in 'RCC_AHBENR'.
-	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
-	// A7 is connected to an LED
-	// It should be set to push-pull low-speed output.
-	// reset the register with 00
-	GPIOA->MODER  &= ~(0x3 << (LED_PIN*2));
-	// set the register to output mode
-	GPIOA->MODER  |=  (0x1 << (LED_PIN*2));
-	// set output type register to outout open-drain
-	GPIOA->OTYPER &= ~(1 << LED_PIN);
-	GPIOA->PUPDR   &= ~(3 << (LED_PIN*2));
-}
-
-void turn_led_on(void) {
-	// enable the pin
-	GPIOA->ODR |= (1 << LED_PIN);
-}
-
-void turn_led_off(void) {
-	// enable the pin
-	GPIOA->ODR |= (0 << LED_PIN);
-}
-
-void toggle_led(void) {
-	GPIOA->ODR ^= (1 << LED_PIN);
-}
 
 int main(void) {
 
-	setup_led();
-	turn_led_off();
-	//toggle_led();
-	//turn_led_on();
+    setup_sys_clk();
+    setup_timer();
+    setup_led();
 
-	// reset register
-	FLASH->ACR &= ~(0x00000017);
-	// set one wait state and enable prefetch buffer
-	// the header file only shows one bit, the reference manual three
-	FLASH->ACR |= (FLASH_ACR_LATENCY | FLASH_ACR_PRFTBE );
+    turn_led_off();
 
-	RCC->CFGR &= ~(RCC_CFGR_PLLMUL | RCC_CFGR_PLLSRC);
+    // main blinking loop
+    while (true) {
+        toggle_led();
+        while (!(TIM3->SR & TIM_SR_UIF));             // busy-wait until an update interrupt occurs (i.e. the counter overflows)
+        TIM3->SR &= ~TIM_SR_UIF;                      // clear the update interrupt flag
+    }
 
-	RCC->CFGR |= (RCC_CFGR_PLLSRC_HSI_DIV2 | RCC_CFGR_PLLMUL12);
+    return 0;
+}
 
-	// turn PLL on
-	RCC->CR |= (RCC_CR_PLLON);
-	// wait for it to be ready
-	while (!(RCC->CR & RCC_CR_PLLRDY)) {};
+void setup_sys_clk(void) {
+    
+    // Increase flash access latency and enable prefetch buffer
+    // This is necessary as the flash memory apparently has a maximum speed of 24 MHz. The prefetch buffer might slightly enhance performance.
+    FLASH->ACR &= ~0x17;                               // Reset the register
+    FLASH->ACR |= FLASH_ACR_LATENCY | FLASH_ACR_PRFTBE;
 
-	// selct the PLL as a system clock source
-	RCC->CFGR &= ~(RCC_CFGR_SW);
-	RCC->CFGR |= (RCC_CFGR_SW_PLL);
-	while(!(RCC->CFGR & RCC_CFGR_SWS_PLL)) {};
-	// store clockspeed in var
-	uint32_t core_clock_hz = 48000000;
+    // Set the PLL to 48 MHz
+    RCC->CFGR &= ~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLMUL); // Reset PLL source and multiplicator
+    RCC->CFGR |= RCC_CFGR_PLLSRC_HSI_DIV2;             // Select HSI/2 (4 MHz) as PLL input
+    RCC->CFGR |= RCC_CFGR_PLLMUL12;                    // Multiply PLL input (4 MHz) with 12 => 48 MHz
 
-	// enable the TIM3 clock
-	RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+    // Enable the PLL and wait until it is ready
+    RCC->CR |= RCC_CR_PLLON;
+    while (!(RCC->CR & RCC_CR_PLLRDY));
 
-	// enable the NVIC inteerrupt for the TIM3
-	NVIC_SetPriority(TIM3_IRQn, 0x03);
-	NVIC_EnableIRQ(TIM3_IRQn);
+    // Select PLL as system clock source and wait until switched successfully
+    RCC->CFGR &= ~RCC_CFGR_SW; RCC->CFGR |= RCC_CFGR_SW_PLL;
+    while (!(RCC->CFGR & RCC_CFGR_SWS_PLL));
+}
 
-	start_timer(TIM3, 10000, core_clock_hz);
+void setup_timer(void) {
+    // Clock-enable TIM3
+    RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
 
-	while(1) {
+    // Reset TIM3 (optional: no effect in our case)
+    TIM3->CR1 &= ~(TIM_CR1_CEN);                      // ensure that the counter is disabled
+    RCC->APB1RSTR |= RCC_APB1RSTR_TIM3RST;            // reset the timer
+    RCC->APB1RSTR &= ~RCC_APB1RSTR_TIM3RST;
 
-	}
+    // Set up the counter
+    TIM3->PSC = 480 - 1;                              // set prescaler s.t. timer frequency is 100 kHz  --  48000 kHz : 100 kHz = 480
+    TIM3->ARR = 50000;                                // set reload reg s.t. timer overflows every 500 ms  --  500 ms : (1/100 kHz) = 50000
+    TIM3->CR1 &= ~TIM_CR1_CMS;                        // set to 'edge-aligned' mode (optional: no effect in our case)
+    TIM3->CR1 &= ~TIM_CR1_DIR;                        // set edge-aligned mode to 'upcounting' (optional: no effect in our case)
 
-	return 0;
+    TIM3->CR1 |= TIM_CR1_URS;                         // set URS s.t. only counter overflow/underflow generates update interrupt
+
+    TIM3->EGR |= TIM_EGR_UG;                          // generate an update event to apply these settings
+
+    TIM3->CR1 |= TIM_CR1_CEN;                         // enable timer
+}
+
+void setup_led(void) {
+    // Enable the GPIOA peripheral in 'RCC_AHBENR'.
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    // A7 is connected to an LED
+    // It should be set to push-pull low-speed output.
+    // reset the register with 00
+    GPIOA->MODER  &= ~(0x3 << (LED_PIN*2));
+    // set the register to output mode
+    GPIOA->MODER  |=  (0x1 << (LED_PIN*2));
+    // set output type register to outout open-drain
+    GPIOA->OTYPER &= ~(1 << LED_PIN);
+    // reset PUDR to no pull-up, pull down (as pin is already permanently connected to ground through the LED)
+    GPIOA->PUPDR   &= ~(3 << (LED_PIN*2));
+}
+
+void turn_led_on(void) {
+    // enable the pin
+    GPIOA->ODR |= (1 << LED_PIN);
+}
+
+void turn_led_off(void) {
+    // disable the pin
+    GPIOA->ODR |= (0 << LED_PIN);
+}
+
+void toggle_led(void) {
+    GPIOA->ODR ^= (1 << LED_PIN);
 }

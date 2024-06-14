@@ -1,12 +1,25 @@
 # Documentation of Task 02
 
-Prerequisites:
+**Prerequisites**:
 
 - Install `gcc-arm-none-eabi` on the Raspberry Pi so that we are able to cross-compile to the Cortex-M0 from the Pi itself:
   
   ```
   sudo apt install gcc-arm-none-eabi
   ```
+
+**Compilation and Flashing**:
+
+In the Makefile, `better-blinky.c` (Task 2) is set up as the default source code to compile and execute on the extension board.
+To compile or flash `blinky.c` (Task 1) instead, run
+```
+make CSRC=blinky.c
+```
+and
+```
+make flash CSRC=blinky.c
+```
+respectively.
 
 ## Makefile
 
@@ -15,6 +28,22 @@ The following additions were made:
 - Line 6: the path to the CMSIS library. In our repository, STM32CubeF0 is located within /utils.
 - Line 44: the full command to download the compiled ELF file to the Cortex-M0. Therefore, the `stm32f0raspberry.cfg` file is needed, which we created in Task 1. Information on how the program command works can be found in the [OpenOCD Documentation](https://openocd.org/doc-release/pdf/openocd.pdf) at page 126.
 
+
+## CMSIS
+
+The CMSIS library for our M0 processor is located at `STM32CubeF0/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f030xc.h`.  
+
+Note: There is also a device-independant header file in the same folder `stm32f0xx.h` which by itself includes the actual device-specific header file based on a predefined macro.
+
+
+## Some Remarks About `better-blinky`
+
+- We think of "LED toggle _period_" as the time a whole blinking cycle takes, i.e. the time between the LED being turned on and the time it is being turned on next.  
+E.g., if the period is 1000 ms, then the LED gets turned on for 500 ms, turned off for 500 ms and then back on again.
+
+- We decided to limit the period setting to 50 to 10000 ms. 
+
+- The joystick pins are configured s.t. the movements seem natural when J2 is facing upwards. This is different to the STICK_UP, STICK_LEFT, ... signals on the extension board.
 
 
 ## Important registers
