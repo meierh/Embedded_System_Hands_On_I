@@ -1099,7 +1099,17 @@
 		)
 		(uuid "ffa8c697-ec7d-4a72-ae3e-3a1d630d96bc")
 	)
-	(text "R_HP = 2*pI*L*f_LP\nC_HP = 1/(2*pI*R_HP*f_HP)"
+	(text ".param pI=3.14159\n.param L=0.1"
+		(exclude_from_sim no)
+		(at 262.382 94.234 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "4f658d63-a35a-40d6-8015-e68eaf99aa28")
+	)
+	(text ".param R_HP = 2*pI*L*f_LP\n.param C_HP = 1/(2*pI*R_HP*f_HP)"
 		(exclude_from_sim no)
 		(at 215.646 147.828 0)
 		(effects
@@ -1109,7 +1119,7 @@
 		)
 		(uuid "6110f0c8-b0d4-4bba-974c-387b33d9215b")
 	)
-	(text "R_LP = 2*pI*L*f_LP\nC_LP = 1/(2*pI*R_LP*f_LP)"
+	(text ".param R_LP = 2*pI*L*f_LP\n.param C_LP = 1/(2*pI*R_LP*f_LP)"
 		(exclude_from_sim no)
 		(at 139.7 147.32 0)
 		(effects
@@ -1139,7 +1149,7 @@
 		)
 		(uuid "852fa1dc-05a9-472f-9792-537184198fbd")
 	)
-	(text ".param R_LP=300*pI\n.param C_LP=1/(900000*pI*pI)"
+	(text "R_LP=300*pI\nC_LP=1/(900000*pI*pI)"
 		(exclude_from_sim no)
 		(at 139.446 156.464 0)
 		(effects
@@ -1149,7 +1159,17 @@
 		)
 		(uuid "bc7ca224-698d-48d8-81fe-088375f1262d")
 	)
-	(text ".param pI=3.14159\n.param f_LP=1500\n.param f_HP=4500\n.param L=0.1"
+	(text ".param f_HP=4500"
+		(exclude_from_sim no)
+		(at 261.874 88.138 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "ce730f30-39bf-4749-8f66-cc0159c850ca")
+	)
+	(text ".param f_LP=1500"
 		(exclude_from_sim no)
 		(at 261.874 83.058 0)
 		(effects
@@ -1159,7 +1179,7 @@
 		)
 		(uuid "da927550-f54a-4c44-86d2-718a2f6a0d2d")
 	)
-	(text ".param R_HP=900*pI\n.param C_HP=1/(8100000*pI*pI)"
+	(text "R_HP=900*pI\nC_HP=1/(8100000*pI*pI)"
 		(exclude_from_sim no)
 		(at 216.154 155.194 0)
 		(effects
@@ -2182,7 +2202,7 @@
 				(hide yes)
 			)
 		)
-		(property "Sim.Params" "dc=0 ampl=1 f=5k ac=1"
+		(property "Sim.Params" "dc=0 ampl=0 f=5k ac=0"
 			(at 67.31 116.7101 0)
 			(effects
 				(font
