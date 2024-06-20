@@ -1,6 +1,6 @@
-# TODO add path of CMSIS and HAL base directory
-CMSIS	= 
-HAL		= 
+# TODOne add path of CMSIS and HAL base directory
+CMSIS	= ../../utils/STM32CubeF0/Drivers/CMSIS
+HAL	= ../../utils/STM32CubeF0/Drivers/STM32F0xx_HAL_Driver
 
 BUILDDIR = $(PWD)/build
 SRCDIR = $(PWD)/src
@@ -108,6 +108,7 @@ clean:
 	rm -rf $(BUILDDIR)
 
 flash: build
-	# TODO add openocd command to program ELF file
+	# TODOne add openocd command to program ELF file
+	openocd -f stm32f0raspberry.cfg -c "program $(ELFFILE) verify reset"
 
 .PHONY: all setup build clean flash
