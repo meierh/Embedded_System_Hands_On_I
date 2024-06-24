@@ -6,6 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <pigpio.h>
+#include <iomanip>
 
 enum AccessRegister
 {
@@ -52,7 +53,7 @@ class SWD
         const uint SWCLK_GPIO = 5;
         const uint SWD_GPIO = 6;
         uint SWCLK_GPIO_LEVEL = 0;
-        const uint DELAY = 100;
+        const uint DELAY = 1000;
         static bool activeInstance;
         const bool throwExcep;
         std::ofstream log;

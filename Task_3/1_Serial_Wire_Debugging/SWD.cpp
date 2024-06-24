@@ -21,10 +21,11 @@ throwExcep(throwExcep)
         }
         else
         {
-            if(gpioSetMode(SWCLK_GPIO, PI_INPUT) != 0)
+            if(gpioSetMode(SWCLK_GPIO, PI_OUTPUT) != 0)
                 throw std::logic_error("SWCLK_GPIO mode setting failed");
             if(gpioSetMode(SWD_GPIO, PI_INPUT) != 0)
                 throw std::logic_error("SWD_GPIO mode setting failed");
+            gpioWrite(SWCLK_GPIO, SWCLK_GPIO_LEVEL);
             reset();
             log<<"-------------------SWD setup done--------------------"<<'\n';
         }
@@ -103,6 +104,8 @@ ACK SWD::read
     req[7] = 0b1;                           // Park bit
     request(req);
     
+    toggleClock();
+    gpioSetMode(SWCLK_GPIO, PI_INPUT);
     turnaround();
     
     ACK acknowledgement = acknowledge();
@@ -116,20 +119,22 @@ ACK SWD::read
     std::bitset<33> data;
     recvData(data);
     std::vector<bool> bits;
-    for(std::size_t i=0; i<data.size()-1; i++)
+    for(std::size_t i=1; i<data.size(); i++)
     {
         bits.push_back(data[i]);
-        RDATA[i] = data[i];
+        RDATA[RDATA.size()-i]=data[i];
     }
+
     bool par = parity(bits);
-    
-    if(par==data[32])
+    if(par!=data[0])
     {
         if(throwExcep)
             throw std::logic_error("Invalid read data");
         else
             log<<"Read data has invalid parity"<<'\n';
     }
+
+    log<<" → Read: 0x"<<std::hex<<std::setw(8)<<std::setfill('0')<<RDATA.to_ullong()<<std::endl;
     
     return acknowledgement;
 }
@@ -156,10 +161,10 @@ void SWD::request
     std::bitset<8> req
 )
 {
-    if(gpioSetMode(SWD_GPIO, PI_INPUT) != 0)
+    if(gpioSetMode(SWD_GPIO, PI_OUTPUT) != 0)
         throw std::logic_error("SWD_GPIO mode setting for request failed");
     
-    for(int i=req.size()-1; i>=0; i--)
+    for(int i=0; i<req.size(); i++)
     {
         bool bit = req[i];
         writeBit(bit);
@@ -169,7 +174,7 @@ void SWD::request
 
 ACK SWD::acknowledge()
 {
-    if(gpioSetMode(SWD_GPIO, PI_OUTPUT) != 0)
+    if(gpioSetMode(SWD_GPIO, PI_INPUT) != 0)
         throw std::logic_error("SWD_GPIO mode setting for acknowledgement failed");
     
     std::bitset<3> ack;
@@ -220,7 +225,7 @@ void SWD::recvData
     std::bitset<33>& data
 )
 {
-    if(gpioSetMode(SWD_GPIO, PI_OUTPUT) != 0)
+    if(gpioSetMode(SWD_GPIO, PI_INPUT) != 0)
         throw std::logic_error("SWD_GPIO mode setting for receiving failed");
     
     for(int i=data.size()-1; i>=0; i--)
@@ -249,6 +254,7 @@ void SWD::lineReset()
         throw std::logic_error("SWD_GPIO mode setting for lineReset failed");
     for(int i=0; i<51; i++)
         writeBit(true);
+    writeBit(false);
     log<<"Line Reset"<<'\n';
 }
 
@@ -273,16 +279,21 @@ void SWD::empty()
 
 void SWD::writeBit(bool bit)
 {
+    if(SWCLK_GPIO_LEVEL==0)
+        toggleClock();
+    
     int level = bit;
     if(gpioWrite(SWD_GPIO,level) != 0) // Write bit to pin
         throw std::logic_error("SWD_GPIO write failed");
-    toggleClock();
+
     toggleClock();
 }
 
 void SWD::readBit(bool& bit)
 {
-    toggleClock();
+    if(SWCLK_GPIO_LEVEL==0)
+        toggleClock();
+    
     int level = gpioRead(SWD_GPIO);    // Write bit to pin
     bit = level;
     toggleClock();
@@ -299,11 +310,11 @@ void SWD::toggleClock()
     }
     else
     {
-        if(gpioWrite(SWCLK_GPIO,0) != 0) // Write high to clock
+        if(gpioWrite(SWCLK_GPIO,0) != 0) // Write low to clock
             throw std::logic_error("SWCLK_GPIO write failed");
         SWCLK_GPIO_LEVEL=0;
     }
-    gpioDelay(DELAY);
+    //gpioDelay(DELAY);
 }
 
 bool SWD::parity
