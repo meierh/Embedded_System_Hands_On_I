@@ -158,7 +158,7 @@ faultmask      0x0                 0
 control        0x0                 0
 ```
 
-- Set a breakpoint at the beginning of `toggle_led()`. We can then run our program until this breakpoint is being hit by typing `continue` (or the `c` shortcut). This way, every time, we enter `c` our LED gets toggled.
+- Set a breakpoint at the beginning of `toggle_led()`. We can then run our program until this breakpoint is being hit by typing `continue` (or the `c` shortcut). This way, every time we enter `c`, our LED gets toggled.
 ```
 (gdb) break toggle_led
 Breakpoint 2 at 0x80002b0: file blinky.c, line 106.
@@ -177,13 +177,18 @@ Continuing.
 
 Breakpoint 2, toggle_led () at blinky.c:106
 106         GPIOA->ODR ^= (1 << LED_PIN);
+
+[...]
+
 (gdb)
 ```
 
-- We want to examine the toggling of the LED more closely: Currently, our LED is turned off.  
-  Using the examine command (`x`), let's read `1` word (`w`) at address `0x48000014` and display the contents in binary format (`t`). `0x48000014` is the address of the GPIOA_ODR register, as we know from the M0 reference manual.  
-  This yields in `00000000000000000000000000000000` which makes sense because our LED is off.  
-  After entering `next`, the next statement of `toggle_led()` is executed and the LED turns on. If we repeat our examine command, we now get `00000000000000000000000010000000` so the 7-th bit is now `1`, which makes sense because our LED is connected to the 7-th pin on port A. [More information on the examine command](https://www-zeuthen.desy.de/dv/documentation/unixguide/infohtml/gdb/Memory.html)
+- We want to examine the toggling of the LED more closely:
+  - Currently, our LED is turned off.  
+  - Using the examine command (`x`), let's read `1` word (`w`) at address `0x48000014` and display the contents in binary format (`t`). `0x48000014` is the address of the GPIOA_ODR register, as we know from the M0 reference manual.  
+  - This yields in `00000000000000000000000000000000`, which makes sense because our LED is off.  
+  - After entering `next`, the next statement of `toggle_led()` is executed and the LED turns on. 
+  - If we repeat our examine command, we now get `00000000000000000000000010000000` so the 7-th bit is now `1`, which makes sense because our LED is connected to the 7-th pin on port A. [More information on the examine command here](https://www-zeuthen.desy.de/dv/documentation/unixguide/infohtml/gdb/Memory.html).
 ```
 (gdb) frame
 #0  toggle_led () at blinky.c:106
