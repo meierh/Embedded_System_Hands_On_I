@@ -30,15 +30,15 @@ The involved GPIO pins on the raspberry pi for the UART communication are
 
 - 15 (rx = receive)
 
-- 14 (tx = trasmit)
+- 14 (tx = transmit)
 
-On our extension board they are connected to USART 5 on the M0
+On our extension board, they are connected to USART 5 on the M0
 
 On the raspberry pi we can now select `/dev/serial0` as UART port. 
 
 **Note:**  `/dev/serial0` is a symbolic link to `/dev/ttyS0`
 
-[For more information see the offical documentation]([Configuration - Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/computers/configuration.html#configure-uarts))
+[For more information, see the official documentation]([Configuration - Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/computers/configuration.html#configure-uarts))
 
 ### Side note about USART vs UART
 
