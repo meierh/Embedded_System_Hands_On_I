@@ -5,15 +5,25 @@
 
 ## Task 3.2 
 
+Note: As a quick introduction to debugging with OpenOCD, [this short video](https://www.youtube.com/watch?v=_1u7IOnivnM) might be helpful.
+
 ### Software preparations
+
+On our host PC, we need to install `arm-none-eabi-gcc` and `arm-none-eabi-gdb`.
+
+On MacOS, these can easily installed with `brew install gcc-arm-embedded`.
+
+On Debian-based Linux distros, `arm-none-eabi-gcc` can be installed with `apt install gcc-arm-none-eabi`. Instead of `arm-none-eabi-gdb`, you can use [`gdb-multiarch`](https://packages.debian.org/de/sid/gdb-multiarch) or download an old version, as described here:
 
 - Download gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2 from https://developer.arm.com/downloads/-/gnu-rm
 - Extract via sudo tar xjf gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
 - Execute ./arm-none-eabi-gdb ( found in bin )
 
-- Start openocd on Raspberry pi by running:
-  ```bash
-  openocd -f stm32f0raspberry.cfg
+### Start the GDB Server on the Raspberry Pi
+
+Start OpenOCD on the Raspberry Pi by running:
+  ```
+  openocd -f Task_1/stm32f0raspberry.cfg
   
   Result:
   Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64 (2024-05-08-19:50)
@@ -34,39 +44,172 @@
   Info : Listening on port 6666 for tcl connections
   Info : Listening on port 4444 for telnet connections
   ```
-- Connect using target remote tcp:hostIP:port (port given on Raspberry pi openocd
-  ```bash
-  (gdb) target remote tcp:192.168.178.48:3333
+So OpenOCD has now started a GDB Server on port 3333 of the Raspberry Pi.
 
-  Result:
-  Remote debugging using tcp:192.168.178.48:3333
-  warning: No executable has been specified and target does not support
-  determining executable automatically.  Try using the "file" command.
-  0x080092a0 in ?? ()
-  ```
-- At host: 
-  ```bash
-  Info : accepting 'gdb' connection on tcp/3333
-  [stm32f0x.cpu] halted due to debug-request, current mode: Thread 
-  xPSR: 0x41000000 pc: 0x080092a0 psp: 0x20001cc0
-  Info : device id = 0x10006442
-  Info : flash size = 256 KiB
-  Warn : Prefer GDB command "target extended-remote :3333" instead of "target remote :3333"
-  ```
-  
-- Test
-  ```bash
-  (gdb) monitor reset halt
-  [stm32f0x.cpu] halted due to debug-request, current mode: Thread 
-  xPSR: 0xc1000000 pc: 0x080000d0 msp: 0x20000400
-  ```
-- At host
-  ```bash
-  [stm32f0x.cpu] halted due to debug-request, current mode: Thread 
-  xPSR: 0xc1000000 pc: 0x080000d0 msp: 0x20000400
-  ```
+### Debug Session
 
-  
+On our host PC, we `cd` into `Task_2/Environment_baremetal`. In the following, we want to debug `blinky.c`:
+
+- To do that, we first compile our program
+```
+➜ tobii@MacBook-Pro-von-Tobias:~/.../Task_2/Environment_baremetal$ make CSRC=blinky.c
+arm-none-eabi-gcc -I../../utils/STM32CubeF0/Drivers/CMSIS/Include -I../../utils/STM32CubeF0/Drivers/CMSIS/Device/ST/STM32F0xx/Include -mlittle-endian -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -g3 -c blinky.c -o build/blinky.o
+arm-none-eabi-gcc -I../../utils/STM32CubeF0/Drivers/CMSIS/Include -I../../utils/STM32CubeF0/Drivers/CMSIS/Device/ST/STM32F0xx/Include -mlittle-endian -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -g3 -c startup_stm32f030xc.s -o build/startup_stm32f030xc.o
+arm-none-eabi-gcc -mlittle-endian -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -g3 -TSTM32F030xC_FLASH.ld -nostartfiles -nostdlib -o main.elf  build/blinky.o  build/startup_stm32f030xc.o
+```
+
+- We then start `arm-none-eabi-gdb` and connect to the target (i.e. our M0 processor) using `target extended-remote tcp:hostIP:port`
+```
+➜ tobii@MacBook-Pro-von-Tobias:~/.../Task_2/Environment_baremetal$ arm-none-eabi-gdb main.elf 
+GNU gdb (Arm GNU Toolchain 13.2.rel1 (Build arm-13.7)) 13.2.90.20231008-git
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "--host=aarch64-apple-darwin20.6.0 --target=arm-none-eabi".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://bugs.linaro.org/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from main.elf...
+(gdb) target extended-remote tcp:192.168.2.2:3333
+Remote debugging using tcp:192.168.2.2:3333
+0x08000ab4 in ?? ()
+```
+
+- Load the compiled program onto our M0. This is just an alternative to using the flash command of OpenOCD.
+```
+(gdb) load
+Loading section .isr_vector, size 0xbc lma 0x8000000
+Loading section .text, size 0x29c lma 0x80000bc
+Start address 0x080002dc, load size 856
+Transfer rate: 2 KB/sec, 428 bytes/write.
+```
+
+- Reset the target and read the M0's registers
+```
+(gdb) monitor reset halt
+[stm32f0x.cpu] halted due to debug-request, current mode: Thread 
+xPSR: 0xc1000000 pc: 0x080002dc msp: 0x20008000
+(gdb) info reg
+r0             0xffffffff          -1
+r1             0xffffffff          -1
+r2             0xffffffff          -1
+r3             0xffffffff          -1
+r4             0xffffffff          -1
+r5             0xffffffff          -1
+r6             0xffffffff          -1
+r7             0xffffffff          -1
+r8             0xffffffff          -1
+r9             0xffffffff          -1
+r10            0xffffffff          -1
+r11            0xffffffff          -1
+r12            0xffffffff          -1
+sp             0x20008000          0x20008000
+lr             0xffffffff          -1
+pc             0x80002dc           0x80002dc <Reset_Handler>
+xPSR           0xc1000000          -1056964608
+msp            0x20008000          0x20008000
+psp            0xfffffffc          0xfffffffc
+primask        0x0                 0
+basepri        0x0                 0
+faultmask      0x0                 0
+control        0x0                 0
+```
+
+- Create a breakpoint at the beginning of main and let the M0 run up to this breakpoint. Read out the registers again.
+```
+(gdb) break main
+Breakpoint 1 at 0x80000c0: file blinky.c, line 21.
+Note: automatically using hardware breakpoints for read-only addresses.
+(gdb) c
+Continuing.
+
+Breakpoint 1, main () at blinky.c:21
+21          setup_sys_clk();
+(gdb) info reg
+r0             0x20000000          536870912
+r1             0x0                 0
+r2             0x20000000          536870912
+r3             0x20000000          536870912
+r4             0xffffffff          -1
+r5             0xffffffff          -1
+r6             0xffffffff          -1
+r7             0x20007ff8          536903672
+r8             0xffffffff          -1
+r9             0xffffffff          -1
+r10            0xffffffff          -1
+r11            0xffffffff          -1
+r12            0xffffffff          -1
+sp             0x20007ff8          0x20007ff8
+lr             0x8000323           134218531
+pc             0x80000c0           0x80000c0 <main+4>
+xPSR           0x61000000          1627389952
+msp            0x20007ff8          0x20007ff8
+psp            0xfffffffc          0xfffffffc
+primask        0x0                 0
+basepri        0x0                 0
+faultmask      0x0                 0
+control        0x0                 0
+```
+
+- Set a breakpoint at the beginning of `toggle_led()`. We can then run our program until this breakpoint is being hit by typing `continue` (or the `c` shortcut). This way, every time, we enter `c` our LED gets toggled.
+```
+(gdb) break toggle_led
+Breakpoint 2 at 0x80002b0: file blinky.c, line 106.
+(gdb) c
+Continuing.
+
+Breakpoint 2, toggle_led () at blinky.c:106
+106         GPIOA->ODR ^= (1 << LED_PIN);
+(gdb) c
+Continuing.
+
+Breakpoint 2, toggle_led () at blinky.c:106
+106         GPIOA->ODR ^= (1 << LED_PIN);
+(gdb) c
+Continuing.
+
+Breakpoint 2, toggle_led () at blinky.c:106
+106         GPIOA->ODR ^= (1 << LED_PIN);
+(gdb)
+```
+
+- We want to examine the toggling of the LED more closely: Currently, our LED is turned off.  
+  Using the examine command (`x`), let's read `1` word (`w`) at address `0x48000014` and display the contents in binary format (`t`). `0x48000014` is the address of the GPIOA_ODR register, as we know from the M0 reference manual.  
+  This yields in `00000000000000000000000000000000` which makes sense because our LED is off.  
+  After entering `next`, the next statement of `toggle_led()` is executed and the LED turns on. If we repeat our examine command, we now get `00000000000000000000000010000000` so the 7-th bit is now `1`, which makes sense because our LED is connected to the 7-th pin on port A. [More information on the examine command](https://www-zeuthen.desy.de/dv/documentation/unixguide/infohtml/gdb/Memory.html)
+```
+(gdb) frame
+#0  toggle_led () at blinky.c:106
+106         GPIOA->ODR ^= (1 << LED_PIN);
+(gdb) x/1tw 0x48000014
+0x48000014:     00000000000000000000000000000000
+(gdb) next
+107     }
+(gdb) x/1tw 0x48000014
+0x48000014:     00000000000000000000000010000000
+```
+
+Messing with gdb has resulted in some additional log messages at OpenOCD on the Raspberry Pi:
+```
+Info : accepting 'gdb' connection on tcp/3333
+Info : device id = 0x10006442
+Info : flash size = 256 KiB
+undefined debug reason 8 - target needs reset
+[stm32f0x.cpu] halted due to debug-request, current mode: Thread 
+xPSR: 0xc1000000 pc: 0x08000ab4 msp: 0x20008000
+[stm32f0x.cpu] halted due to debug-request, current mode: Thread 
+xPSR: 0xc1000000 pc: 0x080002dc msp: 0x20008000
+[stm32f0x.cpu] halted due to debug-request, current mode: Thread 
+xPSR: 0xc1000000 pc: 0x080002dc msp: 0x20008000
+```
+
 ## Task 3.3
 
 ### Software preparations
