@@ -47,6 +47,8 @@ ACK SWD::write
     std::bitset<32> WDATA
 )
 {
+    writeBit(false); // insert an idle bit at the beginning s.t. the start bit can be recognised
+
     std::bitset<8> req;
     req[0] = true;                          // Start bit
     req[1] = APnDP==AccessRegister::DebugPort
@@ -91,6 +93,8 @@ ACK SWD::read
     std::bitset<32>& RDATA
 )
 {
+    writeBit(false); // insert an idle bit at the beginning s.t. the start bit can be recognised
+
     std::bitset<8> req;
     req[0] = true;                          // Start bit
     req[1] = APnDP==AccessRegister::DebugPort
@@ -104,8 +108,6 @@ ACK SWD::read
     req[7] = 0b1;                           // Park bit
     request(req);
     
-    toggleClock();
-    gpioSetMode(SWCLK_GPIO, PI_INPUT);
     turnaround();
     
     ACK acknowledgement = acknowledge();
@@ -244,6 +246,14 @@ void SWD::turnaround
     uint cycles
 )
 {
+    if (SWCLK_GPIO_LEVEL == 1)
+        toggleClock();
+    
+    if (gpioGetMode(SWD_GPIO) == PI_INPUT)
+        gpioSetMode(SWD_GPIO, PI_OUTPUT);
+    else
+        gpioSetMode(SWD_GPIO, PI_INPUT);
+
     for(int i=0; i<cycles; i++)
         empty();
 }
@@ -301,7 +311,7 @@ void SWD::readBit(bool& bit)
 
 void SWD::toggleClock()
 {
-    gpioDelay(DELAY);
+    //gpioDelay(DELAY);
     if(SWCLK_GPIO_LEVEL==0)
     {
         if(gpioWrite(SWCLK_GPIO,1) != 0) // Write high to clock
@@ -314,7 +324,7 @@ void SWD::toggleClock()
             throw std::logic_error("SWCLK_GPIO write failed");
         SWCLK_GPIO_LEVEL=0;
     }
-    //gpioDelay(DELAY);
+    gpioDelay(DELAY);
 }
 
 bool SWD::parity
