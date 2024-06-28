@@ -1109,7 +1109,7 @@
 		)
 		(uuid "4f658d63-a35a-40d6-8015-e68eaf99aa28")
 	)
-	(text ".param R_HP = 2*pI*L*f_LP\n.param C_HP = 1/(2*pI*R_HP*f_HP)"
+	(text ".param R_HP = 2*pI*L*f_HP\n.param C_HP = 1/(2*pI*R_HP*f_HP)"
 		(exclude_from_sim no)
 		(at 215.646 147.828 0)
 		(effects
@@ -2202,7 +2202,7 @@
 				(hide yes)
 			)
 		)
-		(property "Sim.Params" "dc=0 ampl=0 f=5k ac=0"
+		(property "Sim.Params" "dc=0 ampl=1 f=5k ac=1"
 			(at 67.31 116.7101 0)
 			(effects
 				(font

@@ -1,6 +1,26 @@
 # Documentation of Task 03
 
 ## Task 3.1
+
+SWD uses two pins: The SWCLK pin represents the clock while the SWD pin represents the data pin.
+Both pins are mapped to GPIO pins.
+
+SWD can be split into three phases
+
+Connection setup:
+This phase consists of a lineReset where the SWD is written with 1s more than 50 times.
+After that the JTAG sequence is transmitted.
+After this another lineReset follows.
+
+Send phase:
+Sending data via SWD is done in three steps. First the header bits are transmitted containing addresses and parities.
+Next an acknowledgement is read. Last a data word sized 32 bits is transmitted with a parity bit.
+
+Read phase:
+Read data via SWD is also done in three steps. First the header bits are transmitted containing addresses and parities.
+Next an acknowledgement is read. Last a data word sized 32 bits is read with a parity bit.
+
+Sources:
 -  google: Programming Internal Flash Over the Serial Wire Debug Interface: https://www.silabs.com/documents/public/application-notes/an0062.pdf
 
 ## Task 3.2 
