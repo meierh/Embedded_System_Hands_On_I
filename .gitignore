@@ -17,3 +17,9 @@ main.elf
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# exclude KiCad backups and lock files
+~*.kicad_sch.lck
+*-backups/
+\#auto_saved_files\#
+_autosave-*
