@@ -1,92 +1,92 @@
-**************************************************************************************
+**********************************************************
 *
-* BC817-25
+* BC817_25
 *
 * Nexperia
 *
-* Allgemeines NPN Transistor
-* IC 500 mA
-* VCEO 45 V 
-* hFE 160 - 400 € 1V/100mA
+* General purpose NPN transistor
+* IC   = 500 mA
+* VCEO = 45 V 
+* hFE  = 160 - 400 @ 1V/100mA
 * 
 *
 *
 *
-* Paketpinning passt nicht zu Spice-Modellpinning.
-* Paket: SOT 23
+* Package pinning does not match Spice model pinning.
+* Package: SOT 23
 * 
-* Paket Pin 1: Basis
-* Paket Pin 2: Emitter
-* Paket Pin 3: Sammler
+* Package Pin 1: Base
+* Package Pin 2: Emitter
+* Package Pin 3: Collector
 * 
 *
-* Auszugsdatum (Woche/Jahre): 42/2018
-* Spicemodel beinhaltet Temperaturabhängigkeit
+* Extraction date (week/year): 42/2018
+* Spicemodel includes temperature dependency
 *
-**************************************************************************************
-*
-* Bitte beachten: Diode D1, Transistor Q2 und Resistor RQ 
-* sind auf die Verbesserung der Modellierung von Quasi
-* Sättigungsbereich und Reverse-Modus
-* und nicht physische Geräte reflektieren.
+**********************************************************
+*#
+* Please note: Diode D1, Transistor Q2 and Resistor RQ 
+* are dedicated to improve modeling of quasi
+* saturation area and reverse mode operation
+* and do not reflect physical devices.
 * 
-.SUBCKT BC817-25 1 2 3
+.SUBCKT BC817_25 1 2 3
 Q1 1 2 3 Transistor 0.9457
-Q2 11 2 3 Transistor 0,05425
+Q2 11 2 3 Transistor 0.05425
 RQ 1 11 200
 D1 2 1 Diode
 *
 .MODEL Transistor NPN
-+ IS 3.019E-014
-+ NF
-+ ISE
-+ NE
-+ BF 285
-+ IKF
-+ VAF
-+ NR - 0.9797
-+ ISC - 1.068E-014
-+ NC 1.357
-+ BR 48,58
-+ IKR - 2.924
-+ VAR 25
-+ RB 40
-+ IRB 0,0005
-+ RBM > 4,7
-+ RE - 0.2672
-+ RC - 0,2846
-+ XTB
-+ EG
-+ XTI 5,53
-+ CJE > 4.844E-011
-+ VJE - 0,6927
-+ MJE
-+ TF - 6.757E-010
-+ XTF
-+ VTF 2
-+ ITF
-+ PTF 0
-+ CJC - 8.872E-012
-+ VJC - 0,5287
-+ MJC - 0,3619
-+ XCJC 1
-+ TR 4E-007
-+ CJS 0
-+ VJS 0,75
-+ MJS - 0.333
-+ FC 0.9552
++ IS = 3.019E-014
++ NF = 0.9806
++ ISE = 1.422E-015
++ NE = 1.396
++ BF = 285
++ IKF = 1.266
++ VAF = 84.84
++ NR = 0.9797
++ ISC = 1.068E-014
++ NC = 1.357
++ BR = 48.58
++ IKR = 2.924
++ VAR = 25
++ RB = 40
++ IRB = 0.0005
++ RBM = 4.7
++ RE = 0.2672
++ RC = 0.2846
++ XTB = 1.423
++ EG = 1.11
++ XTI = 5.53
++ CJE = 4.844E-011
++ VJE = 0.6927
++ MJE = 0.3338
++ TF = 6.757E-010
++ XTF = 10.18
++ VTF = 2
++ ITF = 1.09
++ PTF = 0
++ CJC = 8.872E-012
++ VJC = 0.5287
++ MJC = 0.3619
++ XCJC = 1
++ TR = 4E-007
++ CJS = 0
++ VJS = 0.75
++ MJS = 0.333
++ FC = 0.9552
 .MODEL Diode D
-+ IS 1.208E-015
-+ N - 0.9716
-+ BV 1000
-+ IBV - 0,001
-+ RS 515.4
-+ CJO 0
-+ VJ
-+ M 0,5
-+ FC 0
-+ TT 0
-+ EG
-+ XTI 3
-ENDS
++ IS = 1.208E-015
++ N = 0.9716
++ BV = 1000
++ IBV = 0.001
++ RS = 515.4
++ CJO = 0
++ VJ = 1
++ M = 0.5
++ FC = 0
++ TT = 0
++ EG = 1.11
++ XTI = 3
+.ENDS
 *

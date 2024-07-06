@@ -901,6 +901,140 @@
 				)
 			)
 		)
+		(symbol "pspice:VSOURCE"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "V"
+				(at -6.35 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "VSOURCE"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "VSOURCE_0_1"
+				(polyline
+					(pts
+						(xy -6.35 -6.35) (xy -6.35 3.81)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy -7.62 3.81) (xy -6.35 6.35) (xy -5.08 3.81)
+					)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 0 0)
+					(radius 5.08)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(text "V"
+					(at -8.128 -0.254 0)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(symbol "VSOURCE_1_1"
+				(pin input line
+					(at 0 7.62 270)
+					(length 2.54)
+					(name "E1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "E2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 	)
 	(wire
 		(pts
@@ -1049,6 +1183,76 @@
 		)
 	)
 	(symbol
+		(lib_id "pspice:VSOURCE")
+		(at 97.79 71.12 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0b974802-e333-4bc5-b628-33a5faab9c05")
+		(property "Reference" "V2"
+			(at 104.14 69.8499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "VSOURCE"
+			(at 104.14 72.3899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 97.79 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 97.79 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 97.79 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "77a71673-f125-4f02-9eb9-2fcdc9dcff9b")
+		)
+		(pin "2"
+			(uuid "b239dcf5-ff90-44ba-b859-dcdc86cd6104")
+		)
+		(instances
+			(project ""
+				(path "/0cfaf9bc-a933-40bc-9237-d4ec7dcd84ea"
+					(reference "V2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Transistor_BJT:BC817")
 		(at 156.21 91.44 0)
 		(unit 1)
@@ -1098,6 +1302,42 @@
 			)
 		)
 		(property "Description" "0.8A Ic, 45V Vce, NPN Transistor, SOT-23"
+			(at 156.21 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "BC817-25.kicad_mod"
+			(at 156.21 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "BC817_25"
+			(at 156.21 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 156.21 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=1 2=2 3=3"
 			(at 156.21 91.44 0)
 			(effects
 				(font
@@ -1211,7 +1451,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "IS=0.87e-14 RS=8.35 N=3.889 BV=5 IBV=1e-5 type=led"
+		(property "Value" "LED"
 			(at 162.56 47.3074 90)
 			(effects
 				(font
@@ -1239,6 +1479,42 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
+			(at 158.75 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "SLX-LX5093UWC.kicad_mod"
+			(at 158.75 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "SLX-LX5093UWC"
+			(at 158.75 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 158.75 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=A 2=K"
 			(at 158.75 44.45 0)
 			(effects
 				(font
@@ -1317,7 +1593,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "67db2f8b-f2f8-449a-8f11-0bcc79fa8f40")
+			(uuid "67db2f8b-f2f8-449a-8f11-0bcc79fa8f41")
 		)
 		(instances
 			(project ""
@@ -1338,7 +1614,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "60a4936a-1b72-43ee-8bc1-9923667484e8")
-		(property "Reference" "R_LED1"
+		(property "Reference" "R_LED"
 			(at 161.29 67.3099 0)
 			(effects
 				(font
@@ -1384,15 +1660,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "3b6db065-fdb5-4d83-afbf-8734b1c18f86")
+			(uuid "3b6db065-fdb5-4d83-afbf-8734b1c18f87")
 		)
 		(pin "2"
-			(uuid "3eaef4b7-adc6-4e90-bff4-4bd468733ce8")
+			(uuid "3eaef4b7-adc6-4e90-bff4-4bd468733ce9")
 		)
 		(instances
 			(project ""
 				(path "/0cfaf9bc-a933-40bc-9237-d4ec7dcd84ea"
-					(reference "R_LED1")
+					(reference "R_LED")
 					(unit 1)
 				)
 			)
