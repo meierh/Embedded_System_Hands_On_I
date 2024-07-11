@@ -73,6 +73,34 @@ Frequency: 5000   Cut-off Frequency: 8500   Damping: -1.29 dB
 
 ## 5.2 Measurement of Analog Filters
 
+**Screenshots from the oscilloscope
+- Waveform of unfiltered and filtered noise signal : 
+Waveform_1msSpan_LowPassCoil.png
+Waveform_2msSpan_LowPassCoil.png
+Waveform_1msSpan_LowPassCap.png
+Waveform_2msSpan_LowPassCap.png
+- FFT of unfiltered and filtered noise signal : 
+FFT_Filtered_LowPassCoil.png
+FFT_Filtered_LowPassCap.png
+- Waveform of unfiltered and filtered sine signal : 
+Sinus_LowPassCoil.png
+Sinus_LowPassCap.png
+
+**Diagrams fro frequency response and filtered signals
+- Waveform of unfiltered and filtered sine signal : 
+WhiteNoiseSignal_LowPassCoil_600K.png
+WhiteNoiseSignal_LowPassCoil_6M.png
+WhiteNoiseSignal_LowPassCap_600K.png
+
+**Comparison between measured and simulated behavior of signals
+The FFT diagrams of the previous subtask are similar enough so that we just focus on FFT_LowPassCoil_6M. This data section has the most prevision. We already found out in 5.1 that the Low pass filter using a coil and a capacitor performs identical.
+Looking at FFT_LowPassCoil_6M.png shows a FFT that is not smooth at all. One can see a low-pass behavior but using the graph alone one would guess the cut off to be between 500Hz and 2000Hz.
+To improve the visbility we smooth the FFT diagram with a Savgol filter using polynomials or order 5 and 30 basis points. This results in the diagram visible in FFT_LowPassCoil_6M_smoothed.png. The diagram is clearer and the cut off frequency can be recognized if already known to be at 1500Hz.
+
+**Summary of the measurement procedure and the results in a structured document
+
+
+
 ## 5.3 Simulation of Digital Filters
 
 **Frequency response of FIR filters**:
