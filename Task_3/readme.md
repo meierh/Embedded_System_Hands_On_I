@@ -5,23 +5,61 @@
 SWD uses two pins: The SWCLK pin represents the clock while the SWD pin represents the data pin.
 Both pins are mapped to GPIO pins.
 
-SWD can be split into three phases
+SWD can be split into three phases:
 
-Connection setup:
+**Connection setup**:  
 This phase consists of a lineReset where the SWD is written with 1s more than 50 times.
-After that the JTAG sequence is transmitted.
-After this another lineReset follows.
+After that the JTAG-to-SWD sequence is transmitted.
+After this another lineReset follows and the IDCODE register must be read.
 
-Send phase:
+**Send phase:**  
 Sending data via SWD is done in three steps. First the header bits are transmitted containing addresses and parities.
 Next an acknowledgement is read. Last a data word sized 32 bits is transmitted with a parity bit.
 
-Read phase:
+**Read phase:**  
 Read data via SWD is also done in three steps. First the header bits are transmitted containing addresses and parities.
 Next an acknowledgement is read. Last a data word sized 32 bits is read with a parity bit.
 
-Sources:
--  google: Programming Internal Flash Over the Serial Wire Debug Interface: https://www.silabs.com/documents/public/application-notes/an0062.pdf
+---
+
+In our example, we only need to read the IDCODE register, so we do not have any send phase. 
+
+To execute our SWD implementation and read the IDCODE register, enter these on the Raspberry Pi:
+```
+mkdir build
+cd build
+
+cmake ..
+make
+
+sudo ./SWD
+```
+
+This results in:
+```
+IDCODE = 0x0bb11477
+```
+which matches the `SWD DPIDR 0x0bb11477` line output by OpenOCD.
+
+The whole communication log looks like this:
+```
+----------------------SWD setup----------------------
+Line Reset
+JTAG_to_SWD
+Line Reset
+Request: 10100101  AP/DP:0 R/W:1 Address:00 Parity:1
+Acknowledge: 100
+Receive: 11101110001010001000110111010000  Parity:1
+ → Read: 0x0bb11477
+-------------------SWD setup done--------------------
+Request: 10100101  AP/DP:0 R/W:1 Address:00 Parity:1
+Acknowledge: 100
+Receive: 11101110001010001000110111010000  Parity:1
+ → Read: 0x0bb11477
+```
+
+**Additional Sources**:
+- [Programming Internal Flash Over the Serial Wire Debug Interface](https://www.silabs.com/documents/public/application-notes/an0062.pdf)
 
 ## Task 3.2 
 
