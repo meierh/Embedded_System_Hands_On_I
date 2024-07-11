@@ -238,16 +238,76 @@ xPSR: 0xc1000000 pc: 0x080002dc msp: 0x20008000
 ## Task 3.3
 
 ### Software preparations
-- Install eclipse: 
-- Download eclipse installer from https://www.eclipse.org/downloads/packages/installer
-- Extract installer 
+
+Install Eclipse on the host PC:
+- Download the [Eclipse Installer](https://www.eclipse.org/downloads/packages/installer)
+
+- Extract the installer
   ```bash
   tar -xf eclipse-inst-jre-linux64.tar.gz
   ```
-- Run installer 
+
+- Run the installer 
   ```bash
   ./eclipse-inst
   ```
-- Select: Eclipse IDE for Embedded C/C++ Developers
+- Within the Eclipse Installer, select "Eclipse IDE for Embedded C/C++ Developers"
 
--Connect according to https://eclipse-embed-cdt.github.io/debug/openocd/
+### Open our project within Eclipse
+
+We now open our ESHO1 project from git within Eclipse as a general project, which seems to be the best way to get it working there. To do that, follow these steps:
+
+- Open Eclipse and close the Welcome dialogue
+- Click "File" → "Import"
+- Select "Projects from Git"
+- Select "Clone URI" and enter `gitlab:ESHO1_24/Group07` as the URI
+- At the Branch Selection, just click "Next"
+- For the destination, create a new folder within the current Eclipse workspace and make sure to check "Clone submodules"
+- Select "Import as general project" and hit "Finish"
+
+We can now explore our whole ESHO1 project. Open `Task_2/Environment_baremetal/blinky.c`, which is the file we will be debugging.
+
+### Compilation
+
+As our project structure of Task 2 does not really seam to fit to what Eclipse expects, we figure the easiest way to compile our program is just to do it manually:
+
+- Open a Terminal by pressing `Ctrl` + `Shift` + `T` and enter
+```
+make CSRC=blinky.c
+```
+
+Note: Eclipse's Project Explorer does not refresh automatically. To Refresh, select the current project and hit `F5`.
+
+We can then copy the compiled program onto our Raspberry Pi:
+```
+scp main.elf <Raspberry Pi's IP Address>:/home/<Raspberry Pi's Username>/
+```
+
+### Debugging Session
+
+- Start OpenOCD on the Raspberry Pi from the home directory:
+```
+openocd -f esho1/Task_1/stm32f0raspberry.cfg 
+```
+
+- Create Breakpoints at `main()` and at `toggle_led()` by double-clicking
+  ![](images/breakpoint.png)
+
+- Click "Run" → "Debug Configurations" and create a new "GDB Hardware Debugging" configuration:
+  - Select the `main.elf` file and disable auto build
+  ![](images/debug_config_1.png)
+  - Specify the full path to the debugger, select `Generic TCP/IP`, `extended-remote` and specify the hostname (or IP address) of the Raspberry Pi and the port `3333`
+  ![](images/debug_config_2.png)
+  - Enter the Initialization Commands as shown and make sure that "Load image" and "Load symbols" are ticked
+![](images/debug_config_3.png)
+  - No Changes to "Source" and "Common" are neccessary
+
+- Click "Debug" and switch to "Debug View"
+
+- After hitting "Resume" (F8), the execution stops at the beginning of `main()`. We can examine the registers with the "Registers" tab:
+![](images/registers.png)
+
+- After that, just like in 3.2, every time we hit "Resume", the LED gets toggled
+
+- To examine the state of the GPIOA_ODR register, we can add a watch expression: Right-click anywhere on the code tab and select "Add Watch Expression...", then enter `GPIOA->ODR`. Now, every time we resume, we can see the value of the register change between `0b0` and `0b10000000`.
+![](images/watch_odr.png)
