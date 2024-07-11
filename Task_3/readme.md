@@ -5,23 +5,61 @@
 SWD uses two pins: The SWCLK pin represents the clock while the SWD pin represents the data pin.
 Both pins are mapped to GPIO pins.
 
-SWD can be split into three phases
+SWD can be split into three phases:
 
-Connection setup:
+**Connection setup**:  
 This phase consists of a lineReset where the SWD is written with 1s more than 50 times.
-After that the JTAG sequence is transmitted.
-After this another lineReset follows.
+After that the JTAG-to-SWD sequence is transmitted.
+After this another lineReset follows and the IDCODE register must be read.
 
-Send phase:
+**Send phase:**  
 Sending data via SWD is done in three steps. First the header bits are transmitted containing addresses and parities.
 Next an acknowledgement is read. Last a data word sized 32 bits is transmitted with a parity bit.
 
-Read phase:
+**Read phase:**  
 Read data via SWD is also done in three steps. First the header bits are transmitted containing addresses and parities.
 Next an acknowledgement is read. Last a data word sized 32 bits is read with a parity bit.
 
-Sources:
--  google: Programming Internal Flash Over the Serial Wire Debug Interface: https://www.silabs.com/documents/public/application-notes/an0062.pdf
+---
+
+In our example, we only need to read the IDCODE register, so we do not have any send phase. 
+
+To execute our SWD implementation and read the IDCODE register, enter these on the Raspberry Pi:
+```
+mkdir build
+cd build
+
+cmake ..
+make
+
+sudo ./SWD
+```
+
+This results in:
+```
+IDCODE = 0x0bb11477
+```
+which matches the `SWD DPIDR 0x0bb11477` line output by OpenOCD.
+
+The whole communication log looks like this:
+```
+----------------------SWD setup----------------------
+Line Reset
+JTAG_to_SWD
+Line Reset
+Request: 10100101  AP/DP:0 R/W:1 Address:00 Parity:1
+Acknowledge: 100
+Receive: 11101110001010001000110111010000  Parity:1
+ → Read: 0x0bb11477
+-------------------SWD setup done--------------------
+Request: 10100101  AP/DP:0 R/W:1 Address:00 Parity:1
+Acknowledge: 100
+Receive: 11101110001010001000110111010000  Parity:1
+ → Read: 0x0bb11477
+```
+
+**Additional Sources**:
+- [Programming Internal Flash Over the Serial Wire Debug Interface](https://www.silabs.com/documents/public/application-notes/an0062.pdf)
 
 ## Task 3.2 
 
@@ -238,16 +276,104 @@ xPSR: 0xc1000000 pc: 0x080002dc msp: 0x20008000
 ## Task 3.3
 
 ### Software preparations
-- Install eclipse: 
-- Download eclipse installer from https://www.eclipse.org/downloads/packages/installer
-- Extract installer 
+
+Install Eclipse on the host PC:
+- Download the [Eclipse Installer](https://www.eclipse.org/downloads/packages/installer)
+
+- Extract the installer
   ```bash
   tar -xf eclipse-inst-jre-linux64.tar.gz
   ```
-- Run installer 
+
+- Run the installer 
   ```bash
   ./eclipse-inst
   ```
-- Select: Eclipse IDE for Embedded C/C++ Developers
+- Within the Eclipse Installer, select "Eclipse IDE for Embedded C/C++ Developers"
 
--Connect according to https://eclipse-embed-cdt.github.io/debug/openocd/
+### Open our project within Eclipse
+
+We now open our ESHO1 project from git within Eclipse as a general project, which seems to be the best way to get it working there. To do that, follow these steps:
+
+- Open Eclipse and close the Welcome dialogue
+- Click "File" → "Import"
+- Select "Projects from Git"
+- Select "Clone URI" and enter `gitlab:ESHO1_24/Group07` as the URI
+- At the Branch Selection, just click "Next"
+- For the destination, create a new folder within the current Eclipse workspace and make sure to check "Clone submodules"
+- Select "Import as general project" and hit "Finish"
+
+We can now explore our whole ESHO1 project. Open `Task_2/Environment_baremetal/blinky.c`, which is the file we will be debugging.
+
+### Compilation
+
+As our project structure of Task 2 does not really seam to fit to what Eclipse expects, we figure the easiest way to compile our program is just to do it manually:
+
+- Open a Terminal by pressing `Ctrl` + `Shift` + `T` and enter
+```
+make CSRC=blinky.c
+```
+
+Note: Eclipse's Project Explorer does not refresh automatically. To Refresh, select the current project and hit `F5`.
+
+We can then copy the compiled program onto our Raspberry Pi:
+```
+scp main.elf <Raspberry Pi's IP Address>:/home/<Raspberry Pi's Username>/
+```
+
+### Debugging Session
+
+- Start OpenOCD on the Raspberry Pi from the home directory:
+```
+openocd -f esho1/Task_1/stm32f0raspberry.cfg 
+```
+
+- Create Breakpoints at `main()` and at `toggle_led()` by double-clicking
+  ![](images/breakpoint.png)
+
+- Click "Run" → "Debug Configurations" and create a new "GDB Hardware Debugging" configuration:
+  - Select the `main.elf` file and disable auto build
+  ![](images/debug_config_1.png)
+  - Specify the full path to the debugger, select `Generic TCP/IP`, `extended-remote` and specify the hostname (or IP address) of the Raspberry Pi and the port `3333`
+  ![](images/debug_config_2.png)
+  - Enter the Initialization Commands as shown and make sure that "Load image" and "Load symbols" are ticked
+![](images/debug_config_3.png)
+  - No Changes to "Source" and "Common" are neccessary
+
+- Click "Debug" and switch to "Debug View"
+
+- After hitting "Resume" (F8), the execution stops at the beginning of `main()`. We can examine the registers with the "Registers" tab:
+![](images/registers.png)
+
+- After that, just like in 3.2, every time we hit "Resume", the LED gets toggled
+
+- To examine the state of the GPIOA_ODR register, we can add a watch expression: Right-click anywhere on the code tab and select "Add Watch Expression...", then enter `GPIOA->ODR`. Now, every time we resume, we can see the value of the register change between `0b0` and `0b10000000`.
+![](images/watch_odr.png)
+
+## Use CLion instead of Eclipse and have an easy life
+
+With CLion, the debugging process described above is much more simple. The compiled elf file can be copied to the Raspberry Pi, flashed onto the M0 and debugged all in one step by utilising the "Remote GDB Server" target:
+
+- Install CLion from JetBrains Toolbox
+
+- Get our ESHO1 project from Git via "New" → "Project from Version Control..." and entering `gitlab:ESHO1_24/Group07` as the URL
+
+- Navigate to the Makefile of the task to test, right-click and select "Load Makefile Project"  
+  Note: The Makefile can be changed by doing this with another Makefile
+
+- Build the project
+
+- Add a new "Remote GDB Server" run configuration:
+  - Select the Makefile target which results in the elf file to debug
+  - Select the elf file to flash and debug
+  - At "Credentials", setup an ssh connection to the Raspberry Pi
+  - At "Target Remote args", enter the hostname or IP address of the Raspberry Pi and the port 3333
+  - At "GDB Server", enter `openocd`
+  - Enter the following "GDB Server args":
+    ```
+    -f <absolute path to stm32f0raspberry.cfg>
+    -c "program /tmp/CLion/debug/main.elf verify reset"
+    ```
+  ![](images/clion.png)
+
+- Hit the Debug Button
