@@ -311,3 +311,31 @@ openocd -f esho1/Task_1/stm32f0raspberry.cfg
 
 - To examine the state of the GPIOA_ODR register, we can add a watch expression: Right-click anywhere on the code tab and select "Add Watch Expression...", then enter `GPIOA->ODR`. Now, every time we resume, we can see the value of the register change between `0b0` and `0b10000000`.
 ![](images/watch_odr.png)
+
+## Use CLion instead of Eclipse and have an easy life
+
+With CLion, the debugging process described above is much more simple. The compiled elf file can be copied to the Raspberry Pi, flashed onto the M0 and debugged all in one step by utilising the "Remote GDB Server" target:
+
+- Install CLion from JetBrains Toolbox
+
+- Get our ESHO1 project from Git via "New" → "Project from Version Control..." and entering `gitlab:ESHO1_24/Group07` as the URL
+
+- Navigate to the Makefile of the task to test, right-click and select "Load Makefile Project"  
+  Note: The Makefile can be changed by doing this with another Makefile
+
+- Build the project
+
+- Add a new "Remote GDB Server" run configuration:
+  - Select the Makefile target which results in the elf file to debug
+  - Select the elf file to flash and debug
+  - At "Credentials", setup an ssh connection to the Raspberry Pi
+  - At "Target Remote args", enter the hostname or IP address of the Raspberry Pi and the port 3333
+  - At "GDB Server", enter `openocd`
+  - Enter the following "GDB Server args":
+    ```
+    -f <absolute path to stm32f0raspberry.cfg>
+    -c "program /tmp/CLion/debug/main.elf verify reset"
+    ```
+  ![](images/clion.png)
+
+- Hit the Debug Button

@@ -5,9 +5,10 @@ main.elf
 # exclude LOCAL folder
 **/LOCAL/
 
-# exclude VSCode files
+# exclude VSCode and CLion files
 *.code-workspace
 .vscode/settings.json
+.idea/
 
 # exclude OS generated files
 .DS_Store
