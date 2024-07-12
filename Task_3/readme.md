@@ -20,15 +20,23 @@ Next an acknowledgement is read. Last a data word sized 32 bits is transmitted w
 Read data via SWD is also done in three steps. First the header bits are transmitted containing addresses and parities.
 Next an acknowledgement is read. Last a data word sized 32 bits is read with a parity bit.
 
+With SWD, the least-significant bit is always transmitted first.
+
 ---
 
 In our example, we only need to read the IDCODE register, so we do not have any send phase. 
 
 To execute our SWD implementation and read the IDCODE register, enter these on the Raspberry Pi:
 ```
+cd <repository>/utils/pigpio
 mkdir build
 cd build
+cmake ..
+make
 
+cd <repository>/Task_3/1_Serial_Wire_Debugging
+mkdir build
+cd build
 cmake ..
 make
 
