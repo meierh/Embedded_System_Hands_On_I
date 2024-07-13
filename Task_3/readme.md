@@ -380,8 +380,21 @@ With CLion, the debugging process described above is much more simple. The compi
   - Enter the following "GDB Server args":
     ```
     -f <absolute path to stm32f0raspberry.cfg>
-    -c "program /tmp/CLion/debug/main.elf verify reset"
+    -c "program /tmp/CLion/debug/main.elf verify"
+    -c "reset halt"
     ```
   ![](images/clion.png)
 
 - Hit the Debug Button
+
+### Troubleshooting
+
+Problems might arise when CLion tries to connect to the debugger before OpenOCD has finished flashing the elf file. A hacky way around that is to force gdb to sleep before trying to connect by redefining the `target remote` command. This way, you can also fix that CLion does not provide a way of using `target extended-remote` instead of `target remote`:
+
+- Create a file `.gdbinit` at your home directory with the following content:
+  ```
+  define target remote
+  shell sleep 5
+  target extended-remote $arg0
+  end
+  ```
