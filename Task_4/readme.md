@@ -46,3 +46,13 @@ On the raspberry pi we can now select `/dev/serial0` as UART port.
  The term Synchronous enables the USART to send an additional clock 
 signal to the receiving device. The data is then sampled at a predefined
  edge (Rising or Falling) of the clock. The USART mode uses **3 pins** (clock, Tx and Rx) compared to the **2 pins** (Tx and Rx) used in the UART. [Source 26.6.24](https://controllerstech.com/stm32-uart-1-configure-uart-transmit-data/)
+
+## Task 3
+
+Datasheets: 
+
+https://www.pololu.com/file/0J1087/LSM6DS33.pdf
+
+https://www.pololu.com/file/0J1089/LIS3MDL.pdf
+
+https://www.pololu.com/file/0J761/LPS25H.pdf
