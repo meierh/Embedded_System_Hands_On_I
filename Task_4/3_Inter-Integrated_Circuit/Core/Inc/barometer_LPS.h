@@ -47,6 +47,20 @@ public:
         FIFO_DATA_OUT_PRESS_L   = 0x79, // 22DF
         FIFO_DATA_OUT_PRESS_H   = 0x7A, // 22DF
 
+        LPS25H_REF_P_L          = 0x09,
+        LPS25H_REF_P_H          = 0x0A,
+        LPS25H_CTRL_REG1        = 0x20,
+        LPS25H_CTRL_REG2        = 0x21,
+        LPS25H_CTRL_REG3        = 0x22,
+        LPS25H_CTRL_REG4        = 0x23,
+        LPS25H_INTERRUPT_CFG    = 0x24,
+        LPS25H_INT_SOURCE       = 0x25,
+        LPS25H_FIFO_CTRL        = 0x2E,
+        LPS25H_THS_P_L          = 0x30,
+        LPS25H_THS_P_H          = 0x31,
+        LPS25H_RPDS_L           = 0x39,
+        LPS25H_RPDS_H           = 0x3A,
+
 
         /*
         // dummy addresses for registers in different locations on different devices;
@@ -116,14 +130,15 @@ public:
     barometer_LPS();
     // destructor
     // ~barometer_LPS();
+    void enableSensor(void);
     // read the who am i register of the device
     uint8_t readWhoAmI(void);
     // read the raw pressure value
-    int32_t readPressure(void);
+    int32_t readPressureRaw(void);
     // read the pressure value and convert them to millibars
     float readPressureMillibars(void);
-
-    //void enabledSensor(void);
+    int16_t readTemperatureRaw(void);
+    float readTemperatureInC(void);
 
 };
 
