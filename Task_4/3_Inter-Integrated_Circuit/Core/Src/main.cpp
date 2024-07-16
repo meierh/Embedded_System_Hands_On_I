@@ -100,9 +100,24 @@ int main(void)
     MX_USART5_UART_Init();
     /* USER CODE BEGIN 2 */
 
-    barometer_LPS mySensor; //= barometer_LPS();
+    /** test Pressure sensor */
+    barometer_LPS mySensor;
     uint8_t whoami;
     whoami = mySensor.readWhoAmI();
+    mySensor.enableSensor();
+    int16_t tempRaw = mySensor.readTemperatureRaw();
+    int32_t  pressureRaw = mySensor.readPressureRaw();
+    float temp = mySensor.readTemperatureInC();
+    float pressure = mySensor.readPressureMillibars();
+
+    // create test vectors to store sensor data
+    std::vector<uint16_t> rawValues;
+    std::vector<float> convertedValues;
+
+    rawValues.push_back(tempRaw);
+    convertedValues.push_back(temp);
+
+
 
     /* USER CODE END 2 */
 
