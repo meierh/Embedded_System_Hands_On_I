@@ -160,3 +160,10 @@ uint8_t magnetometer_LIS3MDL::readTemperature(void) {
     return recMsg.at(0);
 }
 
+float magnetometer_LIS3MDL::readMagneticFieldInKgA(void) {
+    //@todo
+    return 0;
+}
+
+float
+

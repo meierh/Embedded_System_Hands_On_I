@@ -172,6 +172,11 @@ std::vector<uint16_t> gyro_accelerometer_LSM6DS33::readGyro() {
     return result;
 }
 
+float gyro_accelerometer_LSM6DS33::readAccInMPerS(void) {
+    //@todo
+    return 0;
+}
+
 
 
 

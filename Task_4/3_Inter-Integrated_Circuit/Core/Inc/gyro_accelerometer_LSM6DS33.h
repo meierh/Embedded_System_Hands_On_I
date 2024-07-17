@@ -265,6 +265,7 @@ public:
     void enableSensor(void);
     std::vector<uint16_t> readAcc();
     std::vector<uint16_t> readGyro();
+    float readAccInMPerS(void);
 };
 
 

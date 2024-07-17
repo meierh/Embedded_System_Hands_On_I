@@ -38,6 +38,7 @@ public:
     void enableSensor(void);
     std::vector<uint8_t> readMagneticField(void);
     uint8_t readTemperature(void);
+    float readMagneticFieldInKgA(void);
 };
 
 
