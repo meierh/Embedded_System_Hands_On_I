@@ -1,7 +1,3 @@
-//
-// Created by nico on 16.07.24.
-//
-
 #ifndef INC_3_INTER_INTEGRATED_CIRCUIT_MAGNETOMETER_LIS3MDL_H
 #define INC_3_INTER_INTEGRATED_CIRCUIT_MAGNETOMETER_LIS3MDL_H
 #include "i2c_sensor.h"
@@ -35,17 +31,13 @@ public:
         INT_THS_L   = 0x32,
         INT_THS_H   = 0x33,
     };
-    template <typename T> struct vector
-    {
-        T x, y, z;
-    };
-    vector<int16_t> m; // magnetometer readings
+
     uint8_t last_status; // status of last I2C transmission
     // read the whoami register of the device
     uint8_t readWhoAmI(void);
     void enableSensor(void);
-    void readMagneticField(void);
-
+    std::vector<uint8_t> readMagneticField(void);
+    uint8_t readTemperature(void);
 };
 
 
