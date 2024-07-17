@@ -19,6 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "barometer_LPS.h"
+#include "magnetometer_LIS3MDL.h"
+#include "gyro_accelerometer_LSM6DS33.h"
 #include <cstdint>
 #include <vector>
 
@@ -100,24 +102,44 @@ int main(void)
     MX_USART5_UART_Init();
     /* USER CODE BEGIN 2 */
 
-    /** test Pressure sensor */
-    barometer_LPS mySensor;
-    uint8_t whoami;
-    whoami = mySensor.readWhoAmI();
-    mySensor.enableSensor();
-    int16_t tempRaw = mySensor.readTemperatureRaw();
-    int32_t  pressureRaw = mySensor.readPressureRaw();
-    float temp = mySensor.readTemperatureInC();
-    float pressure = mySensor.readPressureMillibars();
-
     // create test vectors to store sensor data
     std::vector<uint16_t> rawValues;
     std::vector<float> convertedValues;
 
+    /* test Pressure sensor */
+    barometer_LPS myBaroSensor;
+    uint8_t whoami;
+    whoami = myBaroSensor.readWhoAmI();
+    myBaroSensor.enableSensor();
+    int16_t tempRaw = myBaroSensor.readTemperatureRaw();
+    int32_t  pressureRaw = myBaroSensor.readPressureRaw();
+    float tempC = myBaroSensor.readTemperatureInC();
+    float pressureMillibars = myBaroSensor.readPressureMillibars();
+
     rawValues.push_back(tempRaw);
-    convertedValues.push_back(temp);
+    rawValues.push_back(pressureRaw);
+    convertedValues.push_back(tempC);
+    convertedValues.push_back(pressureMillibars);
+    /* End test pressureMillibars sensor */
 
+    /* Start magnetometer test */
+    magnetometer_LIS3MDL myMagSensor;
+    uint8_t whoAmI_mag = myMagSensor.readWhoAmI();
+    myMagSensor.enableSensor();
+    std::vector<uint8_t> magField= myMagSensor.readMagneticField();
+    rawValues.push_back(magField.at(0));
+    uint8_t mag_temp_value = myMagSensor.readTemperature();
+    /* end magnetometer test */
 
+    /*start gyrp and acc test */
+    gyro_accelerometer_LSM6DS33 myGyAccSensor;
+    uint16_t WhoAmI_gyacc = myGyAccSensor.readWhoAmI();
+    myGyAccSensor.enableSensor();
+    std::vector<uint16_t> accValue = myGyAccSensor.readAcc();
+    std::vector<uint16_t> gyValue = myGyAccSensor.readGyro();
+    rawValues.push_back(accValue.at(0));
+    rawValues.push_back(gyValue.at(0));
+    /* end gyro and acc test */
 
     /* USER CODE END 2 */
 
@@ -126,7 +148,7 @@ int main(void)
     while (1)
     {
         /* USER CODE END WHILE */
-        HAL_UART_Transmit(&huart5, &whoami, sizeof(whoami), HAL_MAX_DELAY);
+        //HAL_UART_Transmit(&huart5, &whoami, sizeof(whoami), HAL_MAX_DELAY);
         HAL_Delay(100);
         /* USER CODE BEGIN 3 */
     }
