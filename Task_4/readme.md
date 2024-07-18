@@ -46,3 +46,21 @@ On the raspberry pi we can now select `/dev/serial0` as UART port.
  The term Synchronous enables the USART to send an additional clock 
 signal to the receiving device. The data is then sampled at a predefined
  edge (Rising or Falling) of the clock. The USART mode uses **3 pins** (clock, Tx and Rx) compared to the **2 pins** (Tx and Rx) used in the UART. [Source 26.6.24](https://controllerstech.com/stm32-uart-1-configure-uart-transmit-data/)
+
+## Task 3
+
+**Addresses and datasheets**: 
+
+| Sensor                           | Datasheet                                              | Slave Address (default) (7bit) | read address (8bit) | write address (8Bit) |
+| -------------------------------- | ------------------------------------------------------ | ------------------------------ | ------------------- | -------------------- |
+| LSM6DS33 (gyro and accelerometer | [URL](https://www.pololu.com/file/0J1087/LSM6DS33.pdf) | 1101011b                       | 11010111 (D7h)      | 11010110 (D6h)       |
+| LIS3MDL (magnetometer)           | [URL](https://www.pololu.com/file/0J1089/LIS3MDL.pdf)  | 0011110b                       | 00111101 (3Dh)      | 00111100 (3Ch)       |
+| LPS25H (barometer)               | [URL](https://www.pololu.com/file/0J761/LPS25H.pdf)    | 1011101b                       | 10111011 (BBh)      | 10111010 (BAh)       |
+
+*The source code was partly inspired by the official Arduino libraries for the sensors.*
+
+- [GitHub - pololu/lsm6-arduino: Arduino library for Pololu LSM6DS33 and LSM6DSO boards](https://github.com/pololu/lsm6-arduino/tree/master) (under MIT License)
+
+- [GitHub - pololu/lps-arduino: Arduino library for Pololu LPS25H and LPS331AP boards](https://github.com/pololu/lps-arduino) (under MIT License)
+
+- [GitHub - pololu/lis3mdl-arduino: Pololu Arduino library for LIS3MDL magnetometer](https://github.com/pololu/lis3mdl-arduino)  (under MIT License)

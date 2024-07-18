@@ -9,6 +9,7 @@ main.elf
 *.code-workspace
 .vscode/settings.json
 .idea/
+**/cmake-build-debug/
 
 # exclude OS generated files
 .DS_Store
