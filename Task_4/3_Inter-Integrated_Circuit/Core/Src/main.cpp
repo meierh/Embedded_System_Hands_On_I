@@ -24,6 +24,9 @@
 #include <cstdint>
 #include <vector>
 
+#include "barometer.h"
+#include "LPS331AP.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -101,6 +104,18 @@ int main(void)
     MX_I2C1_Init();
     MX_USART5_UART_Init();
     /* USER CODE BEGIN 2 */
+
+    //LPS331AP myBarometer;
+    barometer* myBarometer = new LPS331AP();
+
+    double press, temp;
+
+    while (1)
+    {
+        myBarometer->read_barometer(temp, press);
+        HAL_Delay(10);
+    }
+    ///////////////////////////////////////////////////////////////////////////////
 
     // create test vectors to store sensor data
     std::vector<uint16_t> rawValues;

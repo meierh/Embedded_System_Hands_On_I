@@ -11,8 +11,7 @@
 
 
 
-barometer_LPS::barometer_LPS() : i2c_sensor() {
-    address = SA0_HIGH_ADDRESS;
+barometer_LPS::barometer_LPS() : i2c_sensor(SA0_HIGH_ADDRESS) {
 }
 
 /**
@@ -44,7 +43,7 @@ void barometer_LPS::enableSensor(void) {
     std::vector<uint8_t> value;
     msg.push_back(regAddr::LPS25H_CTRL_REG1);
     value.push_back(0xB0);
-    writeVector(value, msg);
+    writeVector(value, LPS25H_CTRL_REG1);
 }
 
 /**
@@ -56,7 +55,7 @@ uint8_t barometer_LPS::readWhoAmI(void) {
     msg.push_back(regAddr::WHO_AM_I);
 
     std::vector<uint8_t> revMsg;
-    readVector(revMsg, msg, 1);
+    readVector(revMsg, WHO_AM_I, 1);
 
     return revMsg.at(0);
 }
@@ -79,7 +78,7 @@ int32_t barometer_LPS::readPressureRaw(void) {
     // we read PRESS_OUT_XL, PRESS_OUT_L, PRESS_OUT_H
     msg.push_back(regAddr::PRESS_OUT_XL | (1 << 7));
     std::vector<uint8_t> recMsg;
-    readVector(recMsg, msg, 3);
+    readVector(recMsg, PRESS_OUT_XL | (1 << 7), 3);
 
     int32_t result = ((int32_t) (int8_t)recMsg[2]) << 16 | (uint16_t)recMsg[1] << 8 | recMsg[0];  //@todo
 
@@ -110,7 +109,7 @@ int16_t barometer_LPS::readTemperatureRaw(void) {
     // we read register TEMP_OUT_L, TEMP_OUT_H
     msg.push_back((regAddr::TEMP_OUT_L)| (1 << 7));
     std::vector<uint8_t> recMsg;
-    readVector(recMsg, msg, 2);
+    readVector(recMsg, TEMP_OUT_L| (1 << 7), 2);
 
     return (int16_t)(recMsg[1] << 8 | recMsg[0]);
 }

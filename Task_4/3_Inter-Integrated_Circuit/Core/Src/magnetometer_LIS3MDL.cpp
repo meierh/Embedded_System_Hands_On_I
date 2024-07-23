@@ -3,8 +3,7 @@
 
 #include "magnetometer_LIS3MDL.h"
 
-magnetometer_LIS3MDL::magnetometer_LIS3MDL() : i2c_sensor() {
-    address = LIS3MDL_SA1_HIGH_ADDRESS;
+magnetometer_LIS3MDL::magnetometer_LIS3MDL() : i2c_sensor(LIS3MDL_SA1_HIGH_ADDRESS) {
 }
 
 uint8_t magnetometer_LIS3MDL::readWhoAmI(void) {
@@ -12,7 +11,7 @@ uint8_t magnetometer_LIS3MDL::readWhoAmI(void) {
     msg.push_back(regAddr::WHO_AM_I);
 
     std::vector<uint8_t> revMsg;
-    readVector(revMsg, msg, 1);
+    readVector(revMsg, WHO_AM_I, 1);
 
     return revMsg.at(0);
 }
@@ -43,7 +42,7 @@ void magnetometer_LIS3MDL::enableSensor() {
     */
     msg.push_back(regAddr::CTRL_REG1);
     value.push_back(0xF0);
-    writeVector(value, msg);
+    writeVector(value, CTRL_REG1);
 
     msg.pop_back();
     value.pop_back();
@@ -64,7 +63,7 @@ void magnetometer_LIS3MDL::enableSensor() {
     //
     msg.push_back(regAddr::CTRL_REG2);
     value.push_back(0x00);
-    writeVector(value, msg);
+    writeVector(value, CTRL_REG2);
 
     msg.pop_back();
     value.pop_back();
@@ -85,7 +84,7 @@ void magnetometer_LIS3MDL::enableSensor() {
     */
     msg.push_back(regAddr::CTRL_REG3);
     value.push_back(0x00);
-    writeVector(value, msg);
+    writeVector(value, CTRL_REG3);
 
     msg.pop_back();
     value.pop_back();
@@ -102,7 +101,7 @@ void magnetometer_LIS3MDL::enableSensor() {
    */
     msg.push_back(regAddr::CTRL_REG4);
     value.push_back(0x0C);
-    writeVector(value, msg);
+    writeVector(value, CTRL_REG4);
 
     msg.pop_back();
     value.pop_back();
@@ -121,7 +120,7 @@ void magnetometer_LIS3MDL::enableSensor() {
  */
     msg.push_back(regAddr::CTRL_REG5);
     value.push_back(0x40);
-    writeVector(value, msg);
+    writeVector(value, CTRL_REG5);
 }
 
 /**
@@ -139,7 +138,7 @@ std::vector<uint8_t> magnetometer_LIS3MDL::readMagneticField(void) {
     // we read OUT_X_L, OUT_Y_L, OUT_Z_L
     msg.push_back(regAddr::OUT_X_L | (1 << 7));
     std::vector<uint8_t> recMsg;
-    readVector(recMsg, msg, 3);
+    readVector(recMsg, OUT_X_L | (1 << 7), 3);
 
     return recMsg;
 }
@@ -155,7 +154,7 @@ uint8_t magnetometer_LIS3MDL::readTemperature(void) {
     // we read TEMP_OUT_L
     msg.push_back(regAddr::TEMP_OUT_L);
     std::vector<uint8_t> recMsg;
-    readVector(recMsg, msg, 1);
+    readVector(recMsg, TEMP_OUT_L, 1);
 
     return recMsg.at(0);
 }
@@ -165,5 +164,5 @@ float magnetometer_LIS3MDL::readMagneticFieldInKgA(void) {
     return 0;
 }
 
-float
+// float //???
 

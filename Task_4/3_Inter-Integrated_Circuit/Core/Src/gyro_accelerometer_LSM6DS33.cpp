@@ -7,8 +7,7 @@
 #define DS33_SA0_LOW_ADDRESS  0b1101010
 #define DS33_SA0_HIGH_ADDRESS 0b1101011
 
-gyro_accelerometer_LSM6DS33::gyro_accelerometer_LSM6DS33() : i2c_sensor() {
-    address = DS33_SA0_HIGH_ADDRESS;
+gyro_accelerometer_LSM6DS33::gyro_accelerometer_LSM6DS33() : i2c_sensor(DS33_SA0_HIGH_ADDRESS) {
 }
 
 /**
@@ -20,7 +19,7 @@ uint8_t gyro_accelerometer_LSM6DS33::readWhoAmI(void) {
     msg.push_back(regAddr::WHO_AM_I);
 
     std::vector<uint8_t> revMsg;
-    readVector(revMsg, msg, 1);
+    readVector(revMsg, WHO_AM_I, 1);
 
     return revMsg.at(0);
 }
@@ -45,7 +44,7 @@ void gyro_accelerometer_LSM6DS33::enableSensor(void) {
     */
     msg.push_back(regAddr::CTRL1_XL);
     value.push_back(0x80);
-    writeVector(value, msg);
+    writeVector(value, CTRL1_XL);
 
     msg.pop_back();
     value.pop_back();
@@ -64,7 +63,7 @@ void gyro_accelerometer_LSM6DS33::enableSensor(void) {
     //
     msg.push_back(regAddr::CTRL2_G);
     value.push_back(0x80);
-    writeVector(value, msg);
+    writeVector(value, CTRL2_G);
 
     msg.pop_back();
     value.pop_back();
@@ -93,7 +92,7 @@ void gyro_accelerometer_LSM6DS33::enableSensor(void) {
     */
     msg.push_back(regAddr::CTRL3_C);
     value.push_back(0x04);
-    writeVector(value, msg);
+    writeVector(value, CTRL3_C);
 }
 
 
@@ -113,7 +112,7 @@ std::vector<uint16_t> gyro_accelerometer_LSM6DS33::readAcc() {
     // we read OUTX_L_XL, OUTX_H_XL, OUTY_L_XL, OUTY_H_XL, OUTZ_L_XL, OUTZ_H_XL
     msg.push_back(regAddr::OUTX_L_XL);
     std::vector<uint8_t> recMsg;
-    readVector(recMsg, msg, 6);
+    readVector(recMsg, OUTX_L_XL, 6);
 
     std::vector<uint16_t> result;
 
@@ -150,7 +149,7 @@ std::vector<uint16_t> gyro_accelerometer_LSM6DS33::readGyro() {
     // we read OUTX_L_G, OUTX_H_G, OUTY_L_G, OUTY_H_G, OUTZ_L_G, OUTZ_H_G
     msg.push_back(regAddr::OUTX_L_G);
     std::vector<uint8_t> recMsg;
-    readVector(recMsg, msg, 6);
+    readVector(recMsg, OUTX_L_G, 6);
 
     std::vector<uint16_t> result;
 

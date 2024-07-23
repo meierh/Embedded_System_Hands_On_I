@@ -5,94 +5,65 @@
 #ifndef INC_3_INTER_INTEGRATED_CIRCUIT_I2C_SENSOR_H
 #define INC_3_INTER_INTEGRATED_CIRCUIT_I2C_SENSOR_H
 
-
 #include "main.h"
-#include "array.h"
 #include <vector>
 
 
 class i2c_sensor {
-public:
 
+private:
     uint16_t address;
-    i2c_sensor() {
 
-    }
+public:
+    /**
+     * Checks whether the I2C device is ready
+     * @return true iff the state of the I2C device is HAL_I2C_STATE_READY
+     */
+    static bool checkStateOfI2c();
 
-    static bool checkStateOfI2c() {
-        // check state of i2c
-        HAL_I2C_StateTypeDef i2c_state = HAL_I2C_GetState(&hi2c1);
+    /**
+     * Creates a new I2C sensor device connection
+     * @param address the device address of the sensor
+     */
+    explicit i2c_sensor(uint16_t address);
 
-        if(i2c_state != HAL_I2C_STATE_READY) {
-            // i2c not ready
-            return false;
-        } else {
-            return true;
-        }
-    }
+    /**
+     * Checks whether the sensor is ready
+     * @return true iff the sensor is ready
+     */
+    [[nodiscard]] bool checkDeviceStatus() const;
 
-    static bool checkDeviceStatus(uint16_t readAddress) {
-        // check if device is ready
-        HAL_StatusTypeDef state = HAL_I2C_IsDeviceReady(&hi2c1, readAddress, 5, 1000);
+    /**
+     * Writes a variable amount of data to the sensor
+     * Caution: The caller has to ensure that the device is able to auto-increment the memory addresses
+     * @param data The bytes to be written to the sensor
+     * @param memoryAddress The sensor's address of the first byte to be written
+     */
+    void writeVector(std::vector<uint8_t>& data, uint8_t memoryAddress) const;
+    /**
+     * Reads a variable amount of data from the sensor
+     * Caution: The caller has to ensure that the device is able to auto-increment the memory addresses
+     * @param data A vector for the read bytes to be written to
+     * @param memoryAddress The sensor's address of the first byte to be read
+     * @param size The amount of bytes to be read
+     */
+    void readVector(std::vector<uint8_t>& data, uint8_t memoryAddress, uint16_t size) const;
 
-        if(state != HAL_OK) {
-            //uint32_t errorCode = HAL_I2C_GetError(&hi2c1);
-            return false;
-        }else  {
-            return true;
-        }
-    }
-
-
-    void writeVector(std::vector<uint8_t>&  data, std::vector<uint8_t>&msg) const {
-        // to write to the device, we have to shift the 7 bit address to a 8 bit address. The last bit is 0 for write
-        uint16_t readAddress = address << 1;
-
-        if(!checkStateOfI2c()) {
-            return;
-        }
-
-        if(!checkDeviceStatus(readAddress)){
-            return;
-        }
-
-        if(HAL_I2C_Mem_Write(&hi2c1, readAddress, msg.at(0), I2C_MEMADD_SIZE_8BIT, &data.at(0), 1, 10000) != HAL_OK) {
-            // @todo improve error handling
-            uint32_t errorCode = HAL_I2C_GetError(&hi2c1);
-            data.push_back(errorCode);
-            Error_Handler();
-        }
-    }
-
-    void readVector(std::vector<uint8_t>& data, std::vector<uint8_t>& msg, uint16_t size) const {
-        // to read from the device, we have to shift the 7 bit address to a 8 bit address and set the last bit to 1 for reading
-        uint16_t readAddress = ((address << 1) |0x1);
-
-        if(!checkStateOfI2c()) {
-            return;
-        }
-
-        if(!checkDeviceStatus(readAddress)){
-            return;
-        }
-
-        // read the mem value and push the result to the data vector
-        uint8_t pData[size];
-        if(HAL_I2C_Mem_Read(&hi2c1, readAddress, msg.at(0), I2C_MEMADD_SIZE_8BIT, pData, size, 10000) != HAL_OK) {
-            //@todo improve error handling
-            uint32_t errorCode = HAL_I2C_GetError(&hi2c1);
-            data.push_back(errorCode);
-            Error_Handler();
-        }
-        // push every value of the buffer to the vector
-        uint8_t size_of_data = sizeof(pData);
-        for(int i=0; i< size_of_data; i++) {
-            data.push_back(pData[i]);
-        };
-    }
+    /**
+     * Writes one byte of data to the sensor
+     * @param data The byte to be written
+     * @param memoryAddress The sensor's address of the byte
+     */
+    void writeByte(uint8_t data, uint8_t memoryAddress) const;
+    /**
+     * Reads one byte of data from the sensor
+     * @param memoryAddress The sensor's address of the byte to be read
+     * @return the byte read.
+     */
+    uint8_t readByte(uint8_t memoryAddress) const;
 
 
-    /* i2c Error Codes copies from stm32f0xx_hal_i2c.h
+    /* i2c Error Codes copied from stm32f0xx_hal_i2c.h
     * #define HAL_I2C_ERROR_NONE      (0x00000000U)       !< No error
     * #define HAL_I2C_ERROR_BERR      (0x00000001U)    !< BERR error
     * #define HAL_I2C_ERROR_ARLO      (0x00000002U)    !< ARLO error
