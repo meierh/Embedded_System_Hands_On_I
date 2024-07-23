@@ -1,6 +1,6 @@
 #ifndef INC_3_INTER_INTEGRATED_CIRCUIT_GYRO_ACCELEROMETER_LSM6DS33_H
 #define INC_3_INTER_INTEGRATED_CIRCUIT_GYRO_ACCELEROMETER_LSM6DS33_H
-#include "i2c_sensor.h"
+#include "../Core/Inc/i2c_sensor.h"
 
 class gyro_accelerometer_LSM6DS33: i2c_sensor {
 public:

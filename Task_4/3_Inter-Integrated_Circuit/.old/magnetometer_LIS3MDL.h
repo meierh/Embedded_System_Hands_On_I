@@ -1,6 +1,6 @@
 #ifndef INC_3_INTER_INTEGRATED_CIRCUIT_MAGNETOMETER_LIS3MDL_H
 #define INC_3_INTER_INTEGRATED_CIRCUIT_MAGNETOMETER_LIS3MDL_H
-#include "i2c_sensor.h"
+#include "../Core/Inc/i2c_sensor.h"
 
 
 class magnetometer_LIS3MDL :i2c_sensor  {
