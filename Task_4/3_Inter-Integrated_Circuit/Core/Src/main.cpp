@@ -109,7 +109,7 @@ int main(void)
     accelerometer* myAccelerometer = factory::getAccelerometer();
     magnetometer* myMagnetometer = factory::getMagnetometer();
 
-    uint8_t id_barometer, id_accelerometer, id_magnetometer;
+    volatile uint8_t id_barometer, id_accelerometer, id_magnetometer;
     id_barometer = myBarometer->readWHO_AM_I();
     id_accelerometer = myAccelerometer->readWHO_AM_I();
     id_magnetometer = myMagnetometer->readWHO_AM_I();
