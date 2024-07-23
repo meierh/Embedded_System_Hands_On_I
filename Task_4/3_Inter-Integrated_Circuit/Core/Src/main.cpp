@@ -18,14 +18,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "barometer_LPS.h"
-#include "magnetometer_LIS3MDL.h"
-#include "gyro_accelerometer_LSM6DS33.h"
 #include <cstdint>
 #include <vector>
 
+#include "accelerometer.h"
 #include "barometer.h"
-#include "LPS331AP.h"
+#include "factory.h"
+#include "LPS331AP_LPS25H.h"
+#include "LSM303D.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -105,56 +105,31 @@ int main(void)
     MX_USART5_UART_Init();
     /* USER CODE BEGIN 2 */
 
-    //LPS331AP myBarometer;
-    barometer* myBarometer = new LPS331AP();
+    barometer* myBarometer = factory::getBarometer();
+    accelerometer* myAccelerometer = factory::getAccelerometer();
+    magnetometer* myMagnetometer = factory::getMagnetometer();
 
-    double press, temp;
+    uint8_t id_barometer, id_accelerometer, id_magnetometer;
+    id_barometer = myBarometer->readWHO_AM_I();
+    id_accelerometer = myAccelerometer->readWHO_AM_I();
+    id_magnetometer = myMagnetometer->readWHO_AM_I();
+
+    double temperature, pressure, magnet_x, magnet_y, magnet_z, acc_x, acc_y, acc_z;
+    myBarometer->read_barometer(temperature, pressure);
+    myAccelerometer->read_accelerometer(acc_x, acc_y, acc_z);
+    myMagnetometer->read_magnetometer(magnet_x, magnet_y, magnet_z);
+
 
     while (1)
     {
-        myBarometer->read_barometer(temp, press);
-        HAL_Delay(10);
+        myBarometer->read_barometer(temperature, pressure);
+        myAccelerometer->read_accelerometer(acc_x, acc_y, acc_z);
+        myMagnetometer->read_magnetometer(magnet_x, magnet_y, magnet_z);
     }
-    ///////////////////////////////////////////////////////////////////////////////
 
-    // create test vectors to store sensor data
-    std::vector<uint16_t> rawValues;
-    std::vector<float> convertedValues;
-
-    /* test Pressure sensor */
-    barometer_LPS myBaroSensor;
-    uint8_t whoami;
-    whoami = myBaroSensor.readWhoAmI();
-    myBaroSensor.enableSensor();
-    int16_t tempRaw = myBaroSensor.readTemperatureRaw();
-    int32_t  pressureRaw = myBaroSensor.readPressureRaw();
-    float tempC = myBaroSensor.readTemperatureInC();
-    float pressureMillibars = myBaroSensor.readPressureMillibars();
-
-    rawValues.push_back(tempRaw);
-    rawValues.push_back(pressureRaw);
-    convertedValues.push_back(tempC);
-    convertedValues.push_back(pressureMillibars);
-    /* End test pressureMillibars sensor */
-
-    /* Start magnetometer test */
-    magnetometer_LIS3MDL myMagSensor;
-    uint8_t whoAmI_mag = myMagSensor.readWhoAmI();
-    myMagSensor.enableSensor();
-    std::vector<uint8_t> magField= myMagSensor.readMagneticField();
-    rawValues.push_back(magField.at(0));
-    uint8_t mag_temp_value = myMagSensor.readTemperature();
-    /* end magnetometer test */
-
-    /*start gyrp and acc test */
-    gyro_accelerometer_LSM6DS33 myGyAccSensor;
-    uint16_t WhoAmI_gyacc = myGyAccSensor.readWhoAmI();
-    myGyAccSensor.enableSensor();
-    std::vector<uint16_t> accValue = myGyAccSensor.readAcc();
-    std::vector<uint16_t> gyValue = myGyAccSensor.readGyro();
-    rawValues.push_back(accValue.at(0));
-    rawValues.push_back(gyValue.at(0));
-    /* end gyro and acc test */
+    delete myBarometer;
+    delete myAccelerometer;
+    delete myMagnetometer;
 
     /* USER CODE END 2 */
 
