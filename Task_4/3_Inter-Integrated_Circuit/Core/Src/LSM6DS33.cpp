@@ -53,7 +53,7 @@ void LSM6DS33::reset_and_config()
      * [1-0] BW_XL          Anti-aliasing filter bandwidth selection. Default value: 00
                             (00: 400 Hz; 01: 200 Hz; 10: 100 Hz; 11: 50 Hz)
     */
-    writeByte(CTRL1_XL, 0x80);
+    writeByte(0x80, CTRL1_XL);
 
     // Gyro
     // 0x80 = 0b010000000
@@ -66,7 +66,7 @@ void LSM6DS33::reset_and_config()
      * [1-0] FS_125         Gyroscope full-scale at 125 dps. Default value: 0
      +                      (0: disabled; 1: enabled)
     */
-    writeByte(CTRL2_G, 0x80);
+    writeByte(0x80, CTRL2_G);
 
     // Common
     // 0x44 = 0b01000100
@@ -90,7 +90,7 @@ void LSM6DS33::reset_and_config()
      +                  (0: normal mode; 1: reset device)
      +                  This bit is cleared by hardware after next flash boot.
     */
-    writeByte(CTRL3_C, 0x44);
+    writeByte(0x44, CTRL3_C);
 
     alreadyReset = true;
 }
