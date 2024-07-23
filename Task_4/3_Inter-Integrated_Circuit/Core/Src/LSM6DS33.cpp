@@ -11,10 +11,13 @@ bool LSM6DS33::alreadyReset = false;
 
 LSM6DS33::LSM6DS33() : i2c_sensor(DS33_SA0_HIGH_ADDRESS)
 {
+    LSM6DS33::reset_and_config();
 }
 
 void LSM6DS33::read_accelerometer(double& x, double& y, double& z)
 {
+    wait();
+
     // auto-increment is enabled by default by IF_INC =1 in CTRL3_C
     // we read OUTX_L_XL, OUTX_H_XL, OUTY_L_XL, OUTY_H_XL, OUTZ_L_XL, OUTZ_H_XL
     std::vector<uint8_t> sensorData;
