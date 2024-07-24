@@ -38,7 +38,48 @@ On the raspberry pi we can now select `/dev/serial0` as UART port.
 
 **Note:**  `/dev/serial0` is a symbolic link to `/dev/ttyS0`
 
-[For more information, see the official documentation]([Configuration - Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/computers/configuration.html#configure-uarts))
+For more information, see the official documentation ([Configuration - Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/computers/configuration.html#configure-uarts))
+
+### Python Software Preparations on the Raspberry Pi
+
+We use the `pyserial` python libaray, which can be installed via `pip` in the following way:
+
+```bash
+# Change to your home folder
+cd 
+
+# Install python3 and pip
+sudo apt install python3-full pip
+
+# Create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Install pyserial
+pip3 install pyserial
+```
+
+### Execute Benchmark
+
+1. Compile/Run the M0 Code normally
+
+2. Start the Python Code for the Raspberry Pi (`Code-raspi/main.py`). The script `raspi-run.sh` can be used to simplify this when you are on your host machine:  
+   ```
+   ./raspi-run.sh <Raspberry Pi's Hostname/IP/SSH-Host-Name> <Raspberry Pi's username>
+   ```
+   Note: Within CLion, the Build Target "Shell Script" can be used to call the script. Be sure to set the working directory to 2_Universal_Asynchronous_Receiver_Transmitter.
+
+Testing UART with 1000x10 Bytes:
+```
+UART_Benchmark started with 1000 times 10 bytes.
+Test succeeded for baudrate   9600. Elapsed time: 20.95 s.
+Test succeeded for baudrate  19200. Elapsed time: 10.53 s.
+Test succeeded for baudrate  57600. Elapsed time: 3.56 s.
+Test succeeded for baudrate 115200. Elapsed time: 1.82 s.
+UART_Benchmark finished successfully.
+```
+
+We can observe that the time required for the communication approximately decreases linearly to the baudrate.
 
 ### Side note about USART vs UART
 

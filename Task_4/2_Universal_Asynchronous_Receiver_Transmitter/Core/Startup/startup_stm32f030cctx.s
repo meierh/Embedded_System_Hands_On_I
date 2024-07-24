@@ -2,14 +2,11 @@
   ******************************************************************************
   * @file      startup_stm32f030xc.s
   * @author    MCD Application Team
-  * @version   V1.5.0
-  * @date      05-December-2014
-  * @brief     STM32F030xC devices vector table for Atollic TrueSTUDIO toolchain.
+  * @brief     STM32F030xc/STM32F030xb devices vector table for GCC toolchain.
   *            This module performs:
   *                - Set the initial SP
   *                - Set the initial PC == Reset_Handler,
   *                - Set the vector table entries with the exceptions ISR address
-  *                - Configure the system clock
   *                - Branches to main in the C library (which eventually
   *                  calls main()).
   *            After Reset the Cortex-M0 processor is in Thread mode,
@@ -17,19 +14,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.
   *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -60,62 +50,43 @@ defined in linker script */
 Reset_Handler:
   ldr   r0, =_estack
   mov   sp, r0          /* set stack pointer */
+  
+/* Call the clock system initialization function.*/
+  bl  SystemInit
 
-/*Check if boot space corresponds to test memory*/
- 
-    LDR R0,=0x00000004
-    LDR R1, [R0]
-    LSRS R1, R1, #24
-    LDR R2,=0x1F
-    CMP R1, R2
-    BNE ApplicationStart
-
- /*SYSCFG clock enable*/
-
-    LDR R0,=0x40021018
-    LDR R1,=0x00000001
-    STR R1, [R0]
-
-/*Set CFGR1 register with flash memory remap at address 0*/
-    LDR R0,=0x40010000
-    LDR R1,=0x00000000
-    STR R1, [R0]
-
-ApplicationStart:
 /* Copy the data segment initializers from flash to SRAM */
-  movs r1, #0
+  ldr r0, =_sdata
+  ldr r1, =_edata
+  ldr r2, =_sidata
+  movs r3, #0
   b LoopCopyDataInit
 
 CopyDataInit:
-  ldr r3, =_sidata
-  ldr r3, [r3, r1]
-  str r3, [r0, r1]
-  adds r1, r1, #4
+  ldr r4, [r2, r3]
+  str r4, [r0, r3]
+  adds r3, r3, #4
 
 LoopCopyDataInit:
-  ldr r0, =_sdata
-  ldr r3, =_edata
-  adds r2, r0, r1
-  cmp r2, r3
+  adds r4, r0, r3
+  cmp r4, r1
   bcc CopyDataInit
-  ldr r2, =_sbss
-  b LoopFillZerobss
+  
 /* Zero fill the bss segment. */
-FillZerobss:
+  ldr r2, =_sbss
+  ldr r4, =_ebss
   movs r3, #0
+  b LoopFillZerobss
+
+FillZerobss:
   str  r3, [r2]
   adds r2, r2, #4
 
-
 LoopFillZerobss:
-  ldr r3, = _ebss
-  cmp r2, r3
+  cmp r2, r4
   bcc FillZerobss
 
-/* Call the clock system intitialization function.*/
-/*  bl  SystemInit*/
 /* Call static constructors */
-/*  bl __libc_init_array*/
+  bl __libc_init_array
 /* Call the application's entry point.*/
   bl main
 
@@ -153,7 +124,6 @@ Infinite_Loop:
 g_pfnVectors:
   .word  _estack
   .word  Reset_Handler
-
   .word  NMI_Handler
   .word  HardFault_Handler
   .word  0
@@ -304,5 +274,5 @@ g_pfnVectors:
   .weak      USART3_6_IRQHandler
   .thumb_set USART3_6_IRQHandler,Default_Handler
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
 
