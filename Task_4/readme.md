@@ -49,18 +49,29 @@ signal to the receiving device. The data is then sampled at a predefined
 
 ## Task 3
 
-**Addresses and datasheets**: 
+### Addresses and datasheets 
 
-| Sensor                           | Datasheet                                              | Slave Address (default) (7bit) | read address (8bit) | write address (8Bit) |
-| -------------------------------- | ------------------------------------------------------ | ------------------------------ | ------------------- | -------------------- |
-| LSM6DS33 (gyro and accelerometer | [URL](https://www.pololu.com/file/0J1087/LSM6DS33.pdf) | 1101011b                       | 11010111 (D7h)      | 11010110 (D6h)       |
-| LIS3MDL (magnetometer)           | [URL](https://www.pololu.com/file/0J1089/LIS3MDL.pdf)  | 0011110b                       | 00111101 (3Dh)      | 00111100 (3Ch)       |
-| LPS25H (barometer)               | [URL](https://www.pololu.com/file/0J761/LPS25H.pdf)    | 1011101b                       | 10111011 (BBh)      | 10111010 (BAh)       |
+**v3 Sensor Board**:
+
+| Sensor                                   | Datasheet                                             | Slave Address (default) (7bit) | read address (8bit) | write address (8bit) |
+|------------------------------------------|-------------------------------------------------------|--------------------------------|---------------------|----------------------|
+| LPS331AP (barometer)                     | [URL](https://www.pololu.com/file/0J622/LPS331AP.pdf) | 1011101b                       | 10111011b           | 10111010b            |
+| LSM404D (accelerometer and magnetometer) | [URL](https://www.pololu.com/file/0J703/LSM303D.pdf)  | 0011101b                       | 00111011b           | 00111010b            |
+| L3GD20H (gyro)                           | [URL](https://www.pololu.com/file/0J731/L3GD20H.pdf)  | 1101011b                       | 11010111b           | 11010110b            |
+
+Note: The L3GD20H sensor will not be used in this task, as reading gyroscope measurements is not required.
+
+**v5 Sensor Board**:
+
+| Sensor                            | Datasheet                                                       | Slave Address (default) (7bit)            | read address (8bit)                       | write address (8Bit) |
+|-----------------------------------|-----------------------------------------------------------------|-------------------------------------------|-------------------------------------------|----------------------|
+| LSM6DS33 (gyro and accelerometer) | [URL](https://www.pololu.com/file/0J1087/LSM6DS33.pdf)          | 1101011b                                  | 11010111 (D7h)                            | 11010110 (D6h)       |
+| LIS3MDL (magnetometer)            | [URL](https://www.pololu.com/file/0J1089/LIS3MDL.pdf)           | 0011110b                                  | 00111101 (3Dh)                            | 00111100 (3Ch)       |
+| LPS25H (barometer)                | [URL](https://www.pololu.com/file/0J761/LPS25H.pdf)             | 1011101b                                  | 10111011 (BBh)                            | 10111010 (BAh)       |
 
 *The source code was partly inspired by the official Arduino libraries for the sensors.*
 
 - [GitHub - pololu/lsm6-arduino: Arduino library for Pololu LSM6DS33 and LSM6DSO boards](https://github.com/pololu/lsm6-arduino/tree/master) (under MIT License)
-
 - [GitHub - pololu/lps-arduino: Arduino library for Pololu LPS25H and LPS331AP boards](https://github.com/pololu/lps-arduino) (under MIT License)
-
 - [GitHub - pololu/lis3mdl-arduino: Pololu Arduino library for LIS3MDL magnetometer](https://github.com/pololu/lis3mdl-arduino)  (under MIT License)
+- [GitHub - pololu/lsm303-arduino](https://github.com/pololu/lsm303-arduino) (Under MIT License)
