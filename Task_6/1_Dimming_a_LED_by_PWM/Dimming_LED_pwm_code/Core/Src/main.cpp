@@ -105,15 +105,32 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
+  /*
+   * For lab testing, set lab_mode to true
+   * To change the duty cycle to n %, set a breakpoint at the while loop below this comment and modify
+   * config->Pulse to (n / 100)*665 when the program is running.
+   * Whithin CLion, this can be done by selecting the Pulse field and pressing F2.
+   * Resume the program and wait 2 seconds to apply the new value.
+  */
+   volatile TIM_OC_InitTypeDef * volatile config = &sConfigOC;
+   bool lab_mode = false;
+
   while (1)
   {
     /* USER CODE END WHILE */
-    // the mode is controlled and changed with the interrupt handler
-    if(currentMode == 1) {
-        auto_brightness();
-    } else if(currentMode == 2) {
-        heartbeat();
+    if(lab_mode) {
+        HAL_Delay(2000);
+        if (HAL_TIM_OC_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+            Error_Handler();
+    } else {
+        // the mode is controlled and changed with the interrupt handler
+        if(currentMode == 1) {
+            auto_brightness();
+        } else if(currentMode == 2) {
+            heartbeat();
+        }
     }
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
