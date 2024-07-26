@@ -19,6 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include <cstdint>
+#include <cstdio>
+#include <cstdlib>
 #include <vector>
 
 #include "accelerometer.h"
@@ -26,6 +28,7 @@
 #include "factory.h"
 #include "LPS331AP_LPS25H.h"
 #include "LSM303D.h"
+#include "uart_helper.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -39,7 +42,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 
 
 /* USER CODE END PD */
@@ -78,7 +80,6 @@ static void MX_USART5_UART_Init(void);
   */
 int main(void)
 {
-
     /* USER CODE BEGIN 1 */
 
     /* USER CODE END 1 */
@@ -109,22 +110,33 @@ int main(void)
     accelerometer* myAccelerometer = factory::getAccelerometer();
     magnetometer* myMagnetometer = factory::getMagnetometer();
 
-    volatile uint8_t id_barometer, id_accelerometer, id_magnetometer;
-    id_barometer = myBarometer->readWHO_AM_I();
-    id_accelerometer = myAccelerometer->readWHO_AM_I();
-    id_magnetometer = myMagnetometer->readWHO_AM_I();
-
-    double temperature, pressure, magnet_x, magnet_y, magnet_z, acc_x, acc_y, acc_z;
-    myBarometer->read_barometer(temperature, pressure);
-    myAccelerometer->read_accelerometer(acc_x, acc_y, acc_z);
-    myMagnetometer->read_magnetometer(magnet_x, magnet_y, magnet_z);
-
-
     while (1)
     {
-        myBarometer->read_barometer(temperature, pressure);
-        myAccelerometer->read_accelerometer(acc_x, acc_y, acc_z);
-        myMagnetometer->read_magnetometer(magnet_x, magnet_y, magnet_z);
+        uint32_t num_measurements = uart_read_num();
+        uint32_t additional_delay = uart_read_num();
+
+        uart_write_id("Barometer", myBarometer->readWHO_AM_I());
+        uart_write_id("Accelerometer", myAccelerometer->readWHO_AM_I());
+        uart_write_id("Magnetometer", myMagnetometer->readWHO_AM_I());
+
+        uart_write_header();
+        uint32_t measurement_start_ms = HAL_GetTick(); // the start of the measurements in ms
+
+        double temperature, pressure, magnet_x, magnet_y, magnet_z, acc_x, acc_y, acc_z;
+        for (uint32_t i = 0; i < num_measurements; i++)
+        {
+            // get all measurements
+            myBarometer->read_barometer(temperature, pressure);
+            myAccelerometer->read_accelerometer(acc_x, acc_y, acc_z);
+            myMagnetometer->read_magnetometer(magnet_x, magnet_y, magnet_z);
+            double current_s = ((double) HAL_GetTick() - measurement_start_ms) / 1000; // current time since measurement_start_ms in s
+
+            uart_write_data(&current_s, &temperature, &pressure, &magnet_x, &magnet_y, &magnet_z, &acc_x, &acc_y, &acc_z);
+
+            if (additional_delay > 0)
+                HAL_Delay(additional_delay);
+        }
+        uart_goodbye();
     }
 
     delete myBarometer;
@@ -138,8 +150,6 @@ int main(void)
     while (1)
     {
         /* USER CODE END WHILE */
-        //HAL_UART_Transmit(&huart5, &whoami, sizeof(whoami), HAL_MAX_DELAY);
-        HAL_Delay(100);
         /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
@@ -161,7 +171,10 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
     RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+    RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
+    RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV1;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
         Error_Handler();
@@ -169,13 +182,13 @@ void SystemClock_Config(void)
 
     /** Initializes the CPU, AHB and APB buses clocks
     */
-    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                                  |RCC_CLOCKTYPE_PCLK1;
-    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
+        | RCC_CLOCKTYPE_PCLK1;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
 
-    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
     {
         Error_Handler();
     }
@@ -194,7 +207,6 @@ void SystemClock_Config(void)
   */
 static void MX_I2C1_Init(void)
 {
-
     /* USER CODE BEGIN I2C1_Init 0 */
 
     /* USER CODE END I2C1_Init 0 */
@@ -232,7 +244,6 @@ static void MX_I2C1_Init(void)
     /* USER CODE BEGIN I2C1_Init 2 */
 
     /* USER CODE END I2C1_Init 2 */
-
 }
 
 /**
@@ -242,7 +253,6 @@ static void MX_I2C1_Init(void)
   */
 static void MX_USART5_UART_Init(void)
 {
-
     /* USER CODE BEGIN USART5_Init 0 */
 
     /* USER CODE END USART5_Init 0 */
@@ -267,7 +277,6 @@ static void MX_USART5_UART_Init(void)
     /* USER CODE BEGIN USART5_Init 2 */
 
     /* USER CODE END USART5_Init 2 */
-
 }
 
 /**
@@ -277,15 +286,15 @@ static void MX_USART5_UART_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+    /* USER CODE BEGIN MX_GPIO_Init_1 */
+    /* USER CODE END MX_GPIO_Init_1 */
 
     /* GPIO Ports Clock Enable */
     __HAL_RCC_GPIOF_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+    /* USER CODE BEGIN MX_GPIO_Init_2 */
+    /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
