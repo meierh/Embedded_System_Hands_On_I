@@ -165,7 +165,7 @@ void change_period(int16_t offset) {
 void start_timer(uint16_t time_ms) {
     TIM3->CR1 &= ~(TIM_CR1_CEN);                      // stop the counter
     
-    TIM3->ARR = time_ms;                              // set reload register s.t. the timer overflows after time_ms
+    TIM3->ARR = time_ms - 1;                          // set reload register s.t. the timer overflows after time_ms
     TIM3->EGR |= TIM_EGR_UG;                          // generate an update event to apply this setting
 
     TIM3->CR1 |= TIM_CR1_CEN;                         // re-enable the counter
