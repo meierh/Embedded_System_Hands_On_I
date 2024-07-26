@@ -18,9 +18,9 @@ To use UART, we need to enable it first
   
   2. `Would you like the serial port hardware to be enabled?` -> select `Yes`
 
-. You should see the following message:
+- You should see the following message:
 
-  . <img src="assets/2024-06-26-10-23-43-image.png" title="" alt="" width="352">
+   <img src="assets/2024-06-26-10-23-43-image.png" title="" alt="" width="352">
 
 - select `OK`
 
@@ -171,4 +171,4 @@ pi-tobii@esa-pi:~ $ source .venv/bin/activate
 ```
 
 During measurement, the Raspberry Pi has been tilted and shaken, so a change in the acceleration values can be observed.  
-The pressure values are quite low as this task was done during vacation in the Alps.
+The pressure values are quite low as this task was done during holiday in the Alps.
