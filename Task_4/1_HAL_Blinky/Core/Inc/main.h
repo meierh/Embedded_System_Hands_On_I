@@ -1,8 +1,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    stm32f0xx_it.h
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @file           : main.h
+  * @brief          : Header for main.c file.
+  *                   This file contains the common defines of the application.
   ******************************************************************************
   * @attention
   *
@@ -13,17 +14,20 @@
   * in the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
- ******************************************************************************
+  ******************************************************************************
   */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F0xx_IT_H
-#define __STM32F0xx_IT_H
+#ifndef __MAIN_H
+#define __MAIN_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
+
+/* Includes ------------------------------------------------------------------*/
+#include "stm32f0xx_hal.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -46,19 +50,38 @@
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void NMI_Handler(void);
-void HardFault_Handler(void);
-void SVC_Handler(void);
-void PendSV_Handler(void);
-void SysTick_Handler(void);
-void EXTI4_15_IRQHandler(void);
-void TIM3_IRQHandler(void);
+void Error_Handler(void);
+
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
+
+/* Private defines -----------------------------------------------------------*/
+#define LED_0_Pin GPIO_PIN_7
+#define LED_0_GPIO_Port GPIOA
+#define LED_1_Pin GPIO_PIN_0
+#define LED_1_GPIO_Port GPIOB
+#define LED_2_Pin GPIO_PIN_1
+#define LED_2_GPIO_Port GPIOB
+#define JOYSTICK_UP_Pin GPIO_PIN_10
+#define JOYSTICK_UP_GPIO_Port GPIOB
+#define JOYSTICK_UP_EXTI_IRQn EXTI4_15_IRQn
+#define JOYSTICK_LEFT_Pin GPIO_PIN_11
+#define JOYSTICK_LEFT_GPIO_Port GPIOB
+#define JOYSTICK_LEFT_EXTI_IRQn EXTI4_15_IRQn
+#define JOYSTICK_DOWN_Pin GPIO_PIN_12
+#define JOYSTICK_DOWN_GPIO_Port GPIOB
+#define JOYSTICK_DOWN_EXTI_IRQn EXTI4_15_IRQn
+#define JOYSTICK_RIGHT_Pin GPIO_PIN_13
+#define JOYSTICK_RIGHT_GPIO_Port GPIOB
+#define JOYSTICK_RIGHT_EXTI_IRQn EXTI4_15_IRQn
+
+/* USER CODE BEGIN Private defines */
+
+/* USER CODE END Private defines */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __STM32F0xx_IT_H */
+#endif /* __MAIN_H */
