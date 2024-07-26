@@ -284,8 +284,9 @@ void setup_one_direction_of_joystick(uint32_t joystick_pin) {
     GPIOB->MODER &= ~(0x3 << (joystick_pin*2));
     // reset port pull-up/pull-down register (00)
     GPIOB->PUPDR &= ~(0x3 << (joystick_pin*2));
-    // set PUPDR register to pull up mode (01) so that the pin gets pulled down when the stick is moved
-    GPIOB->PUPDR |= (0x1 << (joystick_pin*2));
+    
+    //GPIOB->PUPDR |= (0x1 << (joystick_pin*2));    // set PUPDR register to pull up mode (01) so that the pin gets pulled down when the stick is moved
+    // pull up is not necessary as pull-up resistors already are on the extension board (cf. SKQUCAA010 at the right of the schematic)
 
     // Set external interrupt configuration register 1
     // to connect the button EXTI line to GPIOB.
