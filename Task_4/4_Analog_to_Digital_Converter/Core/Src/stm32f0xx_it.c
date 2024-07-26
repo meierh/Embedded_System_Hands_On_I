@@ -55,7 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern UART_HandleTypeDef huart5;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -155,6 +155,21 @@ void EXTI4_15_IRQHandler(void)
     /* USER CODE BEGIN EXTI4_15_IRQn 1 */
 
     /* USER CODE END EXTI4_15_IRQn 1 */
+}
+
+/**
+  * @brief This function handles USART3 to USART6 global interrupts.
+  */
+void USART3_6_IRQHandler(void)
+{
+    /* USER CODE BEGIN USART3_6_IRQn 0 */
+
+    /* USER CODE END USART3_6_IRQn 0 */
+    HAL_UART_IRQHandler(&huart5);
+    (&huart5);
+    /* USER CODE BEGIN USART3_6_IRQn 1 */
+
+    /* USER CODE END USART3_6_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
