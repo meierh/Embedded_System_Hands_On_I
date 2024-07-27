@@ -23,27 +23,27 @@ public:
      * Returns the min illuminance set up previously
      * @return max illuminance, or 0 if it has not been calibrated.
      */
-    uint16_t get_min_illuminance() const;
+    double get_min_illuminance() const;
 
     /**
      * Returns the max illuminance set up previously
      * @return max illuminance, or 1<<12 - 1 if it has not been calibrated.
      */
-    uint16_t get_max_illuminance() const;
+    double get_max_illuminance() const;
 
     /**
      * Stores the current illuminance value as the minimum illuminance
      */
-    void set_min_illuminance(uint16_t illuminance);
+    void set_min_illuminance(double illuminance);
 
     /**
      * Stores the current illuminance value as the maximum illuminance
      */
-    void set_max_illuminance(uint16_t illuminance);
+    void set_max_illuminance(double illuminance);
 
 private:
-    uint16_t min_illuminance;
-    uint16_t max_illuminance;
+    double min_illuminance;
+    double max_illuminance;
     bool min_calibrated;
     bool max_calibrated;
 
@@ -57,6 +57,12 @@ private:
      * @param recalibration_max if true, LED_2 gets blinked to indicate update of the calibration
      */
     void update_leds(bool recalibration_min, bool recalibration_max) const;
+
+    /**
+     * Check if min_illuminance < max_illuminance.
+     * If not, delete measurements.
+     */
+    void bounds_check();
 };
 
 

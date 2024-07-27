@@ -8,12 +8,22 @@ light_sensor::light_sensor() = default;
 
 void light_sensor::calibrate_min()
 {
-    calibration.set_min_illuminance(read_raw_illuminance());
+    // Read 10 values and calculate average
+    double illuminance_readings = 0;
+    for (int i = 0; i < 10; i++)
+        illuminance_readings += read_raw_illuminance();
+
+    calibration.set_min_illuminance(illuminance_readings / 10);
 }
 
 void light_sensor::calibrate_max()
 {
-    calibration.set_max_illuminance(read_raw_illuminance());
+    // Read 10 values and calculate average
+    double illuminance_readings = 0;
+    for (int i = 0; i < 10; i++)
+        illuminance_readings += read_raw_illuminance();
+
+    calibration.set_max_illuminance(illuminance_readings / 10);
 }
 
 double light_sensor::read_illuminance(void) {
@@ -25,8 +35,8 @@ double light_sensor::read_illuminance(void) {
     uint16_t raw_illu = read_raw_illuminance();
 
     // interpole the value of the light sensor with the min and max values
-    uint16_t min = calibration.get_min_illuminance(), max = calibration.get_max_illuminance();
-    double interpol_value = ((double) raw_illu - min) / ((double) max - min);
+    double min = calibration.get_min_illuminance(), max = calibration.get_max_illuminance();
+    double interpol_value = (raw_illu - min) / (max - min);
     // return a percentage value
     interpol_value *= 100;
 
@@ -36,7 +46,7 @@ double light_sensor::read_illuminance(void) {
 uint16_t light_sensor::read_raw_illuminance(void) {
 
     // Start ADC if it is not running already
-    if ( HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc), HAL_ADC_STATE_REG_BUSY) )
+    if ( !HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc), HAL_ADC_STATE_REG_BUSY) )
         HAL_ADC_Start(&hadc);
 
     // Wait for a new conversion

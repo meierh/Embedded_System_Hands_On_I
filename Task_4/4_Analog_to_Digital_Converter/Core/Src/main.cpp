@@ -46,7 +46,7 @@ ADC_HandleTypeDef hadc;
 UART_HandleTypeDef huart5;
 
 /* USER CODE BEGIN PV */
-light_sensor myLightSensor;
+light_sensor *myLightSensor;
 
 /* USER CODE END PV */
 
@@ -69,12 +69,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     else if (GPIO_Pin == STICK_LEFT_Pin)
     {
         // set the max value of the light sensor
-        myLightSensor.calibrate_max();
+        myLightSensor->calibrate_max();
     }
     else if (GPIO_Pin == STICK_RIGHT_Pin)
     {
         // set the min value of the light sensor
-        myLightSensor.calibrate_min();
+        myLightSensor->calibrate_min();
     }
     else
     {
@@ -116,15 +116,15 @@ int main(void)
     MX_ADC_Init();
     MX_USART5_UART_Init();
     /* USER CODE BEGIN 2 */
-
+    HAL_InitTick(0);
 
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
-    HAL_GPIO_WritePin(LED_0_GPIO_Port, LED_0_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(LED_1_GPIO_Port, LED_1_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(LED_2_GPIO_Port, LED_2_Pin, GPIO_PIN_SET);
+
+    myLightSensor = new light_sensor;
+
     while (1)
     {
         /* USER CODE END WHILE */
@@ -135,6 +135,7 @@ int main(void)
         HAL_ADC_PollForConversion(&hadc, HAL_MAX_DELAY);
         adc = HAL_ADC_GetValue(&hadc);
         HAL_ADC_STATE_READY;*/
+        volatile double measurement = myLightSensor->read_illuminance();
 
         /* USER CODE BEGIN 3 */
     }
@@ -285,10 +286,20 @@ static void MX_GPIO_Init(void)
     __HAL_RCC_GPIOB_CLK_ENABLE();
 
     /*Configure GPIO pin Output Level */
-    HAL_GPIO_WritePin(GPIOB, LED_0_Pin|LED_1_Pin|LED_2_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(LED_0_GPIO_Port, LED_0_Pin, GPIO_PIN_RESET);
 
-    /*Configure GPIO pins : LED_0_Pin LED_1_Pin LED_2_Pin */
-    GPIO_InitStruct.Pin = LED_0_Pin|LED_1_Pin|LED_2_Pin;
+    /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(GPIOB, LED_1_Pin|LED_2_Pin, GPIO_PIN_RESET);
+
+    /*Configure GPIO pin : LED_0_Pin */
+    GPIO_InitStruct.Pin = LED_0_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(LED_0_GPIO_Port, &GPIO_InitStruct);
+
+    /*Configure GPIO pins : LED_1_Pin LED_2_Pin */
+    GPIO_InitStruct.Pin = LED_1_Pin|LED_2_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -301,7 +312,7 @@ static void MX_GPIO_Init(void)
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
     /* EXTI interrupt init*/
-    HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI4_15_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
 
     /* USER CODE BEGIN MX_GPIO_Init_2 */
