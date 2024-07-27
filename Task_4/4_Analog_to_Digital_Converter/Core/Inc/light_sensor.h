@@ -5,6 +5,12 @@
 #ifndef INC_4_ANALOG_TO_DIGITAL_CONVERTER_LIGHT_SENSOR_H
 #define INC_4_ANALOG_TO_DIGITAL_CONVERTER_LIGHT_SENSOR_H
 
+/**
+ * CLIPPING == true  - every measurement below minimum calibration value yields 0 %, every measurement above calibration yields 100 %
+ * CLIPPING == false - negative percentage values and percentage above 100 % are possible
+ */
+#define CLIPPING true
+
 #include "light_sensor_calibration.h"
 #include "main.h"
 

@@ -4,6 +4,8 @@
 
 #include "light_sensor.h"
 
+#include "uart_helper.h"
+
 light_sensor::light_sensor() = default;
 
 void light_sensor::calibrate_min()
@@ -29,7 +31,7 @@ void light_sensor::calibrate_max()
 double light_sensor::read_illuminance(void) {
     // check if min and max value is set
     if (!calibration.get_calibrated()) {
-        //TODO
+        uart::write_msg("Warning: Read illuminance value prior to calibration!");
     }
 
     uint16_t raw_illu = read_raw_illuminance();
@@ -39,6 +41,14 @@ double light_sensor::read_illuminance(void) {
     double interpol_value = (raw_illu - min) / (max - min);
     // return a percentage value
     interpol_value *= 100;
+
+    if (CLIPPING)
+    {
+        if (interpol_value > 100)
+            interpol_value = 100;
+        if (interpol_value < 0)
+            interpol_value = 0;
+    }
 
     return interpol_value;
 }
