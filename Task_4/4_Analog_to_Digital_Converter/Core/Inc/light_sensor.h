@@ -8,7 +8,7 @@
 #include "main.h"
 
 
-class light_sensor{
+class light_sensor {
 
     uint32_t min_illuminance = -1;
     uint32_t max_illuminance = -1;
