@@ -5,26 +5,40 @@
 #ifndef INC_4_ANALOG_TO_DIGITAL_CONVERTER_LIGHT_SENSOR_H
 #define INC_4_ANALOG_TO_DIGITAL_CONVERTER_LIGHT_SENSOR_H
 
+#include "light_sensor_calibration.h"
 #include "main.h"
 
 
 class light_sensor {
 
-    uint32_t min_illuminance = -1;
-    uint32_t max_illuminance = -1;
 
 public:
+    light_sensor_calibration calibration;
+
     light_sensor();
 
-    void set_max_illuminance(void);
-    void set_min_illuminance(void);
+    /**
+     * Measure the current illuminance value and store it as the minimum within the calibration object
+     */
+    void calibrate_min();
 
-    bool check_bounders(void);
+    /**
+     * Measure the current illuminance value and store it as the minimum within the calibration object
+     */
+    void calibrate_max();
 
+    /**
+     * Return the current illuminance value
+     * @return the current illuminance in percent (relative to the converted values)
+     */
     double read_illuminance(void);
 
 private:
-    uint32_t read_raw_illuminance(void);
+    /**
+     * Read a new sensor value from the ADC
+     * @return raw ADC value in [0, 4095]
+     */
+    uint16_t read_raw_illuminance(void);
 
 
 };

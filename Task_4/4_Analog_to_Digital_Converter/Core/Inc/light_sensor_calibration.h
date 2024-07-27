@@ -47,8 +47,16 @@ private:
     bool min_calibrated;
     bool max_calibrated;
 
-    //TODO
-    static void update_leds(bool recalibration);
+    /**
+     * Update state of board LEDs to show calibration progress
+     * - LED_1: on iff not calibrated completely
+     * - LED_0: on iff min calibrated
+     * - LED_2: on iff max calibrated
+     *
+     * @param recalibration_min if true, LED_0 gets blinked to indicate update of the calibration
+     * @param recalibration_max if true, LED_2 gets blinked to indicate update of the calibration
+     */
+    void update_leds(bool recalibration_min, bool recalibration_max) const;
 };
 
 

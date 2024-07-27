@@ -18,10 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "light_sensor.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "light_sensor.h"
 
 /* USER CODE END Includes */
 
@@ -45,9 +45,8 @@ ADC_HandleTypeDef hadc;
 
 UART_HandleTypeDef huart5;
 
-light_sensor myLightSensor;
-
 /* USER CODE BEGIN PV */
+light_sensor myLightSensor;
 
 /* USER CODE END PV */
 
@@ -70,12 +69,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     else if (GPIO_Pin == STICK_LEFT_Pin)
     {
         // set the max value of the light sensor
-        myLightSensor.set_max_illuminance();
+        myLightSensor.calibrate_max();
     }
     else if (GPIO_Pin == STICK_RIGHT_Pin)
     {
         // set the min value of the light sensor
-        myLightSensor.set_min_illuminance();
+        myLightSensor.calibrate_min();
     }
     else
     {
@@ -118,19 +117,25 @@ int main(void)
     MX_USART5_UART_Init();
     /* USER CODE BEGIN 2 */
 
-    //HAL_ADCEx_Calibration_Start(&hadc, ADC_SI)+
-    HAL_ADC_Start(&hadc);
-
 
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    HAL_GPIO_WritePin(LED_0_GPIO_Port, LED_0_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LED_1_GPIO_Port, LED_1_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LED_2_GPIO_Port, LED_2_Pin, GPIO_PIN_SET);
     while (1)
     {
         /* USER CODE END WHILE */
-        myLightSensor.read_illuminance();
-        HAL_Delay(1000);
+        /*myLightSensor.read_illuminance();
+        HAL_Delay(1000);*/
+
+        /*volatile uint32_t adc;
+        HAL_ADC_PollForConversion(&hadc, HAL_MAX_DELAY);
+        adc = HAL_ADC_GetValue(&hadc);
+        HAL_ADC_STATE_READY;*/
+
         /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
@@ -278,6 +283,16 @@ static void MX_GPIO_Init(void)
     /* GPIO Ports Clock Enable */
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
+
+    /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(GPIOB, LED_0_Pin|LED_1_Pin|LED_2_Pin, GPIO_PIN_RESET);
+
+    /*Configure GPIO pins : LED_0_Pin LED_1_Pin LED_2_Pin */
+    GPIO_InitStruct.Pin = LED_0_Pin|LED_1_Pin|LED_2_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
     /*Configure GPIO pins : STICK_RIGHT_Pin STICK_UP_Pin STICK_LEFT_Pin STICK_DOWN_Pin */
     GPIO_InitStruct.Pin = STICK_RIGHT_Pin | STICK_UP_Pin | STICK_LEFT_Pin | STICK_DOWN_Pin;
