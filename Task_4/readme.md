@@ -1,6 +1,29 @@
 # Task 4
 
-## 4.1 Bettery blinky with HAL
+## 4.1 Better blinky with HAL
+
+In this and subsequent HAL tasks, we used STM32CubeMX. It generates a project structure and code that initialises the M0 features needed for each task.
+
+In this task, we used STM32CubeMX to
+- set the GPIO Input/Output pins on the chip,
+  ![](assets/stm32cubemx_chip.png)
+- set the system clock to 48 MHz and
+  ![](assets/stm32cubemx_clk.png)
+- to configure TIM3
+  ![](assets/stm32cubemx_tim.png)
+
+using the same settings we set manually in Task 2.
+
+Note: We needed to adapt the resulting code and the `CMakeLists.txt` file to our needs and to our project structure, so regeneration of the code from STM32CubeMX will arise problems.
+
+To compile the HAL tasks, use CMake:
+```bash
+mkdir build
+cd build
+
+cmake ..
+make
+```
 
 ## 4.2 UART
 
@@ -42,7 +65,7 @@ For more information, see the official documentation ([Configuration - Raspberry
 
 ### Python Software Preparations on the Raspberry Pi
 
-We use the `pyserial` python libaray, which can be installed via `pip` in the following way:
+We use the `pyserial` python library, which can be installed via `pip` in the following way:
 
 ```bash
 # Change to your home folder
@@ -172,3 +195,51 @@ pi-tobii@esa-pi:~ $ source .venv/bin/activate
 
 During measurement, the Raspberry Pi has been tilted and shaken, so a change in the acceleration values can be observed.  
 The pressure values are quite low as this task was done during holiday in the Alps.
+
+## Task 4
+
+The measurement process is identical to [Task 3](#Measurement-Process).
+
+### Calibration
+
+Before any measurement can be received, calibration has to happen.  
+Set the minimum illuminance by moving the joystick downwards, and the maximum illuminance by moving the joystick upwards.
+
+Between measurements, the calibration values are kept. To delete the calibration, reset the M0. At any time, minimum or maximum illuminance may be recalibrated by moving the stick upwards or downwards again.
+
+The Board LEDs show the status of the calibration:
+- LED_1 (red): on while not fully calibrated
+- LED_0 (green): steady while minimum illuminance calibrated, flashing after recalibration of minimum illuminance
+- LED_2 (green): steady while maximum illuminance calibrated, flashing after recalibration of maximum illuminance
+
+### Exemplary UART transfers
+
+```
+pi-tobii@esa-pi:~ $ source .venv/bin/activate
+(.venv) pi-tobii@esa-pi:~ $ python3 main.py 
+Number of measurements?                > 15
+Additional delay between measurements? > 3000
+>>> Ready to calibrate.
+>>> Warning: Calibration failed. Min value has to be smaller than max value!
+>>> Please try again.
+>>> Calibration: min =  231.30, max = 3959.20
+ t [s],E_V [%]
+  0.00,  99.97
+  3.00,  98.06
+  6.00,  96.61
+  9.01,  75.80
+ 12.01,  49.27
+ 15.01,  98.01
+ 18.01,  98.39
+ 21.01,  98.44
+ 24.01,  69.98
+ 27.01,  72.47
+ 30.01,  42.99
+ 33.01,   0.61
+ 36.01,  98.09
+ 39.02,  87.55
+ 42.02,  37.47
+>>> End of measurements.
+```
+
+During measurement, a hand and different objects were moved across the sensor.
