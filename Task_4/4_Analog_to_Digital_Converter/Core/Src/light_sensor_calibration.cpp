@@ -3,6 +3,7 @@
 //
 
 #include "light_sensor_calibration.h"
+#include "uart_helper.h"
 
 light_sensor_calibration::light_sensor_calibration() : min_illuminance(0), max_illuminance(0), min_calibrated(false), max_calibrated(false)
 {
@@ -35,6 +36,10 @@ void light_sensor_calibration::set_min_illuminance(double illuminance)
     min_illuminance = illuminance;
 
     min_calibrated = true;
+
+    if (recalibration)
+        uart::write_calibration(this);
+
     bounds_check();
     update_leds(recalibration, false);
 }
@@ -46,6 +51,10 @@ void light_sensor_calibration::set_max_illuminance(double illuminance)
     max_illuminance = illuminance;
 
     max_calibrated = true;
+
+    if (recalibration)
+        uart::write_calibration(this);
+
     bounds_check();
     update_leds(false, recalibration);
 }
@@ -102,5 +111,6 @@ void light_sensor_calibration::bounds_check()
     // if calibrated wrong, ignore calibrations
     min_calibrated = false;
     max_calibrated = false;
-    //TODO Warning via UART
+    uart::write_msg("Warning: Calibration failed. Min value has to be smaller than max value!");
+    uart::write_msg("Please try again.");
 }

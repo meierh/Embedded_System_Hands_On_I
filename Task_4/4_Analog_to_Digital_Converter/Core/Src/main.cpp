@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "light_sensor.h"
+#include "uart_helper.h"
 
 /* USER CODE END Includes */
 
@@ -116,26 +117,50 @@ int main(void)
     MX_ADC_Init();
     MX_USART5_UART_Init();
     /* USER CODE BEGIN 2 */
-    HAL_InitTick(0);
+    HAL_InitTick(0);  // Set TickPriority to 0 s.t. HAL_Delay() can be called from EXTI interrupt
+    myLightSensor = new light_sensor;
 
+    while (1)
+    {
+        uint32_t num_measurements = uart::read_num();
+        uint32_t additional_delay = uart::read_num();
+
+        // Wait for calibration
+        if (!myLightSensor->calibration.get_calibrated())
+        {
+            uart::write_msg("Ready to calibrate.");
+            while (!myLightSensor->calibration.get_calibrated()) {}
+        }
+        uart::write_calibration(&myLightSensor->calibration);
+
+        uart::write_header();
+        uint32_t measurement_start_ms = HAL_GetTick(); // the start of the measurements in ms
+
+        double illuminance;
+        for (uint32_t i = 0; i < num_measurements; i++)
+        {
+            // in case of recalibration, wait until calibration has finished
+            while (!myLightSensor->calibration.get_calibrated()) {}
+
+            // get measurement
+            illuminance = myLightSensor->read_illuminance();
+            double current_s = ((double) HAL_GetTick() - measurement_start_ms) / 1000; // current time since measurement_start_ms in s
+
+            uart::write_data(&current_s, &illuminance);
+
+            if (additional_delay > 0)
+                HAL_Delay(additional_delay);
+        }
+        uart::goodbye();
+    }
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
 
-    myLightSensor = new light_sensor;
-
     while (1)
     {
         /* USER CODE END WHILE */
-        /*myLightSensor.read_illuminance();
-        HAL_Delay(1000);*/
-
-        /*volatile uint32_t adc;
-        HAL_ADC_PollForConversion(&hadc, HAL_MAX_DELAY);
-        adc = HAL_ADC_GetValue(&hadc);
-        HAL_ADC_STATE_READY;*/
-        volatile double measurement = myLightSensor->read_illuminance();
 
         /* USER CODE BEGIN 3 */
     }
