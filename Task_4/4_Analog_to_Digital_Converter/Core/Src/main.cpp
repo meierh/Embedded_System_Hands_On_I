@@ -203,7 +203,7 @@ static void MX_ADC_Init(void)
     hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
     hadc.Init.LowPowerAutoWait = DISABLE;
     hadc.Init.LowPowerAutoPowerOff = DISABLE;
-    hadc.Init.ContinuousConvMode = DISABLE;
+    hadc.Init.ContinuousConvMode = ENABLE;
     hadc.Init.DiscontinuousConvMode = DISABLE;
     hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
     hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
@@ -218,13 +218,15 @@ static void MX_ADC_Init(void)
     */
     sConfig.Channel = ADC_CHANNEL_6;
     sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
-    sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+    sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
     if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
     {
         Error_Handler();
     }
     /* USER CODE BEGIN ADC_Init 2 */
-
+    // Start calibration to improve the conversion accuracy
+    if (HAL_ADCEx_Calibration_Start(&hadc) != HAL_OK)
+        Error_Handler();
 
     /* USER CODE END ADC_Init 2 */
 }
