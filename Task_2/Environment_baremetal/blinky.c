@@ -66,7 +66,9 @@ void setup_timer(void) {
 
     // Set up the counter
     TIM3->PSC = 480 - 1;                              // set prescaler s.t. timer frequency is 100 kHz  --  48000 kHz : 100 kHz = 480
-    TIM3->ARR = 50000;                                // set reload reg s.t. timer overflows every 500 ms  --  500 ms : (1/100 kHz) = 50000
+                                                      //    Note: Subtract one according to datasheet
+    TIM3->ARR = 50000 - 1;                            // set reload reg s.t. timer overflows every 500 ms  --  500 ms : (1/100 kHz) = 50000
+                                                      //    Note: As the counter starts with 0, we have to subtract 1 here as well
     TIM3->CR1 &= ~TIM_CR1_CMS;                        // set to 'edge-aligned' mode (optional: no effect in our case)
     TIM3->CR1 &= ~TIM_CR1_DIR;                        // set edge-aligned mode to 'upcounting' (optional: no effect in our case)
 
