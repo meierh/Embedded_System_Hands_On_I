@@ -3,21 +3,24 @@ _Further files of this task: See `Task_5/`_.
 
 ## 5.1 Simulation of Analog Filters
 
-**Simulation schematic**:
+**Simulation schematic**:  
 Open 1_Simulation_of_Analog_Filters/Filters/Filters.kicad_sch with KiCad
 
-**Resistor and Capacitor values**:
-Given f_LP = 1500Hz
-      f_HP = 4500Hz
-      L = 0.1
-Calculated
-      R_HP = 2*pi*L*f_HP = 900pi Ohm = 2827.43 Ohm
-      C_HP = 1/(2*pi*R_HP*f_HP) = 1/(8100000pi²) Farad = 1.25088e-8 Farad
-      R_LP = 2*pi*L*f_LP = 300pi Ohm = 942.48 Ohm
-      C_LP = 1/(2*pi*R_LP*f_LP) = 1/(900000pi²) Farad  = 1.12579e-7 Farad
+**Resistor and Capacitor values**:  
+Given:
+- f_LP = 1500Hz
+- f_HP = 4500Hz
+- L = 0.1
+
+Calculated:
+- R_HP = 2\*pi\*L\*f_HP = 900pi Ohm = 2827.43 Ohm
+- C_HP = 1/(2\*pi\*R_HP\*f_HP) = 1/(8100000pi²) Farad = 1.25088e-8 Farad ≈ 12.5 nF
+- R_LP = 2\*pi\*L\*f_LP = 300pi Ohm = 942.48 Ohm
+- C_LP = 1/(2\*pi\*R_LP\*f_LP) = 1/(900000pi²) Farad  = 1.12579e-7 Farad ≈ 112.5 nF
       
-**Transient simulation**:
-View 1_Simulation_of_Analog_Filters/LinearTransient*
+**Transient simulation**:  
+View 1_Simulation_of_Analog_Filters/LinearTransient*  
+
 General: Input signal in red, Output signal in blue
 
 The input signal is the combination of a 1kHz sinus wave and a 5kHz sinus wave.
@@ -30,7 +33,7 @@ The high pass filter (LinearTransient1Khz5KHz_RCHP.png / LinearTransient1Khz5KHz
       
 In both cases the dampening is not complete and remains of the dampened sinus wave are visible.
 
-**Frequency response simulation**:
+**Frequency response simulation**:  
 Parameterstudy: f_span = {500Hz, 1500Hz, 2500Hz, 3500Hz, 4500Hz, 6500Hz, 8500Hz}
                 LP x HP = f_span x f_span
 View LinearAC_fLP${f_span}_fHP${f_span}.png. The frequency response diagram shows the effect of the high and low pass filter. It varies according to the cut-of frequencies.
