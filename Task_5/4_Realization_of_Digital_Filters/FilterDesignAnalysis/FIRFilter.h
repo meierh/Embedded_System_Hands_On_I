@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-template<typename Floating, uint8_t ORDER>
+template<typename Floating, uint16_t ORDER>
 class FIRFilter
 {
     public:

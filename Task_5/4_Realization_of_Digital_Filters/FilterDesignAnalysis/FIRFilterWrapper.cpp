@@ -1,5 +1,6 @@
 #include <boost/python.hpp>
 #include "FIRFilter.h"
+#include "BandpassFilterCoefficients.H"
 
 double NuttalWindow_fc10KHz_fs1500Hz_N20[21] =
 {
@@ -26,10 +27,10 @@ double NuttalWindow_fc10KHz_fs1500Hz_N20[21] =
     0.000000000000000000004253308519220963015
 };
 
-class FIRFilterWrapper : public FIRFilter<double,20>
+class FIRFilterWrapper : public FIRFilter<float,561>
 {
     public:
-        FIRFilterWrapper():FIRFilter<double,20>(NuttalWindow_fc10KHz_fs1500Hz_N20){}
+        FIRFilterWrapper():FIRFilter<float,561>(BandpassFilter){}
 };
 
 BOOST_PYTHON_MODULE(FIRFilterWrapper)
@@ -37,3 +38,5 @@ BOOST_PYTHON_MODULE(FIRFilterWrapper)
     boost::python::class_<FIRFilterWrapper>("FIRFilterWrapper", boost::python::init<>())
     .def("__call__", &FIRFilterWrapper::operator());
 }
+
+// Compile: g++ -fPIC -shared FIRFilterWrapper.cpp /usr/lib/x86_64-linux-gnu/libboost_python310.so -o FIRFilterWrapper.so
