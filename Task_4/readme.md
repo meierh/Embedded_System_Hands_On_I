@@ -88,12 +88,15 @@ pip3 install pyserial
 1. Compile/Run the M0 Code normally
 
 2. Start the Python Code for the Raspberry Pi (`Code-raspi/main.py`). The script `raspi-run.sh` can be used to simplify this when you are on your host machine:  
+   
    ```
    ./raspi-run.sh <Raspberry Pi's Hostname/IP/SSH-Host-Name> <Raspberry Pi's username>
    ```
+   
    Note: Within CLion, the Build Target "Shell Script" can be used to call the script. Be sure to set the working directory to 2_Universal_Asynchronous_Receiver_Transmitter.
 
 Testing UART with 1000x10 Bytes:
+
 ```
 UART_Benchmark started with 1000 times 10 bytes.
 Test succeeded for baudrate   9600. Elapsed time: 20.95 s.
@@ -114,12 +117,12 @@ signal to the receiving device. The data is then sampled at a predefined
 
 ## Task 3
 
-### Addresses and datasheets 
+### Addresses and datasheets
 
 **v3 Sensor Board**:
 
 | Sensor                                   | Datasheet                                             | Slave Address (default) (7bit) | read address (8bit) | write address (8bit) |
-|------------------------------------------|-------------------------------------------------------|--------------------------------|---------------------|----------------------|
+| ---------------------------------------- | ----------------------------------------------------- | ------------------------------ | ------------------- | -------------------- |
 | LPS331AP (barometer)                     | [URL](https://www.pololu.com/file/0J622/LPS331AP.pdf) | 1011101b                       | 10111011b           | 10111010b            |
 | LSM404D (accelerometer and magnetometer) | [URL](https://www.pololu.com/file/0J703/LSM303D.pdf)  | 0011101b                       | 00111011b           | 00111010b            |
 | L3GD20H (gyro)                           | [URL](https://www.pololu.com/file/0J731/L3GD20H.pdf)  | 1101011b                       | 11010111b           | 11010110b            |
@@ -128,11 +131,11 @@ Note: The L3GD20H sensor will not be used in this task, as reading gyroscope mea
 
 **v5 Sensor Board**:
 
-| Sensor                            | Datasheet                                                       | Slave Address (default) (7bit)            | read address (8bit)                       | write address (8Bit) |
-|-----------------------------------|-----------------------------------------------------------------|-------------------------------------------|-------------------------------------------|----------------------|
-| LSM6DS33 (gyro and accelerometer) | [URL](https://www.pololu.com/file/0J1087/LSM6DS33.pdf)          | 1101011b                                  | 11010111 (D7h)                            | 11010110 (D6h)       |
-| LIS3MDL (magnetometer)            | [URL](https://www.pololu.com/file/0J1089/LIS3MDL.pdf)           | 0011110b                                  | 00111101 (3Dh)                            | 00111100 (3Ch)       |
-| LPS25H (barometer)                | [URL](https://www.pololu.com/file/0J761/LPS25H.pdf)             | 1011101b                                  | 10111011 (BBh)                            | 10111010 (BAh)       |
+| Sensor                            | Datasheet                                              | Slave Address (default) (7bit) | read address (8bit) | write address (8Bit) |
+| --------------------------------- | ------------------------------------------------------ | ------------------------------ | ------------------- | -------------------- |
+| LSM6DS33 (gyro and accelerometer) | [URL](https://www.pololu.com/file/0J1087/LSM6DS33.pdf) | 1101011b                       | 11010111 (D7h)      | 11010110 (D6h)       |
+| LIS3MDL (magnetometer)            | [URL](https://www.pololu.com/file/0J1089/LIS3MDL.pdf)  | 0011110b                       | 00111101 (3Dh)      | 00111100 (3Ch)       |
+| LPS25H (barometer)                | [URL](https://www.pololu.com/file/0J761/LPS25H.pdf)    | 1011101b                       | 10111011 (BBh)      | 10111010 (BAh)       |
 
 *The source code was partly inspired by the official Arduino libraries for the sensors.*
 
@@ -144,6 +147,7 @@ Note: The L3GD20H sensor will not be used in this task, as reading gyroscope mea
 ### Measurement Process
 
 The M0 waits for two numbers to be sent via UART at first:
+
 1. The number of measurements to take
 2. Additional delay between each measurement in ms (Note: Without additional delay, expect to receive about one new measurement dataset per second with the v3 board. This is due to the M0 waiting for each sensor to have new data available.)  
 
@@ -154,16 +158,17 @@ To run this process:
 1. Compile/Run the M0 Code normally
 
 2. Start the Python Code for the Raspberry Pi (`python-uart/main.py`). 
+   
    - As in 4.2,  `raspi-run.sh` may be used to simplify this when you are on your host machine.
    - When `main.py` is called without any arguments, it asks for the number of measurements to take and if you want an additional delay between each measurement 
    - `main.py` may be called with arguments instead so that the output can be redirected into a csv file directly.
+     
      ```
      python3 main.py <number of measurements> <delay> > file.csv
      ```
    - Note: Activate the virtual environment before calling `main.py` manually.
 
 3. While the M0 is still running, `main.py` can be called again as often as needed.
-     
 
 ### Exemplary UART transfers
 
