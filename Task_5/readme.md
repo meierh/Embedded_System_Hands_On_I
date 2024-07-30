@@ -102,7 +102,7 @@ Looking at FFT_LowPassCoil_6M.png shows a FFT that is not smooth at all. One can
 To improve the visbility we smooth the FFT diagram with a Savgol filter using polynomials or order 5 and 30 basis points. This results in the diagram visible in FFT_LowPassCoil_6M_smoothed.png. The diagram is clearer and the cut off frequency can be recognized if already known to be at 1500Hz.
 
 **Summary of the measurement procedure and the results in a structured document
-
+See MeasurementProtocol.pdf
 
 
 ## 5.3 Simulation of Digital Filters
@@ -145,7 +145,7 @@ FilterDesignAnalysis/TransientPlot*.png show the plotted data track with the fil
 More detailed insights into the data track can be gained by using the FilterDesignAnalysis/postProcessingAcceleration.py script in combination with the data file FilterDesignAnalysis/AccelerationDataTrack.csv
 FilterDesignAnalysis/FFTPlot*.png show the effect of the filter on the amplitudes measured my the accelerometer. Our filter is effectively able to dampen low frequencies below 0.2Hz. The static gravity is dampened away.
 The intermediate frequencies are kept.
-This proofs that our filter design was succesful
+This proofs that our filter design was succesful.
 
 ## 5.5 Choice of Filter Implementation
 
