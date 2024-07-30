@@ -27,7 +27,7 @@ Both programs use a PWM frequency of 24 kHz. The duty cycle is initially set to 
 ### Improved brightness curve
 The human eye does not have a linear brightness sensitivity but a nearly logarithmic one. The nonlinearity allows us to see in low light
 situations like in moonlight (0.05-0.36lx) but also in full sunlight (130.000 lx) [Wikipedia](https://de.wikipedia.org/wiki/Beleuchtungsst%C3%A4rke).
-We can also use a logarithmic scale to improve the brightness steps of our LED. We decided to use 100 steps, from 1 to 100, and calculate the current brightness with the formula:
+We can also use a logarithmic scale to improve the brightness steps of our LED. We decided to use 100 steps, from 0 to 99, and calculate the current brightness with the formula:
 As `brightness_basis` we decided based on empirical research to use `3.26` as this gives us the best results.
 
 `pow(brightness_basis, log2(precision_pwm) * (new_brightness_step + 1) / number_of_steps) - 1;`

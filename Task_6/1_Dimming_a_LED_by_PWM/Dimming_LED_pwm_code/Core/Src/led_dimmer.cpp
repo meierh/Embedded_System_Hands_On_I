@@ -9,7 +9,7 @@ volatile double current_brightness = 1;
 // 2: Heartbeat
 uint8_t currentMode = 2;
 
-double brightness_max_value = 100;
+double brightness_max_value = 99;
 double brightness_min_value = 0;
 double brightness_step = 1;
 
