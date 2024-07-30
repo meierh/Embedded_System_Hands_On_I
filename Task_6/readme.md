@@ -24,6 +24,27 @@ To perform lab testings, set the `lab_mode` in main.c to true.
 
 Both programs use a PWM frequency of 24 kHz. The duty cycle is initially set to 100 % and can be adjusted via the debugger, as described in both main.c files.
 
+### Improved brightness curve
+The human eye does not have a linear brightness sensitivity but a nearly logarithmic one. The nonlinearity allows us to see in low light
+situations like in moonlight (0.05-0.36lx) but also in full sunlight (130.000 lx) [Wikipedia](https://de.wikipedia.org/wiki/Beleuchtungsst%C3%A4rke).
+We can also use a logarithmic scale to improve the brightness steps of our LED. We decided to use 100 steps, from 0 to 99, and calculate the current brightness with the formula:
+As `brightness_basis` we decided based on empirical research to use `3.26` as this gives us the best results.
+
+`pow(brightness_basis, log2(precision_pwm) * (new_brightness_step + 1) / number_of_steps) - 1;`
+
+This results in the following brightness steps, which we use as a new pulse for PWM.
+```
+[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3,
+3, 4, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8, 8, 9, 10, 11, 11, 12, 13, 14, 15, 17, 18, 19, 21, 23,
+24, 26, 29, 31, 33, 36, 39, 42, 45, 49, 53, 57, 61, 66, 72, 77, 84, 90, 97, 105, 114,
+123, 132, 143, 154, 167, 180, 194, 210, 227, 245, 264, 286, 308, 333, 360, 388, 419, 453, 
+489, 528, 570, 616, 665]
+```
+
+Previously we calculated the brightness steps linear with 
+`new_brightness =  (new_brightness_step * 665);`
+With brightness steps from 0 to 1 with 0.1 step size
+
 ### KiCad project and screenshots of the simulation results
 see all images in `images/SimulationPWM_*_100Ohm_VoltageLED_CurrentR2.png` 
 ![](images/SimulationPWM_005perc_100Ohm_VoltageLED_CurrentR2.png)

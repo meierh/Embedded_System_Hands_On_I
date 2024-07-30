@@ -1,4 +1,5 @@
 #include "led_dimmer.h"
+#include "cmath"
 
 volatile double current_brightness = 1;
 
@@ -8,10 +9,13 @@ volatile double current_brightness = 1;
 // 2: Heartbeat
 uint8_t currentMode = 2;
 
+double brightness_max_value = 99;
+double brightness_min_value = 0;
+double brightness_step = 1;
 
-double brightness_max_value = 1;
-double brightness_min_value = 0.1;
-double brightness_step = 0.1;
+int number_of_steps = 100;
+int precision_pwm = 665;
+double brightness_basis = 3.26;
 
 /**
  * joystick interrupt callback
@@ -38,8 +42,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
  * restart the pwm timers (tim1 and tim3) with new brightness
  * @param new_brightness the new brightness of the led in %
  */
-void restart_pwm(double new_brightness) {
-    sConfigOC.Pulse = (uint32_t) (new_brightness * 665);
+void restart_pwm(double new_brightness_step) {
+    // calculate the next brightness step with a logarithmic scale
+    double new_brightness = pow(brightness_basis, log2(precision_pwm) * (new_brightness_step + 1) / number_of_steps) - 1;
+    sConfigOC.Pulse = (uint32_t) (new_brightness);
     if (HAL_TIM_OC_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_3) != HAL_OK) {
         Error_Handler();
     }
@@ -47,6 +53,7 @@ void restart_pwm(double new_brightness) {
         Error_Handler();
     }
 }
+
 
 /**
  * increase the brightness by one brightness step
@@ -89,7 +96,7 @@ void auto_brightness(void) {
         } else {
             Decrease_brightness();
         }
-        HAL_Delay(30);
+        HAL_Delay(5);
     }
 }
 
@@ -121,19 +128,17 @@ void heartbeat(void) {
         switch (phase) {
             case 0:
                 Increase_brightness();
-                HAL_Delay(10);
                 break;
             case 1:
                 Decrease_brightness();
-                HAL_Delay(15);
+                HAL_Delay(2);
                 break;
             case 2:
                 Increase_brightness();
-                HAL_Delay(15);
+                HAL_Delay(2);
                 break;
             case 3:
                 Decrease_brightness();
-                HAL_Delay(5);
                 break;
             case 4:
                 HAL_Delay(1200);
