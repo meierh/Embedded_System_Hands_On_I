@@ -1,6 +1,7 @@
 # Documentation of Task 06
+_Further files of this task: See `Task_6/`_.
 
-## 5.1 Dimming a LED by PWM
+## 6.1 Dimming a LED by PWM
 
 
 ### Short explanation of the schematic
