@@ -30,6 +30,7 @@
 #include "LSM303D.h"
 #include "uart_helper.h"
 #include "FIRFilter.h"
+#include "filter_data.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -135,52 +136,64 @@ int main(void)
             0.000074667429161934026197490477105844775,
             0.000000000000000000004253308519220963015
     };
-    FIRFilter<double,20> filter_nutTal_n20_x(NutTalWindow_fc10KHz_fs1500Hz_N20);
-    FIRFilter<double,20> filter_nutTal_n20_y(NutTalWindow_fc10KHz_fs1500Hz_N20);
-    FIRFilter<double,20> filter_nutTal_n20_z(NutTalWindow_fc10KHz_fs1500Hz_N20);
+    //FIRFilter<double,20> filter_nutTal_n20_x(NutTalWindow_fc10KHz_fs1500Hz_N20);
+    //FIRFilter<double,20> filter_nutTal_n20_y(NutTalWindow_fc10KHz_fs1500Hz_N20);
+    //FIRFilter<double,20> filter_nutTal_n20_z(NutTalWindow_fc10KHz_fs1500Hz_N20);
 
-    bool filter_test = true;
+    FIRFilter<float, 561> filter_nulTal_n561_x(NutTalWindow_fc10KHz_fs1500Hz_N562);
+    FIRFilter<float, 561> filter_nulTal_n561_y(NutTalWindow_fc10KHz_fs1500Hz_N562);
+    FIRFilter<float, 561> filter_nulTal_n561_z(NutTalWindow_fc10KHz_fs1500Hz_N562);
+
 
     while (1)
     {
         uint32_t num_measurements = uart_read_num();
         uint32_t additional_delay = uart_read_num();
 
+        // not used in this task
+        // uart_write_id("Barometer", myBarometer->readWHO_AM_I());
+        // uart_write_id("Magnetometer", myMagnetometer->readWHO_AM_I());
 
-        //uart_write_id("Barometer", myBarometer->readWHO_AM_I());
         uart_write_id("Accelerometer", myAccelerometer->readWHO_AM_I());
-        //uart_write_id("Magnetometer", myMagnetometer->readWHO_AM_I());
 
-        if(filter_test) {
-            uart_write_header_filter_test();
-        } else {
-            uart_write_header();
-        }
+        uart_write_header_filter_test();
+        // not used in this task
+        // uart_write_header();
 
         uint32_t measurement_start_ms = HAL_GetTick(); // the start of the measurements in ms
 
         double temperature, pressure, magnet_x, magnet_y, magnet_z, acc_x, acc_y, acc_z;
         for (uint32_t i = 0; i < num_measurements; i++)
         {
-            // get all measurements
-            // myBarometer->read_barometer(temperature, pressure);
-            myAccelerometer->read_accelerometer(acc_x, acc_y, acc_z);
-            // myMagnetometer->read_magnetometer(magnet_x, magnet_y, magnet_z);
+            uint32_t iteration_start = HAL_GetTick();
+
             double current_s = ((double) HAL_GetTick() - measurement_start_ms) / 1000; // current time since measurement_start_ms in s
 
-            // filter acc values
-            double acc_x_filtered = filter_nutTal_n20_x.applyFilter(acc_x);
-            double acc_y_filtered = filter_nutTal_n20_y.applyFilter(acc_y);
-            double acc_z_filtered = filter_nutTal_n20_z.applyFilter(acc_z);
+            // barometer and magnetometer are not used in this task
+            // myBarometer->read_barometer(temperature, pressure);
+            // myMagnetometer->read_magnetometer(magnet_x, magnet_y, magnet_z);
 
-            if(filter_test) {
-                // write filtered data
-                uart_write_filter_test_data(&current_s, &acc_x, &acc_y,
-                                            &acc_z, &acc_x_filtered, &acc_y_filtered, &acc_z_filtered);
-            } else {
-                // unfiltered data
-                uart_write_data(&current_s, &temperature, &pressure, &magnet_x, &magnet_y,
-                                &magnet_z, &acc_x, &acc_y, &acc_z);
+            // get measurements
+            myAccelerometer->read_accelerometer(acc_x, acc_y, acc_z);
+
+            // filter acc values
+            double acc_x_filtered = filter_nulTal_n561_x.applyFilter((float) acc_x);
+            double acc_y_filtered = filter_nulTal_n561_y.applyFilter((float) acc_y);
+            double acc_z_filtered = filter_nulTal_n561_z.applyFilter((float) acc_z);
+
+            // write filtered data
+            uart_write_filter_test_data(&current_s, &acc_x, &acc_y,
+                                        &acc_z, &acc_x_filtered, &acc_y_filtered, &acc_z_filtered);
+
+            // unfiltered data
+            // uart_write_data(&current_s, &temperature, &pressure, &magnet_x, &magnet_y,
+            //                &magnet_z, &acc_x, &acc_y, &acc_z);
+
+            // every measurement should be 20ms long to get a even frequency
+            // we wait until 20ms ware reached
+            uint32_t  wait_time = 20 - (HAL_GetTick() - iteration_start);
+            if(wait_time > 0) {
+                HAL_Delay(wait_time);
             }
 
             if (additional_delay > 0)
