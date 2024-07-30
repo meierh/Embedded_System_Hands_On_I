@@ -4,8 +4,7 @@
 #include <cstdint>
 
 template<typename Floating, uint16_t ORDER>
-class FIRFilter
-{
+class FIRFilter {
     public:
         /**
          * Constructor
@@ -24,23 +23,23 @@ class FIRFilter
             incr();
             return innerMultiplication();
         }
-
+        
     private:
         // store filter parameter
         Floating a[ORDER+1];
         Floating x[ORDER+1];
         unsigned int k;
-
+        
         void rightShiftMem()
         {
             for(int ki=ORDER-1; ki>=0; ki--)
                 this->x[ki+1] = this->x[ki];
         }
-
+        
         void insert(Floating x){ this->x[0]=x; }
-
+        
         void incr(){ k = (k<(ORDER+1))?++k:ORDER+1; }
-
+        
         Floating innerMultiplication()
         {
             Floating y = 0;
