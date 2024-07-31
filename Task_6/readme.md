@@ -6,7 +6,7 @@ _Further files of this task: See `Task_6/`_.
 ### Short explanation of the schematic
 Circuit with 5V voltage source V2, the LED, a resistor R2, which limits the current through the LED, and a transistor. We use the transistor as a switch. When the voltage source V3 activates the circuit the transistor "switches" on and the LED lights up.
 
-A small base current to the BJT results in a larger collector current. The relationship between those two currents is called the DC current gain (hFE). The DC current gain depends in particular on the temperature and collector current and, according to the [data sheet](https://assets.nexperia.com/documents/data-sheet/BC817_SER.pdf) for the BC817-25, ranges from 160 to 400 at an ambient temperature of 25 °C and a collector current of 100 mA and a Collecter-to-Emitter voltage of 1 V.
+A small base current to the BJT results in a larger collector current. The relationship between those two currents is called the DC current gain (hFE). The DC current gain depends in particular on the temperature and collector current and, according to the [data sheet](https://assets.nexperia.com/documents/data-sheet/BC817_SER.pdf) for the BC817-25, ranges from 160 to 400 at an ambient temperature of 25 °C and a collector current of 100 mA and a Collector-to-Emitter voltage of 1 V.
 
 ### Simulation
 
@@ -44,7 +44,7 @@ the code uses two timer `tim1` and `tim3` to control both the onboard LED_1 and 
 Our software has three LED modes: 
 1. manually: use the joystick left and right to increase and decrease the brightness of the led
 2. Auto-triangle mode: the LED increase and decreases the brightness with a triangle function
-3. Heartbeat mode: the LED simulates a (human like) heatbeat
+3. Heartbeat mode: the LED simulates a (human like) heartbeat
 
 use the joystick up or down to iterate between the modes
 
