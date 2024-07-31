@@ -1,4 +1,5 @@
 # Documentation of Task 03
+
 _Further files of this task: See `Task_3/`_.
 
 ## Task 3.1
@@ -28,6 +29,7 @@ With SWD, the least-significant bit is always transmitted first.
 In our example, we only need to read the IDCODE register, so we do not have any send phase. 
 
 To execute our SWD implementation and read the IDCODE register, enter these on the Raspberry Pi:
+
 ```
 cd <repository>/utils/pigpio
 mkdir build
@@ -45,12 +47,15 @@ sudo ./SWD
 ```
 
 This results in:
+
 ```
 IDCODE = 0x0bb11477
 ```
+
 which matches the `SWD DPIDR 0x0bb11477` line output by OpenOCD.
 
 The whole communication log looks like this:
+
 ```
 ----------------------SWD setup----------------------
 Line Reset
@@ -68,9 +73,10 @@ Receive: 11101110001010001000110111010000  Parity:1
 ```
 
 **Additional Sources**:
+
 - [Programming Internal Flash Over the Serial Wire Debug Interface](https://www.silabs.com/documents/public/application-notes/an0062.pdf)
 
-## Task 3.2 
+## Task 3.2
 
 Note: As a quick introduction to debugging with OpenOCD, [this short video](https://www.youtube.com/watch?v=_1u7IOnivnM) might be helpful.
 
@@ -89,28 +95,30 @@ On Debian-based Linux distros, `arm-none-eabi-gcc` can be installed with `apt in
 ### Start the GDB Server on the Raspberry Pi
 
 Start OpenOCD on the Raspberry Pi by running:
-  ```
-  openocd -f Task_1/stm32f0raspberry.cfg
-  
-  Result:
-  Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64 (2024-05-08-19:50)
-  Licensed under GNU GPL v2
-  For bug reports, read
-        http://openocd.org/doc/doxygen/bugs.html
-  Info : BCM2835 GPIO JTAG/SWD bitbang driver
-  Info : clock speed 1006 kHz
-  Info : SWD DPIDR 0x0bb11477
-  Info : [stm32f0x.cpu] Cortex-M0 r0p0 processor detected
-  Info : [stm32f0x.cpu] target has 4 breakpoints, 2 watchpoints
-  Info : starting gdb server for stm32f0x.cpu on 3333
-  Info : Listening on port 3333 for gdb connections
-      TargetName         Type       Endian TapName            State       
-  --  ------------------ ---------- ------ ------------------ ------------
-  0* stm32f0x.cpu       cortex_m   little stm32f0x.cpu       running
 
-  Info : Listening on port 6666 for tcl connections
-  Info : Listening on port 4444 for telnet connections
-  ```
+```
+openocd -f Task_1/stm32f0raspberry.cfg
+
+Result:
+Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64 (2024-05-08-19:50)
+Licensed under GNU GPL v2
+For bug reports, read
+      http://openocd.org/doc/doxygen/bugs.html
+Info : BCM2835 GPIO JTAG/SWD bitbang driver
+Info : clock speed 1006 kHz
+Info : SWD DPIDR 0x0bb11477
+Info : [stm32f0x.cpu] Cortex-M0 r0p0 processor detected
+Info : [stm32f0x.cpu] target has 4 breakpoints, 2 watchpoints
+Info : starting gdb server for stm32f0x.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+    TargetName         Type       Endian TapName            State       
+--  ------------------ ---------- ------ ------------------ ------------
+0* stm32f0x.cpu       cortex_m   little stm32f0x.cpu       running
+
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+```
+
 So OpenOCD has now started a GDB Server on port 3333 of the Raspberry Pi.
 
 ### Debug Session
@@ -118,6 +126,7 @@ So OpenOCD has now started a GDB Server on port 3333 of the Raspberry Pi.
 On our host PC, we `cd` into `Task_2/Environment_baremetal`. In the following, we want to debug `blinky.c`:
 
 - To do that, we first compile our program
+
 ```
 ➜ tobii@MacBook-Pro-von-Tobias:~/.../Task_2/Environment_baremetal$ make CSRC=blinky.c
 arm-none-eabi-gcc -I../../utils/STM32CubeF0/Drivers/CMSIS/Include -I../../utils/STM32CubeF0/Drivers/CMSIS/Device/ST/STM32F0xx/Include -mlittle-endian -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -g3 -c blinky.c -o build/blinky.o
@@ -126,6 +135,7 @@ arm-none-eabi-gcc -mlittle-endian -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -g3 -
 ```
 
 - We then start `arm-none-eabi-gdb` and connect to the target (i.e. our M0 processor) using `target extended-remote tcp:hostIP:port`
+
 ```
 ➜ tobii@MacBook-Pro-von-Tobias:~/.../Task_2/Environment_baremetal$ arm-none-eabi-gdb main.elf 
 GNU gdb (Arm GNU Toolchain 13.2.rel1 (Build arm-13.7)) 13.2.90.20231008-git
@@ -140,7 +150,6 @@ For bug reporting instructions, please see:
 <https://bugs.linaro.org/>.
 Find the GDB manual and other documentation resources online at:
     <http://www.gnu.org/software/gdb/documentation/>.
-
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from main.elf...
@@ -150,6 +159,7 @@ Remote debugging using tcp:192.168.2.2:3333
 ```
 
 - Load the compiled program onto our M0. This is just an alternative to using the flash command of OpenOCD.
+
 ```
 (gdb) load
 Loading section .isr_vector, size 0xbc lma 0x8000000
@@ -159,6 +169,7 @@ Transfer rate: 2 KB/sec, 428 bytes/write.
 ```
 
 - Reset the target and read the M0's registers
+
 ```
 (gdb) monitor reset halt
 [stm32f0x.cpu] halted due to debug-request, current mode: Thread 
@@ -190,6 +201,7 @@ control        0x0                 0
 ```
 
 - Create a breakpoint at the beginning of main and let the M0 run up to this breakpoint. Read out the registers again.
+
 ```
 (gdb) break main
 Breakpoint 1 at 0x80000c0: file blinky.c, line 21.
@@ -226,6 +238,7 @@ control        0x0                 0
 ```
 
 - Set a breakpoint at the beginning of `toggle_led()`. We can then run our program until this breakpoint is being hit by typing `continue` (or the `c` shortcut). This way, every time we enter `c`, our LED gets toggled.
+
 ```
 (gdb) break toggle_led
 Breakpoint 2 at 0x80002b0: file blinky.c, line 106.
@@ -256,6 +269,7 @@ Breakpoint 2, toggle_led () at blinky.c:106
   - This yields in `00000000000000000000000000000000`, which makes sense because our LED is off.  
   - After entering `next`, the next statement of `toggle_led()` is executed and the LED turns on. 
   - If we repeat our examine command, we now get `00000000000000000000000010000000` so the 7-th bit is now `1`, which makes sense because our LED is connected to the 7-th pin on port A. [More information on the examine command here](https://www-zeuthen.desy.de/dv/documentation/unixguide/infohtml/gdb/Memory.html).
+
 ```
 (gdb) frame
 #0  toggle_led () at blinky.c:106
@@ -269,6 +283,7 @@ Breakpoint 2, toggle_led () at blinky.c:106
 ```
 
 Messing with gdb has resulted in some additional log messages at OpenOCD on the Raspberry Pi:
+
 ```
 Info : accepting 'gdb' connection on tcp/3333
 Info : device id = 0x10006442
@@ -287,17 +302,21 @@ xPSR: 0xc1000000 pc: 0x080002dc msp: 0x20008000
 ### Software preparations
 
 Install Eclipse on the host PC:
+
 - Download the [Eclipse Installer](https://www.eclipse.org/downloads/packages/installer)
 
 - Extract the installer
+  
   ```bash
   tar -xf eclipse-inst-jre-linux64.tar.gz
   ```
 
 - Run the installer 
+  
   ```bash
   ./eclipse-inst
   ```
+
 - Within the Eclipse Installer, select "Eclipse IDE for Embedded C/C++ Developers"
 
 ### Open our project within Eclipse
@@ -319,13 +338,15 @@ We can now explore our whole ESHO1 project. Open `Task_2/Environment_baremetal/b
 As our project structure of Task 2 does not really seam to fit to what Eclipse expects, we figure the easiest way to compile our program is just to do it manually:
 
 - Open a Terminal by pressing `Ctrl` + `Shift` + `T` and enter
-```
-make CSRC=blinky.c
-```
+  
+  ```
+  make CSRC=blinky.c
+  ```
 
 Note: Eclipse's Project Explorer does not refresh automatically. To Refresh, select the current project and hit `F5`.
 
 We can then copy the compiled program onto our Raspberry Pi:
+
 ```
 scp main.elf <Raspberry Pi's IP Address>:/home/<Raspberry Pi's Username>/
 ```
@@ -333,31 +354,33 @@ scp main.elf <Raspberry Pi's IP Address>:/home/<Raspberry Pi's Username>/
 ### Debugging Session
 
 - Start OpenOCD on the Raspberry Pi from the home directory:
-```
-openocd -f esho1/Task_1/stm32f0raspberry.cfg 
-```
+  
+  ```
+  openocd -f esho1/Task_1/stm32f0raspberry.cfg 
+  ```
 
 - Create Breakpoints at `main()` and at `toggle_led()` by double-clicking
   ![](images/breakpoint.png)
 
 - Click "Run" → "Debug Configurations" and create a new "GDB Hardware Debugging" configuration:
+  
   - Select the `main.elf` file and disable auto build
-  ![](images/debug_config_1.png)
+    ![](images/debug_config_1.png)
   - Specify the full path to the debugger, select `Generic TCP/IP`, `extended-remote` and specify the hostname (or IP address) of the Raspberry Pi and the port `3333`
-  ![](images/debug_config_2.png)
+    ![](images/debug_config_2.png)
   - Enter the Initialization Commands as shown and make sure that "Load image" and "Load symbols" are ticked
-![](images/debug_config_3.png)
+    ![](images/debug_config_3.png)
   - No Changes to "Source" and "Common" are neccessary
 
 - Click "Debug" and switch to "Debug View"
 
 - After hitting "Resume" (F8), the execution stops at the beginning of `main()`. We can examine the registers with the "Registers" tab:
-![](images/registers.png)
+  ![](images/registers.png)
 
 - After that, just like in 3.2, every time we hit "Resume", the LED gets toggled
 
 - To examine the state of the GPIOA_ODR register, we can add a watch expression: Right-click anywhere on the code tab and select "Add Watch Expression...", then enter `GPIOA->ODR`. Now, every time we resume, we can see the value of the register change between `0b0` and `0b10000000`.
-![](images/watch_odr.png)
+  ![](images/watch_odr.png)
 
 ## Use CLion instead of Eclipse and have an easy life
 
@@ -373,18 +396,26 @@ With CLion, the debugging process described above is much more simple. The compi
 - Build the project
 
 - Add a new "Remote GDB Server" run configuration:
+  
   - Select the Makefile target which results in the elf file to debug
+  
   - Select the elf file to flash and debug
+  
   - At "Credentials", setup an ssh connection to the Raspberry Pi
+  
   - At "Target Remote args", enter the hostname or IP address of the Raspberry Pi and the port 3333
+  
   - At "GDB Server", enter `openocd`
+  
   - Enter the following "GDB Server args":
+    
     ```
     -f <absolute path to stm32f0raspberry.cfg>
     -c "program /tmp/CLion/debug/main.elf verify"
     -c "reset halt"
     ```
-  ![](images/clion.png)
+    
+    ![](images/clion.png)
 
 - Hit the Debug Button
 
@@ -393,6 +424,7 @@ With CLion, the debugging process described above is much more simple. The compi
 Problems might arise when CLion tries to connect to the debugger before OpenOCD has finished flashing the elf file. A hacky way around that is to force gdb to sleep before trying to connect by redefining the `target remote` command. This way, you can also fix that CLion does not provide a way of using `target extended-remote` instead of `target remote`:
 
 - Create a file `.gdbinit` at your home directory with the following content:
+  
   ```
   define target remote
   shell sleep 5

@@ -1,4 +1,5 @@
 # Documentation of Task 05
+
 _Further files of this task: See `Task_5/`_.
 
 ## 5.1 Simulation of Analog Filters
@@ -8,16 +9,17 @@ Open 1_Simulation_of_Analog_Filters/Filters/Filters.kicad_sch with KiCad
 
 **Resistor and Capacitor values**:  
 Given:
+
 - f_LP = 1500Hz
 - f_HP = 4500Hz
 - L = 0.1
 
 Calculated:
+
 - R_HP = 2\*pi\*L\*f_HP = 900pi Ohm = 2827.43 Ohm
 - C_HP = 1/(2\*pi\*R_HP\*f_HP) = 1/(8100000pi²) Farad = 1.25088e-8 Farad ≈ 12.5 nF
 - R_LP = 2\*pi\*L\*f_LP = 300pi Ohm = 942.48 Ohm
 - C_LP = 1/(2\*pi\*R_LP\*f_LP) = 1/(900000pi²) Farad  = 1.12579e-7 Farad ≈ 112.5 nF
-      
 
 We used the following parameters for our simulations: {500Hz, 1500Hz, 2500Hz, 3500Hz, 4500Hz, 6500Hz, 8500Hz}.
 
@@ -35,7 +37,7 @@ With a cutoff frequency of 1500 Hz, the low pass filter dampens the 5kHz signal 
 
 With a cutoff frequency of 4500 Hz, the high pass filter dampens the 1kHz signal and lets the 5kHz signal through:
 ![](1_Simulation_of_Analog_Filters/Simulation/Transient Simulation/LinearTransient1Khz5KHz_fHP4500.png)
-      
+
 In both cases the dampening is not complete and remains of the dampened sinus wave are visible.
 
 If we decrease the cutoff frequency of the low pass filter, the resulting signal contains less disturbance but the amplitude is lower, because the low frequencies get attenuated more. As expected, the low-pass filter has less and less influence on the input signal as the cutoff frequency is increased.
@@ -107,34 +109,39 @@ Frequency: 5000   Cut-off Frequency: 8500   Damping: -1.29 dB
 ## 5.2 Measurement of Analog Filters
 
 **Screenshots from the oscilloscope**
+
 - Waveform of unfiltered and filtered noise signal : 
-   - Waveform_1msSpan_LowPassCoil.png
-   - Waveform_2msSpan_LowPassCoil.png
-   - Waveform_1msSpan_LowPassCap.png
-   - Waveform_2msSpan_LowPassCap.png
- 
+  
+  - Waveform_1msSpan_LowPassCoil.png
+  - Waveform_2msSpan_LowPassCoil.png
+  - Waveform_1msSpan_LowPassCap.png
+  - Waveform_2msSpan_LowPassCap.png
+
 - FFT of unfiltered and filtered noise signal :   
-   - FFT_Filtered_LowPassCoil.png
-   - FFT_Filtered_LowPassCap.png
-   - FFT_Unfiltered_LowPassCoil.png
-   - FFT_Unfiltered_LowPassCap.png
- 
+  
+  - FFT_Filtered_LowPassCoil.png
+  - FFT_Filtered_LowPassCap.png
+  - FFT_Unfiltered_LowPassCoil.png
+  - FFT_Unfiltered_LowPassCap.png
+
 - Waveform of unfiltered and filtered sine signal : 
+  
   - Sinus_LowPassCoil.png
   - Sinus_LowPassCap.png
 
 **Diagrams from frequency response and filtered signals**
+
 - Waveform of unfiltered and filtered noise signal : 
-    - WhiteNoiseSignal_LowPassCoil_600K.png
-    - WhiteNoiseSignal_LowPassCoil_6M.png
-    - WhiteNoiseSignal_LowPassCap_600K.png
+  - WhiteNoiseSignal_LowPassCoil_600K.png
+  - WhiteNoiseSignal_LowPassCoil_6M.png
+  - WhiteNoiseSignal_LowPassCap_600K.png
 - FFT of unfiltered and filtered noise signal :
-    - FFT_LowPassCap_600K.png
-    - FFT_LowPassCap_600K_smoothed.png
-    - FFT_LowPassCoil_6M.png
-    - FFT_LowPassCoil_6M_smoothed.png
-    - FFT_LowPassCoil_600K.png
-    - FFT_LowPassCoil_600K_smoothed.png
+  - FFT_LowPassCap_600K.png
+  - FFT_LowPassCap_600K_smoothed.png
+  - FFT_LowPassCoil_6M.png
+  - FFT_LowPassCoil_6M_smoothed.png
+  - FFT_LowPassCoil_600K.png
+  - FFT_LowPassCoil_600K_smoothed.png
 
 (generated with postProcessing.py)
 
@@ -145,6 +152,7 @@ To improve the visibility we smooth the FFT diagram with a Savgol filter using p
 
 **Cut-off Frequency within diagrams**:  
 For the smoothed diagrams, we read out the cut-off frequency (manually) and added it to the diagram:
+
 - FFT_LowPassCap_600K_smoothed_Cut-off.png
 - FFT_LowPassCoil_6M_smoothed_Cut-off.png
 - FFT_LowPassCoil_600K_smoothed_Cut-off.png
@@ -155,16 +163,18 @@ The cut-off frequencies cannot be read off very precisely, as the data still con
 
 See MeasurementProtocol.pdf
 
-
 ## 5.3 Simulation of Digital Filters
 
 **Frequency response of FIR filters**:
+
 - View 3_Simulation_of_Digital_Filters/*.png for Frequency response and the Matlab tool settings
 
 **Filter coefficients of Nuttal-FIR filters**:
+
 - View 3_Simulation_of_Digital_Filters/*.fcf for filter coefficients of the different filters
 
 **Filter coefficients of KaiserWindow-FIR filters**:
+
 - View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim.fcf for filter coefficients and the order of the filter
 - View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim.png for Frequency response
 - View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim_Settings.png for Matlab tool settings
@@ -179,6 +189,7 @@ Rectangular is steeper between 1.5kHz and 2kHz but has a lower damping above 2kH
 The Nuttal window N=20 filter drops to a much higher damping at high frequencies. Between 1.5kHz and 3kHz the Nuttal window filter is steeper.
 
 ## 5.4 Realization of Digital Filters
+
 **FIR implementation**:
 The FIR Filter is implemented in the Header "FIRFilter.h"
 
@@ -201,11 +212,13 @@ This proofs that our filter design was successful.
 ## 5.5 Choice of Filter Implementation
 
 Advantage analog filter:
+
 - Can be implemented cheaply with electric components without the need for computation power
 - No complication by the necessity to pay attention to the digital frequency
 - No additional components necessary to bridge the analogue to digital gap
 
 Advantage digital filter:
+
 - Can be implemented by software and therefore easily changed
 - Easy implementation of high order filters only limited by memory consumption
 - Components can not change their values due to age

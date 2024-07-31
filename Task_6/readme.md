@@ -1,9 +1,11 @@
 # Documentation of Task 06
+
 _Further files of this task: See `Task_6/`_.
 
 ## 6.1 Dimming a LED by PWM
 
 ### Short explanation of the schematic
+
 Circuit with 5V voltage source V2, the LED, a resistor R2, which limits the current through the LED, and a transistor. We use the transistor as a switch. When the voltage source V3 activates the circuit the transistor "switches" on and the LED lights up.
 
 A small base current to the BJT results in a larger collector current. The relationship between those two currents is called the DC current gain (hFE). The DC current gain depends in particular on the temperature and collector current and, according to the [data sheet](https://assets.nexperia.com/documents/data-sheet/BC817_SER.pdf) for the BC817-25, ranges from 160 to 400 at an ambient temperature of 25 °C and a collector current of 100 mA and a Collector-to-Emitter voltage of 1 V.
@@ -15,6 +17,7 @@ The simulated circuit is located at 1_Dimming_a_LED_by_PWM/Dimming_simulation.
 Note: For the simulations to produce reasonable results, we had to change the polarity of the LED (or flip the voltage sources, alternatively) for some reason. We figure this might be due to a bug with the BC817 model.
 
 #### Determining the Resistor Value for the LED
+
 We performed an OP simulation to simulate the current flow through the LED.
 
 The minimum resistance value seems to be about 100 Ohms, which leads to a simulated current flow of 19.6 mA:
@@ -42,6 +45,7 @@ Within `1_Dimming_a_LED_by_PWM/Dimming_LED_pwm_code/` you'll find the code we us
 the code uses two timer `tim1` and `tim3` to control both the onboard LED_1 and an external LED (connected to `M4` / `PA9`)
 
 Our software has three LED modes: 
+
 1. manually: use the joystick left and right to increase and decrease the brightness of the led
 2. Auto-triangle mode: the LED increase and decreases the brightness with a triangle function
 3. Heartbeat mode: the LED simulates a (human like) heartbeat
@@ -51,7 +55,6 @@ use the joystick up or down to iterate between the modes
 To perform lab testings, set the `lab_mode` in main.cpp to true.
 
 Both programs use a PWM frequency of 24 kHz. The duty cycle is initially set to 100 % and can be adjusted via the debugger, as described in main.cpp.
-
 
 ### Measurements in Lab
 
@@ -86,6 +89,7 @@ Both measured values are a little higher than the simulated ones. Although the L
 Cf. `images/VoltageRasPi_050perc.png`
 
 ### Improved brightness curve
+
 The human eye does not have a linear brightness sensitivity but a nearly logarithmic one. The non-1linearity allows us to see in low light
 situations like in moonlight (0.05-0.36lx) but also in full sunlight (130.000 lx) [Wikipedia](https://de.wikipedia.org/wiki/Beleuchtungsst%C3%A4rke).
 We can also use a logarithmic scale to improve the brightness steps of our LED. We decided to use 100 steps, from 0 to 99, and calculate the current brightness with the formula:
@@ -94,6 +98,7 @@ As `brightness_basis` we decided based on empirical research to use `3.26` as th
 `pow(brightness_basis, log2(precision_pwm) * (new_brightness_step + 1) / number_of_steps) - 1;`
 
 This results in the following brightness steps, which we use as a new pulse for PWM.
+
 ```
 [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3,
 3, 4, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8, 8, 9, 10, 11, 11, 12, 13, 14, 15, 17, 18, 19, 21, 23,
