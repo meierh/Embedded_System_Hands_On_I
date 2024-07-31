@@ -9,6 +9,12 @@ _Further files of this task: See `Task_2/`_.
   sudo apt install gcc-arm-none-eabi
   ```
 
+- Note: Ensure to clone submodules too, s.t. the CMSIS and HAL drivers are available for compilation:
+
+  ```
+  git submodule update --init --recursive
+  ```
+
 **Compilation and Flashing**:
 
 In the Makefile, `better-blinky.c` (Task 2) is set up as the default source code to compile and execute on the extension board.
