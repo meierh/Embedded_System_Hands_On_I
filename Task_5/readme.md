@@ -18,27 +18,56 @@ Calculated:
 - R_LP = 2\*pi\*L\*f_LP = 300pi Ohm = 942.48 Ohm
 - C_LP = 1/(2\*pi\*R_LP\*f_LP) = 1/(900000pi²) Farad  = 1.12579e-7 Farad ≈ 112.5 nF
       
+
+We used the following parameters for our simulations: {500Hz, 1500Hz, 2500Hz, 3500Hz, 4500Hz, 6500Hz, 8500Hz}.
+
 **Transient simulation**:  
-View 1_Simulation_of_Analog_Filters/LinearTransient*  
+View 1_Simulation_of_Analog_Filters/Simulation/Transient Simulation/LinearTransient*  
 
 General: Input signal in red, Output signal in blue
 
 The input signal is the combination of a 1kHz sinus wave and a 5kHz sinus wave.
 
-As expected the high pass filter both with capacitor and with coil lead to an identical output signal using the computed values. The same holds true for the low pass filter.
+As expected the high pass filter both with capacitor and with coil lead to an identical output signal using the computed values. The same holds true for the low pass filter. As the resulting plots are bit-wise identical, we do not provide different plots for RL_HP and RC_HP or RL_LP and RC_LP.
 
-The low pass filter (LinearTransient1Khz5KHz_RCLP.png / LinearTransient1Khz5KHz_RLLP.png) dampens the 5kHz signal and lets the 1kHz signal through.
+With a cutoff frequency of 1500 Hz, the low pass filter dampens the 5kHz signal and lets the 1kHz signal through:
+![](1_Simulation_of_Analog_Filters/Simulation/Transient Simulation/LinearTransient1Khz5KHz_fLP1500.png)
 
-The high pass filter (LinearTransient1Khz5KHz_RCHP.png / LinearTransient1Khz5KHz_RLHP.png) dampens the 1kHz signal and lets the 5kHz signal through.
+With a cutoff frequency of 4500 Hz, the high pass filter dampens the 1kHz signal and lets the 5kHz signal through:
+![](1_Simulation_of_Analog_Filters/Simulation/Transient Simulation/LinearTransient1Khz5KHz_fHP4500.png)
       
 In both cases the dampening is not complete and remains of the dampened sinus wave are visible.
 
-**Frequency response simulation**:  
-Parameterstudy: f_span = {500Hz, 1500Hz, 2500Hz, 3500Hz, 4500Hz, 6500Hz, 8500Hz}
-                LP x HP = f_span x f_span
-View LinearAC_fLP${f_span}_fHP${f_span}.png. The frequency response diagram shows the effect of the high and low pass filter. It varies according to the cut-of frequencies.
+If we decrease the cutoff frequency of the low pass filter, the resulting signal contains less disturbance but the amplitude is lower, because the low frequencies get attenuated more. As expected, the low-pass filter has less and less influence on the input signal as the cutoff frequency is increased.
 
-**Damping of all filter at 1kHz and 5kHz**:
+Increasing the cut-off frequency of the high-pass filter results in a lower amplitude of the output signal. If the cutoff frequency is reduced, the disturbances in the output signal increase until it is almost identical to the input signal again.
+
+**Frequency response simulation**: 
+
+We generated plots with all combinations of cut-off frequencies for high and low pass filters:
+
+f_span = {500Hz, 1500Hz, 2500Hz, 3500Hz, 4500Hz, 6500Hz, 8500Hz}
+
+LP x HP = f_span x f_span
+
+View 1_Simulation_of_Analog_Filters/Simulation/Frequency Response Simulation/LinearAC_fLP${f_span}_fHP${f_span}.png. 
+
+The frequency response diagram shows the effect of the high and low pass filter (high pass: blue, low pass: orange). It varies according to the cut-off frequencies.
+
+As expected, a higher cut-off frequency for the high-pass filter leads to a stronger attenuation of lower frequencies. With the low-pass filter, it is the other way around - as the cut-off frequency increases, lower frequencies are allowed through more and more.
+
+**Phase Shift**:
+
+View 1_Simulation_of_Analog_Filters/Simulation/Phase Shift Simulation/*.png
+
+We can observe that the more the filters influence the output signal, the greater the phase shift. Specifically, the phase shift is highest for low-pass filters with low cut-off frequencies and for high-pass filters with high cut-off frequencies.
+The phase shift is always negative for the low-pass filter and positive for the high-pass filter.
+
+**Damping of all filters at 1kHz and 5kHz**:
+
+Calculated using 1_Simulation_of_Analog_Filters/DampingComputation.py:
+
+```
 High-Pass Filter
 High-pass gain formula: 1/(sqrt(1+(1/(2*pi*C*R)²)))
 Frequency: 1000   Cut-off Frequency:  500   Damping: -0.97 dB
@@ -73,7 +102,7 @@ Frequency: 5000   Cut-off Frequency: 3500   Damping: -4.83 dB
 Frequency: 5000   Cut-off Frequency: 4500   Damping: -3.49 dB
 Frequency: 5000   Cut-off Frequency: 6500   Damping: -2.02 dB
 Frequency: 5000   Cut-off Frequency: 8500   Damping: -1.29 dB
-
+```
 
 ## 5.2 Measurement of Analog Filters
 
@@ -145,16 +174,16 @@ FilterDesignAnalysis/TransientPlot*.png show the plotted data track with the fil
 More detailed insights into the data track can be gained by using the FilterDesignAnalysis/postProcessingAcceleration.py script in combination with the data file FilterDesignAnalysis/AccelerationDataTrack.csv
 FilterDesignAnalysis/FFTPlot*.png show the effect of the filter on the amplitudes measured my the accelerometer. Our filter is effectively able to dampen low frequencies below 0.2Hz. The static gravity is dampened away.
 The intermediate frequencies are kept.
-This proofs that our filter design was succesful.
+This proofs that our filter design was successful.
 
 ## 5.5 Choice of Filter Implementation
 
-Advantage analoge filter:
+Advantage analog filter:
 - Can be implemented cheaply with electric components without the need for computation power
-- No compilcation by the necessity to pay attention to the digital frequency
+- No complication by the necessity to pay attention to the digital frequency
 - No additional components necessary to bridge the analogue to digital gap
 
 Advantage digital filter:
 - Can be implemented by software and therefore easily changed
-- Easy implementeation of high order filters only limited by memory consumption
+- Easy implementation of high order filters only limited by memory consumption
 - Components can not change their values due to age
