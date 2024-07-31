@@ -106,26 +106,39 @@ Frequency: 5000   Cut-off Frequency: 8500   Damping: -1.29 dB
 
 ## 5.2 Measurement of Analog Filters
 
-**Screenshots from the oscilloscope
+**Screenshots from the oscilloscope**
 - Waveform of unfiltered and filtered noise signal : 
-Waveform_1msSpan_LowPassCoil.png
-Waveform_2msSpan_LowPassCoil.png
-Waveform_1msSpan_LowPassCap.png
-Waveform_2msSpan_LowPassCap.png
-- FFT of unfiltered and filtered noise signal : 
-FFT_Filtered_LowPassCoil.png
-FFT_Filtered_LowPassCap.png
+   - Waveform_1msSpan_LowPassCoil.png
+   - Waveform_2msSpan_LowPassCoil.png
+   - Waveform_1msSpan_LowPassCap.png
+   - Waveform_2msSpan_LowPassCap.png
+ 
+- FFT of unfiltered and filtered noise signal :   
+   - FFT_Filtered_LowPassCoil.png
+   - FFT_Filtered_LowPassCap.png
+   - FFT_Unfiltered_LowPassCoil.png
+   - FFT_Unfiltered_LowPassCap.png
+ 
 - Waveform of unfiltered and filtered sine signal : 
-Sinus_LowPassCoil.png
-Sinus_LowPassCap.png
+  - Sinus_LowPassCoil.png
+  - Sinus_LowPassCap.png
 
-**Diagrams fro frequency response and filtered signals
-- Waveform of unfiltered and filtered sine signal : 
-WhiteNoiseSignal_LowPassCoil_600K.png
-WhiteNoiseSignal_LowPassCoil_6M.png
-WhiteNoiseSignal_LowPassCap_600K.png
+**Diagrams from frequency response and filtered signals**
+- Waveform of unfiltered and filtered noise signal : 
+    - WhiteNoiseSignal_LowPassCoil_600K.png
+    - WhiteNoiseSignal_LowPassCoil_6M.png
+    - WhiteNoiseSignal_LowPassCap_600K.png
+- FFT of unfiltered and filtered noise signal :
+    - FFT_LowPassCap_600K.png
+    - FFT_LowPassCap_600K_smoothed.png
+    - FFT_LowPassCoil_6M.png
+    - FFT_LowPassCoil_6M_smoothed.png
+    - FFT_LowPassCoil_600K.png
+    - FFT_LowPassCoil_600K_smoothed.png
 
-**Comparison between measured and simulated behavior of signals
+(generated with postProcessing.py)
+
+**Comparison between measured and simulated behavior of signals**  
 The FFT diagrams of the previous subtask are similar enough so that we just focus on FFT_LowPassCoil_6M. This data section has the most prevision. We already found out in 5.1 that the Low pass filter using a coil and a capacitor performs identical.
 Looking at FFT_LowPassCoil_6M.png shows a FFT that is not smooth at all. One can see a low-pass behavior but using the graph alone one would guess the cut off to be between 500Hz and 2000Hz.
 To improve the visbility we smooth the FFT diagram with a Savgol filter using polynomials or order 5 and 30 basis points. This results in the diagram visible in FFT_LowPassCoil_6M_smoothed.png. The diagram is clearer and the cut off frequency can be recognized if already known to be at 1500Hz.
@@ -137,23 +150,23 @@ See MeasurementProtocol.pdf
 ## 5.3 Simulation of Digital Filters
 
 **Frequency response of FIR filters**:
-View 3_Simulation_of_Digital_Filters/*.png for Frequency response and the Matlab tool settings
+- View 3_Simulation_of_Digital_Filters/*.png for Frequency response and the Matlab tool settings
 
 **Filter coefficients of Nuttal-FIR filters**:
-View 3_Simulation_of_Digital_Filters/*.fcf for filter coefficients of the different filters
+- View 3_Simulation_of_Digital_Filters/*.fcf for filter coefficients of the different filters
 
 **Filter coefficients of KaiserWindow-FIR filters**:
-View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim.fcf for filter coefficients and the order of the filter
-View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim.png for Frequency response
-View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim_Settings.png for Matlab tool settings
+- View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim.fcf for filter coefficients and the order of the filter
+- View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim.png for Frequency response
+- View 3_Simulation_of_Digital_Filters/KaiserWindow_Optim_Settings.png for Matlab tool settings
 
-**Nuttal-FIR filter vs Task 5.1 Lowpass@1.5kHz**:
-For N=5 and N=10 the analouge filter is the steeper one. Only N=20 leads to a digital Nuttal filter with a steeper amplitude response. This can be seen by comparing the values at f=2kHz. The analoge filter has a -12dB damping at that point while the Nuttal filter for N=5 and N=10 has a damping of > -10dB.
+**Nuttal-FIR filter vs Task 5.1 Lowpass @ 1.5kHz**:  
+For N=5 and N=10 the analog filter is the steeper one. Only N=20 leads to a digital Nuttal filter with a steeper amplitude response. This can be seen by comparing the values at f=2kHz. The analog filter has a -12dB damping at that point while the Nuttal filter for N=5 and N=10 has a damping of > -10dB.
 
-**Nuttal-FIR filter N=10 vs Rectangular N=10**:
+**Nuttal-FIR filter N=10 vs Rectangular N=10**:  
 Rectangular is steeper between 1.5kHz and 2kHz but has a lower damping above 2kHz, staying above -30dB for large frequency bands.
 
-**Nuttal-FIR filter N=20 vs Kaiser Window**:
+**Nuttal-FIR filter N=20 vs Kaiser Window**:  
 The Nuttal window N=20 filter drops to a much higher damping at high frequencies. Between 1.5kHz and 3kHz the Nuttal window filter is steeper.
 
 ## 5.4 Realization of Digital Filters
