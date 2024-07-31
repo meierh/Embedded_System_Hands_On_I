@@ -66,4 +66,3 @@ see all images in `images/VoltageLED_10Ohm_*.png`
 
 The simulated base voltage was made to fit the measured one. Obviously the simulated voltage is cleaner than the measured voltage.
 
-### Explanation or documented implementation of improved brightness step equality
