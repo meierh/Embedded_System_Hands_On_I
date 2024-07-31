@@ -140,10 +140,19 @@ Frequency: 5000   Cut-off Frequency: 8500   Damping: -1.29 dB
 
 **Comparison between measured and simulated behavior of signals**  
 The FFT diagrams of the previous subtask are similar enough so that we just focus on FFT_LowPassCoil_6M. This data section has the most prevision. We already found out in 5.1 that the Low pass filter using a coil and a capacitor performs identical.
-Looking at FFT_LowPassCoil_6M.png shows a FFT that is not smooth at all. One can see a low-pass behavior but using the graph alone one would guess the cut off to be between 500Hz and 2000Hz.
-To improve the visbility we smooth the FFT diagram with a Savgol filter using polynomials or order 5 and 30 basis points. This results in the diagram visible in FFT_LowPassCoil_6M_smoothed.png. The diagram is clearer and the cut off frequency can be recognized if already known to be at 1500Hz.
+Looking at FFT_LowPassCoil_6M.png shows a FFT that is not smooth at all. One can see a low-pass behavior but using the graph alone one would guess the cut-off to be between 500Hz and 2000Hz.
+To improve the visibility we smooth the FFT diagram with a Savgol filter using polynomials or order 5 and 30 basis points. This results in the diagram visible in FFT_LowPassCoil_6M_smoothed.png. The diagram is clearer and the cut-off frequency can be recognized if already known to be at 1500Hz.
 
-**Summary of the measurement procedure and the results in a structured document
+**Cut-off Frequency within diagrams**:  
+For the smoothed diagrams, we read out the cut-off frequency (manually) and added it to the diagram:
+- FFT_LowPassCap_600K_smoothed_Cut-off.png
+- FFT_LowPassCoil_6M_smoothed_Cut-off.png
+- FFT_LowPassCoil_600K_smoothed_Cut-off.png
+
+The cut-off frequencies cannot be read off very precisely, as the data still contains significant fluctuations even after smoothing. However, a noticeable qualitative attenuation of the frequencies above 1500 Hz can be recognized in all three diagrams, so that the measurement approximately meets the expectation.
+
+**Summary of the measurement procedure and the results in a structured document**
+
 See MeasurementProtocol.pdf
 
 
