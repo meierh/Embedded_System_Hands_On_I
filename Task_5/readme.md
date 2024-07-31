@@ -182,20 +182,20 @@ The Nuttal window N=20 filter drops to a much higher damping at high frequencies
 **FIR implementation**:
 The FIR Filter is implemented in the Header "FIRFilter.h"
 
-**FIR filter design**:
-Reading frequency on the microcontroller and the filter design interact with each other.
-A larger filter leads to a lower sampling frequency and a lower frequency allows a smaller filter.
-We choose a sampling frequency of 50Hz as a compromise.
-There are no large amplitudes in the accelerometer above 10Hz. As a result we choose 20Hz as our upper pass frequency.
-The lower pass frequency is chosen to be 0.2 Hz. This is a compromise. Lower values lead to a larger filter that does not fit on the microcontroller. Any signals with a period of more than 5s is damped as a result.
-FilterDesignAnalysis/BandpassFilterDesign.png shows the design parameters
+**FIR filter design**:  
+Reading frequency on the microcontroller and the filter design interact with each other.  
+A larger filter leads to a lower sampling frequency and a lower frequency allows a smaller filter.  
+We choose a sampling frequency of 50Hz as a compromise.  
+There are no large amplitudes in the accelerometer above 10Hz. As a result we choose 20Hz as our upper pass frequency.  
+The lower pass frequency is chosen to be 0.2 Hz. This is a compromise. Lower values lead to a larger filter that does not fit on the microcontroller. Any signals with a period of more than 5s is damped as a result.  
+FilterDesignAnalysis/BandpassFilterDesign.png shows the design parameters  
 FilterDesignAnalysis/BandpassAmplitudeDesigner.png shows the resulting amplitudes above the frequencies.
 
-**FIR filter evaluation**:
-FilterDesignAnalysis/TransientPlot*.png show the plotted data track with the filtered and unfiltered signal.
-More detailed insights into the data track can be gained by using the FilterDesignAnalysis/postProcessingAcceleration.py script in combination with the data file FilterDesignAnalysis/AccelerationDataTrack.csv
-FilterDesignAnalysis/FFTPlot*.png show the effect of the filter on the amplitudes measured my the accelerometer. Our filter is effectively able to dampen low frequencies below 0.2Hz. The static gravity is dampened away.
-The intermediate frequencies are kept.
+**FIR filter evaluation**:  
+FilterDesignAnalysis/TransientPlot*.png show the plotted data track with the filtered and unfiltered signal.  
+More detailed insights into the data track can be gained by using the FilterDesignAnalysis/postProcessingAcceleration.py script in combination with the data file FilterDesignAnalysis/AccelerationDataTrack.csv  
+FilterDesignAnalysis/FFTPlot*.png show the effect of the filter on the amplitudes measured my the accelerometer. Our filter is effectively able to dampen low frequencies below 0.2Hz. The static gravity is dampened away.  
+The intermediate frequencies are kept.  
 This proofs that our filter design was successful.
 
 ## 5.5 Choice of Filter Implementation
