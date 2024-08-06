@@ -1,4 +1,5 @@
 # Task 4
+
 _Further files of this task: See `Task_4/`_.
 
 ## 4.1 Better blinky with HAL
@@ -6,6 +7,7 @@ _Further files of this task: See `Task_4/`_.
 In this and subsequent HAL tasks, we used STM32CubeMX. It generates a project structure and code that initialises the M0 features needed for each task.
 
 In this task, we used STM32CubeMX to
+
 - set the GPIO Input/Output pins on the chip,
   ![](assets/stm32cubemx_chip.png)
 - set the system clock to 48 MHz and
@@ -18,6 +20,7 @@ using the same settings we set manually in Task 2.
 Note: We needed to adapt the resulting code and the `CMakeLists.txt` file to our needs and to our project structure, so regeneration of the code from STM32CubeMX will arise problems.
 
 To compile the HAL tasks, use CMake:
+
 ```bash
 mkdir build
 cd build
@@ -43,8 +46,8 @@ To use UART, we need to enable it first
   2. `Would you like the serial port hardware to be enabled?` -> select `Yes`
 
 - You should see the following message:
-
-   <img src="assets/2024-06-26-10-23-43-image.png" title="" alt="" width="352">
+  
+  <img src="assets/2024-06-26-10-23-43-image.png" title="" alt="" width="352">
 
 - select `OK`
 
@@ -160,12 +163,15 @@ To run this process:
 2. Start the Python Code for the Raspberry Pi (`python-uart/main.py`). 
    
    - As in 4.2,  `raspi-run.sh` may be used to simplify this when you are on your host machine.
+   
    - When `main.py` is called without any arguments, it asks for the number of measurements to take and if you want an additional delay between each measurement 
+   
    - `main.py` may be called with arguments instead so that the output can be redirected into a csv file directly.
      
      ```
      python3 main.py <number of measurements> <delay> > file.csv
      ```
+   
    - Note: Activate the virtual environment before calling `main.py` manually.
 
 3. While the M0 is still running, `main.py` can be called again as often as needed.
@@ -214,6 +220,7 @@ Set the minimum illuminance by moving the joystick downwards, and the maximum il
 Between measurements, the calibration values are kept. To delete the calibration, reset the M0. At any time, minimum or maximum illuminance may be recalibrated by moving the stick upwards or downwards again.
 
 The Board LEDs show the status of the calibration:
+
 - LED_1 (red): on while not fully calibrated
 - LED_0 (green): steady while minimum illuminance calibrated, flashing after recalibration of minimum illuminance
 - LED_2 (green): steady while maximum illuminance calibrated, flashing after recalibration of maximum illuminance
