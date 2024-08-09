@@ -4,6 +4,12 @@
 	(generator_version "8.0")
 	(uuid "9fde6b9c-53fd-4f64-9761-84b01b75f921")
 	(paper "A4")
+	(title_block
+		(title "SmartEggTimer")
+		(date "2024-08-09")
+		(rev "v1")
+		(comment 1 "For ESHO_1")
+	)
 	(lib_symbols
 		(symbol "Connector:Conn_01x02_Pin"
 			(pin_names
@@ -147,6 +153,168 @@
 				)
 				(pin passive line
 					(at 5.08 -2.54 180)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Connector:Conn_01x02_Socket"
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x02_Socket"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x02, script generated"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x02_Socket_1_1"
+				(arc
+					(start 0 -2.032)
+					(mid -0.5058 -2.54)
+					(end 0 -3.048)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -2.54) (xy -0.508 -2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy -0.508 0)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 0.508)
+					(mid -0.5058 0)
+					(end 0 -0.508)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
 					(length 3.81)
 					(name "Pin_2"
 						(effects
@@ -2649,108 +2817,6 @@
 				)
 			)
 		)
-		(symbol "Mechanical:MountingHole_Pad"
-			(pin_numbers hide)
-			(pin_names
-				(offset 1.016) hide)
-			(exclude_from_sim yes)
-			(in_bom no)
-			(on_board yes)
-			(property "Reference" "H"
-				(at 0 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "MountingHole_Pad"
-				(at 0 4.445 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Mounting Hole with connection"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "mounting hole"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "MountingHole*Pad*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "MountingHole_Pad_0_1"
-				(circle
-					(center 0 1.27)
-					(radius 1.27)
-					(stroke
-						(width 1.27)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "MountingHole_Pad_1_1"
-				(pin input line
-					(at 0 -2.54 90)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Regulator_Linear:XC6206PxxxMR"
 			(pin_names
 				(offset 0.254)
@@ -3350,6 +3416,546 @@
 				)
 			)
 		)
+		(symbol "custom-parts:DFPlayer_Mini"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "DFPlayerMini"
+				(at 1.778 8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at -3.81 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -3.81 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at -3.81 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at -3.81 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "DFPlayer_Mini_0_1"
+				(rectangle
+					(start -6.35 7.62)
+					(end 10.16 -12.7)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "DFPlayer_Mini_1_1"
+				(pin input line
+					(at 12.7 -3.81 180)
+					(length 2.54)
+					(name "ADKEY_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -1.27 180)
+					(length 2.54)
+					(name "ADKEY_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 6.35 180)
+					(length 2.54)
+					(name "BUSY"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -3.81 0)
+					(length 2.54)
+					(name "DAC_I"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -1.27 0)
+					(length 2.54)
+					(name "DAC_R"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -8.89 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -8.89 180)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -11.43 180)
+					(length 2.54)
+					(name "IO_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -6.35 180)
+					(length 2.54)
+					(name "IO_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 3.81 0)
+					(length 2.54)
+					(name "RX"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -6.35 0)
+					(length 2.54)
+					(name "SPK_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -11.43 0)
+					(length 2.54)
+					(name "SPK_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 1.27 0)
+					(length 2.54)
+					(name "TX"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 1.27 180)
+					(length 2.54)
+					(name "USB+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 3.81 180)
+					(length 2.54)
+					(name "USB-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 6.35 0)
+					(length 2.54)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "custom-parts:OLED-15W-C"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "OLED-15W-C"
+				(at 1.778 8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 8.89 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 8.89 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 8.89 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 8.89 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "OLED-15W-C_0_1"
+				(rectangle
+					(start -3.81 7.62)
+					(end 5.08 -10.16)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "OLED-15W-C_1_1"
+				(pin input line
+					(at 7.62 -1.27 180)
+					(length 2.54)
+					(name "CLK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 -3.81 180)
+					(length 2.54)
+					(name "CS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 -6.35 180)
+					(length 2.54)
+					(name "D/C"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 1.27 180)
+					(length 2.54)
+					(name "DIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 3.81 180)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 -8.89 180)
+					(length 2.54)
+					(name "RES"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 6.35 180)
+					(length 2.54)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_numbers hide)
@@ -3590,126 +4196,6 @@
 				)
 			)
 		)
-		(symbol "power:+4V"
-			(power)
-			(pin_numbers hide)
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "+4V"
-				(at 0 3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+4V\""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "+4V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+4V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers hide)
@@ -3808,6 +4294,24 @@
 		)
 	)
 	(junction
+		(at 39.37 161.29)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0778853a-e3d4-4656-a5f2-4f796265811a")
+	)
+	(junction
+		(at 88.9 167.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0b261ebe-1e8d-4bd8-b5c3-157f9fb967b6")
+	)
+	(junction
+		(at 78.74 181.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "16d8cbdc-1bcd-40f3-84f7-817dda65ef78")
+	)
+	(junction
 		(at 72.39 49.53)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3820,6 +4324,12 @@
 		(uuid "1cf65329-ef10-4899-b67a-f7413d84c731")
 	)
 	(junction
+		(at 30.48 181.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "23538caf-ff83-429f-be8d-fdd0a0055ad7")
+	)
+	(junction
 		(at 82.55 34.29)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3830,6 +4340,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2d4a35bc-526d-4a0e-819d-365e8498275a")
+	)
+	(junction
+		(at 78.74 162.56)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "32dc0202-7d5e-47dc-9374-c8d6a78ec08a")
 	)
 	(junction
 		(at 158.75 33.02)
@@ -3898,6 +4414,18 @@
 		(uuid "8f7a5a4e-63d4-4537-9a44-c3c5bed9ae15")
 	)
 	(junction
+		(at 71.12 162.56)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9158ed6f-d10f-4b93-b98f-e4c504b89117")
+	)
+	(junction
+		(at 251.46 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9632f053-23ab-49b3-9499-48e92e93f826")
+	)
+	(junction
 		(at 69.85 34.29)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3916,6 +4444,18 @@
 		(uuid "b07673ef-1afb-4a5a-9ea8-82c4006d73c6")
 	)
 	(junction
+		(at 38.1 181.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ba4b9b05-f6ff-48ed-b8c5-f4ab7bfb4b09")
+	)
+	(junction
+		(at 31.75 161.29)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bdf1f0b3-191b-49e9-8528-0ce74d41a8dd")
+	)
+	(junction
 		(at 123.19 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3932,6 +4472,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cff4a393-dc48-4d76-86c1-2bc287c5d95f")
+	)
+	(junction
+		(at 71.12 181.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d0a067d2-e937-4921-a2fb-6e87a245f9cb")
 	)
 	(junction
 		(at 134.62 34.29)
@@ -3962,6 +4508,206 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f4f539e0-7483-4ecf-8ff8-77f7ce3aa27b")
+	)
+	(no_connect
+		(at 119.38 91.44)
+		(uuid "00447d8b-74a4-4333-8f31-f2d27d27aa42")
+	)
+	(no_connect
+		(at 119.38 78.74)
+		(uuid "00f2db19-c70d-4af0-b461-6456767c2728")
+	)
+	(no_connect
+		(at 279.4 73.66)
+		(uuid "02117dd8-f9a7-4980-973c-55650560191b")
+	)
+	(no_connect
+		(at 119.38 101.6)
+		(uuid "085e8bfe-1b96-4a96-bcd9-4ff6c9ab809d")
+	)
+	(no_connect
+		(at 279.4 71.12)
+		(uuid "097144cb-7693-4cb3-9860-576240e016a4")
+	)
+	(no_connect
+		(at 119.38 99.06)
+		(uuid "18bcd7b8-6d05-45a1-8ac2-87a71a777fc4")
+	)
+	(no_connect
+		(at 279.4 60.96)
+		(uuid "29d7040e-e849-46ae-9d9e-2e5f172c5c77")
+	)
+	(no_connect
+		(at 154.94 99.06)
+		(uuid "2f44d4ac-d474-442a-9a9c-f3d13b4e7471")
+	)
+	(no_connect
+		(at 154.94 137.16)
+		(uuid "2fbbaaba-34fd-462f-8841-449957bc41b3")
+	)
+	(no_connect
+		(at 119.38 68.58)
+		(uuid "323e9dad-5ac6-456f-ae88-ec19c33aed6f")
+	)
+	(no_connect
+		(at 154.94 86.36)
+		(uuid "36752d2d-7386-4d23-a3ae-14b5ff5e5434")
+	)
+	(no_connect
+		(at 279.4 66.04)
+		(uuid "457f078e-8666-4874-b642-6636302ad439")
+	)
+	(no_connect
+		(at 119.38 93.98)
+		(uuid "472b8456-8577-4782-a341-20f43b352af2")
+	)
+	(no_connect
+		(at 279.4 78.74)
+		(uuid "5059b6f8-dcff-4e27-8f06-379d9de2df44")
+	)
+	(no_connect
+		(at 257.81 71.12)
+		(uuid "575f27ef-6a5c-4e8c-b50c-c6098cfc2c4f")
+	)
+	(no_connect
+		(at 279.4 76.2)
+		(uuid "5b6d0563-ed7f-4027-93ac-622bdaf51ba1")
+	)
+	(no_connect
+		(at 154.94 106.68)
+		(uuid "5bc1face-e9d3-4cce-b00f-7900e2dda552")
+	)
+	(no_connect
+		(at 154.94 63.5)
+		(uuid "5c798852-3052-40b3-a758-37ca26e7d571")
+	)
+	(no_connect
+		(at 119.38 88.9)
+		(uuid "616e17c7-56bd-4b76-87db-47ce4504782e")
+	)
+	(no_connect
+		(at 119.38 86.36)
+		(uuid "6f1bec4a-9307-4423-9bb1-c18a9e6c2468")
+	)
+	(no_connect
+		(at 119.38 111.76)
+		(uuid "6fa7a64e-b823-4dcd-82f7-d19db569dad9")
+	)
+	(no_connect
+		(at 154.94 81.28)
+		(uuid "714756d9-b1af-4899-9b43-570b47d68b77")
+	)
+	(no_connect
+		(at 119.38 104.14)
+		(uuid "7193eb0d-4667-4b12-93b9-892148623f45")
+	)
+	(no_connect
+		(at 279.4 63.5)
+		(uuid "75e9000e-68c4-4b6a-8128-da584bf8cbf8")
+	)
+	(no_connect
+		(at 257.81 68.58)
+		(uuid "7fbadd3d-df56-4aca-95f4-4619bf5b1082")
+	)
+	(no_connect
+		(at 154.94 119.38)
+		(uuid "8b1981d2-1fbd-4c3b-b477-96d0fe69efb2")
+	)
+	(no_connect
+		(at 154.94 134.62)
+		(uuid "8e987943-354a-4755-9875-95a5e8b95c67")
+	)
+	(no_connect
+		(at 154.94 71.12)
+		(uuid "8ea608a3-8189-4318-8613-2b5425907ed6")
+	)
+	(no_connect
+		(at 154.94 73.66)
+		(uuid "91ea71cf-d08e-464b-b9c8-acb684b9c290")
+	)
+	(no_connect
+		(at 154.94 111.76)
+		(uuid "949f56b4-190c-4780-89e3-c1ee32901bab")
+	)
+	(no_connect
+		(at 39.37 91.44)
+		(uuid "95e4ed30-6b39-41bc-967a-d756524d8ad8")
+	)
+	(no_connect
+		(at 154.94 55.88)
+		(uuid "96e6fc69-87a1-4b3f-a8dc-0be4fe2e03bd")
+	)
+	(no_connect
+		(at 154.94 83.82)
+		(uuid "9abff563-35f8-4808-8c6f-da30f01f8fd6")
+	)
+	(no_connect
+		(at 119.38 114.3)
+		(uuid "a55eb0b0-aa96-4c79-acc5-d1681f51e619")
+	)
+	(no_connect
+		(at 199.39 143.51)
+		(uuid "b92a060e-674e-47a5-ab9a-ef17984ec14a")
+	)
+	(no_connect
+		(at 154.94 60.96)
+		(uuid "bbccb6dd-8d74-46f2-a616-f87b996e5321")
+	)
+	(no_connect
+		(at 154.94 68.58)
+		(uuid "bd0b22b6-4ca5-4679-a5b2-509d57beda44")
+	)
+	(no_connect
+		(at 154.94 121.92)
+		(uuid "be85d4a4-7b87-4501-b481-6b73e30c18d5")
+	)
+	(no_connect
+		(at 119.38 66.04)
+		(uuid "bec241cb-22e6-4b6b-b4c5-c803f6e362cb")
+	)
+	(no_connect
+		(at 119.38 96.52)
+		(uuid "dbe7ed43-17ed-4756-916d-762fa9b2249b")
+	)
+	(no_connect
+		(at 119.38 76.2)
+		(uuid "dc0db94d-faa7-4984-a8d9-fea59d89ddd8")
+	)
+	(no_connect
+		(at 119.38 81.28)
+		(uuid "df05da85-9713-4bea-8612-143464436058")
+	)
+	(no_connect
+		(at 154.94 101.6)
+		(uuid "e27e808c-0d10-4507-ac25-746948dfc749")
+	)
+	(no_connect
+		(at 279.4 68.58)
+		(uuid "e4fc1a6e-7cda-4805-9588-89085ac35151")
+	)
+	(no_connect
+		(at 154.94 66.04)
+		(uuid "eae8e6fc-4972-4c81-ae41-9b4507c3929e")
+	)
+	(no_connect
+		(at 119.38 109.22)
+		(uuid "f1476ac5-0092-485d-bcfc-173b8d3bfa79")
+	)
+	(no_connect
+		(at 154.94 93.98)
+		(uuid "f2d90dbb-a9c4-48bc-9bb4-2f2eed45e598")
+	)
+	(no_connect
+		(at 119.38 83.82)
+		(uuid "f2fd9d07-c49e-4c09-b484-c9d89688a59f")
+	)
+	(no_connect
+		(at 154.94 109.22)
+		(uuid "f707e526-1b5f-4429-b744-740d92ef5e91")
+	)
+	(no_connect
+		(at 154.94 104.14)
+		(uuid "f7f9151c-4111-4224-acaf-567ccc088465")
 	)
 	(wire
 		(pts
@@ -4005,6 +4751,26 @@
 	)
 	(wire
 		(pts
+			(xy 257.81 66.04) (xy 256.54 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "109e8d27-c92c-4fd0-92a5-6aab675549db")
+	)
+	(wire
+		(pts
+			(xy 27.94 161.29) (xy 31.75 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11d5240c-c9cb-4156-a931-212e5c00587a")
+	)
+	(wire
+		(pts
 			(xy 44.45 49.53) (xy 48.26 49.53)
 		)
 		(stroke
@@ -4015,13 +4781,13 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 82.55) (xy 58.42 85.09)
+			(xy 90.17 162.56) (xy 88.9 162.56)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "1acdd432-243e-4e44-bcb6-100f1f5be35a")
+		(uuid "1c38f718-6b0c-4a9a-b452-b6304002f00f")
 	)
 	(wire
 		(pts
@@ -4065,6 +4831,16 @@
 	)
 	(wire
 		(pts
+			(xy 78.74 175.26) (xy 88.9 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1e7526b3-d93b-4a1d-b72d-3b4c8e4fc949")
+	)
+	(wire
+		(pts
 			(xy 142.24 34.29) (xy 142.24 50.8)
 		)
 		(stroke
@@ -4072,6 +4848,16 @@
 			(type default)
 		)
 		(uuid "1f73cfcc-ed89-4912-b068-d6b5ab725eb3")
+	)
+	(wire
+		(pts
+			(xy 88.9 175.26) (xy 88.9 181.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2030d033-071f-46a3-b00b-0dc259793c9f")
 	)
 	(wire
 		(pts
@@ -4105,6 +4891,26 @@
 	)
 	(wire
 		(pts
+			(xy 48.26 175.26) (xy 48.26 181.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "29fae8c1-e977-48c3-b982-ecbfda05c31e")
+	)
+	(wire
+		(pts
+			(xy 38.1 175.26) (xy 48.26 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "330c708d-ec76-4f75-8d52-64eb108f6cdd")
+	)
+	(wire
+		(pts
 			(xy 68.58 49.53) (xy 72.39 49.53)
 		)
 		(stroke
@@ -4122,6 +4928,16 @@
 			(type default)
 		)
 		(uuid "40c8b0ea-40bb-466b-a8aa-c0a385048c15")
+	)
+	(wire
+		(pts
+			(xy 39.37 154.94) (xy 50.8 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42b7067f-6045-4043-b1bb-493bef399edd")
 	)
 	(wire
 		(pts
@@ -4165,6 +4981,16 @@
 	)
 	(wire
 		(pts
+			(xy 255.27 100.33) (xy 264.16 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "57f323f0-f7c4-43b5-a8cd-9b6e3c5e5976")
+	)
+	(wire
+		(pts
 			(xy 222.25 38.1) (xy 222.25 39.37)
 		)
 		(stroke
@@ -4205,6 +5031,16 @@
 	)
 	(wire
 		(pts
+			(xy 67.31 181.61) (xy 71.12 181.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6273823f-0df4-44fa-9d87-d81a5adcb3be")
+	)
+	(wire
+		(pts
 			(xy 96.52 33.02) (xy 96.52 34.29)
 		)
 		(stroke
@@ -4215,7 +5051,7 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 77.47) (xy 58.42 77.47)
+			(xy 264.16 102.87) (xy 261.62 102.87)
 		)
 		(stroke
 			(width 0)
@@ -4245,6 +5081,36 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 186.69) (xy 87.63 186.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b8610da-4367-4217-8835-4a910555e2ad")
+	)
+	(wire
+		(pts
+			(xy 251.46 107.95) (xy 254 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b8efb55-a53b-426b-a526-069d0b29900c")
+	)
+	(wire
+		(pts
+			(xy 67.31 162.56) (xy 71.12 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d8e2bf9-6f0a-4f07-bba5-165845126b62")
+	)
+	(wire
+		(pts
 			(xy 139.7 34.29) (xy 139.7 50.8)
 		)
 		(stroke
@@ -4255,16 +5121,6 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 77.47) (xy 58.42 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "731ac671-f4ca-4cdd-ac16-935a022b2310")
-	)
-	(wire
-		(pts
 			(xy 222.25 24.13) (xy 222.25 27.94)
 		)
 		(stroke
@@ -4272,6 +5128,16 @@
 			(type default)
 		)
 		(uuid "754f96a5-2e0d-4997-bc5b-3394eef0c1a8")
+	)
+	(wire
+		(pts
+			(xy 257.81 60.96) (xy 256.54 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "76679ce0-1793-4c13-aa27-3895e733067a")
 	)
 	(wire
 		(pts
@@ -4295,6 +5161,26 @@
 	)
 	(wire
 		(pts
+			(xy 78.74 181.61) (xy 78.74 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78ea3c0c-8eea-4c21-8d33-b34edc430578")
+	)
+	(wire
+		(pts
+			(xy 257.81 78.74) (xy 256.54 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78feb859-df5a-4fed-b2f1-4569c3786ce4")
+	)
+	(wire
+		(pts
 			(xy 139.7 144.78) (xy 139.7 142.24)
 		)
 		(stroke
@@ -4312,6 +5198,26 @@
 			(type default)
 		)
 		(uuid "7c6aa176-cc98-40b1-b818-7b473d9d5f73")
+	)
+	(wire
+		(pts
+			(xy 78.74 162.56) (xy 78.74 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7db40152-94b5-4402-8da8-2ab75b5b4204")
+	)
+	(wire
+		(pts
+			(xy 50.8 161.29) (xy 49.53 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f355df7-3265-4eb0-b1bd-64dfd3d5bdcb")
 	)
 	(wire
 		(pts
@@ -4355,6 +5261,46 @@
 	)
 	(wire
 		(pts
+			(xy 261.62 102.87) (xy 261.62 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d7d7c52-d779-45c2-8d12-df35bd13be47")
+	)
+	(wire
+		(pts
+			(xy 78.74 186.69) (xy 77.47 186.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9035adbf-c963-4ba5-8148-0ef193120724")
+	)
+	(wire
+		(pts
+			(xy 78.74 156.21) (xy 90.17 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9536053d-4331-459b-8b1e-839bbbd2ddc4")
+	)
+	(wire
+		(pts
+			(xy 257.81 73.66) (xy 256.54 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d4b37a4-0cc1-427f-bebb-fe1cfefae3af")
+	)
+	(wire
+		(pts
 			(xy 144.78 24.13) (xy 144.78 50.8)
 		)
 		(stroke
@@ -4362,6 +5308,36 @@
 			(type default)
 		)
 		(uuid "9d4ce87d-27e3-4ee7-b810-cf1895cce440")
+	)
+	(wire
+		(pts
+			(xy 90.17 156.21) (xy 90.17 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9dae45a5-27fd-4e9e-9516-5f473c00f18c")
+	)
+	(wire
+		(pts
+			(xy 248.92 107.95) (xy 251.46 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f1d4e2e-dc7c-413f-8e0f-080b2f18b156")
+	)
+	(wire
+		(pts
+			(xy 250.19 76.2) (xy 257.81 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a0d06e67-49f4-427a-90c2-327e0814201a")
 	)
 	(wire
 		(pts
@@ -4375,6 +5351,16 @@
 	)
 	(wire
 		(pts
+			(xy 50.8 154.94) (xy 50.8 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a544602e-6514-48c5-897a-72ea05e17b7c")
+	)
+	(wire
+		(pts
 			(xy 158.75 31.75) (xy 158.75 33.02)
 		)
 		(stroke
@@ -4382,6 +5368,16 @@
 			(type default)
 		)
 		(uuid "a9504ac1-875b-4ad4-9df1-fbaac394c24e")
+	)
+	(wire
+		(pts
+			(xy 227.33 139.7) (xy 233.68 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa0e984d-02e0-4930-87fe-5606b6995fe3")
 	)
 	(wire
 		(pts
@@ -4445,7 +5441,7 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 82.55) (xy 58.42 82.55)
+			(xy 261.62 97.79) (xy 264.16 97.79)
 		)
 		(stroke
 			(width 0)
@@ -4482,6 +5478,16 @@
 			(type default)
 		)
 		(uuid "c89c8b59-6590-450c-a617-dfda529ae974")
+	)
+	(wire
+		(pts
+			(xy 39.37 161.29) (xy 39.37 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9bfe3ed-66f5-4d69-9f0e-efb5559a20d9")
 	)
 	(wire
 		(pts
@@ -4535,6 +5541,16 @@
 	)
 	(wire
 		(pts
+			(xy 38.1 181.61) (xy 38.1 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d6fb48a8-9bc0-48ec-ad06-04e4fada52ab")
+	)
+	(wire
+		(pts
 			(xy 123.19 33.02) (xy 123.19 34.29)
 		)
 		(stroke
@@ -4555,6 +5571,16 @@
 	)
 	(wire
 		(pts
+			(xy 26.67 181.61) (xy 30.48 181.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "db436acb-627e-4b2f-9de3-db9283d9b4c8")
+	)
+	(wire
+		(pts
 			(xy 109.22 33.02) (xy 109.22 34.29)
 		)
 		(stroke
@@ -4565,6 +5591,16 @@
 	)
 	(wire
 		(pts
+			(xy 90.17 167.64) (xy 88.9 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e605721d-4987-403f-b0ab-1d68fbaa8858")
+	)
+	(wire
+		(pts
 			(xy 44.45 54.61) (xy 58.42 54.61)
 		)
 		(stroke
@@ -4572,6 +5608,26 @@
 			(type default)
 		)
 		(uuid "ed1d1c6d-8490-4728-9a2c-a2ff91a5c2e3")
+	)
+	(wire
+		(pts
+			(xy 257.81 63.5) (xy 256.54 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed62b5ad-7acd-4b4d-9c29-3185abc0e5b0")
+	)
+	(wire
+		(pts
+			(xy 261.62 92.71) (xy 261.62 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5a16212-8170-4309-8fd7-8dd0a99d2726")
 	)
 	(wire
 		(pts
@@ -4643,9 +5699,19 @@
 		)
 		(uuid "ff7e3691-5cf7-4dea-8591-8dc388f28ae5")
 	)
+	(wire
+		(pts
+			(xy 252.73 92.71) (xy 254 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff84d300-928d-4b98-8b90-e6f7775aa1b2")
+	)
 	(rectangle
-		(start 252.73 133.985)
-		(end 267.97 145.415)
+		(start 254 133.985)
+		(end 268.605 143.51)
 		(stroke
 			(width 0)
 			(type default)
@@ -4656,20 +5722,8 @@
 		(uuid 240295aa-5406-4651-a243-bca26b7ca8d6)
 	)
 	(rectangle
-		(start 223.52 133.985)
-		(end 238.76 145.415)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 30218c51-fe22-4f49-9a1f-a74e599912f8)
-	)
-	(rectangle
-		(start 222.25 97.155)
-		(end 267.97 124.46)
+		(start 243.84 53.975)
+		(end 281.94 81.28)
 		(stroke
 			(width 0)
 			(type default)
@@ -4680,8 +5734,8 @@
 		(uuid 364ad001-9317-4e27-8d86-a93ac4a79e8f)
 	)
 	(rectangle
-		(start 238.76 151.765)
-		(end 254 163.195)
+		(start 90.17 127.635)
+		(end 105.41 139.065)
 		(stroke
 			(width 0)
 			(type default)
@@ -4692,8 +5746,8 @@
 		(uuid 4b2f18ab-ef54-407f-8e19-c34cb8ce23a2)
 	)
 	(rectangle
-		(start 26.67 140.97)
-		(end 64.135 150.495)
+		(start 24.892 108.966)
+		(end 62.357 135.89)
 		(stroke
 			(width 0)
 			(type default)
@@ -4716,8 +5770,20 @@
 		(uuid 5317a0f9-6e64-44e3-b61d-4c85ea041cb7)
 	)
 	(rectangle
-		(start 24.765 160.655)
-		(end 92.71 185.42)
+		(start 219.71 133.985)
+		(end 242.57 143.51)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 54c57c80-694f-45c6-a428-70a6a7ac2cd1)
+	)
+	(rectangle
+		(start 16.51 152.908)
+		(end 103.378 195.326)
 		(stroke
 			(width 0)
 			(type default)
@@ -4728,8 +5794,8 @@
 		(uuid 6125250f-823b-48c6-b199-7083372ead88)
 	)
 	(rectangle
-		(start 187.325 132.715)
-		(end 209.55 151.13)
+		(start 183.515 130.175)
+		(end 211.455 148.59)
 		(stroke
 			(width 0)
 			(type default)
@@ -4740,8 +5806,8 @@
 		(uuid 70e430d8-affb-4cc1-8fa1-cdc3f066b08d)
 	)
 	(rectangle
-		(start 236.855 59.69)
-		(end 267.335 92.075)
+		(start 268.605 16.51)
+		(end 283.21 29.845)
 		(stroke
 			(width 0)
 			(type default)
@@ -4750,6 +5816,18 @@
 			(type none)
 		)
 		(uuid 7f6fa1b0-f12c-4f45-bc2c-91828e6b9a71)
+	)
+	(rectangle
+		(start 240.03 86.36)
+		(end 281.94 116.84)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid ce9cb864-0556-4426-a6dc-a8dea5211d1b)
 	)
 	(text "1x 100nF per VDD Pin"
 		(exclude_from_sim no)
@@ -4761,9 +5839,19 @@
 		)
 		(uuid "0a748699-e01d-47f4-a6fe-297c185d5648")
 	)
+	(text "Rotary Encoder"
+		(exclude_from_sim no)
+		(at 247.65 85.344 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "0e0f1e5d-bc17-47bd-af7c-c83ca5fb081b")
+	)
 	(text "Speaker out"
 		(exclude_from_sim no)
-		(at 258.318 132.588 0)
+		(at 260.096 132.588 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4773,7 +5861,7 @@
 	)
 	(text "Mounting"
 		(exclude_from_sim no)
-		(at 241.046 58.674 0)
+		(at 272.796 15.494 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4783,7 +5871,7 @@
 	)
 	(text "UART"
 		(exclude_from_sim no)
-		(at 97.282 95.758 0)
+		(at 71.882 80.518 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4813,7 +5901,7 @@
 	)
 	(text "evtl. auch einfach auch nur Löcher zum löten?"
 		(exclude_from_sim no)
-		(at 50.8 111.506 0)
+		(at 38.1 99.568 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4823,7 +5911,7 @@
 	)
 	(text "I2C"
 		(exclude_from_sim no)
-		(at 97.282 110.236 0)
+		(at 74.422 97.536 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4843,7 +5931,7 @@
 	)
 	(text "(solderd separately)"
 		(exclude_from_sim no)
-		(at 48.514 158.75 0)
+		(at 22.098 154.178 0)
 		(effects
 			(font
 				(size 0.635 0.635)
@@ -4873,7 +5961,7 @@
 	)
 	(text "Holes for buttons"
 		(exclude_from_sim no)
-		(at 34.29 158.75 0)
+		(at 25.654 151.638 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4883,7 +5971,7 @@
 	)
 	(text "I2C external RCC"
 		(exclude_from_sim no)
-		(at 51.308 109.22 0)
+		(at 37.338 96.52 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4891,9 +5979,9 @@
 		)
 		(uuid "afde4313-3acd-4fda-babb-f31e4a075ab3")
 	)
-	(text "DF player mounting holes"
+	(text "DF player (Mounting holes only)"
 		(exclude_from_sim no)
-		(at 234.442 96.266 0)
+		(at 261.62 52.578 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4903,7 +5991,7 @@
 	)
 	(text "Debug 3.3v power supply (wenn used with swd)"
 		(exclude_from_sim no)
-		(at 244.348 150.368 0)
+		(at 95.758 126.238 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4913,7 +6001,7 @@
 	)
 	(text "SWDIO + SWDCLk"
 		(exclude_from_sim no)
-		(at 97.282 125.222 0)
+		(at 96.52 122.174 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4923,7 +6011,7 @@
 	)
 	(text "On/off switch\n(soldered separately)"
 		(exclude_from_sim no)
-		(at 197.612 130.048 0)
+		(at 193.802 127.508 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4951,15 +6039,245 @@
 		)
 		(uuid "e083b444-7d31-4efd-b16f-6b8fa508bbc3")
 	)
+	(text "Chip selection, low active @todo\nData/Command selection (high for data, low for command) @todo\nReset signal, low active @todo"
+		(exclude_from_sim no)
+		(at 47.244 139.954 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "eabaebca-b73f-440d-8b7c-7595e813b610")
+	)
 	(text "7 Holes for display (to solder the display)"
 		(exclude_from_sim no)
-		(at 47.498 139.954 0)
+		(at 45.72 107.95 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
 		(uuid "edbceb2a-9c7e-47d6-9b5e-13165333c980")
+	)
+	(label "I2C_SCL"
+		(at 39.37 88.9 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 0.762 0.762)
+			)
+			(justify left bottom)
+		)
+		(uuid "03ec3156-4366-4d6d-81fb-352fb8b71e46")
+	)
+	(label "Rotary Encoder a"
+		(at 154.94 78.74 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "11392012-f0d2-4bca-93e7-85b39c55f382")
+	)
+	(label "JTAG_SWCLK"
+		(at 97.79 119.38 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1671a22a-c4db-4721-ab24-549e9ba71f1e")
+	)
+	(label "JTAG_SWD"
+		(at 97.79 116.84 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "16faebdc-27c5-4799-b85d-2603898e262d")
+	)
+	(label "Button_4"
+		(at 154.94 132.08 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "19cae5e9-d29c-4a95-bee9-6d444a4a519e")
+	)
+	(label "Button_3"
+		(at 154.94 129.54 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2361d006-e3b8-43e1-8925-621f5cfe9998")
+	)
+	(label "UART5_RX"
+		(at 74.93 74.93 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2be342f4-1736-4dde-8cc3-295364e162ec")
+	)
+	(label "GND"
+		(at 97.79 134.62 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "2e737b8e-cb8a-47ae-bc8f-8c75864911b4")
+	)
+	(label "Button_2"
+		(at 154.94 127 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "347c5dcf-2353-419c-9211-5ff5493b3fa3")
+	)
+	(label "SPK+"
+		(at 260.35 137.16 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "3583ca8d-c872-465a-9b18-20c5e3314807")
+	)
+	(label "I2C1_SDA"
+		(at 41.91 121.92 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 0.762 0.762)
+			)
+			(justify left bottom)
+		)
+		(uuid "36504936-a483-4cb0-ae2a-750e2406071c")
+	)
+	(label "Bat+"
+		(at 189.23 140.97 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "40866460-768f-448c-95fd-b215da4281dd")
+	)
+	(label "Button_4"
+		(at 90.17 181.61 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "429774a2-0330-406d-be72-10fa2dde0500")
+	)
+	(label "+3.3v"
+		(at 97.79 132.08 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "4f832b13-53fd-4764-a981-3d24faf838b6")
+	)
+	(label "Button_2"
+		(at 48.26 181.61 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "50afa5ac-23de-4c39-a726-13fd58cc15b3")
+	)
+	(label "Rotary Encoder a"
+		(at 261.62 97.79 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "51669fdb-c20a-45cf-83eb-ceacb8ea2702")
+	)
+	(label "I2C1_SDA"
+		(at 76.2 92.71 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 0.762 0.762)
+			)
+			(justify left bottom)
+		)
+		(uuid "52c09a3b-242d-4a21-bf1e-e3a00a66c661")
+	)
+	(label "UART5_RX"
+		(at 256.54 63.5 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "59be3dd0-75b3-4dba-a821-8bb31e3ebc84")
+	)
+	(label "I2C1_SDA"
+		(at 39.37 86.36 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 0.762 0.762)
+			)
+			(justify left bottom)
+		)
+		(uuid "5e2dfec6-d864-4cf7-a09f-0706dd8060f6")
+	)
+	(label "Button_1"
+		(at 50.8 161.29 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "66024048-1ce7-4977-8f22-cadf5350f511")
 	)
 	(label "BOOT0"
 		(at 104.14 57.15 0)
@@ -4972,8 +6290,30 @@
 		)
 		(uuid "7aaadd23-60ae-4f3d-b379-ee542bd5b988")
 	)
-	(label "connected to stm32"
-		(at 55.88 80.01 0)
+	(label "I2C_SCL"
+		(at 76.2 95.25 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 0.762 0.762)
+			)
+			(justify left bottom)
+		)
+		(uuid "7bae6cc7-fefb-42be-8051-0d930bec791d")
+	)
+	(label "UART5_TX"
+		(at 119.38 106.68 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "7d012a95-aa4e-42fd-bba1-58b5c2046002")
+	)
+	(label "JTAG_SWD"
+		(at 154.94 88.9 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4981,7 +6321,216 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "85d13275-cc7a-4c9a-9cf8-fab826430372")
+		(uuid "7dac23c3-53bb-4e6b-8eab-24ef63c738df")
+	)
+	(label "JTAG_SWCLK"
+		(at 154.94 91.44 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7fd22dfc-56cc-43d2-95df-84895de617eb")
+	)
+	(label "Rotary Encoder b"
+		(at 261.62 104.14 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "881493e9-f121-4885-b9d3-19ec907fc42b")
+	)
+	(label "I2C_SCL"
+		(at 154.94 116.84 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 0.762 0.762)
+			)
+			(justify left bottom)
+		)
+		(uuid "927e6e2d-d516-4675-b8f4-bb0e0c11ca6f")
+	)
+	(label "Bat+"
+		(at 233.68 137.16 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9a3e275d-1b8c-4cc4-a9c1-914558e4d49c")
+	)
+	(label "SPK-"
+		(at 260.35 139.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9cdb3f9c-a836-422a-8971-1f8f3e600491")
+	)
+	(label "SPK+"
+		(at 256.54 78.74 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a11b82f1-8f68-487a-96dd-a29ab0d3c600")
+	)
+	(label "I2C1_SDA"
+		(at 154.94 114.3 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 0.762 0.762)
+			)
+			(justify left bottom)
+		)
+		(uuid "a5f60617-5fd7-48c7-8d33-56b17bb7c213")
+	)
+	(label "Bat-"
+		(at 233.68 139.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a649f796-c183-4fcd-92e0-693829d2a96f")
+	)
+	(label "UART5_RX"
+		(at 119.38 71.12 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ac900637-4148-4671-8b9c-164f4246bdd9")
+	)
+	(label "Button_3"
+		(at 90.17 162.56 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ade78ec9-3d4c-4b7c-a415-87910a7c44be")
+	)
+	(label "Battery-SW"
+		(at 222.25 24.13 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b3df5fb4-02cd-421a-8293-3999637c7ac1")
+	)
+	(label "Battery-SW"
+		(at 199.39 138.43 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ba15e5c2-0c41-43aa-ab3a-57ef45facfcc")
+	)
+	(label "UART5_TX"
+		(at 74.93 77.47 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "bb99d662-bcd0-4788-ab06-14a4d1f5bc2f")
+	)
+	(label "UART5_TX"
+		(at 256.54 66.04 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "bdbb8aae-7cf4-47b5-95de-9368c77d38d7")
+	)
+	(label "I2C_SCL"
+		(at 41.91 124.46 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 0.762 0.762)
+			)
+			(justify left bottom)
+		)
+		(uuid "c75b3ada-8505-4105-938f-0966dc1f4842")
+	)
+	(label "LED"
+		(at 154.94 58.42 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d934cad7-25c0-46d7-a4f1-8bebe74375fa")
+	)
+	(label "Button_1"
+		(at 154.94 124.46 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e04d8ef8-d1d8-4b90-a593-0854266494c2")
+	)
+	(label "SPK-"
+		(at 256.54 73.66 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e552f55d-35e0-466d-8649-4a64967194fd")
+	)
+	(label "Rotary Encoder b"
+		(at 154.94 76.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f6b4941a-fdfe-424b-ac64-566faec13cf5")
 	)
 	(label "NRST"
 		(at 90.17 49.53 0)
@@ -5061,276 +6610,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 227.33 140.97 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "06db0fa0-4afb-4eff-8615-067711bc052f")
-		(property "Reference" "H30"
-			(at 225.806 136.144 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 229.87 140.9699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 227.33 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 227.33 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 227.33 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "805163b7-c54f-40c9-a324-c6930baedc51")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H30")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 35.56 147.32 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "0834b126-d7a8-49c1-ad96-25f182c172b6")
-		(property "Reference" "H2"
-			(at 34.29 142.494 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 38.1 147.3199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 35.56 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 35.56 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 35.56 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "43a6e29a-8959-46b9-a977-15ebe8ea7a17")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 237.49 119.38 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "08bea2a5-f970-4c6b-8ace-197bd0d20d50")
-		(property "Reference" "H22"
-			(at 235.966 114.554 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 240.03 119.3799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 237.49 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 237.49 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 237.49 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "4f53a252-8a95-4a02-ad2b-8d25032ed242")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H22")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 227.33 119.38 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "0cc8178a-13a7-4e81-810b-dac985519b88")
-		(property "Reference" "H20"
-			(at 225.806 114.554 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 229.87 119.3799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 227.33 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 227.33 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 227.33 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2efb975d-020b-49dd-b717-8bb62c7e9f94")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H20")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 95.25 119.38 0)
+		(at 92.71 116.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5339,7 +6620,7 @@
 		(fields_autoplaced yes)
 		(uuid "0ee49d4c-4331-48be-93d6-a0bd1d092c4b")
 		(property "Reference" "J2"
-			(at 95.885 114.3 0)
+			(at 93.345 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5347,7 +6628,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 95.885 116.84 0)
+			(at 93.345 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5355,7 +6636,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 95.25 119.38 0)
+			(at 92.71 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5364,7 +6645,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 95.25 119.38 0)
+			(at 92.71 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5373,7 +6654,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 95.25 119.38 0)
+			(at 92.71 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5398,7 +6679,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 93.98 105.41 0)
+		(at 71.12 92.71 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5407,7 +6688,7 @@
 		(fields_autoplaced yes)
 		(uuid "0f46ee63-4291-4728-a36c-84420f519506")
 		(property "Reference" "J4"
-			(at 94.615 100.33 0)
+			(at 71.755 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5415,7 +6696,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 94.615 102.87 0)
+			(at 71.755 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5423,7 +6704,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 93.98 105.41 0)
+			(at 71.12 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5432,7 +6713,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 93.98 105.41 0)
+			(at 71.12 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5441,7 +6722,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 93.98 105.41 0)
+			(at 71.12 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5465,35 +6746,32 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 242.57 119.38 0)
+		(lib_id "Device:R")
+		(at 34.29 181.61 270)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1abffeff-ed0e-42b1-83c0-f532328e6f83")
-		(property "Reference" "H23"
-			(at 241.046 114.554 0)
+		(uuid "0fc115a1-a0f8-4101-90d7-445743dc5b28")
+		(property "Reference" "R6"
+			(at 34.29 179.324 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 245.11 119.3799 0)
+		(property "Value" "4k7"
+			(at 34.29 183.896 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
 			)
 		)
 		(property "Footprint" ""
-			(at 242.57 119.38 0)
+			(at 34.29 179.832 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5502,7 +6780,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 242.57 119.38 0)
+			(at 34.29 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5510,8 +6788,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 242.57 119.38 0)
+		(property "Description" "Resistor"
+			(at 34.29 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5520,47 +6798,50 @@
 			)
 		)
 		(pin "1"
-			(uuid "653035f1-9bde-46db-9e8b-83b47c4d6929")
+			(uuid "cc459f3f-d3f5-43b5-a80f-766c688dbcfe")
+		)
+		(pin "2"
+			(uuid "efe5b4b5-9ada-4fa9-bf68-58a05bb9e99c")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H23")
+					(reference "R6")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 50.8 147.32 0)
+		(lib_id "power:GND")
+		(at 39.37 166.37 270)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1c035f72-17f9-4836-8238-a48ab479c249")
-		(property "Reference" "H5"
-			(at 49.53 142.494 0)
+		(fields_autoplaced yes)
+		(uuid "174912a1-6c06-43fb-bf7c-860199bcef65")
+		(property "Reference" "#PWR019"
+			(at 33.02 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(hide yes)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 53.34 147.3199 0)
+		(property "Value" "GND"
+			(at 35.56 166.3699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 50.8 147.32 0)
+			(at 39.37 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5568,8 +6849,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 50.8 147.32 0)
+		(property "Datasheet" ""
+			(at 39.37 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5577,8 +6858,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 50.8 147.32 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 39.37 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5587,12 +6868,77 @@
 			)
 		)
 		(pin "1"
-			(uuid "094b45a6-9331-4a5b-b461-73e37a45bf2a")
+			(uuid "9a302c1a-4b30-4ba5-bfb8-a25c623b93a6")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H5")
+					(reference "#PWR019")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 250.19 76.2 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1db23060-3a9f-43a0-a495-4a77d5fa29ea")
+		(property "Reference" "#PWR033"
+			(at 243.84 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 246.38 76.454 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 250.19 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 250.19 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 250.19 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6e2fc3cf-912d-4cc0-bbfb-4ecb76e02698")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -5736,6 +7082,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 227.33 139.7 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2187e2f9-ebd8-42d5-9956-887ee8be5e49")
+		(property "Reference" "#PWR012"
+			(at 220.98 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 223.52 139.954 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 227.33 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 227.33 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 227.33 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "591e6965-8cb7-47e5-8adf-bdd3b2fefa51")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 254 27.94 270)
 		(unit 1)
@@ -5803,35 +7214,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 40.64 147.32 0)
+		(lib_id "power:GND")
+		(at 49.53 166.37 90)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "24088820-da24-462b-b56a-876b7dc228b1")
-		(property "Reference" "H3"
-			(at 39.624 142.748 0)
+		(fields_autoplaced yes)
+		(uuid "2957b7b1-a7e3-4c3c-ba58-d6ad270af885")
+		(property "Reference" "#PWR018"
+			(at 55.88 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(hide yes)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 43.18 147.3199 0)
+		(property "Value" "GND"
+			(at 53.34 166.3699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 40.64 147.32 0)
+			(at 49.53 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5839,8 +7250,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 40.64 147.32 0)
+		(property "Datasheet" ""
+			(at 49.53 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5848,8 +7259,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 40.64 147.32 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 49.53 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5858,47 +7269,45 @@
 			)
 		)
 		(pin "1"
-			(uuid "d8f54abd-5227-4b38-b463-6a61c7824995")
+			(uuid "41aa8d57-5113-4538-9c96-a93eefd99b8a")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H3")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 242.57 158.75 0)
+		(lib_id "custom-parts:OLED-15W-C")
+		(at 34.29 123.19 0)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "26e1c800-d789-4e36-8065-2988a76a9330")
-		(property "Reference" "H32"
-			(at 241.046 153.924 0)
+		(fields_autoplaced yes)
+		(uuid "2c468879-dfbc-423b-960c-d7a15833f3ee")
+		(property "Reference" "OLED-15W-C1"
+			(at 34.925 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 245.11 158.7499 0)
+		(property "Value" "~"
+			(at 34.925 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
 			)
 		)
 		(property "Footprint" ""
-			(at 242.57 158.75 0)
+			(at 43.18 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5906,8 +7315,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 242.57 158.75 0)
+		(property "Datasheet" ""
+			(at 43.18 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5915,8 +7324,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 242.57 158.75 0)
+		(property "Description" ""
+			(at 43.18 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5924,80 +7333,31 @@
 				(hide yes)
 			)
 		)
-		(pin "1"
-			(uuid "e58a698c-281d-41e8-81ec-eda9b1e029da")
+		(pin ""
+			(uuid "e17fd9cd-449d-472b-aacd-e30e5b01998d")
+		)
+		(pin ""
+			(uuid "e2e6051b-4ad8-4cfd-a681-fa2517fd27e7")
+		)
+		(pin ""
+			(uuid "01be2fe8-8177-47dd-b6f0-609b27e20f0d")
+		)
+		(pin ""
+			(uuid "20b67987-f794-4e20-b269-fd14c5a260b1")
+		)
+		(pin ""
+			(uuid "06386a0c-f432-4797-bad7-74bf167a2bb5")
+		)
+		(pin ""
+			(uuid "27bf011d-4244-4150-b18a-538ff961b392")
+		)
+		(pin ""
+			(uuid "c665f612-88ac-459a-b6d2-4847a6e0d308")
 		)
 		(instances
-			(project "smartEggTimer"
+			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H32")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 257.81 104.14 180)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "27180079-8bbc-46b8-a245-d1f648f1f78e")
-		(property "Reference" "H13"
-			(at 259.334 108.966 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 255.27 104.1401 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 257.81 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 257.81 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 257.81 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f5e7e3e7-2b4d-4fd8-9ffc-1f84d3030e85")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H13")
+					(reference "OLED-15W-C1")
 					(unit 1)
 				)
 			)
@@ -6005,7 +7365,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push_Dual")
-		(at 80.01 171.45 0)
+		(at 83.82 184.15 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6013,7 +7373,7 @@
 		(dnp no)
 		(uuid "2c79062e-9c33-43af-beaa-2fdf0d4f4212")
 		(property "Reference" "SW6"
-			(at 79.502 164.592 0)
+			(at 83.312 177.292 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6021,7 +7381,7 @@
 			)
 		)
 		(property "Value" "SW_Push_Dual"
-			(at 80.264 178.054 0)
+			(at 84.074 190.754 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6029,7 +7389,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 80.01 163.83 0)
+			(at 83.82 176.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6038,7 +7398,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 80.01 171.45 0)
+			(at 83.82 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6047,7 +7407,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 80.01 171.45 0)
+			(at 83.82 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6071,140 +7431,6 @@
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "SW6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 232.41 104.14 180)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "2d301349-b534-450c-8318-3fe05e8bf432")
-		(property "Reference" "H18"
-			(at 233.934 108.966 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 229.87 104.1401 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 232.41 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 232.41 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 232.41 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8dd473ef-31ee-4961-9013-f5dfe86bd257")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 45.72 147.32 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "2f343ce1-d97c-4e5f-b210-fbe556020819")
-		(property "Reference" "H4"
-			(at 44.704 142.494 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 48.26 147.3199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 45.72 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 45.72 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 45.72 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0eb99312-d268-4490-8e88-929b7ff01b3e")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H4")
 					(unit 1)
 				)
 			)
@@ -6271,140 +7497,6 @@
 			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 256.54 140.97 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "3272a5d1-dcf3-486c-881d-1083ea8d1513")
-		(property "Reference" "H28"
-			(at 255.016 136.144 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 259.08 140.9699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 256.54 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 256.54 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 256.54 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d01bd288-9d40-4924-9311-d675cdb113f0")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H28")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 262.89 104.14 180)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "34c30685-4a42-48f0-aa70-a8cf46669b3d")
-		(property "Reference" "H12"
-			(at 264.414 108.966 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 260.35 104.1401 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 262.89 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 262.89 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 262.89 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "eeccb0f1-fcb3-44f7-a7a4-130c7e4cc364")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H12")
 					(unit 1)
 				)
 			)
@@ -6547,32 +7639,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 62.23 73.66 90)
+		(lib_id "Connector:Conn_01x02_Socket")
+		(at 265.43 137.16 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3c1a9ff6-aa41-42c8-b0c6-a7616bd8c068")
-		(property "Reference" "R3"
-			(at 61.976 71.12 90)
+		(uuid "3bd92a5b-5e20-438c-aaf4-e6ef54e329ce")
+		(property "Reference" "J5"
+			(at 261.112 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "R"
-			(at 62.23 75.946 90)
+		(property "Value" "Conn_01x02_Socket"
+			(at 266.7 139.6999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Footprint" ""
-			(at 62.23 75.438 90)
+			(at 265.43 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6581,7 +7676,74 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 62.23 73.66 0)
+			(at 265.43 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 265.43 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "8ba7894b-7756-4bbc-be1b-b992c3f82cde")
+		)
+		(pin "1"
+			(uuid "e7a7eed7-3311-4ee0-8cf7-dc06401a4b9e")
+		)
+		(instances
+			(project ""
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 257.81 107.95 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3c1a9ff6-aa41-42c8-b0c6-a7616bd8c068")
+		(property "Reference" "R3"
+			(at 258.064 110.49 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 257.81 105.664 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 257.81 106.172 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 257.81 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6590,7 +7752,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 62.23 73.66 0)
+			(at 257.81 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6608,73 +7770,6 @@
 			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 60.96 147.32 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "426129ad-9359-475d-83f3-65ccc3d365fc")
-		(property "Reference" "H7"
-			(at 59.436 142.494 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 63.5 147.3199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 60.96 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 60.96 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 60.96 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1aa55766-c694-4160-a5af-aa0ee7c1ee04")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H7")
 					(unit 1)
 				)
 			)
@@ -6752,7 +7847,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 243.84 63.5 0)
+		(at 273.05 20.32 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -6761,25 +7856,27 @@
 		(fields_autoplaced yes)
 		(uuid "435c5fda-3f10-471e-ba94-4febac674c28")
 		(property "Reference" "H8"
-			(at 246.38 62.2299 0)
+			(at 275.59 19.0499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 246.38 64.7699 0)
+			(at 275.59 21.5899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Footprint" ""
-			(at 243.84 63.5 0)
+			(at 273.05 20.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6788,7 +7885,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 243.84 63.5 0)
+			(at 273.05 20.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6797,7 +7894,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 243.84 63.5 0)
+			(at 273.05 20.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6809,6 +7906,73 @@
 			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "H8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 74.93 162.56 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "46b5ce0f-c36f-45e0-8721-9c71e0cac88e")
+		(property "Reference" "R7"
+			(at 74.93 160.274 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "4k7"
+			(at 74.93 164.846 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 74.93 160.782 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 74.93 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 74.93 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "eefb9782-8b94-47ac-928c-10ad2b16bfa1")
+		)
+		(pin "2"
+			(uuid "9f99b78b-d4c0-46c5-92a0-f1a775a80598")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -7072,7 +8236,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push_Dual")
-		(at 35.56 171.45 0)
+		(at 44.45 163.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7080,7 +8244,7 @@
 		(dnp no)
 		(uuid "4c921451-120d-47d2-9052-a934b7c86f0d")
 		(property "Reference" "SW3"
-			(at 35.052 164.592 0)
+			(at 43.942 156.972 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7088,7 +8252,7 @@
 			)
 		)
 		(property "Value" "SW_Push_Dual"
-			(at 35.814 178.054 0)
+			(at 44.704 170.434 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7096,7 +8260,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 35.56 163.83 0)
+			(at 44.45 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7105,7 +8269,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 35.56 171.45 0)
+			(at 44.45 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7114,7 +8278,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 35.56 171.45 0)
+			(at 44.45 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7145,7 +8309,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x05_Pin")
-		(at 48.26 101.6 0)
+		(at 34.29 88.9 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7154,7 +8318,7 @@
 		(fields_autoplaced yes)
 		(uuid "4dc2a9e2-64f6-4974-8eb6-65fe5ecb9a7f")
 		(property "Reference" "J1"
-			(at 48.895 91.44 0)
+			(at 34.925 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7162,7 +8326,7 @@
 			)
 		)
 		(property "Value" "Conn_01x05_Pin"
-			(at 48.895 93.98 0)
+			(at 34.925 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7170,7 +8334,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 48.26 101.6 0)
+			(at 34.29 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7179,7 +8343,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 48.26 101.6 0)
+			(at 34.29 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7188,7 +8352,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x05, script generated"
-			(at 48.26 101.6 0)
+			(at 34.29 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7221,35 +8385,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 252.73 104.14 180)
+		(lib_id "power:+3.3V")
+		(at 71.12 162.56 90)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "52033b36-dd7a-42c8-81fe-fa10aabd5cc8")
-		(property "Reference" "H14"
-			(at 254.254 108.966 0)
+		(fields_autoplaced yes)
+		(uuid "4fe456c2-9c6d-48b5-8bfb-b3bd9e63c599")
+		(property "Reference" "#PWR028"
+			(at 74.93 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(hide yes)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 250.19 104.1401 0)
+		(property "Value" "+3.3V"
+			(at 67.31 162.5599 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
 			)
 		)
 		(property "Footprint" ""
-			(at 252.73 104.14 0)
+			(at 71.12 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7257,8 +8421,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 252.73 104.14 0)
+		(property "Datasheet" ""
+			(at 71.12 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7266,8 +8430,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 252.73 104.14 0)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 71.12 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7276,12 +8440,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "ba51f2c9-01e0-4da6-935a-862b0a339406")
+			(uuid "53b61ba3-e789-43e3-9668-8b72abcad5b7")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H14")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -7289,7 +8453,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push_Dual")
-		(at 50.8 171.45 0)
+		(at 43.18 184.15 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7297,7 +8461,7 @@
 		(dnp no)
 		(uuid "55352e08-f7e3-4fa1-82e9-bfe02129d767")
 		(property "Reference" "SW4"
-			(at 50.292 164.592 0)
+			(at 42.672 177.292 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7305,7 +8469,7 @@
 			)
 		)
 		(property "Value" "SW_Push_Dual"
-			(at 51.054 178.054 0)
+			(at 43.434 190.754 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7313,7 +8477,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 50.8 163.83 0)
+			(at 43.18 176.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7322,7 +8486,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 50.8 171.45 0)
+			(at 43.18 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7331,7 +8495,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 50.8 171.45 0)
+			(at 43.18 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7430,6 +8594,116 @@
 		)
 	)
 	(symbol
+		(lib_id "custom-parts:DFPlayer_Mini")
+		(at 266.7 67.31 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "557621e0-a4ca-4a42-940b-67eaf94abeab")
+		(property "Reference" "DFPlayerMini1"
+			(at 268.605 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 268.605 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 262.89 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 262.89 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 262.89 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin ""
+			(uuid "09f4a813-ced0-47d0-8c08-1be45c052c92")
+		)
+		(pin ""
+			(uuid "8e75cf52-2586-4a61-af8a-50482b16b144")
+		)
+		(pin ""
+			(uuid "2b60d90e-48b2-4d9a-8c01-06abaf156186")
+		)
+		(pin ""
+			(uuid "3211b289-0fce-4079-8cc4-3317b7992da9")
+		)
+		(pin ""
+			(uuid "fea80685-b802-4847-af19-99c522dc7839")
+		)
+		(pin ""
+			(uuid "3649f840-1c9c-4c83-9f5f-0d480b9d5285")
+		)
+		(pin ""
+			(uuid "278b8a7a-5be4-4784-9c1b-d308144d8079")
+		)
+		(pin ""
+			(uuid "8af1b6f7-bca1-43dd-8374-9f3820861680")
+		)
+		(pin ""
+			(uuid "b9541c71-6645-48fc-91cb-ef51af9418bd")
+		)
+		(pin ""
+			(uuid "54a8c547-f552-4965-8085-e911372a1efb")
+		)
+		(pin ""
+			(uuid "d97a4bfa-716b-42d0-88e2-7002c04f0df8")
+		)
+		(pin ""
+			(uuid "ad429002-54ae-46ce-9a6e-a4a4100c7475")
+		)
+		(pin ""
+			(uuid "3b7f159c-913d-4207-9391-0c281ab10db2")
+		)
+		(pin ""
+			(uuid "7707f6d2-83e4-494b-bc6c-8a0c44c99ce7")
+		)
+		(pin ""
+			(uuid "cbd051b2-9980-42ac-b01b-2083180c546b")
+		)
+		(pin ""
+			(uuid "743fc7bd-4378-454b-97be-b4182028dac0")
+		)
+		(instances
+			(project ""
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "DFPlayerMini1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 82.55 29.21 0)
 		(unit 1)
@@ -7494,6 +8768,143 @@
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 39.37 93.98 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "56435e4e-b0bb-41a1-b90b-1850d942052b")
+		(property "Reference" "#PWR031"
+			(at 45.72 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 43.18 93.9799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 39.37 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 39.37 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 39.37 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0dbba2fe-a37c-4156-a7a3-3597cf01d1ba")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Socket")
+		(at 102.87 132.08 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5b507fbc-91d1-4826-ab76-ad681e22b763")
+		(property "Reference" "J7"
+			(at 98.552 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x02_Socket"
+			(at 104.14 134.6199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 102.87 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 102.87 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 102.87 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "ef8d05ff-6b85-4202-8cda-aad8ff4009fe")
+		)
+		(pin "1"
+			(uuid "fd3b53a4-6b34-4d00-af3a-ec66bbfe6e17")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -7637,151 +9048,16 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 30.48 147.32 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "5ee7d51a-078e-4c30-acc9-2999043c90e6")
-		(property "Reference" "H1"
-			(at 29.464 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 20.066 153.416 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 30.48 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 30.48 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 30.48 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bbfb04cb-5024-43a9-83a0-52e5bae9ff62")
-		)
-		(instances
-			(project ""
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 243.84 78.74 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "60b0ac69-9e94-491f-ac68-112430b682c1")
-		(property "Reference" "H10"
-			(at 246.38 76.1999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 246.38 78.7399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 243.84 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 243.84 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 243.84 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c26f96c5-f05b-4326-882a-8829b6d312fa")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 95.25 90.17 0)
+		(at 69.85 74.93 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "61cdf430-9fb2-4924-9922-5f9e0433726e")
 		(property "Reference" "J3"
-			(at 95.885 85.09 0)
+			(at 70.866 72.644 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7789,7 +9065,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 95.885 87.63 0)
+			(at 73.914 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7797,7 +9073,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 95.25 90.17 0)
+			(at 69.85 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7806,7 +9082,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 95.25 90.17 0)
+			(at 69.85 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7815,7 +9091,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 95.25 90.17 0)
+			(at 69.85 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7839,8 +9115,75 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 77.47 186.69 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "61fe5860-24b2-4814-8c64-bf882baa2752")
+		(property "Reference" "#PWR026"
+			(at 71.12 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 73.66 186.6899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 77.47 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 77.47 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 77.47 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ff716f8a-7171-4686-bce2-a8f0fe450d12")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR026")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Switch:SW_Push_Dual")
-		(at 66.04 171.45 0)
+		(at 83.82 165.1 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7848,7 +9191,7 @@
 		(dnp no)
 		(uuid "658738c6-a0fc-4d92-a157-0298a1c87d84")
 		(property "Reference" "SW5"
-			(at 65.532 164.592 0)
+			(at 83.312 158.242 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7856,7 +9199,7 @@
 			)
 		)
 		(property "Value" "SW_Push_Dual"
-			(at 66.294 178.054 0)
+			(at 84.074 171.704 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7864,7 +9207,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 66.04 163.83 0)
+			(at 83.82 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7873,7 +9216,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 66.04 171.45 0)
+			(at 83.82 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7882,7 +9225,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 66.04 171.45 0)
+			(at 83.82 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7912,35 +9255,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 227.33 104.14 180)
+		(lib_id "power:+3.3V")
+		(at 39.37 83.82 270)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "661c194c-0aa6-4f31-8da0-4f9f8137e540")
-		(property "Reference" "H19"
-			(at 228.854 108.966 0)
+		(fields_autoplaced yes)
+		(uuid "69ac0240-269d-4f6a-9905-48ae2fab02be")
+		(property "Reference" "#PWR030"
+			(at 35.56 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(hide yes)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 224.79 104.1401 0)
+		(property "Value" "+3.3V"
+			(at 43.18 83.8199 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
 			)
 		)
 		(property "Footprint" ""
-			(at 227.33 104.14 0)
+			(at 39.37 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7948,8 +9291,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 227.33 104.14 0)
+		(property "Datasheet" ""
+			(at 39.37 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7957,8 +9300,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 227.33 104.14 0)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 39.37 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7967,47 +9310,47 @@
 			)
 		)
 		(pin "1"
-			(uuid "d51759bb-3273-4f78-ba72-5999b51b7ebb")
+			(uuid "d7f14f97-f43b-4c22-a4b5-ac4f91750614")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H19")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 252.73 119.38 0)
+		(lib_id "power:GND")
+		(at 38.1 186.69 270)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6d552cc8-60c9-476c-a265-a0f6d6f55cfd")
-		(property "Reference" "H25"
-			(at 251.206 114.554 0)
+		(fields_autoplaced yes)
+		(uuid "6a333b74-adfe-4b5d-b49d-ce93ddef9f11")
+		(property "Reference" "#PWR022"
+			(at 31.75 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(hide yes)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 255.27 119.3799 0)
+		(property "Value" "GND"
+			(at 34.29 186.6899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 252.73 119.38 0)
+			(at 38.1 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8015,8 +9358,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 252.73 119.38 0)
+		(property "Datasheet" ""
+			(at 38.1 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8024,8 +9367,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 252.73 119.38 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 38.1 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8034,12 +9377,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b7abf0ba-86c3-494a-9eda-fb5d4d38bd05")
+			(uuid "bd2c24f9-ff11-4a35-8516-30c37a3062af")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H25")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -8047,7 +9390,7 @@
 	)
 	(symbol
 		(lib_id "Device:RotaryEncoder")
-		(at 48.26 80.01 180)
+		(at 271.78 100.33 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8056,7 +9399,7 @@
 		(fields_autoplaced yes)
 		(uuid "6e31d1fd-8ae9-45ed-917f-b2159d62ee32")
 		(property "Reference" "SW2"
-			(at 48.26 69.85 0)
+			(at 271.78 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8064,7 +9407,7 @@
 			)
 		)
 		(property "Value" "RotaryEncoder"
-			(at 48.26 72.39 0)
+			(at 271.78 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8072,7 +9415,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 52.07 84.074 0)
+			(at 267.97 96.266 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8081,7 +9424,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 48.26 86.614 0)
+			(at 271.78 93.726 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8090,7 +9433,7 @@
 			)
 		)
 		(property "Description" "Rotary encoder, dual channel, incremental quadrate outputs"
-			(at 48.26 80.01 0)
+			(at 271.78 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8117,35 +9460,32 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 243.84 87.63 0)
+		(lib_id "Device:R")
+		(at 74.93 181.61 270)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6e5e71fd-92b6-475c-b365-cd51c248afed")
-		(property "Reference" "H11"
-			(at 246.38 85.0899 0)
+		(uuid "70376643-fd49-474d-ad71-1ba89ce45a09")
+		(property "Reference" "R8"
+			(at 74.93 179.324 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 246.38 87.6299 0)
+		(property "Value" "4k7"
+			(at 74.93 183.896 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 243.84 87.63 0)
+			(at 74.93 179.832 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8154,7 +9494,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 243.84 87.63 0)
+			(at 74.93 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8162,8 +9502,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 243.84 87.63 0)
+		(property "Description" "Resistor"
+			(at 74.93 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8172,12 +9512,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "4bdc36f1-3e9c-46e3-bf34-b6161d94532c")
+			(uuid "69479f18-bf25-47a2-90d2-a0191d08267a")
+		)
+		(pin "2"
+			(uuid "fbfa7ff2-e8bb-403b-887c-13964917f38b")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H11")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -8185,16 +9528,16 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 66.04 85.09 270)
+		(at 71.12 181.61 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "778fbcc0-fcc5-4724-b117-ff395c27f5b2")
-		(property "Reference" "#PWR016"
-			(at 62.23 85.09 0)
+		(uuid "769e4c57-dc29-41da-8a8d-0431d349659b")
+		(property "Reference" "#PWR029"
+			(at 74.93 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8203,7 +9546,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 69.85 85.0899 90)
+			(at 67.31 181.6099 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8212,7 +9555,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 66.04 85.09 0)
+			(at 71.12 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8221,7 +9564,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 66.04 85.09 0)
+			(at 71.12 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8230,7 +9573,141 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 66.04 85.09 0)
+			(at 71.12 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9e2f0da8-624d-40ef-a28a-0a37f8674ee7")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR029")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 256.54 60.96 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "77555bf0-e115-4722-8232-554c1570fa9d")
+		(property "Reference" "#PWR032"
+			(at 260.35 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 252.73 60.9599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 256.54 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 256.54 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 256.54 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ea414040-b406-42ee-b42f-ba76421c96da")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR032")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 252.73 92.71 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "778fbcc0-fcc5-4724-b117-ff395c27f5b2")
+		(property "Reference" "#PWR016"
+			(at 256.54 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 248.92 92.7101 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 252.73 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 252.73 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 252.73 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8245,6 +9722,140 @@
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "#PWR016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 87.63 186.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "796bcf2d-a782-4306-b366-e1a1a2607046")
+		(property "Reference" "#PWR024"
+			(at 93.98 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 91.44 186.6899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 87.63 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.63 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 87.63 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6deb69bf-d941-47df-8be4-e4de3d3398ad")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR024")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 48.26 186.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "81e17de1-3062-42fb-a970-48d25f15d4e6")
+		(property "Reference" "#PWR021"
+			(at 54.61 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 52.07 186.6899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 48.26 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 48.26 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 48.26 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "def9bddb-05a2-49ae-86d9-9d2bc1c6661f")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -8386,6 +9997,140 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 35.56 161.29 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "89ba7821-d464-43ca-b52d-820b26092d45")
+		(property "Reference" "R5"
+			(at 35.56 159.004 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "4k7"
+			(at 35.56 163.576 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 35.56 159.512 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 35.56 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 35.56 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "014f7de7-5b7f-407d-987c-e035442f3e63")
+		)
+		(pin "2"
+			(uuid "b98c5181-c10b-492c-8b56-92a5b1a23496")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "R5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 41.91 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8a3dcda1-b40c-4b4c-8318-3f12232dd896")
+		(property "Reference" "#PWR035"
+			(at 48.26 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 45.72 119.3799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 41.91 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 41.91 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 41.91 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cbb5f8bd-9f0f-4c7c-82d9-d17edf670b84")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR035")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 93.98 57.15 270)
 		(unit 1)
@@ -8453,35 +10198,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 247.65 104.14 180)
+		(lib_id "power:GND")
+		(at 255.27 100.33 270)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8e266e9a-99b8-4a50-829e-22eee7ad175a")
-		(property "Reference" "H15"
-			(at 249.174 108.966 0)
+		(fields_autoplaced yes)
+		(uuid "909b9338-e9ac-4842-9403-50d027407ebf")
+		(property "Reference" "#PWR017"
+			(at 248.92 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(hide yes)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 245.11 104.1401 0)
+		(property "Value" "GND"
+			(at 251.46 100.3299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 247.65 104.14 0)
+			(at 255.27 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8489,8 +10234,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 247.65 104.14 0)
+		(property "Datasheet" ""
+			(at 255.27 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8498,8 +10243,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 247.65 104.14 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 255.27 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8508,146 +10253,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "767b183e-e2af-41a3-969d-e572f4df787c")
+			(uuid "e44b0c51-4c0a-4ba9-b69d-00821ddf1198")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 261.62 140.97 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "903eb3d7-f21f-4dea-a0d3-2e8ad40c0797")
-		(property "Reference" "H29"
-			(at 260.096 136.144 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 264.16 140.9699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 261.62 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 261.62 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 261.62 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5b49e377-16e6-4ce0-8d5a-cc8dd39eb3ae")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H29")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 232.41 119.38 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "92cd5d3d-ea2a-4875-809c-44b36fa7a312")
-		(property "Reference" "H21"
-			(at 230.886 114.554 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 234.95 119.3799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 232.41 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 232.41 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 232.41 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e53bc697-583e-4414-aaaf-1204db3df36d")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H21")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -8655,7 +10266,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 62.23 85.09 90)
+		(at 257.81 92.71 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8663,7 +10274,7 @@
 		(dnp no)
 		(uuid "978d2f03-6f71-4c23-8aec-b2b823e22323")
 		(property "Reference" "R4"
-			(at 61.976 83.058 90)
+			(at 256.794 95.25 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8671,7 +10282,7 @@
 			)
 		)
 		(property "Value" "R"
-			(at 62.23 87.376 90)
+			(at 256.54 90.424 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8679,7 +10290,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 62.23 86.868 90)
+			(at 257.81 90.932 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8688,7 +10299,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 62.23 85.09 0)
+			(at 257.81 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8697,7 +10308,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 62.23 85.09 0)
+			(at 257.81 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8715,73 +10326,6 @@
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "R4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 232.41 140.97 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "9824b92b-f09c-4fe1-8b12-d56f7f586843")
-		(property "Reference" "H31"
-			(at 230.886 136.144 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 234.95 140.9699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 232.41 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 232.41 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 232.41 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f4017d07-024e-4f76-a3bb-ce87d9c941a1")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H31")
 					(unit 1)
 				)
 			)
@@ -8924,71 +10468,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+4V")
-		(at 222.25 24.13 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a1b472df-9a7e-4398-8729-70ec29b61b50")
-		(property "Reference" "#PWR012"
-			(at 222.25 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+4V"
-			(at 222.25 20.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 222.25 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 222.25 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+4V\""
-			(at 222.25 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b2d5cf3f-eab2-4fa6-b2bd-6daa47ebd815")
-		)
-		(instances
-			(project ""
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "#PWR012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Switch:SW_Push_Dual")
 		(at 63.5 52.07 0)
 		(unit 1)
@@ -9062,17 +10541,16 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 243.84 71.12 0)
+		(lib_id "Connector:Conn_01x02_Socket")
+		(at 238.76 137.16 0)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "af25d9e3-008a-4670-9ac1-f6a8c7a49c97")
-		(property "Reference" "H9"
-			(at 246.38 68.5799 0)
+		(uuid "b80b20d1-0ae9-4ca2-ac76-6429aac823ec")
+		(property "Reference" "J6"
+			(at 234.442 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9080,17 +10558,18 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 246.38 71.1199 0)
+		(property "Value" "Conn_01x02_Socket"
+			(at 240.03 139.6999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Footprint" ""
-			(at 243.84 71.12 0)
+			(at 238.76 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9099,7 +10578,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 243.84 71.12 0)
+			(at 238.76 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9107,22 +10586,25 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 243.84 71.12 0)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 238.76 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
+		)
+		(pin "2"
+			(uuid "0ad7ccd3-909c-4c26-bf19-95dd9c3c1fc2")
 		)
 		(pin "1"
-			(uuid "74adaf38-ee1c-453b-b3d4-9671b3b31798")
+			(uuid "a4e2df3e-95d8-4a3a-b672-59a80b971380")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H9")
+					(reference "J6")
 					(unit 1)
 				)
 			)
@@ -9266,35 +10748,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 262.89 119.38 0)
+		(lib_id "power:+3.3V")
+		(at 31.75 161.29 90)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c8f83e66-dc0b-4728-b1d4-84e566d50f0b")
-		(property "Reference" "H27"
-			(at 261.366 114.554 0)
+		(fields_autoplaced yes)
+		(uuid "c6e011e9-e7a2-4d21-929d-a87c1b7f9260")
+		(property "Reference" "#PWR020"
+			(at 35.56 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(hide yes)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 265.43 119.3799 0)
+		(property "Value" "+3.3V"
+			(at 27.94 161.2899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
 			)
 		)
 		(property "Footprint" ""
-			(at 262.89 119.38 0)
+			(at 31.75 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9302,8 +10784,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 262.89 119.38 0)
+		(property "Datasheet" ""
+			(at 31.75 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9311,8 +10793,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 262.89 119.38 0)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 31.75 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9321,12 +10803,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "2e1f1602-b5f4-47a0-bec7-c2b8bbcd7813")
+			(uuid "14279dd5-deac-4118-9194-9d5fe56d7672")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H27")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -9399,16 +10881,15 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 66.04 73.66 270)
+		(at 251.46 107.95 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "ca928333-c2b7-46c0-80ef-cc5411621188")
 		(property "Reference" "#PWR015"
-			(at 62.23 73.66 0)
+			(at 255.27 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9417,7 +10898,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 69.85 73.6599 90)
+			(at 247.65 107.95 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9426,7 +10907,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 66.04 73.66 0)
+			(at 251.46 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9435,7 +10916,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 66.04 73.66 0)
+			(at 251.46 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9444,7 +10925,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 66.04 73.66 0)
+			(at 251.46 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9459,6 +10940,139 @@
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 273.05 25.4 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cc3f2f34-e384-4e6c-9066-91ccb263fec4")
+		(property "Reference" "H2"
+			(at 275.59 24.1299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 275.59 26.6699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 273.05 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 273.05 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 273.05 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "H2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 88.9 167.64 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cce7feb0-b45e-40d9-9a0f-d4cef4708956")
+		(property "Reference" "#PWR023"
+			(at 95.25 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 92.71 167.6399 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 88.9 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 88.9 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 88.9 167.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "69cf3096-9d23-4ab5-bd46-2ab42e16d71b")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -9595,6 +11209,139 @@
 			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 278.13 20.32 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d97c1b40-c408-40ea-9f6c-2ab2a6732be8")
+		(property "Reference" "H1"
+			(at 280.67 19.0499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 280.67 21.5899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 278.13 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 278.13 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 278.13 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "H1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 30.48 181.61 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "db955297-a38c-439f-aabf-d00813586459")
+		(property "Reference" "#PWR027"
+			(at 34.29 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 26.67 181.6099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 30.48 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 30.48 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 30.48 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e86c785f-5c33-4b34-bc6b-b7ccd41f091d")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -9738,140 +11485,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 257.81 119.38 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "e65d5cd1-0a64-4ef8-8026-f04cb8fb899e")
-		(property "Reference" "H26"
-			(at 256.286 114.554 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 260.35 119.3799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 257.81 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 257.81 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 257.81 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e10c83c5-5c0a-46c2-b78b-d6c29c1a478a")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 55.88 147.32 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "e7c2ed81-e00d-4905-92fc-4d3883be84c7")
-		(property "Reference" "H6"
-			(at 54.61 142.494 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 58.42 147.3199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 55.88 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 55.88 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 55.88 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "71a6ca15-ca24-4994-ab1a-b5897ba03a30")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 179.07 31.75 0)
 		(unit 1)
@@ -9932,73 +11545,6 @@
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 237.49 104.14 180)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "ec828af5-ab0c-491b-9720-3bdc607f9638")
-		(property "Reference" "H17"
-			(at 239.014 108.966 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 234.95 104.1401 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 237.49 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 237.49 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 237.49 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dc59d835-676e-4d03-8c08-4d58b61be468")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H17")
 					(unit 1)
 				)
 			)
@@ -10066,73 +11612,6 @@
 			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 247.65 119.38 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "f0a21e22-66ad-4bd2-a6c7-12b2d255b028")
-		(property "Reference" "H24"
-			(at 246.126 114.554 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 250.19 119.3799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 247.65 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 247.65 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 247.65 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6e158563-737b-470e-aaa6-9f2075458e65")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H24")
 					(unit 1)
 				)
 			)
@@ -10279,35 +11758,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 247.65 158.75 0)
+		(lib_id "power:GND")
+		(at 78.74 167.64 270)
 		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
+		(exclude_from_sim no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f8c2a1e6-2904-4d32-ae1f-8dba92534d8f")
-		(property "Reference" "H33"
-			(at 246.126 153.924 0)
+		(fields_autoplaced yes)
+		(uuid "f54a1880-812d-4caa-90d4-da43ea9ad356")
+		(property "Reference" "#PWR025"
+			(at 72.39 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(hide yes)
 			)
 		)
-		(property "Value" "MountingHole_Pad"
-			(at 250.19 158.7499 0)
+		(property "Value" "GND"
+			(at 74.93 167.6399 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 247.65 158.75 0)
+			(at 78.74 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10315,8 +11794,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 247.65 158.75 0)
+		(property "Datasheet" ""
+			(at 78.74 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10324,8 +11803,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Mounting Hole with connection"
-			(at 247.65 158.75 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 78.74 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10334,45 +11813,116 @@
 			)
 		)
 		(pin "1"
-			(uuid "d81ef812-3eed-4509-b7d5-ca9d04d91ce4")
+			(uuid "cd951c49-99df-49cf-8534-5c21aa25ea95")
 		)
 		(instances
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H33")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_SPDT")
-		(at 198.12 143.51 0)
+		(lib_id "power:+3.3V")
+		(at 41.91 116.84 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "fe12dd49-5acb-4ae5-acfc-911d7f042caa")
-		(property "Reference" "SW7"
-			(at 198.12 134.62 0)
+		(uuid "f86919be-323a-475b-88d7-d88ac3209ed4")
+		(property "Reference" "#PWR034"
+			(at 38.1 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "Value" "SW_SPDT"
-			(at 198.12 137.16 0)
+		(property "Value" "+3.3V"
+			(at 45.72 116.8399 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 198.12 143.51 0)
+			(at 41.91 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 41.91 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 41.91 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bba03301-afb4-435d-9eef-370a85c910c9")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "#PWR034")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 278.13 25.4 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f950edf0-0c65-47fd-8283-29f27aa2e99e")
+		(property "Reference" "H3"
+			(at 280.67 24.1299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 280.67 26.6699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 278.13 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10381,7 +11931,69 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 198.12 151.13 0)
+			(at 278.13 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 278.13 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "H3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_SPDT")
+		(at 194.31 140.97 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fe12dd49-5acb-4ae5-acfc-911d7f042caa")
+		(property "Reference" "SW7"
+			(at 194.31 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_SPDT"
+			(at 194.31 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 194.31 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 194.31 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10390,7 +12002,7 @@
 			)
 		)
 		(property "Description" "Switch, single pole double throw"
-			(at 198.12 143.51 0)
+			(at 194.31 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10411,73 +12023,6 @@
 			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "SW7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole_Pad")
-		(at 242.57 104.14 180)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "ffb38c6d-43f9-46ae-96b6-573c3b5553c6")
-		(property "Reference" "H16"
-			(at 244.094 108.966 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole_Pad"
-			(at 240.03 104.1401 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 242.57 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 242.57 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole with connection"
-			(at 242.57 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "044f7a05-d7c2-49a5-94e6-618dbefaa21e")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "H16")
 					(unit 1)
 				)
 			)
