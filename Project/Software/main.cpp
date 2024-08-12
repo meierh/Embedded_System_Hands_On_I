@@ -1,11 +1,11 @@
 #include <iostream>
-#include "System.h"
+#include "EmulatedSystem.h"
 #include "HardwareEmulator.h"
 
 int main(int argc, char** argv)
 {   
-    System sys;
     HardwareEmulator hardware;
+    EmulatedSystem sys(&hardware);
     HardwareEmulator::sys = &sys;
     hardware.show();
     return Fl::run();

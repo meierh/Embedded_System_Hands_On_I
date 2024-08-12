@@ -6,6 +6,7 @@
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Bitmap.H>
+#include <FL/Fl_Pixmap.H>
 
 #include <iostream>
 #include "System.h"
@@ -18,6 +19,9 @@ class HardwareEmulator : public Fl_Window
     public:
         HardwareEmulator();
         static System* sys;
+    
+        void displayString(std::tuple<std::uint8_t,std::uint8_t,System::Font,std::string> string);
+        
     private:
         
         Fl_Box display;
@@ -36,7 +40,7 @@ class HardwareEmulator : public Fl_Window
         static void btn4Callback(Fl_Widget* wid, long data);
         static void rotateCallback(Fl_Widget* wid, long data);
         
-        static void idleCallback();
+        static void idleCallback(void* data);
 };
 
 #endif

@@ -16,12 +16,6 @@ btnAnticlockwise(125,270, 50,30,">>>")
     display.labelfont(FL_BOLD + FL_ITALIC);
     display.labelsize(36);
     display.labeltype(FL_SHADOW_LABEL);
-    
-    char bits[H*W];
-    for(uint px=0; px<H*W; px++)
-        bits[px] = 65;
-    Fl_Bitmap background(bits,W,H);
-    display.image(background);
     display.color(0xffffff00);
     
     btn1.callback(&HardwareEmulator::btn1Callback);
@@ -32,10 +26,26 @@ btnAnticlockwise(125,270, 50,30,">>>")
     btnClockwise.callback(&HardwareEmulator::rotateCallback);
     btnAnticlockwise.callback(&HardwareEmulator::rotateCallback);
     
-    Fl::set_idle(&HardwareEmulator::idleCallback);
+    Fl::add_idle(&HardwareEmulator::idleCallback);
 }
 
 System* HardwareEmulator::sys = nullptr;
+
+void HardwareEmulator::displayString
+(
+    std::tuple<std::uint8_t,std::uint8_t,System::Font,std::string> string
+)
+{
+    std::cout<<std::get<3>(string)<<std::endl;
+    char bits[H*W];
+    for(uint px=0; px<H*W; px++)
+        bits[px] = std::get<0>(string);
+    //Fl_Bitmap background(bits,W,H);   
+    
+    #include "logo.xpm"
+    Fl_Pixmap background{logo_xpm};
+    display.image(&background);    
+}
 
 void HardwareEmulator::btn1Callback(Fl_Widget* wid, long data)
 {
@@ -62,7 +72,8 @@ void HardwareEmulator::rotateCallback(Fl_Widget* wid, long data)
     else
         std::cout<<"Error"<<std::endl;
 }
-void HardwareEmulator::idleCallback()
+
+void HardwareEmulator::idleCallback(void* data)
 {
     sys->work();
 }

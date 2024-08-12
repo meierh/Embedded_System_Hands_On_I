@@ -3,10 +3,14 @@
 
 #include <cstdint>
 #include <queue>
+#include <iostream>
+
+class System;
 
 class Application
 {
     public:
+        Application(System* sys):sys(sys){}
         virtual ~Application() = default;
 
         /**
@@ -22,7 +26,7 @@ class Application
         virtual void onButton3Click();
         virtual void onButton4Click();
         virtual void onRotationClick(std::int8_t dir); 
-        enum Action {Btn1Click,Btn2Click,Btn3Click,Btn4Click,RotateClock,RotateAntiClock};
+        enum Action {Btn1Click=0,Btn2Click,Btn3Click,Btn4Click,RotateClock,RotateAntiClock};
         std::queue<Action> inputActions;
         
         /**
@@ -30,9 +34,12 @@ class Application
          */
         virtual void speakerCommand();
         virtual void displayCommand();
+        
+    private:
+        System* sys;
 };
 
-class EggMode : public Application
+class SmartEgg : public Application
 {
 };
 
