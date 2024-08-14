@@ -22,8 +22,8 @@
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at -3.81 0 0)
+		(property "Footprint" "custom-parts:DFplayer-Mini"
+			(at 1.27 -15.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -371,8 +371,8 @@
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 8.89 5.08 0)
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical"
+			(at 0.508 -12.446 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -398,7 +398,7 @@
 				(hide yes)
 			)
 		)
-		(symbol "OLED-15W-C_0_1"
+		(symbol "OLED-15W-C_1_1"
 			(rectangle
 				(start -3.81 7.62)
 				(end 5.08 -10.16)
@@ -407,11 +407,9 @@
 					(type default)
 				)
 				(fill
-					(type none)
+					(type background)
 				)
 			)
-		)
-		(symbol "OLED-15W-C_1_1"
 			(pin input line
 				(at 7.62 -1.27 180)
 				(length 2.54)
