@@ -6665,8 +6665,8 @@
 		(uuid 7f6fa1b0-f12c-4f45-bc2c-91828e6b9a71)
 	)
 	(rectangle
-		(start 100.33 132.715)
-		(end 127 148.59)
+		(start 100.33 133.985)
+		(end 127 149.86)
 		(stroke
 			(width 0)
 			(type default)
@@ -6860,12 +6860,12 @@
 		)
 		(uuid "93f06a0c-b843-4443-b328-0766d8ef8a97")
 	)
-	(text "to GND to boot from ? (user Flash?)"
+	(text "to GND to boot from main flash memory"
 		(exclude_from_sim no)
-		(at 155.194 85.09 0)
+		(at 161.036 85.09 0)
 		(effects
 			(font
-				(size 1.27 1.27)
+				(size 1 1)
 			)
 		)
 		(uuid "978c36b8-1983-4754-8f7b-c9069349cf80")
@@ -6902,7 +6902,7 @@
 	)
 	(text "SWDIO + SWDCLk"
 		(exclude_from_sim no)
-		(at 108.458 131.826 0)
+		(at 108.458 133.096 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7014,7 +7014,7 @@
 		(uuid "11392012-f0d2-4bca-93e7-85b39c55f382")
 	)
 	(label "JTAG_SWCLK"
-		(at 113.03 142.24 0)
+		(at 113.03 143.51 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7025,7 +7025,7 @@
 		(uuid "1671a22a-c4db-4721-ab24-549e9ba71f1e")
 	)
 	(label "JTAG_SWD"
-		(at 113.03 139.7 0)
+		(at 113.03 140.97 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7733,7 +7733,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 107.95 139.7 0)
+		(at 107.95 140.97 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7741,7 +7741,7 @@
 		(dnp no)
 		(uuid "0ee49d4c-4331-48be-93d6-a0bd1d092c4b")
 		(property "Reference" "J2"
-			(at 108.712 136.906 0)
+			(at 108.966 139.446 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7749,7 +7749,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 110.998 143.764 0)
+			(at 110.998 145.034 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7757,7 +7757,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
-			(at 107.95 139.7 0)
+			(at 107.95 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7766,7 +7766,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 107.95 139.7 0)
+			(at 107.95 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7775,7 +7775,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 107.95 139.7 0)
+			(at 107.95 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7808,7 +7808,7 @@
 		(dnp no)
 		(uuid "0f46ee63-4291-4728-a36c-84420f519506")
 		(property "Reference" "J4"
-			(at 113.538 118.872 0)
+			(at 109.982 120.396 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8632,7 +8632,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "1u"
 			(at 218.44 52.832 0)
 			(effects
 				(font
@@ -9156,10 +9156,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "2c468879-dfbc-423b-960c-d7a15833f3ee")
 		(property "Reference" "OLED-15W-C1"
-			(at 55.245 128.27 0)
+			(at 54.61 130.048 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9521,7 +9520,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "100n"
 			(at 124.968 54.356 0)
 			(effects
 				(font
@@ -10988,7 +10987,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "100n"
 			(at 137.668 54.356 0)
 			(effects
 				(font
@@ -11124,7 +11123,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10nF"
+		(property "Value" "10n"
 			(at 207.264 53.086 0)
 			(effects
 				(font
@@ -11321,7 +11320,7 @@
 		(dnp no)
 		(uuid "61cdf430-9fb2-4924-9922-5f9e0433726e")
 		(property "Reference" "J3"
-			(at 106.426 101.854 0)
+			(at 106.172 102.362 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13010,7 +13009,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "1u"
 			(at 239.014 53.086 0)
 			(effects
 				(font
@@ -13553,7 +13552,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "100n"
 			(at 178.308 54.102 0)
 			(effects
 				(font
@@ -14092,7 +14091,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "100n"
 			(at 164.084 54.102 0)
 			(effects
 				(font
@@ -14425,7 +14424,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "100n"
 			(at 151.638 54.102 0)
 			(effects
 				(font
