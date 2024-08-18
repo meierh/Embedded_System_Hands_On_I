@@ -14906,7 +14906,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_Chilisin_BMRB00050518"
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
 			(at 231.14 48.768 90)
 			(effects
 				(font
