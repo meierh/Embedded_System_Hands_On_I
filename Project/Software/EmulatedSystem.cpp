@@ -1,32 +1,24 @@
 #include "EmulatedSystem.h"
-#include <iostream>
 
-void EmulatedSystem::button1Press()
+EmulatedSystem::EmulatedSystem
+(
+    HardwareEmulator* hardware
+):
+//hardware(setHardwarePointer(hardware)),
+System(),
+hardware(hardware)
 {
-    if(app)
-        app.onButton1Click();
+    if(hardware==nullptr)
+        std::cout<<"Error: No hardware given!"<<std::endl;
+    hardware->setSystem(this);
+    
+    std::cout<<"Setup EmulatedSystem"<<std::endl;
 }
 
-void EmulatedSystem::button2Press()
+void EmulatedSystem::displayImage(std::vector<DisplayItem> image)
 {
-    if(app)
-        app.onButton2Click();
-}
-
-void EmulatedSystem::button3Press()
-{
-    if(app)
-        app.onButton3Click();
-}
-
-void EmulatedSystem::button4Press()
-{
-    if(app)
-        app.onButton4Click();
-}
-
-void EmulatedSystem::rotate(Direction dir)
-{
-    if(app)
-        app.onRotationClick(static_cast<std::int8_t>(dir));
+    if(hardware!=nullptr)
+        hardware->displayImage(image);
+    else
+        std::cout<<"Error: EmulatedSystem::displayImage nullptr"<<std::endl;
 }

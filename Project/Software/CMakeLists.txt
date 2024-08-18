@@ -6,6 +6,8 @@ include_directories(${FLTK_INCLUDE_DIRS})
 link_directories(${FLTK_LIBRARY_DIRS}) 
 add_definitions(${FLTK_DEFINITIONS})
 
-add_executable(hello_world main.cpp HardwareEmulator.cpp System.cpp Application.cpp)
+file(GLOB ESHO1_SRC "*.cpp" "*.h")
 
-TARGET_LINK_LIBRARIES(hello_world fltk)
+add_executable(ESHO1 ${ESHO1_SRC})
+
+TARGET_LINK_LIBRARIES(ESHO1 fltk)

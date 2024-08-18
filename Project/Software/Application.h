@@ -3,42 +3,43 @@
 
 #include <cstdint>
 #include <queue>
+#include <string>
+#include <chrono>
+#include "DisplayItem.h"
+
+class System;
 
 class Application
 {
     public:
+        Application(System* system);
         virtual ~Application() = default;
 
         /**
          *  Internal action
          */
-        virtual void work();
-        
+        virtual void work()=0;
+                
         /**
          *  Input action
          */
-        virtual void onButton1Click();
-        virtual void onButton2Click();
-        virtual void onButton3Click();
-        virtual void onButton4Click();
-        virtual void onRotationClick(std::int8_t dir); 
-        enum Action {Btn1Click,Btn2Click,Btn3Click,Btn4Click,RotateClock,RotateAntiClock};
+        virtual void onButtonLeftClick();
+        virtual void onButtonCenterClick();
+        virtual void onButtonRightClick();
+        virtual void onRotationClick(std::int8_t dir);
+        virtual void onPeriod();
+        enum Action {BtnLeftClick,BtnCenterClick,BtnRightClick,RotateClock,RotateAntiClock,OnePeriod};
+    protected:
         std::queue<Action> inputActions;
         
         /**
          *  Output action
          */
-        virtual void speakerCommand();
-        virtual void displayCommand();
+    protected:
+        System* system = nullptr;
+    public:
+        virtual void speakerCommand()=0;
+        virtual void displayCommand()=0;
 };
-
-class EggMode : public Application
-{
-};
-
-class Timer : public Application
-{
-};
-
 
 #endif

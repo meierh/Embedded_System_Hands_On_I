@@ -1,43 +1,27 @@
+#include "System.h"
 #include "Application.h"
 
-void Application::work()
+Application::Application
+(
+    System* system
+):
+system(system)
 {
-    if(!inputActions.empty())
-    {
-        Action action = inputActions.front();
-        inputActions.pop();
-        switch(action)
-        {
-            case Btn1Click:
-            case Btn2Click:
-            case Btn3Click:
-            case Btn4Click:
-            case RotateClock:
-            case RotateAntiClock:
-            default:
-                break;
-        }
-    }
 }
 
-void Application::onButton1Click()
+void Application::onButtonLeftClick()
 {
-    inputActions.push(Action::Btn1Click);
+    inputActions.push(Action::BtnLeftClick);
 }
 
-void Application::onButton2Click()
+void Application::onButtonCenterClick()
 {
-    inputActions.push(Action::Btn2Click);
+    inputActions.push(Action::BtnCenterClick);
 }
 
-void Application::onButton3Click()
+void Application::onButtonRightClick()
 {
-    inputActions.push(Action::Btn3Click);
-}
-
-void Application::onButton4Click()
-{
-    inputActions.push(Action::Btn4Click);
+    inputActions.push(Action::BtnRightClick);
 }
 
 void Application::onRotationClick(std::int8_t dir)
@@ -48,9 +32,7 @@ void Application::onRotationClick(std::int8_t dir)
         inputActions.push(Action::RotateAntiClock);
 }
 
-void Application::speakerCommand(){}
-
-void Application::displayCommand(std::string str)
+void Application::onPeriod()
 {
-    
+    inputActions.push(Action::OnePeriod);
 }

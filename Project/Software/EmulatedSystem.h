@@ -5,13 +5,11 @@
 class EmulatedSystem : public System
 {
     public:
-        //System -> Application
-        void button1Press() override;
-        void button2Press() override;
-        void button3Press() override;
-        void button4Press() override;
-        void rotate(Direction dir) override;
-        
+        EmulatedSystem(HardwareEmulator* hardware);
         //Application -> System
+        void displayImage(std::vector<DisplayItem> image) override;
+    private:
+        //HardwareEmulator* setHardwarePointer(HardwareEmulator* hardware);
+        HardwareEmulator* hardware = nullptr;
 };
 #endif
