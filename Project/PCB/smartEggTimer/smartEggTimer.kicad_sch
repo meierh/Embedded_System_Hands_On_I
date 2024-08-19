@@ -4314,106 +4314,16 @@
 					)
 				)
 				(pin input line
-					(at 12.7 -3.81 180)
+					(at -8.89 6.35 0)
 					(length 2.54)
-					(name "ADKEY_1"
+					(name "VCC"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 12.7 -1.27 180)
-					(length 2.54)
-					(name "ADKEY_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 12.7 6.35 180)
-					(length 2.54)
-					(name "BUSY"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -8.89 -3.81 0)
-					(length 2.54)
-					(name "DAC_I"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -8.89 -1.27 0)
-					(length 2.54)
-					(name "DAC_R"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -8.89 -8.89 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4431,25 +4341,7 @@
 							)
 						)
 					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 12.7 -11.43 180)
-					(length 2.54)
-					(name "IO_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
+					(number "10"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4467,7 +4359,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "11"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4476,16 +4368,16 @@
 					)
 				)
 				(pin input line
-					(at -8.89 3.81 0)
+					(at 12.7 -3.81 180)
 					(length 2.54)
-					(name "RX"
+					(name "ADKEY_1"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number ""
+					(number "12"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4494,52 +4386,16 @@
 					)
 				)
 				(pin input line
-					(at -8.89 -6.35 0)
+					(at 12.7 -1.27 180)
 					(length 2.54)
-					(name "SPK_1"
+					(name "ADKEY_2"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -8.89 -11.43 0)
-					(length 2.54)
-					(name "SPK_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -8.89 1.27 0)
-					(length 2.54)
-					(name "TX"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
+					(number "13"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4557,7 +4413,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "14"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4575,7 +4431,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "15"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4584,16 +4440,160 @@
 					)
 				)
 				(pin input line
-					(at -8.89 6.35 0)
+					(at 12.7 6.35 180)
 					(length 2.54)
-					(name "VCC"
+					(name "BUSY"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number ""
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 3.81 0)
+					(length 2.54)
+					(name "RX"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 1.27 0)
+					(length 2.54)
+					(name "TX"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -1.27 0)
+					(length 2.54)
+					(name "DAC_R"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -3.81 0)
+					(length 2.54)
+					(name "DAC_L"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -6.35 0)
+					(length 2.54)
+					(name "SPK_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -8.89 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -11.43 0)
+					(length 2.54)
+					(name "SPK_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 12.7 -11.43 180)
+					(length 2.54)
+					(name "IO_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -11880,52 +11880,52 @@
 				(hide yes)
 			)
 		)
-		(pin ""
+		(pin "10"
 			(uuid "09f4a813-ced0-47d0-8c08-1be45c052c92")
 		)
-		(pin ""
+		(pin "2"
 			(uuid "8e75cf52-2586-4a61-af8a-50482b16b144")
 		)
-		(pin ""
+		(pin "3"
 			(uuid "2b60d90e-48b2-4d9a-8c01-06abaf156186")
 		)
-		(pin ""
+		(pin "4"
 			(uuid "3211b289-0fce-4079-8cc4-3317b7992da9")
 		)
-		(pin ""
+		(pin "5"
 			(uuid "fea80685-b802-4847-af19-99c522dc7839")
 		)
-		(pin ""
+		(pin "9"
 			(uuid "3649f840-1c9c-4c83-9f5f-0d480b9d5285")
 		)
-		(pin ""
+		(pin "12"
 			(uuid "278b8a7a-5be4-4784-9c1b-d308144d8079")
 		)
-		(pin ""
+		(pin "6"
 			(uuid "8af1b6f7-bca1-43dd-8374-9f3820861680")
 		)
-		(pin ""
+		(pin "7"
 			(uuid "b9541c71-6645-48fc-91cb-ef51af9418bd")
 		)
-		(pin ""
+		(pin "8"
 			(uuid "54a8c547-f552-4965-8085-e911372a1efb")
 		)
-		(pin ""
+		(pin "13"
 			(uuid "d97a4bfa-716b-42d0-88e2-7002c04f0df8")
 		)
-		(pin ""
+		(pin "11"
 			(uuid "ad429002-54ae-46ce-9a6e-a4a4100c7475")
 		)
-		(pin ""
+		(pin "1"
 			(uuid "3b7f159c-913d-4207-9391-0c281ab10db2")
 		)
-		(pin ""
+		(pin "16"
 			(uuid "7707f6d2-83e4-494b-bc6c-8a0c44c99ce7")
 		)
-		(pin ""
+		(pin "15"
 			(uuid "cbd051b2-9980-42ac-b01b-2083180c546b")
 		)
-		(pin ""
+		(pin "14"
 			(uuid "743fc7bd-4378-454b-97be-b4182028dac0")
 		)
 		(instances
