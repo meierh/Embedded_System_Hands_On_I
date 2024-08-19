@@ -7631,15 +7631,15 @@
 			(remove_unused_layers no)
 			(uuid "3c2e08d7-eb8d-4d4e-8156-5569cf4e220c")
 		)
-		(model "${KICAD8_3DMODEL_DIR}/Rotary_Encoder.3dshapes/RotaryEncoder_Alps_EC12E_Vertical_H20mm.wrl"
+		(model "${KIPRJMOD}/EC12E-150.STEP"
 			(offset
-				(xyz 0 0 0)
+				(xyz 7.5 -2.5 2)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 90)
 			)
 		)
 	)
