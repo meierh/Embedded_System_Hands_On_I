@@ -6,11 +6,10 @@ BaseApp::BaseApp
     System* system
 ):
 Application(system),
-baseItem(54,40,20,"Hello",255),
+baseItem(54,20,20,"Welcome",255),
 peroidCounter(0)
 {
-    std::cout<<"Created Base app"<<std::endl;
-    displayImage = {baseItem};
+    displayImage.push_back(baseItem);
     displayCommand();
     std::cout<<"Setup BaseApp"<<std::endl;
 }
@@ -26,31 +25,31 @@ void BaseApp::work()
         {
             case BtnLeftClick:
             {
-                DisplayItem actionItem(54,70,10,"BtnLeftClick",128);
+                DisplayItem actionItem(74,40,10,"BtnLeftClick",128);
                 displayImage.push_back(actionItem);
                 break;
             }
             case BtnCenterClick:
             {
-                DisplayItem actionItem(54,70,10,"BtnCenterClick",128);
+                DisplayItem actionItem(74,40,10,"BtnCenterClick",128);
                 displayImage.push_back(actionItem);
                 break;
             }
             case BtnRightClick:
             {
-                DisplayItem actionItem(54,70,10,"BtnRightClick",128);
+                DisplayItem actionItem(74,40,10,"BtnRightClick",128);
                 displayImage.push_back(actionItem);
                 break;
             }
             case RotateClock:
             {
-                DisplayItem actionItem(54,70,10,"RotateClock",128);
+                DisplayItem actionItem(74,40,10,"RotateClock",128);
                 displayImage.push_back(actionItem);
                 break;
             }
             case RotateAntiClock:
             {
-                DisplayItem actionItem(54,70,10,"RotateAntiClock",128);                                displayImage.push_back(actionItem);
+                DisplayItem actionItem(74,40,10,"RotateAntiClock",128);                                displayImage.push_back(actionItem);
                 break;
             }
             case OnePeriod:

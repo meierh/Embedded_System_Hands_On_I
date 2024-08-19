@@ -23,11 +23,34 @@ class SmartEgg : public Application
          */
         void speakerCommand() override;
         void displayCommand() override;
+        void displayCommand(std::vector<DisplayItem> items);
         
     private:
-        const DisplayItem baseItem;
-        std::vector<DisplayItem> displayImage;
         uint peroidCounter;
+        
+        void collectItems();
+        
+        DisplayItem minText;
+        DisplayItem secText;
+
+        DisplayItem timeMin;
+        DisplayItem timeSeparator;
+        DisplayItem timeSec;
+        
+        DisplayItem eggText;
+        DisplayItem eggStatus;
+        
+        enum SmartEggStatus{SetMin,SetSec,Run,End};
+        SmartEggStatus status = End;
+        uint remainingSeconds = 0;
+        std::pair<uint,uint> secondsToMinSecs(uint remainingSeconds);
+        uint secondsToMinSecs(std::pair<uint,uint> minSec);
+        
+        uint setMinutes;
+        uint setSeconds;
+        
+        void writeMinutes(uint minutes);
+        void writeSeconds(uint seconds);
 };
 
 

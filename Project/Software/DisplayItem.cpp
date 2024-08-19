@@ -1,5 +1,10 @@
 #include "DisplayItem.h"
 
+DisplayItem::DisplayItem
+():
+type(ItemType::Empty)
+{}
+
 DisplayItem::DisplayItem(ItemType type):type(type)
 {}
 

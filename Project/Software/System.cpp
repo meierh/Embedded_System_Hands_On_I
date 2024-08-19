@@ -21,13 +21,27 @@ void System::work()
 
 void System::buttonModePress()
 {
-    std::cout<<"System::buttonModePress"<<std::endl;
     if(app==nullptr)
+    {
         app = new class BaseApp(this);
+        current = BaseApp;
+    }
     else
     {
         delete app;
-        app = new class BaseApp(this);
+        switch(current)
+        {
+            case BaseApp:
+                app = new class SmartEgg(this);
+                current = SmartEgg;
+                break;
+            case SmartEgg:
+                app = new class BaseApp(this);
+                current = BaseApp;
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -67,6 +81,4 @@ void System::periodElapsed()
 {
     if(app!=nullptr)
         app->onPeriod();
-    else
-        std::cout<<"Error: System::periodElapsed nullptr"<<std::endl;
 }

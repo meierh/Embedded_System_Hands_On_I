@@ -6,10 +6,10 @@ HardwareEmulator::HardwareEmulator
 ):
 Fl_Double_Window(250,310,"Eieruhr"),
 display(61,61,128,128),
-btnMode(30, 210, 40,40,"Mode"),
-btnLeft(80, 210, 40,40,"Left"),
-btnCenter(130, 210, 40,40,"Center"),
-btnRight(180, 210, 40,40,"Right"),
+btnMode(10, 110, 45,45,"Mode"),
+btnLeft(40, 210, 50,45,"Left"),
+btnCenter(100, 210,50,45,"Center"),
+btnRight(160, 210, 50,45,"Right"),
 btnClockwise(75,270, 50,30,"<<<"),
 btnAnticlockwise(125,270, 50,30,">>>")
 {       
@@ -52,6 +52,7 @@ void HardwareEmulator::btnModeCallback(Fl_Widget* wid, long data)
     else
         std::cout<<"Error: HardwareEmulator:49::btnModeCallback nullptr"<<std::endl;
 }
+
 void HardwareEmulator::btnLeftCallback(Fl_Widget* wid, long data)
 {
     if(sys!=nullptr)
@@ -59,6 +60,7 @@ void HardwareEmulator::btnLeftCallback(Fl_Widget* wid, long data)
     else
         std::cout<<"Error: HardwareEmulator::btnLeftCallback nullptr"<<std::endl;
 }
+
 void HardwareEmulator::btnCenterCallback(Fl_Widget* wid, long data)
 {
     if(sys!=nullptr)
@@ -66,6 +68,7 @@ void HardwareEmulator::btnCenterCallback(Fl_Widget* wid, long data)
     else
         std::cout<<"Error: HardwareEmulator::btnCenterCallback nullptr"<<std::endl;
 }
+
 void HardwareEmulator::btnRightCallback(Fl_Widget* wid, long data)
 {
     if(sys!=nullptr)
@@ -73,6 +76,7 @@ void HardwareEmulator::btnRightCallback(Fl_Widget* wid, long data)
     else
         std::cout<<"Error: HardwareEmulator::btnRightCallback nullptr"<<std::endl;
 }
+
 void HardwareEmulator::rotateCallback(Fl_Widget* wid, long data)
 {
     if(sys!=nullptr)
@@ -87,6 +91,7 @@ void HardwareEmulator::rotateCallback(Fl_Widget* wid, long data)
     else
         std::cout<<"Error: HardwareEmulator::rotateCallback nullptr"<<std::endl;
 }
+
 void HardwareEmulator::idleCallback()
 {    
     if(sys!=nullptr)
@@ -97,15 +102,25 @@ void HardwareEmulator::idleCallback()
         {
             time = std::chrono::system_clock::now();
             sys->periodElapsed();
-            std::cout<<"Elapse"<<std::endl;
         }
         sys->work();
     }
-    else
-        std::cout<<"Error: HardwareEmulator::idleCallback nullptr"<<std::endl;
 }
+
+void HardwareEmulator::clearDisplay()
+{
+    auto img_surf = std::make_unique<Fl_Image_Surface>(W,H);
+    Fl_Surface_Device::push_current(img_surf.get());
+    fl_color(FL_WHITE);
+    fl_rectf(0, 0, W, H);
+    Fl_Surface_Device::pop_current();
+    display.image(img_surf->image());
+    display.redraw();
+}
+
 void HardwareEmulator::displayImage(std::vector<DisplayItem> items)
 {
+    clearDisplay();
     auto img_surf = std::make_unique<Fl_Image_Surface>(W,H);
     Fl_Surface_Device::push_current(img_surf.get());
     fl_color(FL_WHITE);

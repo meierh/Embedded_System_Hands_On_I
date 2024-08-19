@@ -6,7 +6,8 @@
 class DisplayItem
 {
     public:
-        enum ItemType{Text};
+        enum ItemType{Text,Empty};
+        DisplayItem();
         DisplayItem(ItemType type);
         DisplayItem(int offsetH,int offsetW, int size, std::string characters, std::uint8_t intensity);
 

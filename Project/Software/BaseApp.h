@@ -29,7 +29,6 @@ class BaseApp : public Application
     
     private:
         const DisplayItem baseItem;
-        std::vector<DisplayItem> displayImage;
         uint peroidCounter;
 };
 

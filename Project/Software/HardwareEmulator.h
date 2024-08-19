@@ -31,6 +31,7 @@ class HardwareEmulator : public Fl_Double_Window
         void displayImage(std::vector<DisplayItem> items);
         
     private:
+        void clearDisplay();
         Fl_Box display;
         
         Fl_Button btnMode;

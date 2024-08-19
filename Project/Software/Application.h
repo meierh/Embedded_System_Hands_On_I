@@ -40,6 +40,19 @@ class Application
     public:
         virtual void speakerCommand()=0;
         virtual void displayCommand()=0;
+        
+    protected:
+        std::vector<DisplayItem> displayImage;
+        virtual void collectItems();
+        
+        const DisplayItem modeText;
+        DisplayItem modeStatus;
+        
+        DisplayItem batteryStatus;
+                
+        DisplayItem time;
+        
+        void updateClock();
 };
 
 #endif
