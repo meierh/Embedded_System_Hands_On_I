@@ -3795,22 +3795,24 @@
 				)
 			)
 		)
-		(symbol "Switch:SW_Push_Dual"
+		(symbol "Switch:SW_Push"
+			(pin_numbers hide)
 			(pin_names
 				(offset 1.016) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "SW"
-				(at 0 7.62 0)
+				(at 1.27 2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Value" "SW_Push_Dual"
-				(at 0 -6.35 0)
+			(property "Value" "SW_Push"
+				(at 0 -1.524 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -3818,7 +3820,7 @@
 				)
 			)
 			(property "Footprint" ""
-				(at 0 7.62 0)
+				(at 0 5.08 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -3827,7 +3829,7 @@
 				)
 			)
 			(property "Datasheet" "~"
-				(at 0 0 0)
+				(at 0 5.08 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -3835,7 +3837,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Push button switch, generic, symbol, four pins"
+			(property "Description" "Push button switch, generic, two pins"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3853,20 +3855,9 @@
 					(hide yes)
 				)
 			)
-			(symbol "SW_Push_Dual_0_1"
+			(symbol "SW_Push_0_1"
 				(circle
-					(center -2.032 -2.54)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center -2.032 2.54)
+					(center -2.032 0)
 					(radius 0.508)
 					(stroke
 						(width 0)
@@ -3878,7 +3869,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 -0.508) (xy 0 -1.016)
+						(xy 0 1.27) (xy 0 3.048)
 					)
 					(stroke
 						(width 0)
@@ -3890,79 +3881,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0.508) (xy 0 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 1.016) (xy 0 1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.032) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 3.048) (xy 0 3.556)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 3.81) (xy 0 5.588)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -1.27) (xy -2.54 -1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 3.81) (xy -2.54 3.81)
+						(xy 2.54 1.27) (xy -2.54 1.27)
 					)
 					(stroke
 						(width 0)
@@ -3973,18 +3892,7 @@
 					)
 				)
 				(circle
-					(center 2.032 -2.54)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 2.54)
+					(center 2.032 0)
 					(radius 0.508)
 					(stroke
 						(width 0)
@@ -3995,7 +3903,7 @@
 					)
 				)
 				(pin passive line
-					(at -5.08 2.54 0)
+					(at -5.08 0 0)
 					(length 2.54)
 					(name "1"
 						(effects
@@ -4013,7 +3921,7 @@
 					)
 				)
 				(pin passive line
-					(at 5.08 2.54 180)
+					(at 5.08 0 180)
 					(length 2.54)
 					(name "2"
 						(effects
@@ -4028,55 +3936,6 @@
 								(size 1.27 1.27)
 							)
 						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -2.54 0)
-					(length 2.54)
-					(name "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 2.54)
-					(name "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "SW_Push_Dual_1_1"
-				(rectangle
-					(start -3.175 5.715)
-					(end 3.175 -4.445)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
 					)
 				)
 			)
@@ -5344,6 +5203,12 @@
 		(uuid "85a51d62-d934-401f-ad17-548577237165")
 	)
 	(junction
+		(at 191.77 255.27)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8b12cd64-a7ee-4dad-b713-3a66199c59d5")
+	)
+	(junction
 		(at 45.72 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5386,12 +5251,6 @@
 		(uuid "ab04bec8-ef1d-4faf-9903-79d465f2e264")
 	)
 	(junction
-		(at 185.42 66.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ad37437c-4b73-409d-b4d9-2e6b911a6606")
-	)
-	(junction
 		(at 45.72 242.57)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5422,6 +5281,12 @@
 		(uuid "baf51e47-daf5-4593-bb68-2da0940773f1")
 	)
 	(junction
+		(at 190.5 234.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bb85e950-c326-4cc0-8ff8-e6674bc245c2")
+	)
+	(junction
 		(at 251.46 41.91)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5432,6 +5297,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c81b39a7-b983-4a47-bcfb-af26b66508a1")
+	)
+	(junction
+		(at 132.08 236.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ca292211-e10a-4a70-9aba-c5a3884328e2")
 	)
 	(junction
 		(at 292.1 40.64)
@@ -5456,6 +5327,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d8fcfc33-4a45-4918-9093-5bfd67bca3e7")
+	)
+	(junction
+		(at 132.08 255.27)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e72a7fed-ba43-4715-abd7-02b5a8f5cdbc")
 	)
 	(junction
 		(at 198.12 41.91)
@@ -5488,16 +5365,12 @@
 		(uuid "02117dd8-f9a7-4980-973c-55650560191b")
 	)
 	(no_connect
-		(at 350.52 144.78)
-		(uuid "084cc1bb-b279-4eb3-b3fc-f6381495e747")
-	)
-	(no_connect
-		(at 248.92 118.11)
-		(uuid "085e8bfe-1b96-4a96-bcd9-4ff6c9ab809d")
-	)
-	(no_connect
 		(at 97.79 181.61)
 		(uuid "097144cb-7693-4cb3-9860-576240e016a4")
+	)
+	(no_connect
+		(at 284.48 82.55)
+		(uuid "0c07f94d-5229-4609-8b8a-54247d66d3c4")
 	)
 	(no_connect
 		(at 248.92 115.57)
@@ -5552,10 +5425,6 @@
 		(uuid "714756d9-b1af-4899-9b43-570b47d68b77")
 	)
 	(no_connect
-		(at 248.92 120.65)
-		(uuid "7193eb0d-4667-4b12-93b9-892148623f45")
-	)
-	(no_connect
 		(at 97.79 173.99)
 		(uuid "75e9000e-68c4-4b6a-8128-da584bf8cbf8")
 	)
@@ -5600,20 +5469,12 @@
 		(uuid "9c54d0e4-4756-4cc1-81c3-ae667f8ff724")
 	)
 	(no_connect
-		(at 350.52 147.32)
-		(uuid "9e537fc8-9ab4-45a9-aca9-74c160706f8d")
-	)
-	(no_connect
 		(at 248.92 130.81)
 		(uuid "a55eb0b0-aa96-4c79-acc5-d1681f51e619")
 	)
 	(no_connect
 		(at 72.39 39.37)
 		(uuid "b92a060e-674e-47a5-ab9a-ef17984ec14a")
-	)
-	(no_connect
-		(at 284.48 77.47)
-		(uuid "bbccb6dd-8d74-46f2-a616-f87b996e5321")
 	)
 	(no_connect
 		(at 284.48 85.09)
@@ -5699,6 +5560,16 @@
 	)
 	(wire
 		(pts
+			(xy 190.5 229.87) (xy 190.5 234.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07a0bf38-fb80-4b7b-be2a-77804749f6c6")
+	)
+	(wire
+		(pts
 			(xy 186.69 50.8) (xy 198.12 50.8)
 		)
 		(stroke
@@ -5716,6 +5587,16 @@
 			(type default)
 		)
 		(uuid "0c5bbd90-502e-4095-b65b-1dc83ba3d627")
+	)
+	(wire
+		(pts
+			(xy 350.52 147.32) (xy 354.33 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c91495a-3f54-424d-97f2-d79b3dbd4e25")
 	)
 	(wire
 		(pts
@@ -5766,6 +5647,16 @@
 			(type default)
 		)
 		(uuid "0eebd09e-ab8d-43a1-9b92-c2beccdd1c7d")
+	)
+	(wire
+		(pts
+			(xy 190.5 234.95) (xy 190.5 237.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1270dd9f-5794-43f2-9d29-ed7f8871cbe2")
 	)
 	(wire
 		(pts
@@ -5879,6 +5770,16 @@
 	)
 	(wire
 		(pts
+			(xy 132.08 231.14) (xy 132.08 236.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20205381-7bad-4f4b-9bf4-b7d78652fe24")
+	)
+	(wire
+		(pts
 			(xy 210.82 50.8) (xy 198.12 50.8)
 		)
 		(stroke
@@ -5959,6 +5860,16 @@
 	)
 	(wire
 		(pts
+			(xy 181.61 257.81) (xy 181.61 260.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a7d39f3-5458-4cb6-a539-60170b771610")
+	)
+	(wire
+		(pts
 			(xy 104.14 193.04) (xy 59.69 193.04)
 		)
 		(stroke
@@ -6009,6 +5920,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.92 236.22) (xy 121.92 231.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "35493c8e-9c2b-4a2d-ad1c-778f9fe9f1f0")
+	)
+	(wire
+		(pts
 			(xy 85.09 59.69) (xy 85.09 60.96)
 		)
 		(stroke
@@ -6016,6 +5937,16 @@
 			(type default)
 		)
 		(uuid "35b379d6-a0b7-410b-b26c-afe8a046f5a5")
+	)
+	(wire
+		(pts
+			(xy 187.96 66.04) (xy 187.96 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3778286f-4f91-4815-a1c6-bcb176876e1f")
 	)
 	(wire
 		(pts
@@ -6056,6 +5987,16 @@
 			(type default)
 		)
 		(uuid "3d2680cb-7efa-4e26-8401-3b5ad1454e45")
+	)
+	(wire
+		(pts
+			(xy 191.77 250.19) (xy 191.77 255.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3d353f31-fe26-4003-96bb-3c9b04a8470a")
 	)
 	(wire
 		(pts
@@ -6106,6 +6047,16 @@
 			(type default)
 		)
 		(uuid "433bf20d-50d6-4266-af4c-77fb69f829da")
+	)
+	(wire
+		(pts
+			(xy 121.92 257.81) (xy 121.92 260.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4681b98d-ee34-4e75-b81a-dd234290dda2")
 	)
 	(wire
 		(pts
@@ -6209,6 +6160,16 @@
 	)
 	(wire
 		(pts
+			(xy 132.08 255.27) (xy 132.08 257.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5392a910-888b-4c1a-ab8d-3377d75e6c47")
+	)
+	(wire
+		(pts
 			(xy 201.93 66.04) (xy 201.93 59.69)
 		)
 		(stroke
@@ -6216,6 +6177,16 @@
 			(type default)
 		)
 		(uuid "539732c1-196f-43ca-8c0b-3394a53f8903")
+	)
+	(wire
+		(pts
+			(xy 180.34 237.49) (xy 180.34 240.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "55226811-6baa-4cb5-a130-bb812359ff7f")
 	)
 	(wire
 		(pts
@@ -6469,6 +6440,26 @@
 	)
 	(wire
 		(pts
+			(xy 181.61 250.19) (xy 191.77 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77ab1942-a9b5-42e3-afb3-6f49d8f506af")
+	)
+	(wire
+		(pts
+			(xy 132.08 236.22) (xy 132.08 238.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78694d35-fa0d-4ebb-b9f1-da2394ec6db6")
+	)
+	(wire
+		(pts
 			(xy 76.2 189.23) (xy 74.93 189.23)
 		)
 		(stroke
@@ -6639,6 +6630,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.92 255.27) (xy 121.92 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "962d01bd-5e58-4469-9bd7-672e7686ed9b")
+	)
+	(wire
+		(pts
 			(xy 45.72 251.46) (xy 45.72 252.73)
 		)
 		(stroke
@@ -6689,6 +6690,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.92 250.19) (xy 132.08 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ec63040-389b-47f9-b2b0-c9566adebab9")
+	)
+	(wire
+		(pts
 			(xy 26.67 170.18) (xy 74.93 170.18)
 		)
 		(stroke
@@ -6706,16 +6717,6 @@
 			(type default)
 		)
 		(uuid "a0551ea1-afe9-42c6-b6d5-8371323fb20f")
-	)
-	(wire
-		(pts
-			(xy 185.42 66.04) (xy 187.96 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a1211c91-e18a-4cfd-af40-f9f48cb1c16e")
 	)
 	(wire
 		(pts
@@ -6819,6 +6820,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.92 231.14) (xy 132.08 231.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b4dbb1e2-3410-471e-b872-5762fcf59afa")
+	)
+	(wire
+		(pts
 			(xy 266.7 50.8) (xy 266.7 67.31)
 		)
 		(stroke
@@ -6846,6 +6857,16 @@
 			(type default)
 		)
 		(uuid "b75d8dd5-ef74-4651-9e48-52ab5534e616")
+	)
+	(wire
+		(pts
+			(xy 181.61 255.27) (xy 181.61 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b90596af-f352-4df2-a64e-fe7d413d81f3")
 	)
 	(wire
 		(pts
@@ -6936,6 +6957,16 @@
 			(type default)
 		)
 		(uuid "cac15e03-f595-4a3b-81d5-1f464cd179f9")
+	)
+	(wire
+		(pts
+			(xy 350.52 144.78) (xy 354.33 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "caf29429-cf89-496e-b844-bac8769915df")
 	)
 	(wire
 		(pts
@@ -7039,6 +7070,16 @@
 	)
 	(wire
 		(pts
+			(xy 180.34 234.95) (xy 180.34 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d5361211-aae4-46ba-a75f-2f6d8671e9be")
+	)
+	(wire
+		(pts
 			(xy 45.72 59.69) (xy 49.53 59.69)
 		)
 		(stroke
@@ -7069,13 +7110,13 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 71.12) (xy 200.66 71.12)
+			(xy 191.77 255.27) (xy 191.77 257.81)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "db355137-bcc1-4bcb-b225-85beb4848c77")
+		(uuid "d9bee34c-4b2a-4ef5-8b32-c22031159cd9")
 	)
 	(wire
 		(pts
@@ -7086,6 +7127,16 @@
 			(type default)
 		)
 		(uuid "dccdd3a0-113c-44de-ac54-aa3bc66d53fd")
+	)
+	(wire
+		(pts
+			(xy 121.92 238.76) (xy 121.92 241.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd56f83f-45f0-4779-9ac2-6ad482fe6c26")
 	)
 	(wire
 		(pts
@@ -7146,6 +7197,16 @@
 			(type default)
 		)
 		(uuid "e8e23916-5437-4455-8784-351a1870139f")
+	)
+	(wire
+		(pts
+			(xy 180.34 229.87) (xy 190.5 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e9e9d03f-e8cf-4510-97d5-6443e1c521c1")
 	)
 	(wire
 		(pts
@@ -7269,6 +7330,16 @@
 	)
 	(wire
 		(pts
+			(xy 132.08 250.19) (xy 132.08 255.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f90dc2aa-de25-4f2f-b690-a183e3321753")
+	)
+	(wire
+		(pts
 			(xy 106.68 50.8) (xy 120.65 50.8)
 		)
 		(stroke
@@ -7325,8 +7396,7 @@
 			(type default)
 		)
 		(fill
-			(type color)
-			(color 255 0 0 1)
+			(type none)
 		)
 		(uuid 11fa4817-31a6-41fb-b3ff-58334f616490)
 	)
@@ -7791,19 +7861,6 @@
 		)
 		(uuid "97ee1e82-f4c8-44dd-812c-65ffef89de71")
 	)
-	(text "TODO: select STM pins \nfor additional UART port"
-		(exclude_from_sim no)
-		(at 383.032 146.558 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(thickness 0.254)
-				(bold yes)
-				(color 255 0 0 1)
-			)
-		)
-		(uuid "98b67c5c-02c2-41f1-9d1e-8ce5828887f5")
-	)
 	(text "Push Buttons"
 		(exclude_from_sim no)
 		(at 106.934 226.822 0)
@@ -8001,16 +8058,16 @@
 		)
 		(uuid "f8bf5651-c181-4402-8c5c-b7b24e3a6b63")
 	)
-	(label "I2C_SCL"
-		(at 354.33 57.15 0)
+	(label "USART3_RX"
+		(at 354.33 147.32 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
-				(size 0.762 0.762)
+				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "03ec3156-4366-4d6d-81fb-352fb8b71e46")
+		(uuid "01500d60-a616-4bba-bb69-1fa5df5dda97")
 	)
 	(label "DAC_L"
 		(at 74.93 181.61 180)
@@ -8210,7 +8267,7 @@
 		)
 		(uuid "51669fdb-c20a-45cf-83eb-ceacb8ea2702")
 	)
-	(label "UART2_RX"
+	(label "USART2_TX"
 		(at 64.77 173.99 180)
 		(fields_autoplaced yes)
 		(effects
@@ -8220,17 +8277,6 @@
 			(justify right bottom)
 		)
 		(uuid "59be3dd0-75b3-4dba-a821-8bb31e3ebc84")
-	)
-	(label "I2C1_SDA"
-		(at 354.33 54.61 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 0.762 0.762)
-			)
-			(justify left bottom)
-		)
-		(uuid "5e2dfec6-d864-4cf7-a09f-0706dd8060f6")
 	)
 	(label "DFPlayer-On{slash}Off switch"
 		(at 284.48 115.57 0)
@@ -8254,7 +8300,7 @@
 		)
 		(uuid "66024048-1ce7-4977-8f22-cadf5350f511")
 	)
-	(label "I2C_SCL"
+	(label "I2C1_SCL"
 		(at 363.22 118.11 0)
 		(fields_autoplaced yes)
 		(effects
@@ -8298,8 +8344,8 @@
 		)
 		(uuid "7aaadd23-60ae-4f3d-b379-ee542bd5b988")
 	)
-	(label "UART2_TX"
-		(at 284.48 82.55 0)
+	(label "USART2_RX"
+		(at 284.48 80.01 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8364,8 +8410,8 @@
 		)
 		(uuid "881493e9-f121-4885-b9d3-19ec907fc42b")
 	)
-	(label "I2C_SCL"
-		(at 284.48 133.35 0)
+	(label "I2C1_SCL"
+		(at 284.48 130.81 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8374,6 +8420,17 @@
 			(justify left bottom)
 		)
 		(uuid "927e6e2d-d516-4675-b8f4-bb0e0c11ca6f")
+	)
+	(label "USART3_TX"
+		(at 248.92 118.11 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "972f44a1-bc41-4350-8320-9f50683d28f8")
 	)
 	(label "Bat+"
 		(at 31.75 30.48 180)
@@ -8409,7 +8466,7 @@
 		(uuid "a11b82f1-8f68-487a-96dd-a29ab0d3c600")
 	)
 	(label "I2C1_SDA"
-		(at 284.48 130.81 0)
+		(at 284.48 133.35 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8419,8 +8476,8 @@
 		)
 		(uuid "a5f60617-5fd7-48c7-8d33-56b17bb7c213")
 	)
-	(label "UART2_RX"
-		(at 284.48 80.01 0)
+	(label "USART2_TX"
+		(at 284.48 77.47 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8463,6 +8520,17 @@
 		)
 		(uuid "b3df5fb4-02cd-421a-8293-3999637c7ac1")
 	)
+	(label "I2C1_SDA"
+		(at 354.33 54.61 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b93c43eb-76c2-45c6-8a7a-161945bb82d4")
+	)
 	(label "Battery-SW"
 		(at 76.2 34.29 0)
 		(fields_autoplaced yes)
@@ -8474,7 +8542,7 @@
 		)
 		(uuid "ba15e5c2-0c41-43aa-ab3a-57ef45facfcc")
 	)
-	(label "UART2_TX"
+	(label "USART2_RX"
 		(at 64.77 176.53 180)
 		(fields_autoplaced yes)
 		(effects
@@ -8485,7 +8553,7 @@
 		)
 		(uuid "bdbb8aae-7cf4-47b5-95de-9368c77d38d7")
 	)
-	(label "I2C_SCL"
+	(label "I2C1_SCL"
 		(at 45.72 144.78 0)
 		(fields_autoplaced yes)
 		(effects
@@ -8518,6 +8586,17 @@
 		)
 		(uuid "d934cad7-25c0-46d7-a4f1-8bebe74375fa")
 	)
+	(label "I2C1_SCL"
+		(at 354.33 57.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "db6bd245-a7c0-4742-99f3-244858dba9c8")
+	)
 	(label "Button_1"
 		(at 284.48 140.97 0)
 		(fields_autoplaced yes)
@@ -8540,6 +8619,17 @@
 		)
 		(uuid "e552f55d-35e0-466d-8649-4a64967194fd")
 	)
+	(label "USART3_TX"
+		(at 354.33 144.78 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e8ae7718-6c8a-4e16-b478-b03e2080c13a")
+	)
 	(label "Battery-SW"
 		(at 26.67 170.18 0)
 		(fields_autoplaced yes)
@@ -8561,6 +8651,17 @@
 			(justify left bottom)
 		)
 		(uuid "f6b4941a-fdfe-424b-ac64-566faec13cf5")
+	)
+	(label "USART3_RX"
+		(at 248.92 120.65 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "f7389389-e372-4303-8ace-cd399a83db9d")
 	)
 	(label "NRST"
 		(at 219.71 66.04 0)
@@ -9066,7 +9167,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 149.5552 262.89 0)
 			(effects
 				(font
@@ -9450,79 +9551,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_Push_Dual")
-		(at 185.42 237.49 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "1c94ed9d-516e-4463-bc7f-e4e831711eeb")
-		(property "Reference" "SW4"
-			(at 184.912 230.632 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_Push_Dual"
-			(at 185.674 244.094 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H13mm"
-			(at 185.42 229.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 185.42 237.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 185.42 237.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "bfa9d2ea-28b8-4641-8e31-a6433bfcf14d")
-		)
-		(pin "4"
-			(uuid "3dbaa608-43fa-42cd-b72d-60ae82315c0e")
-		)
-		(pin "2"
-			(uuid "2976b708-4033-4d49-93b8-8853175a58b7")
-		)
-		(pin "1"
-			(uuid "144e1d32-cee4-4ccf-9e94-28bbdf0ed837")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "SW4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 208.28 262.89 0)
 		(unit 1)
@@ -9682,7 +9710,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 293.0652 48.26 0)
 			(effects
 				(font
@@ -10123,17 +10151,32 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 132.08 241.3 90)
+		(lib_id "Switch:SW_Push")
+		(at 127 238.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2957b7b1-a7e3-4c3c-ba58-d6ad270af885")
-		(property "Reference" "#PWR018"
-			(at 138.43 241.3 0)
+		(uuid "293bc3d6-aa10-4d8e-8aa0-0cbc234ef8e0")
+		(property "Reference" "SW3"
+			(at 125.73 234.188 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 127.508 240.538 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H13mm"
+			(at 127 233.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10141,17 +10184,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 135.89 241.2999 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 132.08 241.3 0)
+		(property "Datasheet" "~"
+			(at 127 233.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10159,8 +10193,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 132.08 241.3 0)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 127 238.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10168,22 +10202,16 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 132.08 241.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
+		(pin "2"
+			(uuid "544459a1-dec2-4fd2-ab02-51641261afdc")
 		)
 		(pin "1"
-			(uuid "41aa8d57-5113-4538-9c96-a93eefd99b8a")
+			(uuid "84fc0596-d8d8-4890-bfe0-19ea6a7e87b0")
 		)
 		(instances
-			(project "smartEggTimer"
+			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "#PWR018")
+					(reference "SW3")
 					(unit 1)
 				)
 			)
@@ -10331,79 +10359,6 @@
 			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Switch:SW_Push_Dual")
-		(at 127 257.81 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "319d2977-813e-4082-8dfd-462a9703f7ed")
-		(property "Reference" "SW5"
-			(at 126.492 250.952 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_Push_Dual"
-			(at 127.254 264.414 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H13mm"
-			(at 127 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 127 257.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 127 257.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "969e31c5-0680-4e34-862e-929d0e669c2d")
-		)
-		(pin "4"
-			(uuid "cff68f66-ae18-4a91-9605-1cde1f2cf6a0")
-		)
-		(pin "2"
-			(uuid "ce00d310-bf1d-47e4-9944-60bc89d92f2b")
-		)
-		(pin "1"
-			(uuid "f38f9c59-18db-4dea-8353-2f8e1fa4230f")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "SW5")
 					(unit 1)
 				)
 			)
@@ -10884,73 +10839,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 132.08 260.35 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "44e2a385-317f-4172-9862-e4b542acba48")
-		(property "Reference" "#PWR027"
-			(at 138.43 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 135.89 260.3499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 132.08 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 132.08 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 132.08 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "31f7f16c-b1e2-4494-adf3-7d824cee2942")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "#PWR027")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 148.59 243.84 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11410,79 +11298,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_Push_Dual")
-		(at 127 238.76 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "4c921451-120d-47d2-9052-a934b7c86f0d")
-		(property "Reference" "SW3"
-			(at 126.492 231.902 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_Push_Dual"
-			(at 127.254 245.364 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H13mm"
-			(at 127 231.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 127 238.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 127 238.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "88ee9813-2fac-42cb-84c6-82490d88470a")
-		)
-		(pin "4"
-			(uuid "2c7533be-9e1c-46a8-a66c-2f4b4eda417a")
-		)
-		(pin "2"
-			(uuid "e73b1921-df7f-4a2d-a09b-ab16bc3bcaa2")
-		)
-		(pin "1"
-			(uuid "95c90056-d1d3-4e99-8d14-1db437520b90")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "SW3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 306.07 133.35 90)
 		(unit 1)
@@ -11786,7 +11601,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 135.5852 49.53 0)
 			(effects
 				(font
@@ -12100,7 +11915,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 281.6352 48.26 0)
 			(effects
 				(font
@@ -12413,73 +12228,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 190.5 240.03 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6521824c-0f77-402c-9080-0f0b9f082d38")
-		(property "Reference" "#PWR025"
-			(at 196.85 240.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 194.31 240.0299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 190.5 240.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 190.5 240.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 190.5 240.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1bf5a411-763d-4ebd-9520-8e5d46df56ed")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "#PWR025")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 29.21 194.31 90)
 		(unit 1)
@@ -12616,6 +12364,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 186.69 257.81 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "69370ae3-43b7-4ffc-8f91-bcca0652d7cd")
+		(property "Reference" "SW6"
+			(at 185.42 253.238 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 187.198 259.588 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H13mm"
+			(at 186.69 252.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 186.69 252.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 186.69 257.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "cb2899b3-8b2b-4e69-acce-ec3c516fb5af")
+		)
+		(pin "1"
+			(uuid "65bd6cbb-695d-48cf-993e-ff7c25406ecc")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "SW6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 354.33 52.07 270)
 		(unit 1)
@@ -12623,7 +12438,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "69ac0240-269d-4f6a-9905-48ae2fab02be")
 		(property "Reference" "#PWR030"
 			(at 350.52 52.07 0)
@@ -13044,7 +12858,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 46.6852 260.35 0)
 			(effects
 				(font
@@ -13246,7 +13060,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 107.6452 49.53 0)
 			(effects
 				(font
@@ -13315,7 +13129,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 149.5552 243.84 0)
 			(effects
 				(font
@@ -13828,73 +13642,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 191.77 260.35 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9a1f7648-3af1-4159-ac18-6dc096b25497")
-		(property "Reference" "#PWR038"
-			(at 198.12 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 195.58 260.3499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 191.77 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 191.77 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 191.77 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "32e5cf48-8948-47cb-901d-68de84ceabd7")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "#PWR038")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 45.72 246.38 0)
 		(mirror y)
@@ -13920,7 +13667,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 44.7548 250.19 0)
 			(effects
 				(font
@@ -13989,7 +13736,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 313.3852 48.26 0)
 			(effects
 				(font
@@ -14229,31 +13976,31 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_Push_Dual")
-		(at 193.04 68.58 0)
+		(lib_id "Switch:SW_Push")
+		(at 193.04 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a90d8c5f-cd03-4c3f-be34-87ff3e4a50ba")
+		(uuid "a72d52b2-c366-4bc4-9ebb-8f7a53dcf828")
 		(property "Reference" "SW1"
-			(at 192.532 61.722 0)
+			(at 190.5 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "SW_Push_Dual"
-			(at 193.294 75.184 0)
+		(property "Value" "SW_Push"
+			(at 193.04 67.564 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H9.5mm"
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
 			(at 193.04 60.96 0)
 			(effects
 				(font
@@ -14263,7 +14010,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 193.04 68.58 0)
+			(at 193.04 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14271,31 +14018,92 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 193.04 68.58 0)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 193.04 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
-		)
-		(pin "3"
-			(uuid "d0c8917a-c906-4d2e-bce9-5b405027b326")
-		)
-		(pin "4"
-			(uuid "906412fb-f974-45d6-a5b7-e355465eca31")
 		)
 		(pin "2"
-			(uuid "452c4754-87bf-482b-bfa3-a1350a187c68")
+			(uuid "ebef1fa8-258c-4a00-bec2-939ab1caaf70")
 		)
 		(pin "1"
-			(uuid "43b0a602-7222-4172-9aab-350b5a9e6261")
+			(uuid "94d197f4-0f1c-432e-a306-d9bfdcc603f0")
 		)
 		(instances
 			(project ""
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 185.42 237.49 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "abdc1947-dd1e-492a-a66a-4f682e894f92")
+		(property "Reference" "SW4"
+			(at 184.15 232.918 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 185.928 239.268 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H13mm"
+			(at 185.42 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 185.42 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 185.42 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "a2ce833f-833f-4d19-af54-07819eeec44f")
+		)
+		(pin "1"
+			(uuid "e7682b1f-683f-4aae-b5c6-e7dcee7dc09b")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "SW4")
 					(unit 1)
 				)
 			)
@@ -14739,146 +14547,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_Push_Dual")
-		(at 186.69 257.81 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c162f6cd-7fc1-423d-82ba-173c6b80ed21")
-		(property "Reference" "SW6"
-			(at 186.182 250.952 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_Push_Dual"
-			(at 186.944 264.414 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H13mm"
-			(at 186.69 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 186.69 257.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Push button switch, generic, symbol, four pins"
-			(at 186.69 257.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "7edefaca-00a3-487f-8fb3-2ab55bcc0bd3")
-		)
-		(pin "4"
-			(uuid "6de13985-fdad-49da-8434-21bd11c8b134")
-		)
-		(pin "2"
-			(uuid "d2f47047-aa88-4de9-842d-6ae93759aee5")
-		)
-		(pin "1"
-			(uuid "a6947907-43b3-4a47-b9f9-1e95f7eed964")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "SW6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 200.66 71.12 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c1962221-8d87-458b-9f22-dcd496f76284")
-		(property "Reference" "#PWR010"
-			(at 207.01 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 204.47 71.1199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 200.66 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 200.66 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dc4e0314-b887-41db-a081-b76def0d2d7a")
-		)
-		(instances
-			(project "smartEggTimer"
-				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
-					(reference "#PWR010")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3.3V")
 		(at 110.49 236.22 90)
 		(unit 1)
@@ -15137,6 +14805,73 @@
 			(project "smartEggTimer"
 				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
 					(reference "H2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 127 257.81 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cc51a921-9e52-43bc-ad44-56f0ce3595b1")
+		(property "Reference" "SW5"
+			(at 125.73 253.238 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 127.508 259.588 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H13mm"
+			(at 127 252.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 127 252.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 127 257.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "deba13c4-aa42-42e1-988a-7a66e9affbad")
+		)
+		(pin "1"
+			(uuid "c90f2359-d22f-469f-a534-3769be02a01e")
+		)
+		(instances
+			(project "smartEggTimer"
+				(path "/9fde6b9c-53fd-4f64-9761-84b01b75f921"
+					(reference "SW5")
 					(unit 1)
 				)
 			)
@@ -15849,7 +15584,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 209.2452 262.89 0)
 			(effects
 				(font
@@ -16052,7 +15787,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 207.9752 242.57 0)
 			(effects
 				(font
