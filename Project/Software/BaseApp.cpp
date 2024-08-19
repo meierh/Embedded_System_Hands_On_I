@@ -7,9 +7,11 @@ BaseApp::BaseApp
 ):
 Application(system),
 baseItem(54,20,20,"Welcome",255),
+actionItem(74,40,10,"",128),
 peroidCounter(0)
 {
-    displayImage.push_back(baseItem);
+    modeStatus.characters = "Base";
+    actionItem.setType(DisplayItem::ItemType::Empty);
     displayCommand();
     std::cout<<"Setup BaseApp"<<std::endl;
 }
@@ -20,40 +22,43 @@ void BaseApp::work()
     {
         Action action = inputActions.front();
         inputActions.pop();
-        displayImage.push_back(baseItem);
         switch(action)
         {
             case BtnLeftClick:
             {
-                DisplayItem actionItem(74,40,10,"BtnLeftClick",128);
-                displayImage.push_back(actionItem);
+                actionItem.characters="BtnLeftClick";
+                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case BtnCenterClick:
             {
-                DisplayItem actionItem(74,40,10,"BtnCenterClick",128);
-                displayImage.push_back(actionItem);
+                actionItem.characters="BtnCenterClick";
+                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case BtnRightClick:
             {
-                DisplayItem actionItem(74,40,10,"BtnRightClick",128);
-                displayImage.push_back(actionItem);
+                actionItem.characters="BtnRightClick";
+                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case RotateClock:
-            {
-                DisplayItem actionItem(74,40,10,"RotateClock",128);
-                displayImage.push_back(actionItem);
+            {                
+                actionItem.characters="RotateClock";
+                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case RotateAntiClock:
             {
-                DisplayItem actionItem(74,40,10,"RotateAntiClock",128);                                displayImage.push_back(actionItem);
+                actionItem.characters="RotateAntiClock";
+                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case OnePeriod:
+            {
+                actionItem.setType(DisplayItem::ItemType::Empty);
                 break;
+            }
             default:
                 break;
         }
@@ -73,12 +78,27 @@ void BaseApp::onPeriod()
 
 void BaseApp::displayCommand()
 {
+    updateClock();
+    collectItems();
+    displayCommand(displayImage);
+}
+
+void BaseApp::displayCommand(std::vector<DisplayItem> items)
+{
     if(system!=nullptr)
         system->displayImage(displayImage);
-    else
-        std::cout<<"Error: BaseApp::displayCommand nullptr"<<std::endl;
 }
 
 void BaseApp::speakerCommand()
 {
+}
+
+void BaseApp::collectItems()
+{
+    displayImage.clear();
+
+    Application::collectItems();
+    
+    displayImage.push_back(baseItem);
+    displayImage.push_back(actionItem);    
 }

@@ -8,7 +8,7 @@ SmartEgg::SmartEgg
 Application(system),
 peroidCounter(0)
 {
-    modeStatus = DisplayItem(10,30,10,"SmartEgg",128);
+    modeStatus.characters = "SmartEgg";
     
     minText = DisplayItem(40,15,20,"Min",255);
     secText = DisplayItem(40,70,20,"Sec",255);
@@ -18,11 +18,26 @@ peroidCounter(0)
     
     eggText = DisplayItem(110,2,20,"Egg",255);
     eggStatus = DisplayItem(125,2,8,"M, 7°C, 123m, 72°C",128);
+    
+    timeMinUnderline = DisplayItem(81,8,81,52,128);
+    timeMinUnderline.setType(DisplayItem::ItemType::Empty);
+    timeSecUnderline = DisplayItem(81,72,81,116,128);
+    timeSecUnderline.setType(DisplayItem::ItemType::Empty);
         
     displayCommand();
     std::cout<<"Setup SmartEgg"<<std::endl;
     updateClock();
 }
+
+SmartEgg::SmartEgg
+(
+    System* system,
+    SmartEggStatus status
+):
+Application(system),
+peroidCounter(0),
+status(status)
+{}
 
 void SmartEgg::work()
 {
@@ -40,6 +55,7 @@ void SmartEgg::work()
                     std::pair<uint,uint> minSecs = secondsToMinSecs(remainingSeconds);
                     setMinutes = minSecs.first;
                     setSeconds = minSecs.second;
+                    timeMinUnderline.setType(DisplayItem::ItemType::Line);
                 }
                 break;
             }
@@ -48,6 +64,8 @@ void SmartEgg::work()
                 if(status==SetMin || status==SetSec)
                 {
                     remainingSeconds = secondsToMinSecs({setMinutes,setSeconds});
+                    timeMinUnderline.setType(DisplayItem::ItemType::Empty);
+                    timeSecUnderline.setType(DisplayItem::ItemType::Empty);
                     status = Run;
                 }
                 break;
@@ -60,6 +78,7 @@ void SmartEgg::work()
                     std::pair<uint,uint> minSecs = secondsToMinSecs(remainingSeconds);
                     setMinutes = minSecs.first;
                     setSeconds = minSecs.second;
+                    timeSecUnderline.setType(DisplayItem::ItemType::Line);
                 }
                 break;
             }
@@ -82,7 +101,7 @@ void SmartEgg::work()
                 if(status==SetMin)
                 {
                     if(setMinutes<1)
-                        setMinutes = 60;
+                        setMinutes = 59;
                     else
                         setMinutes--;
                     
@@ -91,7 +110,7 @@ void SmartEgg::work()
                 else if(status==SetSec)
                 {
                     if(setSeconds<1)
-                        setSeconds = 60;
+                        setSeconds = 59;
                     else
                         setSeconds--;
                     
@@ -148,7 +167,8 @@ void SmartEgg::displayCommand()
 
 void SmartEgg::displayCommand(std::vector<DisplayItem> items)
 {
-    system->displayImage(displayImage);
+    if(system!=nullptr)
+        system->displayImage(displayImage);
 }
 
 void SmartEgg::speakerCommand()
@@ -160,9 +180,7 @@ void SmartEgg::collectItems()
     displayImage.clear();
     
     Application::collectItems();
-    
-    displayImage.push_back(modeStatus);
-    
+        
     displayImage.push_back(minText);
     displayImage.push_back(secText);
     
@@ -172,6 +190,9 @@ void SmartEgg::collectItems()
     
     displayImage.push_back(eggText);
     displayImage.push_back(eggStatus);
+    
+    displayImage.push_back(timeMinUnderline);
+    displayImage.push_back(timeSecUnderline);
 }
 
 std::pair<uint,uint> SmartEgg::secondsToMinSecs

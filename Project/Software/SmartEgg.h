@@ -25,6 +25,14 @@ class SmartEgg : public Application
         void displayCommand() override;
         void displayCommand(std::vector<DisplayItem> items);
         
+    protected:
+        enum SmartEggStatus{SetMin,SetSec,Run,End,Base};
+        SmartEgg(System* system, SmartEggStatus status);
+        
+        std::pair<uint,uint> secondsToMinSecs(uint remainingSeconds);
+        uint secondsToMinSecs(std::pair<uint,uint> minSec);
+        uint remainingSeconds = 0;
+        
     private:
         uint peroidCounter;
         
@@ -40,11 +48,10 @@ class SmartEgg : public Application
         DisplayItem eggText;
         DisplayItem eggStatus;
         
-        enum SmartEggStatus{SetMin,SetSec,Run,End};
+        DisplayItem timeMinUnderline;
+        DisplayItem timeSecUnderline;
+        
         SmartEggStatus status = End;
-        uint remainingSeconds = 0;
-        std::pair<uint,uint> secondsToMinSecs(uint remainingSeconds);
-        uint secondsToMinSecs(std::pair<uint,uint> minSec);
         
         uint setMinutes;
         uint setSeconds;

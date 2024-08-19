@@ -7,6 +7,7 @@
 #include "HardwareEmulator.h"
 #include "BaseApp.h"
 #include "SmartEgg.h"
+#include "AlarmClock.h"
 
 class System
 {
@@ -30,7 +31,7 @@ class System
         virtual std::string getSystemTime()=0;
         
     protected:
-        enum App{BaseApp,SmartEgg,Empty};
+        enum App{BaseApp,SmartEgg,AlarmClock,Empty};
         App current = Empty;
         Application* app = nullptr;
 };

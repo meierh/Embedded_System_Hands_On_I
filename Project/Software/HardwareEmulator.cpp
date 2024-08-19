@@ -118,7 +118,14 @@ void HardwareEmulator::clearDisplay()
     display.redraw();
 }
 
-void HardwareEmulator::displayImage(std::vector<DisplayItem> items)
+Fl_Color HardwareEmulator::intensityToColor(std::uint8_t intensity)
+{
+    int trunc_intensity = intensity/10;
+    trunc_intensity = std::clamp(trunc_intensity,0,23);
+    return FL_GRAY0+23-trunc_intensity;
+}
+
+void HardwareEmulator::displayImage(const std::vector<DisplayItem>& items)
 {
     clearDisplay();
     auto img_surf = std::make_unique<Fl_Image_Surface>(W,H);
@@ -129,15 +136,16 @@ void HardwareEmulator::displayImage(std::vector<DisplayItem> items)
     {
         if(item.getType()==DisplayItem::ItemType::Text)
         {
-            std::uint8_t intensity = item.intensity;
-            int trunc_intensity = intensity/10;
-            trunc_intensity = std::clamp(trunc_intensity,0,23);
-            fl_color(FL_GRAY0+23-trunc_intensity);
+            fl_color(intensityToColor(item.intensity));
             fl_font(FL_HELVETICA_BOLD, item.size);
             fl_draw(item.characters.c_str(),item.offsetW,item.offsetH);
         }
-        else
-            std::cout<<"Error"<<std::endl;
+        else if(item.getType()==DisplayItem::ItemType::Line)
+        {
+            fl_color(intensityToColor(item.intensity));
+            fl_font(FL_HELVETICA_BOLD, item.size);
+            fl_line(item.offsetW,item.offsetH,item.endW,item.endH);
+        }
     }
     Fl_Surface_Device::pop_current();
     display.image(img_surf->image());

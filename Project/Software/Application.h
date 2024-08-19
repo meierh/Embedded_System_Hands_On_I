@@ -52,7 +52,7 @@ class Application
                 
         DisplayItem time;
         
-        void updateClock();
+        virtual void updateClock();
 };
 
 #endif

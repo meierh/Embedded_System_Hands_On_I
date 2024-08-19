@@ -23,3 +23,19 @@ size(size),
 characters(characters),
 intensity(intensity)
 {}
+
+DisplayItem::DisplayItem
+(
+    int offsetH,
+    int offsetW,
+    int endH,
+    int endW,
+    std::uint8_t intensity
+):
+type(Line),
+offsetH(offsetH),
+offsetW(offsetW),
+endH(endH),
+endW(endW),
+intensity(intensity)
+{}

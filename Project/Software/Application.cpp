@@ -6,6 +6,7 @@ Application::Application
     System* system
 ):
 modeText(10,2,10,"Mode",255),
+modeStatus(10,30,10,"",128),
 batteryStatus(10,105,10,"73%",255),
 time(122,100,10,"00:00",255),
 system(system)
@@ -46,6 +47,7 @@ void Application::collectItems()
 {
     displayImage.clear();
     displayImage.push_back(modeText);
+    displayImage.push_back(modeStatus);
     displayImage.push_back(batteryStatus);
     displayImage.push_back(time);
 }

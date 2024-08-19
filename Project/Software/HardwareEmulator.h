@@ -28,10 +28,11 @@ class HardwareEmulator : public Fl_Double_Window
     public:
         HardwareEmulator();
         void setSystem(System* sys);
-        void displayImage(std::vector<DisplayItem> items);
+        void displayImage(const std::vector<DisplayItem>& items);
         
     private:
         void clearDisplay();
+        Fl_Color intensityToColor(std::uint8_t intensity);
         Fl_Box display;
         
         Fl_Button btnMode;
