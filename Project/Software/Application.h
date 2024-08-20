@@ -52,6 +52,13 @@ class Application
                 
         DisplayItem time;
         
+        DisplayItem buttonLine;
+        DisplayItem leftCenterButtonLine;
+        DisplayItem centerRightButtonLine;
+        DisplayItem leftButtonLabel;
+        DisplayItem centerButtonLabel;
+        DisplayItem rightButtonLabel;
+        
         virtual void updateClock();
 };
 

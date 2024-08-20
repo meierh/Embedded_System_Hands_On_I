@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <string>
 
-class AlarmClock : public SmartEgg
+class AlarmClock : public Application
 {
     public:
         AlarmClock(System* system);
@@ -25,13 +25,14 @@ class AlarmClock : public SmartEgg
         void displayCommand() override;
         void displayCommand(std::vector<DisplayItem> items);
         
-    protected:
+    private:
         void updateClock() override;
+        
+        void fireAlarm();
         
         std::pair<uint,uint> minutesToHourMins(uint remainingMinutes);
         uint minutesToHourMins(std::pair<uint,uint> minSec);
         
-    private:
         uint peroidCounter;
         
         void collectItems();
@@ -56,7 +57,7 @@ class AlarmClock : public SmartEgg
         DisplayItem timeMinUnderline;
         DisplayItem timeSecUnderline;
         
-        enum AlarmClockStatus{SetHour,SetMin,Run,End,Base};
+        enum AlarmClockStatus{SetHour,SetMin,Run,End};
         AlarmClockStatus status = End;
         uint remainingMinutes = 0;
         

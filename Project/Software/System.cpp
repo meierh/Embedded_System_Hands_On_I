@@ -36,10 +36,26 @@ void System::buttonModePress()
                 current = SmartEgg;
                 break;
             case SmartEgg:
+                app = new class EggTimer(this);
+                current = EggTimer;
+                break;
+            case EggTimer:
                 app = new class AlarmClock(this);
                 current = AlarmClock;
                 break;
             case AlarmClock:
+                app = new class Stopwatch(this);
+                current = Stopwatch;
+                break;
+            case Stopwatch:
+                app = new class Snake(this);
+                current = Snake;
+                break;
+            case Snake:
+                app = new class SpaceInvaders(this);
+                current = SpaceInvaders;
+                break;
+            case SpaceInvaders:
                 app = new class BaseApp(this);
                 current = BaseApp;
                 break;

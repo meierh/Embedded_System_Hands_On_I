@@ -5,7 +5,9 @@ AlarmClock::AlarmClock
 (
     System* system
 ):
-SmartEgg(system,SmartEgg::SmartEggStatus::Base)
+Application(system),
+alarmHours(0),
+alarmMinutes(0)
 {
     modeStatus.characters = "AlarmClock";
     
@@ -20,11 +22,11 @@ SmartEgg(system,SmartEgg::SmartEggStatus::Base)
     timeSeparatorAlarm = DisplayItem(95,55,35,":",255);
     timeMinAlarm = DisplayItem(95,70,35,"00",255);
     
-    remainTimeText = DisplayItem(115,2,10,"Remaining",255);
-    remaingTimeHour = DisplayItem(125,12,8,"00",128);
-    remaingTimeHourSuffix = DisplayItem(125,20,8,"h",128);
-    remaingTimeMinutes = DisplayItem(125,30,8,"00",128);
-    remaingTimeMinutesSuffix = DisplayItem(125,38,8,"m",128);
+    remainTimeText = DisplayItem(108,2,10,"Remaining",255);
+    remaingTimeHour = DisplayItem(116,12,8,"00",128);
+    remaingTimeHourSuffix = DisplayItem(116,20,8,"h",128);
+    remaingTimeMinutes = DisplayItem(116,30,8,"00",128);
+    remaingTimeMinutesSuffix = DisplayItem(116,38,8,"m",128);
     
     timeMinUnderline = DisplayItem(96,16,96,48,128);
     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
@@ -49,10 +51,13 @@ void AlarmClock::work()
                 if(status==Run || status==End)
                 {
                     status = SetHour;
-                    std::pair<uint,uint> minSecs = minutesToHourMins(remainingMinutes);
-                    alarmHours = minSecs.first;
-                    alarmMinutes = minSecs.second;
                     timeMinUnderline.setType(DisplayItem::ItemType::Line);
+                }
+                else if(status==SetMin)
+                {
+                    status = SetHour;
+                    timeMinUnderline.setType(DisplayItem::ItemType::Line);
+                    timeSecUnderline.setType(DisplayItem::ItemType::Empty);
                 }
                 break;
             }
@@ -60,7 +65,24 @@ void AlarmClock::work()
             {
                 if(status==SetHour || status==SetMin)
                 {
-                    remainingSeconds = minutesToHourMins({alarmHours,alarmMinutes});
+                    
+                    std::cout<<"alarmHours:"<<alarmHours<<std::endl;
+                    std::cout<<"alarmMinutes:"<<alarmMinutes<<std::endl;
+
+                    uint remainingAlarmMinutes = minutesToHourMins({alarmHours,alarmMinutes});
+                    uint clockHours = std::stoi(timeHourClock.characters);
+                    uint clockMinutes = std::stoi(timeMinClock.characters);
+                    uint timeMinutes = clockHours*60+clockMinutes;
+                    
+                    std::cout<<"timeHourClock.characters:"<<timeHourClock.characters<<std::endl;
+                    std::cout<<"timeHourClock.characters:"<<timeMinClock.characters<<std::endl;
+                    
+                    std::cout<<"remainingAlarmMinutes:"<<remainingAlarmMinutes<<std::endl;
+                    std::cout<<"timeMinutes:"<<timeMinutes<<std::endl;
+                    if(remainingAlarmMinutes>=timeMinutes)
+                        remainingMinutes = remainingAlarmMinutes-timeMinutes;
+                    else
+                        remainingMinutes = 24*60-(timeMinutes-remainingAlarmMinutes);
                     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
                     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
                     status = Run;
@@ -72,9 +94,12 @@ void AlarmClock::work()
                 if(status==Run || status==End)
                 {
                     status = SetMin;
-                    std::pair<uint,uint> minSecs = secondsToMinSecs(remainingSeconds);
-                    alarmHours = minSecs.first;
-                    alarmMinutes = minSecs.second;
+                    timeSecUnderline.setType(DisplayItem::ItemType::Line);
+                }
+                else if(status==SetHour)
+                {
+                    status = SetMin;
+                    timeMinUnderline.setType(DisplayItem::ItemType::Empty);
                     timeSecUnderline.setType(DisplayItem::ItemType::Line);
                 }
                 break;
@@ -123,15 +148,13 @@ void AlarmClock::work()
                     if(remainingMinutes>0)
                     {
                         remainingMinutes--;
-                        std::pair<uint,uint> hourMins = minutesToHourMins(remainingMinutes);
-                        writeRemainingHours(hourMins.first);
-                        writeRemainingMinutes(hourMins.second);
                         std::cout<<"Rem:"<<remainingMinutes<<std::endl;
                         displayCommand();
                     }
                     else
                     {
                         std::cout<<"ALARM!!!!"<<std::endl;
+                        fireAlarm();
                         status = End;
                     }
                 }
@@ -161,6 +184,11 @@ void AlarmClock::onPeriod()
 void AlarmClock::displayCommand()
 {
     updateClock();
+    writeHours(alarmHours);
+    writeMinutes(alarmMinutes);
+    std::pair<uint,uint> hourMins = minutesToHourMins(remainingMinutes);
+    writeRemainingHours(hourMins.first);
+    writeRemainingMinutes(hourMins.second);
     collectItems();
     displayCommand(displayImage);
 }
@@ -179,17 +207,22 @@ void AlarmClock::updateClock()
     timeMinClock.characters = time.characters.substr(3,2);
 }
 
+void AlarmClock::fireAlarm()
+{
+    std::cout<<"Fire Alarm"<<std::endl;
+}
+
 std::pair<uint,uint> AlarmClock::minutesToHourMins
 (
     uint remainingMinutes
 )
 {
-    return secondsToMinSecs(remainingMinutes);
+    return {remainingMinutes/60,remainingMinutes%60};
 }
 
 uint AlarmClock::minutesToHourMins(std::pair<uint,uint> hourMin)
 {
-    return secondsToMinSecs(hourMin);
+    return hourMin.first*60+hourMin.second;
 }
 
 void AlarmClock::speakerCommand()

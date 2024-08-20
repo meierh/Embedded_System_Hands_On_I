@@ -5,8 +5,7 @@ SmartEgg::SmartEgg
 (
     System* system
 ):
-Application(system),
-peroidCounter(0)
+EggTimerBase(system)
 {
     modeStatus.characters = "SmartEgg";
     
@@ -16,28 +15,26 @@ peroidCounter(0)
     timeSeparator = DisplayItem(80,55,45,":",255);
     timeSec = DisplayItem(80,70,45,"00",255);
     
-    eggText = DisplayItem(110,2,20,"Egg",255);
-    eggStatus = DisplayItem(125,2,8,"M, 7°C, 123m, 72°C",128);
+    eggText =       DisplayItem(100, 2,20,"Egg"  ,255);
     
-    timeMinUnderline = DisplayItem(81,8,81,52,128);
-    timeMinUnderline.setType(DisplayItem::ItemType::Empty);
-    timeSecUnderline = DisplayItem(81,72,81,116,128);
-    timeSecUnderline.setType(DisplayItem::ItemType::Empty);
-        
+    eggSize =       DisplayItem(115, 2,8,"XX"   ,128);
+    eggIniTemp =    DisplayItem(115,12,8,"XXXX" ,128);
+    eggPressure =   DisplayItem(115,32,8,"XXXXX",128);
+    eggEndTemp =    DisplayItem(115,59,8,"XXXX" ,128);
+    
+    writeSize(sizes[sizeInd]);
+    writeIniTemp(setIniTemp);
+    writePressure(setPressure);
+    writeEndTemp(setEndTemp);
+    
+    leftButtonLabel.characters = "Left";
+    leftButtonLabel.offsetW -= 5 ;
+    centerButtonLabel.characters = "Enter";
+    rightButtonLabel.characters = "Right";
+
     displayCommand();
     std::cout<<"Setup SmartEgg"<<std::endl;
-    updateClock();
 }
-
-SmartEgg::SmartEgg
-(
-    System* system,
-    SmartEggStatus status
-):
-Application(system),
-peroidCounter(0),
-status(status)
-{}
 
 void SmartEgg::work()
 {
@@ -51,75 +48,148 @@ void SmartEgg::work()
             {
                 if(status==Run || status==End)
                 {
-                    status = SetMin;
-                    std::pair<uint,uint> minSecs = secondsToMinSecs(remainingSeconds);
-                    setMinutes = minSecs.first;
-                    setSeconds = minSecs.second;
-                    timeMinUnderline.setType(DisplayItem::ItemType::Line);
+                    status = SetSize;
+                    eggSize.intensity = 255;
+                }
+                else
+                {
+                    switch(status)
+                    {
+                        case SetSize:
+                            eggSize.intensity = 128;
+                            eggIniTemp.intensity = 255;
+                            status = SetIniTemp;
+                            break;
+                        case SetIniTemp:
+                            eggIniTemp.intensity = 128;
+                            eggPressure.intensity = 255;
+                            status = SetPressure;
+                            break;
+                        case SetPressure:
+                            eggPressure.intensity = 128;
+                            eggEndTemp.intensity = 255;
+                            status = SetEndTemp;
+                            break;
+                        case SetEndTemp:
+                            eggEndTemp.intensity = 128;
+                            eggSize.intensity = 255;
+                            status = SetSize;
+                            break;
+                    }
                 }
                 break;
             }
             case BtnCenterClick:
             {
-                if(status==SetMin || status==SetSec)
+                std::cout<<"Enter"<<std::endl;
+                if(status!=Run && status!=End)
                 {
-                    remainingSeconds = secondsToMinSecs({setMinutes,setSeconds});
-                    timeMinUnderline.setType(DisplayItem::ItemType::Empty);
-                    timeSecUnderline.setType(DisplayItem::ItemType::Empty);
-                    status = Run;
+                    std::cout<<"Reset"<<std::endl;
+                    eggSize.intensity = 128;
+                    eggIniTemp.intensity = 128;
+                    eggPressure.intensity = 128;
+                    eggEndTemp.intensity = 128;
+                    remainingSeconds = computePerfectEggTime();
+                    std::pair<uint,uint> minSecs = secondsToMinSecs(remainingSeconds);
+                    setMinutes = minSecs.first;
+                    setSeconds = minSecs.second;
+                    status = Run;             
                 }
+                std::cout<<"Stat:"<<std::to_string(status)<<std::endl;
                 break;
             }
             case BtnRightClick:
             {
                 if(status==Run || status==End)
                 {
-                    status = SetSec;
-                    std::pair<uint,uint> minSecs = secondsToMinSecs(remainingSeconds);
-                    setMinutes = minSecs.first;
-                    setSeconds = minSecs.second;
-                    timeSecUnderline.setType(DisplayItem::ItemType::Line);
+                    status = SetSize;
+                    eggSize.intensity = 255;
+                }
+                else
+                {
+                    switch(status)
+                    {
+                        case SetSize:
+                            eggSize.intensity = 128;
+                            eggIniTemp.intensity = 255;
+                            status = SetIniTemp;
+                            break;
+                        case SetIniTemp:
+                            eggIniTemp.intensity = 128;
+                            eggPressure.intensity = 255;
+                            status = SetPressure;
+                            break;
+                        case SetPressure:
+                            eggPressure.intensity = 128;
+                            eggEndTemp.intensity = 255;
+                            status = SetEndTemp;
+                            break;
+                        case SetEndTemp:
+                            eggEndTemp.intensity = 128;
+                            eggSize.intensity = 255;
+                            status = SetSize;
+                            break;
+                    }
                 }
                 break;
             }
             case RotateClock:
             {
-                if(status==SetMin)
+                switch(status)
                 {
-                    setMinutes = (setMinutes+1)%60;
-                    writeMinutes(setMinutes);
-                }
-                else if(status==SetSec)
-                {
-                    setSeconds = (setSeconds+1)%60;
-                    writeSeconds(setSeconds);
+                    case SetSize:
+                        sizeInd++;
+                        if(sizeInd>=sizes.size())
+                            sizeInd=0;
+                        break;
+                    case SetIniTemp:
+                        setIniTemp++;
+                        if(setIniTemp>upperBoundIniTemp)
+                            setIniTemp=lowerBoundIniTemp;
+                        break;
+                    case SetPressure:
+                        setPressure++;
+                        if(setPressure>upperBoundPressure)
+                            setPressure=lowerBoundPressure;
+                        break;
+                    case SetEndTemp:
+                        setEndTemp++;
+                        if(setEndTemp>upperBoundEndTemp)
+                            setEndTemp=lowerBoundEndTemp;
+                        break;
                 }
                 break;
             }
             case RotateAntiClock:
             {
-                if(status==SetMin)
+                switch(status)
                 {
-                    if(setMinutes<1)
-                        setMinutes = 59;
-                    else
-                        setMinutes--;
-                    
-                    writeMinutes(setMinutes);
-                }
-                else if(status==SetSec)
-                {
-                    if(setSeconds<1)
-                        setSeconds = 59;
-                    else
-                        setSeconds--;
-                    
-                    writeSeconds(setSeconds);
+                    case SetSize:
+                        sizeInd--;
+                        if(sizeInd<0)
+                            sizeInd=3;
+                        break;
+                    case SetIniTemp:
+                        setIniTemp--;
+                        if(setIniTemp<lowerBoundIniTemp)
+                            setIniTemp=upperBoundIniTemp;
+                        break;
+                    case SetPressure:
+                        setPressure--;
+                        if(setPressure<lowerBoundPressure)
+                            setPressure=upperBoundPressure;
+                        break;
+                    case SetEndTemp:
+                        setEndTemp--;
+                        if(setEndTemp<lowerBoundEndTemp)
+                            setEndTemp=upperBoundEndTemp;
+                        break;
                 }
                 break;
             }
             case OnePeriod:
             {
+                std::cout<<sizes[sizeInd]<<" "<<std::to_string(setIniTemp)<<" "<<std::to_string(setPressure)<<" "<<std::to_string(setEndTemp)<<std::endl;
                 if(status==Run)
                 {
                     std::cout<<"Run"<<std::endl;
@@ -135,7 +205,7 @@ void SmartEgg::work()
                     else
                         status = End;
                 }
-                else if(status==SetMin || status==SetSec)
+                else if(status!=End)
                 {
                     displayCommand();
                 }
@@ -160,7 +230,13 @@ void SmartEgg::onPeriod()
 
 void SmartEgg::displayCommand()
 {
+    std::cout<<"status:"<<std::to_string(status)<<std::endl;
     updateClock();
+    writeSize(sizes[sizeInd]);
+    writeIniTemp(setIniTemp);
+    writePressure(setPressure);
+    writeEndTemp(setEndTemp);
+    
     collectItems();
     displayCommand(displayImage);
 }
@@ -189,42 +265,46 @@ void SmartEgg::collectItems()
     displayImage.push_back(timeSec);
     
     displayImage.push_back(eggText);
-    displayImage.push_back(eggStatus);
+    displayImage.push_back(eggSize);
+    displayImage.push_back(eggIniTemp);
+    displayImage.push_back(eggPressure);
+    displayImage.push_back(eggEndTemp);
+}
+
+uint SmartEgg::computePerfectEggTime()
+{
+    return 60;
+}
+
+void SmartEgg::writeSize(std::string size)
+{
+    eggSize.characters = size;
+}
+
+void SmartEgg::writeIniTemp(int temp)
+{
+    if(temp<0)
+        eggIniTemp.characters = " "+std::to_string(temp);
+    else if(temp<10)
+        eggIniTemp.characters = "  "+std::to_string(temp);
+    else
+        eggIniTemp.characters = std::to_string(temp);
     
-    displayImage.push_back(timeMinUnderline);
-    displayImage.push_back(timeSecUnderline);
+    eggIniTemp.characters+="°C";
 }
 
-std::pair<uint,uint> SmartEgg::secondsToMinSecs
-(
-    uint totalSeconds
-)
+void SmartEgg::writePressure(uint pressure)
 {
-    uint minutes = totalSeconds / 60;
-    uint seconds = totalSeconds - (minutes*60);
-    return {minutes,seconds};
-}
-
-uint SmartEgg::secondsToMinSecs
-(
-    std::pair<uint,uint> minSecs
-)
-{
-    return minSecs.first*60+minSecs.second;
-}
-
-void SmartEgg::writeMinutes(uint minutes)
-{
-    if(minutes<10)
-        timeMin.characters = "0"+std::to_string(minutes);
+    if(pressure>=1000)
+        eggPressure.characters = std::to_string(pressure);
     else
-        timeMin.characters = std::to_string(minutes);
+        eggPressure.characters = " "+std::to_string(pressure);
+    
+    eggPressure.characters+="m";
 }
 
-void SmartEgg::writeSeconds(uint seconds)
+void SmartEgg::writeEndTemp(int temp)
 {
-    if(seconds<10)
-        timeSec.characters = "0"+std::to_string(seconds);
-    else
-        timeSec.characters = std::to_string(seconds);
+    eggEndTemp.characters = std::to_string(temp);
+    eggEndTemp.characters+="°C";
 }

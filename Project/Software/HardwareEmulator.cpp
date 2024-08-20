@@ -143,8 +143,14 @@ void HardwareEmulator::displayImage(const std::vector<DisplayItem>& items)
         else if(item.getType()==DisplayItem::ItemType::Line)
         {
             fl_color(intensityToColor(item.intensity));
-            fl_font(FL_HELVETICA_BOLD, item.size);
+            //fl_font(FL_HELVETICA_BOLD, item.size);
             fl_line(item.offsetW,item.offsetH,item.endW,item.endH);
+        }
+        else if(item.getType()==DisplayItem::ItemType::Rectangle)
+        {
+            fl_color(intensityToColor(item.intensity));
+            //fl_font(FL_HELVETICA_BOLD, item.size);
+            fl_rect(item.offsetW,item.offsetH,item.endW,item.endH);
         }
     }
     Fl_Surface_Device::pop_current();

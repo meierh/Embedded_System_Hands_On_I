@@ -6,8 +6,12 @@
 #include "DisplayItem.h"
 #include "HardwareEmulator.h"
 #include "BaseApp.h"
+#include "EggTimer.h"
 #include "SmartEgg.h"
 #include "AlarmClock.h"
+#include "Stopwatch.h"
+#include "Snake.h"
+#include "SpaceInvaders.h"
 
 class System
 {
@@ -31,7 +35,7 @@ class System
         virtual std::string getSystemTime()=0;
         
     protected:
-        enum App{BaseApp,SmartEgg,AlarmClock,Empty};
+        enum App{BaseApp,SmartEgg,EggTimer,AlarmClock,Stopwatch,Snake,SpaceInvaders,Empty};
         App current = Empty;
         Application* app = nullptr;
 };

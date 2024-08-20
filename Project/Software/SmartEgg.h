@@ -1,10 +1,11 @@
 #ifndef SMARTEGG_H
 #define SMARTEGG_H
-#include "Application.h"
+#include "EggTimer.h"
 #include <cstdint>
 #include <string>
+#include <array>
 
-class SmartEgg : public Application
+class SmartEgg : public EggTimerBase
 {
     public:
         SmartEgg(System* system);
@@ -25,39 +26,42 @@ class SmartEgg : public Application
         void displayCommand() override;
         void displayCommand(std::vector<DisplayItem> items);
         
-    protected:
-        enum SmartEggStatus{SetMin,SetSec,Run,End,Base};
-        SmartEgg(System* system, SmartEggStatus status);
-        
-        std::pair<uint,uint> secondsToMinSecs(uint remainingSeconds);
-        uint secondsToMinSecs(std::pair<uint,uint> minSec);
-        uint remainingSeconds = 0;
+    protected:        
         
     private:
         uint peroidCounter;
+        uint computePerfectEggTime();
         
         void collectItems();
         
-        DisplayItem minText;
-        DisplayItem secText;
-
-        DisplayItem timeMin;
-        DisplayItem timeSeparator;
-        DisplayItem timeSec;
-        
         DisplayItem eggText;
-        DisplayItem eggStatus;
+        DisplayItem eggSize;
+        DisplayItem eggIniTemp;
+        DisplayItem eggPressure;
+        DisplayItem eggEndTemp;
         
-        DisplayItem timeMinUnderline;
-        DisplayItem timeSecUnderline;
-        
+        enum SmartEggStatus{SetSize,SetIniTemp,SetPressure,SetEndTemp,Run,End};
         SmartEggStatus status = End;
         
-        uint setMinutes;
-        uint setSeconds;
+        std::array<std::string,4> sizes = {"S","M","L","XL"};
+        int sizeInd = 1;
         
-        void writeMinutes(uint minutes);
-        void writeSeconds(uint seconds);
+        int lowerBoundIniTemp=-9;
+        int upperBoundIniTemp=40;
+        int setIniTemp = 7;
+        
+        uint lowerBoundPressure=500;
+        uint upperBoundPressure=9999;
+        uint setPressure = 1013;
+        
+        int lowerBoundEndTemp=30;
+        int upperBoundEndTemp=99;
+        int setEndTemp = 72;
+        
+        void writeSize(std::string size);
+        void writeIniTemp(int temp);
+        void writePressure(uint pressure);
+        void writeEndTemp(int temp);
 };
 
 

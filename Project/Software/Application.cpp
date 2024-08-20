@@ -8,7 +8,13 @@ Application::Application
 modeText(10,2,10,"Mode",255),
 modeStatus(10,30,10,"",128),
 batteryStatus(10,105,10,"73%",255),
-time(122,100,10,"00:00",255),
+time(115,100,10,"00:00",255),
+buttonLine(120,0,120,128,255),
+leftCenterButtonLine(120,43,128,43,255),
+centerRightButtonLine(120,85,128,85,255),
+leftButtonLabel(127,15,8,"Left",200),
+centerButtonLabel(127,52,8,"Center",200),
+rightButtonLabel(127,98,8,"Right",200),
 system(system)
 {
     updateClock();
@@ -48,8 +54,17 @@ void Application::collectItems()
     displayImage.clear();
     displayImage.push_back(modeText);
     displayImage.push_back(modeStatus);
+    
     displayImage.push_back(batteryStatus);
+    
     displayImage.push_back(time);
+    
+    displayImage.push_back(buttonLine);
+    displayImage.push_back(leftCenterButtonLine);
+    displayImage.push_back(centerRightButtonLine);
+    displayImage.push_back(leftButtonLabel);
+    displayImage.push_back(centerButtonLabel);
+    displayImage.push_back(rightButtonLabel);
 }
 
 void Application::updateClock()
