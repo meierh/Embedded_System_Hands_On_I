@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <string>
 #include "Application.h"
+#include <list>
 #include <array>
 
 class Snake : public Application
@@ -30,7 +31,6 @@ class Snake : public Application
         void displayCommand(std::vector<DisplayItem> items);
     
     private:
-        uint onPeriodCount;
         
         enum GameStatus{Initial,Play,End};
         GameStatus status = Initial;
@@ -41,11 +41,24 @@ class Snake : public Application
         DisplayItem bottomLine;
         DisplayItem topLine;
         
+        std::array<DisplayItem,31> drawGridW();
+        std::array<DisplayItem,17> drawGridH();
         int wSpacing = 4;
-        std::array<DisplayItem,31> gridW;
+        const std::array<DisplayItem,31> gridW;
         int hSpacing = 5;
-        std::array<DisplayItem,18> gridH;
+        const std::array<DisplayItem,17> gridH;
+        
+        enum SquareItem {SnakeBody, Food, Empty};
+        std::array<std::array<SquareItem,30>,16> playGridSet;
+        
+        using Square = std::pair<int,int>;
+        std::list<Square> snake;
+        enum SnakeDirection{Left,Forward,Right};
+        SnakeDirection nextDirection = Forward;
 
+        void updateGameStatus();
+        void printBoard(std::vector<DisplayItem>& boardItems);
+        
         uint peroidCounter;
                 
         void collectItems() override;
