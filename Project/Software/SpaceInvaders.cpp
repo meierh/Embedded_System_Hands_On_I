@@ -11,15 +11,17 @@ endItem(70,10,30,"Wasted",255),
 topLine(15,0,15,128,255),
 bottomLine(105,0,105,128,255),
 playerPosition(64),
-player(97,playerPosition-10,{5,20},255),
+player(97,playerPosition-10,{5,20},255,2),
 alienVelocity(1),
 spawnInterval(500),
+onPeriodCount(0),
 peroidCounter(0)
 {
     modeStatus.characters = "SpaceInvaders";
     leftButtonLabel.characters = "Start";
     centerButtonLabel.characters = "";
     rightButtonLabel.characters = "Fire";
+    endItem.setType(DisplayItem::ItemType::Empty);    
     displayCommand();
     std::cout<<"Setup SpaceInvaders"<<std::endl;
 }
@@ -71,7 +73,7 @@ void SpaceInvaders::work()
             }
             case BtnRightClick:
             {
-                std::tuple<uint,uint> newProjectile = {playerPosition-5,95};
+                std::tuple<int,int> newProjectile = {95,playerPosition-2};
                 projectiles.push_back(newProjectile);
                 break;
             }
@@ -97,9 +99,15 @@ void SpaceInvaders::work()
             }
             case OnePeriod:
             {
-                for(std::tuple<uint,uint>& pr : projectiles)
+                onPeriodCount++;
+                for(std::tuple<int,int>& pr : projectiles)
                 {
-                    
+                    std::get<0>(pr) = std::get<0>(pr)-moveLen(projectileSpeed);
+                }
+                for(auto iter=projectiles.begin(); iter!=projectiles.end(); iter++)
+                {
+                    if(std::get<0>(*iter)<15)
+                        iter = projectiles.erase(iter);
                 }
                 break;
             }
@@ -113,7 +121,7 @@ void SpaceInvaders::work()
 void SpaceInvaders::onPeriod()
 {
     peroidCounter++;
-    if(peroidCounter>=100)
+    if(peroidCounter>=3)
     {
         peroidCounter=0;
         inputActions.push(Action::OnePeriod);
@@ -138,6 +146,11 @@ void SpaceInvaders::speakerCommand()
 {
 }
 
+uint SpaceInvaders::moveLen(uint speed)
+{
+    return speed;
+}
+
 void SpaceInvaders::drawPlayer()
 {
     player.offsetW = playerPosition-10;
@@ -145,9 +158,9 @@ void SpaceInvaders::drawPlayer()
 
 void SpaceInvaders::drawProjectiles()
 {
-    for(std::tuple<uint,uint> pr : projectiles)
+    for(std::tuple<int,int> pr : projectiles)
     {
-        displayImage.push_back(DisplayItem(std::get<0>(pr),std::get<1>(pr),{8,4},150));
+        displayImage.push_back(DisplayItem(std::get<0>(pr),std::get<1>(pr),{8,4},150,4));
     }
 }
 
@@ -162,4 +175,9 @@ void SpaceInvaders::collectItems()
     displayImage.push_back(bottomLine);
     displayImage.push_back(topLine);
     displayImage.push_back(player);
+    
+    for(std::tuple<int,int>& pr : projectiles)
+    {
+        displayImage.push_back(DisplayItem(std::get<0>(pr),std::get<1>(pr),{3,3},255,5));
+    }
 }

@@ -44,15 +44,17 @@ DisplayItem::DisplayItem
 (
     int offsetH,
     int offsetW,
-    std::pair<uint,uint> boxSize,
-    std::uint8_t intensity
+    std::pair<int,int> boxSize,
+    std::uint8_t intensity,
+    uint innerMult
 ):
 type(Rectangle),
 offsetH(offsetH),
 offsetW(offsetW),
 endH(boxSize.first),
 endW(boxSize.second),
-intensity(intensity)
+intensity(intensity),
+innerMult(innerMult)
 {}
 
 std::string DisplayItem::to_string()

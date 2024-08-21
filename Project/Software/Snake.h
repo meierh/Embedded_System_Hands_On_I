@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <string>
 #include "Application.h"
+#include <array>
 
 class Snake : public Application
 {
@@ -29,11 +30,25 @@ class Snake : public Application
         void displayCommand(std::vector<DisplayItem> items);
     
     private:
-        const DisplayItem baseItem;
-        DisplayItem actionItem;
-        uint peroidCounter;
+        uint onPeriodCount;
         
-        void collectItems();
+        enum GameStatus{Initial,Play,End};
+        GameStatus status = Initial;
+       
+        DisplayItem baseItem;
+        DisplayItem endItem;
+        
+        DisplayItem bottomLine;
+        DisplayItem topLine;
+        
+        int wSpacing = 4;
+        std::array<DisplayItem,31> gridW;
+        int hSpacing = 5;
+        std::array<DisplayItem,18> gridH;
+
+        uint peroidCounter;
+                
+        void collectItems() override;
 };
 
 

@@ -30,6 +30,8 @@ class SpaceInvaders : public Application
         void displayCommand(std::vector<DisplayItem> items);
     
     private:
+        uint onPeriodCount;
+        
         enum GameStatus{Initial,Play,End};
         GameStatus status = Initial;
        
@@ -41,15 +43,17 @@ class SpaceInvaders : public Application
 
         uint peroidCounter;
         
+        uint moveLen(uint speed);
+        
         int playerPosition;
         DisplayItem player;
         void drawPlayer();
-        
-        const uint projectileSpeed = 20;
-        std::list<std::tuple<uint,uint>> projectiles;
+                
+        const uint projectileSpeed = 1;
+        std::list<std::tuple<int,int>> projectiles;
         void drawProjectiles();
         
-        std::list<std::tuple<uint,uint,uint,uint>> aliens;
+        std::list<std::tuple<int,int,int,int>> aliens;
         uint alienVelocity;
         uint spawnInterval;
         

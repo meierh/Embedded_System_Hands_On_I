@@ -6,14 +6,32 @@ Snake::Snake
     System* system
 ):
 Application(system),
-baseItem(54,20,20,"Welcome",255),
-actionItem(74,40,10,"",128),
+baseItem(54,15,10,"The only good alien \n    is a dead alien",255),
+endItem(70,10,30,"Wasted",255),
+topLine(15,0,15,128,255),
+bottomLine(105,0,105,128,255),
+onPeriodCount(0),
 peroidCounter(0)
 {
     modeStatus.characters = "Snake";
-    actionItem.setType(DisplayItem::ItemType::Empty);
+    leftButtonLabel.characters = "Start";
+    centerButtonLabel.characters = "";
+    rightButtonLabel.characters = "";
+    
+    baseItem.setType(DisplayItem::ItemType::Empty);
+    endItem.setType(DisplayItem::ItemType::Empty);
+
+    for(int w=0; w<gridW.size(); w++)
+    {
+        gridW[w] = DisplayItem(15,wSpacing*w+wSpacing,105,wSpacing*w+wSpacing,50);
+    }
+    for(int h=0; h<gridH.size(); h++)
+    {
+        gridH[h] = DisplayItem(hSpacing*h+15,0,hSpacing*(h)+15,128,50);
+    }
+    
     displayCommand();
-    std::cout<<"Setup Snake"<<std::endl;
+    std::cout<<"Setup SpaceInvaders"<<std::endl;
 }
 
 void Snake::work()
@@ -26,37 +44,26 @@ void Snake::work()
         {
             case BtnLeftClick:
             {
-                actionItem.characters="BtnLeftClick";
-                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case BtnCenterClick:
             {
-                actionItem.characters="BtnCenterClick";
-                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case BtnRightClick:
             {
-                actionItem.characters="BtnRightClick";
-                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case RotateClock:
             {                
-                actionItem.characters="RotateClock";
-                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case RotateAntiClock:
             {
-                actionItem.characters="RotateAntiClock";
-                actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case OnePeriod:
             {
-                actionItem.setType(DisplayItem::ItemType::Empty);
                 break;
             }
             default:
@@ -69,7 +76,7 @@ void Snake::work()
 void Snake::onPeriod()
 {
     peroidCounter++;
-    if(peroidCounter>=100)
+    if(peroidCounter>=50)
     {
         peroidCounter=0;
         inputActions.push(Action::OnePeriod);
@@ -100,5 +107,11 @@ void Snake::collectItems()
     Application::collectItems();
     
     displayImage.push_back(baseItem);
-    displayImage.push_back(actionItem);    
+    displayImage.push_back(topLine);
+    displayImage.push_back(bottomLine);
+    
+    for(DisplayItem& item : gridW)
+        displayImage.push_back(item);
+    for(DisplayItem& item : gridH)
+        displayImage.push_back(item);
 }
