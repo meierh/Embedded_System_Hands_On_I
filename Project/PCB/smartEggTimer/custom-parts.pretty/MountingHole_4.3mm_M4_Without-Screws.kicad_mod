@@ -1,0 +1,100 @@
+(footprint "MountingHole_4.3mm_M4_Without-Screws"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(locked yes)
+	(layer "F.Cu")
+	(descr "Mounting Hole 4.3mm, no annular, M4")
+	(tags "mounting hole 4.3mm no annular m4")
+	(property "Reference" "H2"
+		(at 0 -5.3 0)
+		(layer "F.Fab")
+		(uuid "0624f7d8-a795-464e-a513-da74a7c4f568")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "MountingHole"
+		(at 0 5.3 0)
+		(layer "F.Fab")
+		(uuid "2199c0fc-6c65-408a-a6e8-718ffcff3443")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "MountingHole:MountingHole_4.3mm_M4"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "172327f3-8914-442c-80f2-641d04a64356")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0c9bbf2c-942f-4186-b3de-602cb40ad915")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Mounting Hole without connection"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "24d4c27c-48ef-4e7a-ba79-b82b9a203db2")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr exclude_from_pos_files exclude_from_bom)
+	(fp_circle
+		(center 0 0)
+		(end 2.5 0)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "3ac748e8-ca3f-43df-9c06-ee58d416c45c")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "2c121a79-2237-4138-8b6d-1b86e4d0766a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" np_thru_hole circle
+		(at 0 0)
+		(size 4.3 4.3)
+		(drill 4.3)
+		(layers "*.Cu" "*.Mask")
+		(uuid "2cf553eb-bb71-496f-a777-218bbee786d8")
+	)
+)
