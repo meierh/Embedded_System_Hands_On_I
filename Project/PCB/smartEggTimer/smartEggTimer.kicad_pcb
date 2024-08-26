@@ -16764,6 +16764,18 @@
 		(layer "Edge.Cuts")
 		(uuid "ac4ae707-0cb5-4453-9e31-8ad16b2c9434")
 	)
+	(gr_text "to_nMOS"
+		(at 107.5 73.65 90)
+		(layer "B.SilkS")
+		(uuid "0106fb7d-36ae-4410-afd3-21e3e023e64b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.153)
+			)
+			(justify left bottom mirror)
+		)
+	)
 	(gr_text "B"
 		(at 125.175 103.05 0)
 		(layer "B.SilkS")
@@ -16824,8 +16836,8 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "GND"
-		(at 107.55 86.3 90)
+	(gr_text "to_nMOS"
+		(at 107.525 83.25 90)
 		(layer "B.SilkS")
 		(uuid "23f803ac-0413-4c08-aeea-3a9c6e0e5174")
 		(effects
@@ -16992,7 +17004,7 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "RX"
+	(gr_text "TX"
 		(at 97.5 87.525 90)
 		(layer "B.SilkS")
 		(uuid "754e3fe7-7e96-400b-9e85-80438190e0e3")
@@ -17221,18 +17233,6 @@
 		)
 	)
 	(gr_text "GND"
-		(at 107.6 73.675 90)
-		(layer "B.SilkS")
-		(uuid "b54be004-9298-412a-bcfb-c388c5faaf7a")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.153)
-			)
-			(justify left bottom mirror)
-		)
-	)
-	(gr_text "GND"
 		(at 110.225 120.075 90)
 		(layer "B.SilkS")
 		(uuid "b9de1e2f-c62d-4056-b0c2-f842f3754a02")
@@ -17400,7 +17400,7 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "TX"
+	(gr_text "RX"
 		(at 94.9 87.55 90)
 		(layer "B.SilkS")
 		(uuid "e53ece8f-8cc2-4bb3-9212-ecba34235d70")
