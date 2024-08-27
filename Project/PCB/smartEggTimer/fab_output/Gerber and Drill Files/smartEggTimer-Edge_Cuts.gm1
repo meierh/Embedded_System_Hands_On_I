@@ -1,0 +1,28 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,8.0.4*%
+%TF.CreationDate,2024-08-27T21:01:55+02:00*%
+%TF.ProjectId,smartEggTimer,736d6172-7445-4676-9754-696d65722e6b,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Profile,NP*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 8.0.4) date 2024-08-27 21:01:55*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,Profile*%
+%ADD10C,0.050000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+X136000000Y-100000000D02*
+G75*
+G02*
+X64000000Y-100000000I-36000000J0D01*
+G01*
+X64000000Y-100000000D02*
+G75*
+G02*
+X136000000Y-100000000I36000000J0D01*
+G01*
+M02*
