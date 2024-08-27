@@ -2,6 +2,7 @@
 #define DISPLAYITEM_H
 
 #include <string>
+#include <cstdint>
 
 class DisplayItem
 {

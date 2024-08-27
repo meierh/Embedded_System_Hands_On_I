@@ -16,10 +16,12 @@ alienVelocity(1),
 spawnInterval(500),
 peroidCounter(0)
 {
+    player.setType(DisplayItem::Empty);
     modeStatus.characters = "SpaceInvaders";
     leftButtonLabel.characters = "Start";
     centerButtonLabel.characters = "";
     rightButtonLabel.characters = "Fire";
+    endItem.setType(DisplayItem::Empty);
     displayCommand();
     std::cout<<"Setup SpaceInvaders"<<std::endl;
 }
@@ -66,7 +68,6 @@ void SpaceInvaders::work()
             }
             case BtnCenterClick:
             {
-
                 break;
             }
             case BtnRightClick:

@@ -13,7 +13,12 @@ EggTimerBase(system)
     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
     timeSecUnderline = DisplayItem(81,72,81,116,128);
     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
-        
+
+    leftButtonLabel.characters = "Mins";
+    leftButtonLabel.offsetW -= 5 ;
+    centerButtonLabel.characters = "Enter";
+    rightButtonLabel.characters = "Secs";
+    
     displayCommand();
     std::cout<<"Setup EggTimer"<<std::endl;
     updateClock();

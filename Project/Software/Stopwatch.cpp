@@ -13,6 +13,7 @@ intermediateSeconds(0)
     modeStatus.characters = "Stopwatch";
     leftButtonLabel.characters = "Start";
     centerButtonLabel.characters = "Null";
+    centerButtonLabel.offsetW += 5 ;
     rightButtonLabel.characters = "Stop";
     
     timeHour = DisplayItem(60,5,35,"00",255);
@@ -25,12 +26,10 @@ intermediateSeconds(0)
     interTimeMin = DisplayItem(90,55,35,"00",128);
     interTimeSec = DisplayItem(88,95,25,"00",128);
     
-    /*
-    interTimeHour.setType(Empty);
-    interTimeSeparator.setType(Empty);
-    interTimeMin.setType(Empty);
-    interTimeSec.setType(Empty);
-    */
+    interTimeHour.setType(DisplayItem::Empty);
+    interTimeSeparator.setType(DisplayItem::Empty);
+    interTimeMin.setType(DisplayItem::Empty);
+    interTimeSec.setType(DisplayItem::Empty);
     
     displayCommand();
     std::cout<<"Setup Stopwatch"<<std::endl;

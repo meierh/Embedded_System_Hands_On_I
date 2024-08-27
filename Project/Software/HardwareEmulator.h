@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <iostream>
 #include <chrono>
+#include <vector>
 #include "DisplayItem.h"
 
 constexpr int H = 128;

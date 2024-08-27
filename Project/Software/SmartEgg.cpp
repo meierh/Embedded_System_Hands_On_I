@@ -20,7 +20,7 @@ EggTimerBase(system)
     eggSize =       DisplayItem(115, 2,8,"XX"   ,128);
     eggIniTemp =    DisplayItem(115,12,8,"XXXX" ,128);
     eggPressure =   DisplayItem(115,32,8,"XXXXX",128);
-    eggEndTemp =    DisplayItem(115,59,8,"XXXX" ,128);
+    eggEndTemp =    DisplayItem(115,63,8,"XXXX" ,128);
     
     writeSize(sizes[sizeInd]);
     writeIniTemp(setIniTemp);
@@ -273,7 +273,28 @@ void SmartEgg::collectItems()
 
 uint SmartEgg::computePerfectEggTime()
 {
-    return 60;
+    float M = sizesWeight[sizeInd];
+    float c = 3.7; // J g^-1 K^-1
+    float rho = 1.038; // g cm^-3
+    float K = 0.0054; // W cm^-1 K^-1
+    float T_egg = setIniTemp;
+    float T_water = computeBoilingTemperature();
+    float T_yolk = setEndTemp;
+    float factor1 = c/(K*(pi)*(pi));
+    float factor2 = 9*M*M*rho/(16*pi*pi);
+    float factor3 = 0.76 * (T_egg-T_water)/(T_yolk-T_water);
+    return factor1*std::cbrt(factor2)*log(factor3);
+}
+
+float SmartEgg::computeBoilingTemperature()
+{
+    float T_0 = 99.97; //°C
+    float P_0 = 1013.25; //mBar
+    float P = setPressure;
+    float H_vap = 40660; //J mol^-1
+    float R =  8.31446261815324; // J K^−1 mol^−1
+    float inv_TB = (1/(T_0+273.15) - (R*std::log(P/P_0))/H);
+    return (1/inv_TB)-273.15;;
 }
 
 void SmartEgg::writeSize(std::string size)

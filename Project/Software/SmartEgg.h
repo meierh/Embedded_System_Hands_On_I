@@ -4,6 +4,9 @@
 #include <cstdint>
 #include <string>
 #include <array>
+#include <cmath>
+
+constexpr double pi = 3.14159265358979323846;
 
 class SmartEgg : public EggTimerBase
 {
@@ -31,6 +34,7 @@ class SmartEgg : public EggTimerBase
     private:
         uint peroidCounter;
         uint computePerfectEggTime();
+        float computeBoilingTemperature();
         
         void collectItems();
         
@@ -44,9 +48,10 @@ class SmartEgg : public EggTimerBase
         SmartEggStatus status = End;
         
         std::array<std::string,4> sizes = {"S","M","L","XL"};
+        std::array<double,4> sizesWeight = {48,58,68,78};
         int sizeInd = 1;
         
-        int lowerBoundIniTemp=-9;
+        int lowerBoundIniTemp=0;
         int upperBoundIniTemp=40;
         int setIniTemp = 7;
         
