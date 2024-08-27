@@ -49,13 +49,20 @@ class SpaceInvaders : public Application
         DisplayItem player;
         void drawPlayer();
                 
-        const uint projectileSpeed = 1;
+        const uint projectileSpeed = 5;
+        const uint projectileDimH = 3;
+        const uint projectileDimW = 3;
         std::list<std::tuple<int,int>> projectiles;
         void drawProjectiles();
         
+        uint spawnInterval = 1;
+        const uint alienDimH = 10;
+        const uint alienDimW = 10;
+        void spawnAliens();
         std::list<std::tuple<int,int,int,int>> aliens;
+        bool alienReachedBottom;
         uint alienVelocity;
-        uint spawnInterval;
+        void drawAliens();
         
         void collectItems() override;
 };

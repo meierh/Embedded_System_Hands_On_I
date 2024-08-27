@@ -15,7 +15,8 @@ player(97,playerPosition-10,{5,20},255,2),
 alienVelocity(1),
 spawnInterval(500),
 onPeriodCount(0),
-peroidCounter(0)
+peroidCounter(0),
+alienReachedBottom(false)
 {
     modeStatus.characters = "SpaceInvaders";
     leftButtonLabel.characters = "Start";
@@ -100,15 +101,98 @@ void SpaceInvaders::work()
             case OnePeriod:
             {
                 onPeriodCount++;
+                
+                //Move projectiles
                 for(std::tuple<int,int>& pr : projectiles)
                 {
                     std::get<0>(pr) = std::get<0>(pr)-moveLen(projectileSpeed);
                 }
-                for(auto iter=projectiles.begin(); iter!=projectiles.end(); iter++)
+                
+                //Remove out of area projectiles
+                for(auto iter=projectiles.begin(); iter!=projectiles.end(); )
                 {
                     if(std::get<0>(*iter)<15)
                         iter = projectiles.erase(iter);
+                    else
+                        iter++;
                 }
+                
+                //Spawn aliens
+                spawnAliens();
+                
+                //Move aliens
+                for(std::tuple<int,int,int,int>& alien : aliens)
+                {
+                    std::get<0>(alien) = std::get<0>(alien)+moveLen(std::get<2>(alien));
+                    std::get<1>(alien) = std::get<1>(alien)+moveLen(std::get<3>(alien));
+                }
+                
+                // Remove and redirect out of bound aliens
+                for(auto iter=aliens.begin(); iter!=aliens.end(); iter++)
+                {
+                    if(std::get<0>(*iter)>105)
+                    {
+                        alienReachedBottom = true;
+                        iter = aliens.erase(iter);
+                    }
+                    else if(std::get<1>(*iter)>128-alienDimW)
+                    {
+                        std::cout<<"Turn right"<<std::endl;
+                        std::get<3>(*iter) *= -1*std::abs(std::get<3>(*iter));
+                        std::cout<<"Turn right:"<< std::get<3>(*iter) <<std::endl;
+                    }
+                    else if(std::get<1>(*iter)<0)
+                    {
+                        std::cout<<"Turn left"<<std::endl;
+                        std::get<3>(*iter) *= -1*std::abs(std::get<3>(*iter));
+                        std::cout<<"Turn left:"<< std::get<3>(*iter) <<std::endl;
+                    }
+                }
+                
+                // Remove hit aliens and projectiles
+                for(auto iterAlien=aliens.begin(); iterAlien!=aliens.end(); )
+                {
+                    int alienBottom = std::get<0>(*iterAlien);
+                    int alienLeft = std::get<1>(*iterAlien);
+                    int alienTop = alienBottom+alienDimH;
+                    int alienRight = alienLeft+alienDimW;
+                    
+                    bool alienErased = false;
+                    
+                    for(auto iterProj=projectiles.begin(); iterProj!=projectiles.end(); )
+                    {
+                        int projectileBottom = std::get<0>(*iterProj);
+                        int projectileLeft = std::get<1>(*iterProj);
+                        int projectileTop = projectileBottom+projectileDimH;
+                        int projectileRight = projectileLeft+projectileDimW;
+                        
+                        std::function<bool(int h,int w)> isInside =
+                        [&](int h, int w)
+                        {
+                            if(h<alienRight && h>alienLeft && w<alienBottom && w>alienTop)
+                                return true;
+                            else 
+                                return false;
+                        };
+                        if(isInside(projectileBottom,projectileLeft) ||
+                           isInside(projectileBottom,projectileRight) ||
+                           isInside(projectileTop,projectileLeft) ||
+                           isInside(projectileTop,projectileRight) )
+                        {
+                            iterProj = projectiles.erase(iterProj);
+                            alienErased = true;
+                            break;
+                        }
+                        else
+                            iterProj++;
+                    }
+                    
+                    if(alienErased)
+                        iterAlien = aliens.erase(iterAlien);
+                    else
+                        iterAlien++;
+                }                
+                
                 break;
             }
             default:
@@ -148,7 +232,10 @@ void SpaceInvaders::speakerCommand()
 
 uint SpaceInvaders::moveLen(uint speed)
 {
-    return speed;
+    if(onPeriodCount%4==0)
+        return speed;
+    else
+        return 0;
 }
 
 void SpaceInvaders::drawPlayer()
@@ -160,7 +247,25 @@ void SpaceInvaders::drawProjectiles()
 {
     for(std::tuple<int,int> pr : projectiles)
     {
-        displayImage.push_back(DisplayItem(std::get<0>(pr),std::get<1>(pr),{8,4},150,4));
+        displayImage.push_back(DisplayItem(std::get<0>(pr),std::get<1>(pr),{projectileDimH,projectileDimW},150,4));
+    }
+}
+
+void SpaceInvaders::spawnAliens()
+{
+    std::cout<<"Spawn:"<<onPeriodCount<<" | "<<onPeriodCount%spawnInterval<<"  int:"<<spawnInterval<<std::endl;
+    if(onPeriodCount%50==0)
+    {
+        std::cout<<"Spawn"<<std::endl;
+        aliens.push_back({15,64,1,2});
+    }
+}
+
+void SpaceInvaders::drawAliens()
+{
+    for(std::tuple<int,int,int,int> al : aliens)
+    {
+        displayImage.push_back(DisplayItem(std::get<0>(al),std::get<1>(al),{projectileDimH,projectileDimW},150,4));
     }
 }
 
@@ -176,8 +281,6 @@ void SpaceInvaders::collectItems()
     displayImage.push_back(topLine);
     displayImage.push_back(player);
     
-    for(std::tuple<int,int>& pr : projectiles)
-    {
-        displayImage.push_back(DisplayItem(std::get<0>(pr),std::get<1>(pr),{3,3},255,5));
-    }
+    drawProjectiles();
+    drawAliens();
 }
