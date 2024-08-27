@@ -13,6 +13,7 @@ intermediateSeconds(0)
     modeStatus.characters = "Stopwatch";
     leftButtonLabel.characters = "Start";
     centerButtonLabel.characters = "Null";
+    centerButtonLabel.offsetW += 5 ;
     rightButtonLabel.characters = "Stop";
     
     timeHour = DisplayItem(60,5,35,"00",255);

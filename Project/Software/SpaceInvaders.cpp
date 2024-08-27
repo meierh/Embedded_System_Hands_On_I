@@ -18,11 +18,13 @@ onPeriodCount(0),
 peroidCounter(0),
 alienReachedBottom(false)
 {
+    player.setType(DisplayItem::Empty);
     modeStatus.characters = "SpaceInvaders";
     leftButtonLabel.characters = "Start";
     centerButtonLabel.characters = "";
     rightButtonLabel.characters = "Fire";
     endItem.setType(DisplayItem::ItemType::Empty);    
+
     displayCommand();
     std::cout<<"Setup SpaceInvaders"<<std::endl;
 }
@@ -69,7 +71,6 @@ void SpaceInvaders::work()
             }
             case BtnCenterClick:
             {
-
                 break;
             }
             case BtnRightClick:
@@ -130,22 +131,21 @@ void SpaceInvaders::work()
                 // Remove and redirect out of bound aliens
                 for(auto iter=aliens.begin(); iter!=aliens.end(); iter++)
                 {
-                    if(std::get<0>(*iter)>105)
+                    int h = std::get<0>(*iter);
+                    int w = std::get<1>(*iter);
+                                        
+                    if(h>103)
                     {
                         alienReachedBottom = true;
                         iter = aliens.erase(iter);
                     }
-                    else if(std::get<1>(*iter)>128-alienDimW)
+                    else if(w>120)
                     {
-                        std::cout<<"Turn right"<<std::endl;
-                        std::get<3>(*iter) *= -1*std::abs(std::get<3>(*iter));
-                        std::cout<<"Turn right:"<< std::get<3>(*iter) <<std::endl;
+                        std::get<3>(*iter) = -1*std::abs(std::get<3>(*iter));
                     }
-                    else if(std::get<1>(*iter)<0)
+                    else if(w<0)
                     {
-                        std::cout<<"Turn left"<<std::endl;
-                        std::get<3>(*iter) *= -1*std::abs(std::get<3>(*iter));
-                        std::cout<<"Turn left:"<< std::get<3>(*iter) <<std::endl;
+                        std::get<3>(*iter) = std::abs(std::get<3>(*iter));
                     }
                 }
                 
@@ -169,7 +169,7 @@ void SpaceInvaders::work()
                         std::function<bool(int h,int w)> isInside =
                         [&](int h, int w)
                         {
-                            if(h<alienRight && h>alienLeft && w<alienBottom && w>alienTop)
+                            if(w<alienRight && w>alienLeft && h<alienBottom && h>alienTop)
                                 return true;
                             else 
                                 return false;
@@ -179,6 +179,7 @@ void SpaceInvaders::work()
                            isInside(projectileTop,projectileLeft) ||
                            isInside(projectileTop,projectileRight) )
                         {
+                            std::cout<<"---------------------Alien hit---------------------------"<<std::endl;
                             iterProj = projectiles.erase(iterProj);
                             alienErased = true;
                             break;
@@ -257,7 +258,7 @@ void SpaceInvaders::spawnAliens()
     if(onPeriodCount%50==0)
     {
         std::cout<<"Spawn"<<std::endl;
-        aliens.push_back({15,64,1,2});
+        aliens.push_back({15,64,1,3});
     }
 }
 
@@ -265,7 +266,7 @@ void SpaceInvaders::drawAliens()
 {
     for(std::tuple<int,int,int,int> al : aliens)
     {
-        displayImage.push_back(DisplayItem(std::get<0>(al),std::get<1>(al),{projectileDimH,projectileDimW},150,4));
+        displayImage.push_back(DisplayItem(std::get<0>(al),std::get<1>(al),{alienDimH,alienDimW},150,4));
     }
 }
 

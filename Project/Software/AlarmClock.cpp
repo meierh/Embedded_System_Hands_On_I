@@ -11,8 +11,8 @@ alarmMinutes(0)
 {
     modeStatus.characters = "AlarmClock";
     
-    minText = DisplayItem(25,15,10,"Min",255);
-    secText = DisplayItem(25,70,10,"Sec",255);
+    minText = DisplayItem(25,15,10,"Hour",255);
+    secText = DisplayItem(25,70,10,"Min",255);
     
     timeHourClock = DisplayItem(55,15,35,"00",255);
     timeSeparatorClock = DisplayItem(55,55,35,":",255);
@@ -32,6 +32,11 @@ alarmMinutes(0)
     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
     timeSecUnderline = DisplayItem(96,72,96,104,128);
     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
+    
+    leftButtonLabel.characters = "Hour";
+    leftButtonLabel.offsetW -= 5 ;
+    centerButtonLabel.characters = "Enter";
+    rightButtonLabel.characters = "Min";
         
     displayCommand();
     std::cout<<"Setup AlarmClock"<<std::endl;
