@@ -115,7 +115,7 @@
 			(mirror no)
 			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "fab_output/")
+			(outputdirectory "fab_output/Gerber and Drill Files/")
 		)
 	)
 	(net 0 "")
