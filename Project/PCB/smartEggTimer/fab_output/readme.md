@@ -11,3 +11,21 @@ Our Bill of Materials is located at `BOM and Centroid Files/smartEggTimer_BOM.cs
 We only need JLCPCB to assemble the top layer of the PCB. Thus, the relevant positioning file is located at `BOM and Centroid Files/smartEggTimer-top-pos.csv`.
 
 Note: Some components on the PCB will be soldered manually by us for cost saving. These are not included in the Bill of Materials, but they are in the positioning files. Thus, you will get a warning after uploading both files to JLCPCB, which is fine.
+
+
+## JLCPCB Specifications / Options
+
+We would like the to have the following options selected upon ordering the PCB:
+
+| Option           | Selection            |
+|------------------|----------------------|
+| PCB Qty          | 5                    |
+| Surface Finish   | LeadFree HASL        |
+| Mark on PCB      | Remove Mark          |
+| Build Time (PCB) | 24 Hours (PCBA Only) |
+|                  |                      |
+| PCBA Type        | Economic             |
+| Assembly Side    | Top Side             |
+| PCBA Qty         | 2                    |
+
+For the other options, the default selection is fine.
