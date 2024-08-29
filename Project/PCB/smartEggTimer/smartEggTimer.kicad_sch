@@ -11594,12 +11594,11 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-223-3_TabPin2"
+		(property "Footprint" "custom-parts:SOT-223_L6.5-W3.5-P2.30-LS7.0-BR"
 			(at 120.65 33.655 0)
 			(effects
 				(font
 					(size 1.27 1.27)
-					(italic yes)
 				)
 				(hide yes)
 			)
@@ -11703,7 +11702,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_QFP:LQFP-64_10x10mm_P0.5mm"
+		(property "Footprint" "custom-parts:LQFP-64_L10.0-W10.0-P0.50-LS12.0-BL"
 			(at 251.46 158.75 0)
 			(effects
 				(font
@@ -13828,7 +13827,7 @@
 				)
 			)
 		)
-		(property "Footprint" "custom-parts:RotaryEncoder_Alps_EC12E_Vertical_H20mm_Mounting-Holes-GND"
+		(property "Footprint" "custom-parts:SW-TH_EC12E24204A2"
 			(at 69.85 247.396 0)
 			(effects
 				(font
