@@ -17,15 +17,17 @@ Note: Some components on the PCB will be soldered manually by us for cost saving
 
 We would like the to have the following options selected upon ordering the PCB:
 
-| Option           | Selection            |
-|------------------|----------------------|
-| PCB Qty          | 5                    |
-| Surface Finish   | LeadFree HASL        |
-| Mark on PCB      | Remove Mark          |
-| Build Time (PCB) | 24 Hours (PCBA Only) |
-|                  |                      |
-| PCBA Type        | Economic             |
-| Assembly Side    | Top Side             |
-| PCBA Qty         | 2                    |
+| Option           | Selection                  |
+|------------------|----------------------------|
+| PCB Qty          | 5                          |
+| Surface Finish   | LeadFree HASL              |
+| Mark on PCB      | Remove Mark                |
+| Build Time (PCB) | 24 Hours (PCBA Only)       |
+|                  |                            |
+| PCBA Type        | Economic                   |
+| Assembly Side    | Top Side                   |
+| PCBA Qty         | 2                          |
+|                  |                            |
+| Shipping         | FedEx International Packet |
 
 For the other options, the default selection is fine.
