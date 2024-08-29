@@ -25,7 +25,7 @@ Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
 "J4","Conn_01x06_Pin","PinHeader_1x06_P2.54mm_Vertical",114.475000,-97.260000,0.000000,top
 "J5","Conn_01x02_Socket","PinHeader_1x02_P2.54mm_Vertical",115.200000,-70.530000,60.000000,top
 "J6","Conn_01x02_Socket","PinHeader_1x02_P2.54mm_Vertical",108.200000,-68.000000,75.000000,top
-"J7","Conn_01x03_Pin","PinHeader_1x03_P2.54mm_Vertical",77.600000,-93.520000,0.000000,top
+"J7","Conn_01x03_Pin","PinHeader_1x03_P2.54mm_Vertical",77.900000,-96.500000,0.000000,top
 "J8","Conn_01x03_Pin","PinHeader_1x03_P2.54mm_Vertical",130.108197,-86.577205,-149.000000,top
 "OLED-15W-C1","~","PinSocket_1x07_P2.54mm_Vertical",119.640000,-115.000000,-90.000000,top
 "Q1","STP60NF06L","TO-220-3_Vertical",115.550000,-79.310000,-90.000000,top
@@ -41,7 +41,7 @@ Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
 "R11","10k","R_0402_1005Metric",120.575000,-105.575000,90.000000,top
 "R12","1M","R_0402_1005Metric",87.785000,-86.585000,0.000000,top
 "R13","1M","R_0402_1005Metric",85.815000,-86.585000,0.000000,top
-"R14","10k","R_0402_1005Metric",70.000000,-93.890000,90.000000,top
+"R14","10k","R_0402_1005Metric",69.475000,-94.200000,0.000000,top
 "R15","22k","R_0402_1005Metric",69.600000,-106.490000,90.000000,top
 "R16","10k","R_0402_1005Metric",103.816400,-126.609600,90.000000,top
 "R17","22k","R_0402_1005Metric",97.187000,-126.500000,-90.000000,top
