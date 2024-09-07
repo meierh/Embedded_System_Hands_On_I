@@ -137,7 +137,7 @@ void HardwareEmulator::displayImage(const std::vector<DisplayItem>& items)
         if(item.getType()==DisplayItem::ItemType::Text)
         {
             fl_color(intensityToColor(item.intensity));
-            fl_font(FL_HELVETICA_BOLD, item.size);
+            fl_font(FL_HELVETICA_BOLD,static_cast<int>(item.size));
             fl_draw(item.characters.c_str(),item.offsetW,item.offsetH);
         }
         else if(item.getType()==DisplayItem::ItemType::Line)

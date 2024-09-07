@@ -6,8 +6,8 @@ BaseApp::BaseApp
     System* system
 ):
 Application(system),
-baseItem(54,20,20,"Welcome",255),
-actionItem(74,40,10,"",128),
+baseItem(54,20,DisplayItem::Font20,"Welcome",255),
+actionItem(74,40,DisplayItem::Font12,"",128),
 peroidCounter(0)
 {
     modeStatus.characters = "Base";

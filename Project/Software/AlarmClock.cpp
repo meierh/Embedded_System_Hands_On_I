@@ -11,26 +11,26 @@ alarmMinutes(0)
 {
     modeStatus.characters = "AlarmClock";
     
-    minText = DisplayItem(25,15,10,"Hour",255);
-    secText = DisplayItem(25,70,10,"Min",255);
+    minText = DisplayItem(40,15,DisplayItem::Font16,"Hour",255);
+    secText = DisplayItem(40,75,DisplayItem::Font16,"Min",255);
     
-    timeHourClock = DisplayItem(55,15,35,"00",255);
-    timeSeparatorClock = DisplayItem(55,55,35,":",255);
-    timeMinClock = DisplayItem(55,70,35,"00",255);
+    timeHourClock = DisplayItem(60,20,DisplayItem::Font24,"00",255);
+    timeSeparatorClock = DisplayItem(60,57,DisplayItem::Font24,":",255);
+    timeMinClock = DisplayItem(60,75,DisplayItem::Font24,"00",255);
     
-    timeHourAlarm = DisplayItem(95,15,35,"00",255);
-    timeSeparatorAlarm = DisplayItem(95,55,35,":",255);
-    timeMinAlarm = DisplayItem(95,70,35,"00",255);
+    timeHourAlarm = DisplayItem(85,20,DisplayItem::Font24,"00",255);
+    timeSeparatorAlarm = DisplayItem(85,57,DisplayItem::Font24,":",255);
+    timeMinAlarm = DisplayItem(85,75,DisplayItem::Font24,"00",255);
     
-    remainTimeText = DisplayItem(108,2,10,"Remaining",255);
-    remaingTimeHour = DisplayItem(116,12,8,"00",128);
-    remaingTimeHourSuffix = DisplayItem(116,20,8,"h",128);
-    remaingTimeMinutes = DisplayItem(116,30,8,"00",128);
-    remaingTimeMinutesSuffix = DisplayItem(116,38,8,"m",128);
+    remainTimeText = DisplayItem(108,2,DisplayItem::Font12,"Remaining",255);
+    remaingTimeHour = DisplayItem(116,12,DisplayItem::Font8,"00",128);
+    remaingTimeHourSuffix = DisplayItem(116,20,DisplayItem::Font8,"h",128);
+    remaingTimeMinutes = DisplayItem(116,30,DisplayItem::Font8,"00",128);
+    remaingTimeMinutesSuffix = DisplayItem(116,38,DisplayItem::Font8,"m",128);
     
-    timeMinUnderline = DisplayItem(96,16,96,48,128);
+    timeMinUnderline = DisplayItem(86,16,86,48,128);
     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
-    timeSecUnderline = DisplayItem(96,72,96,104,128);
+    timeSecUnderline = DisplayItem(86,72,86,104,128);
     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
     
     leftButtonLabel.characters = "Hour";

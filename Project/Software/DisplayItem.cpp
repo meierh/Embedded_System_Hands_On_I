@@ -12,7 +12,7 @@ DisplayItem::DisplayItem
 (   
     int offsetH,
     int offsetW,
-    int size,
+    Font size,
     std::string characters,
     std::uint8_t intensity
 ):

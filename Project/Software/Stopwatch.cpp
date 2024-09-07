@@ -16,15 +16,15 @@ intermediateSeconds(0)
     centerButtonLabel.offsetW += 5 ;
     rightButtonLabel.characters = "Stop";
     
-    timeHour = DisplayItem(60,5,35,"00",255);
-    timeSeparator = DisplayItem(60,43,35,":",255);
-    timeMin = DisplayItem(60,55,35,"00",255);
-    timeSec = DisplayItem(58,95,25,"00",255);
+    timeHour = DisplayItem(60,15,DisplayItem::Font24,"00",255);
+    timeSeparator = DisplayItem(60,43,DisplayItem::Font24,":",255);
+    timeMin = DisplayItem(60,55,DisplayItem::Font24,"00",255);
+    timeSec = DisplayItem(60,90,DisplayItem::Font20,"00",255);
     
-    interTimeHour = DisplayItem(90,5,35,"00",128);
-    interTimeSeparator = DisplayItem(90,43,35,":",128);
-    interTimeMin = DisplayItem(90,55,35,"00",128);
-    interTimeSec = DisplayItem(88,95,25,"00",128);
+    interTimeHour = DisplayItem(90,15,DisplayItem::Font24,"00",128);
+    interTimeSeparator = DisplayItem(90,43,DisplayItem::Font24,":",128);
+    interTimeMin = DisplayItem(90,55,DisplayItem::Font24,"00",128);
+    interTimeSec = DisplayItem(90,90,DisplayItem::Font20,"00",128);
     
     interTimeHour.setType(DisplayItem::Empty);
     interTimeSeparator.setType(DisplayItem::Empty);

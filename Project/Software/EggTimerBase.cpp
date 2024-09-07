@@ -10,13 +10,13 @@ peroidCounter(0),
 setMinutes(0),
 setSeconds(0)
 {   
-    minText = DisplayItem(40,15,20,"Min",255);
-    secText = DisplayItem(40,70,20,"Sec",255);
-    timeMin = DisplayItem(80,5,45,"00",255);
-    timeSeparator = DisplayItem(80,55,45,":",255);
-    timeSec = DisplayItem(80,70,45,"00",255);
+    minText = DisplayItem(40,15,DisplayItem::Font16,"Min",255);
+    secText = DisplayItem(40,70,DisplayItem::Font16,"Sec",255);
+    timeMin = DisplayItem(70,20,DisplayItem::Font24,"00",255);
+    timeSeparator = DisplayItem(70,57,DisplayItem::Font24,":",255);
+    timeSec = DisplayItem(70,75,DisplayItem::Font24,"00",255);
     
-    eggText = DisplayItem(110,2,20,"Egg",255);
+    eggText = DisplayItem(110,2,DisplayItem::Font16,"Egg",255);
 }
 
 void EggTimerBase::onPeriod()

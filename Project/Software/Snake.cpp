@@ -6,8 +6,8 @@ Snake::Snake
     System* system
 ):
 Application(system),
-baseItem(54,15,10,"The only good alien \n    is a dead alien",255),
-endItem(70,10,30,"Wasted",255),
+baseItem(54,15,DisplayItem::Font8,"The only good alien \n    is a dead alien",255),
+endItem(70,10,DisplayItem::Font24,"Wasted",255),
 topLine(15,0,15,128,255),
 bottomLine(105,0,105,128,255),
 peroidCounter(0),

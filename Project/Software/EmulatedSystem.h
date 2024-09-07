@@ -1,5 +1,7 @@
 #ifndef EMULATEDSYSTEM_H
 #define EMULATEDSYSTEM_H
+#include <chrono>
+#include <ctime>
 #include "System.h"
 
 class EmulatedSystem : public System

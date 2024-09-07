@@ -8,9 +8,10 @@ class DisplayItem
 {
     public:
         enum ItemType{Line,Text,Rectangle,Empty};
+        enum Font{Font8=8,Font12=12,Font16=16,Font20=20,Font24=24};
         DisplayItem();
         DisplayItem(ItemType type);
-        DisplayItem(int offsetH,int offsetW, int size, std::string characters, std::uint8_t intensity);
+        DisplayItem(int offsetH,int offsetW, Font size, std::string characters, std::uint8_t intensity);
         DisplayItem(int offsetH,int offsetW, int endH, int endW, std::uint8_t intensity);
         DisplayItem(int offsetH,int offsetW,std::pair<int,int> boxSize,std::uint8_t intensity,uint innerMult);
         
@@ -19,7 +20,7 @@ class DisplayItem
         
         int offsetH;
         int offsetW;
-        int size;
+        Font size;
         std::uint8_t intensity;
         
         //Type: Text

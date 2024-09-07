@@ -9,18 +9,18 @@ EggTimerBase(system)
 {
     modeStatus.characters = "SmartEgg";
     
-    minText = DisplayItem(40,15,20,"Min",255);
-    secText = DisplayItem(40,70,20,"Sec",255);
-    timeMin = DisplayItem(80,5,45,"00",255);
-    timeSeparator = DisplayItem(80,55,45,":",255);
-    timeSec = DisplayItem(80,70,45,"00",255);
+    minText = DisplayItem(40,15,DisplayItem::Font16,"Min",255);
+    secText = DisplayItem(40,70,DisplayItem::Font16,"Sec",255);
+    timeMin = DisplayItem(70,20,DisplayItem::Font24,"00",255);
+    timeSeparator = DisplayItem(70,57,DisplayItem::Font24,":",255);
+    timeSec = DisplayItem(70,75,DisplayItem::Font24,"00",255);
     
-    eggText =       DisplayItem(100, 2,20,"Egg"  ,255);
+    eggText =       DisplayItem(100, 2,DisplayItem::Font16,"Egg"  ,255);
     
-    eggSize =       DisplayItem(115, 2,8,"XX"   ,128);
-    eggIniTemp =    DisplayItem(115,12,8,"XXXX" ,128);
-    eggPressure =   DisplayItem(115,32,8,"XXXXX",128);
-    eggEndTemp =    DisplayItem(115,63,8,"XXXX" ,128);
+    eggSize =       DisplayItem(115, 2,DisplayItem::Font8,"XX"   ,128);
+    eggIniTemp =    DisplayItem(115,12,DisplayItem::Font8,"XXXX" ,128);
+    eggPressure =   DisplayItem(115,32,DisplayItem::Font8,"XXXXX",128);
+    eggEndTemp =    DisplayItem(115,63,DisplayItem::Font8,"XXXX" ,128);
     
     writeSize(sizes[sizeInd]);
     writeIniTemp(setIniTemp);

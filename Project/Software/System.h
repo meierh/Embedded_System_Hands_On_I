@@ -1,8 +1,6 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
-#include <memory>
-#include <chrono>
-#include <ctime>
+
 #include "DisplayItem.h"
 #include "HardwareEmulator.h"
 #include "BaseApp.h"
