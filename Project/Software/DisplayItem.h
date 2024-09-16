@@ -3,6 +3,7 @@
 
 #include <string>
 #include <cstdint>
+#include <sys/types.h>
 
 class DisplayItem
 {

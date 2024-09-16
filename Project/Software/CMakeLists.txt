@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.3)
 project(HelloWorld)
+set (CMAKE_CXX_STANDARD 17)
+
 
 FIND_PACKAGE(FLTK REQUIRED NO_MODULE)
 include_directories(${FLTK_INCLUDE_DIRS}) 
