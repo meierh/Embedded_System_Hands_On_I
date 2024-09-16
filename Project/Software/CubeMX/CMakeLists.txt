@@ -59,7 +59,7 @@ include_directories(Peripheral/Inc SmartEggApps/Inc)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE)
 
-file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*" "Drivers/*.*" "SmartEggApps/*.*")
+file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*" "Peripheral/*.*" "SmartEggApps/*.*")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F103RETX_FLASH.ld)
 

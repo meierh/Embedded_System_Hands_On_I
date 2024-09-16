@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "example_peripheral.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,10 +109,11 @@ int main(void)
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    example_peripheral my_example;
     while (1)
     {
         /* USER CODE END WHILE */
-
+        HAL_Delay(my_example.answer);
         /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
