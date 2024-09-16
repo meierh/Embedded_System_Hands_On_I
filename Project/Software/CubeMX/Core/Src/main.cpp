@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "System_STM32.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -30,6 +31,10 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+// our hardware handler
+System_STM32 hardware;
+int8_t lastSecond = 0;
 
 /* USER CODE END PD */
 
@@ -66,6 +71,53 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+// button interrupt handler
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+    switch (GPIO_Pin) {
+        case Button_1_Pin:
+            // call button left press
+            hardware.buttonLeftPress();
+            break;
+        case Button_2_Pin:
+            // call button center press
+            hardware.buttonCenterPress();
+            break;
+        case Button_3_Pin:
+            // call button right press
+            hardware.buttonRightPress();
+            break;
+        case Button_4_Pin:
+            // call mode button press
+            hardware.buttonModePress();
+            break;
+        case Rotary_Encoder_A_Pin:
+            // call clockwise rotate @todo?
+            hardware.rotate(System::Direction::Clockwise);
+            break;
+        case Rotary_Encoder_B_Pin:
+            // call counterclockwise rotate
+            hardware.rotate(System::Direction::Counterclockwise);
+            break;
+        default:
+            // do nothing
+            break;
+    }
+}
+
+// handle timer interrupt
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
+{
+    if (htim == &htim2)
+    {
+        int8_t currentSecond = hardware.getSeconds();
+        // check if current second has changed, if yes, call period elapsed
+        if(currentSecond != lastSecond) {
+            lastSecond = currentSecond;
+            hardware.periodElapsed();
+        }
+    }
+}
 
 /* USER CODE END 0 */
 
