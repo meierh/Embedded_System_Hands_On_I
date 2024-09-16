@@ -295,7 +295,7 @@ float SmartEgg::computeBoilingTemperature()
     float P = setPressure;
     float H_vap = 40660; //J mol^-1
     float R =  8.31446261815324; // J K^−1 mol^−1
-    float inv_TB = (1/(T_0+273.15) - (R*std::log(P/P_0))/H);
+    float inv_TB = (1/(T_0+273.15) - (R*std::log(P/P_0))/H_vap);
     return (1/inv_TB)-273.15;;
 }
 
