@@ -1,4 +1,4 @@
-#include "../inc/DS3231.h"
+#include "DS3231.h"
 
 #define DS3231_ADDRESS   0x68 //0b0011100
 #define CLOCK_ADDRESS 0x68 //?
@@ -56,7 +56,7 @@ int8_t DS3231::getHour() {
     return bcdToDec(senorData[0]);
 }
 
-int8_t DS3231::getDDayOfWeek() {
+int8_t DS3231::getDayOfWeek() {
     std::vector<uint8_t> senorData;
     readVector(senorData, DAY_OF_WEEK, 1);
     return bcdToDec(senorData[0]);

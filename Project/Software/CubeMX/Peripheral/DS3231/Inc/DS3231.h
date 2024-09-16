@@ -66,7 +66,7 @@ public:
      * get the day of the week, starting at monday? @todo
      * @return day of the week [1..7]
      */
-    int8_t getDDayOfWeek();
+    int8_t getDayOfWeek();
 
     /**
      * get the day of the month
