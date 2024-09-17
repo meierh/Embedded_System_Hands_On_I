@@ -156,6 +156,15 @@ int main(void)
     MX_USART2_UART_Init();
     MX_USART3_UART_Init();
     /* USER CODE BEGIN 2 */
+    DisplayItem testItem;
+    DisplayItem testItem_2;
+    testItem = DisplayItem(10, 15, DisplayItem::Font12, "Hello World", 255);
+    testItem_2 = DisplayItem(120, 0, 120, 128, 255);
+    std::vector<DisplayItem> items;
+    items.push_back(testItem);
+    items.push_back(testItem_2);
+
+    hardware.displayImage(items);
 
     /* USER CODE END 2 */
 

@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 #include "main.h"
-#include "stm32f0xx_hal.h" // @todo change later to new lib
+#include "stm32f1xx_hal.h" // @todo change later to new lib
 // #include "stm32f1xx_hal_gpio.h"
 #include <stdint.h>
 #include <stdlib.h>

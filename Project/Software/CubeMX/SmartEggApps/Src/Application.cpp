@@ -69,7 +69,7 @@ void Application::collectItems()
 
 void Application::updateClock()
 {
-    std::string clock = system->getSystemTime();
-    std::string hoursMinutes = clock.substr(11,5);
+    DateTime clock = system->getSystemTime();
+    std::string hoursMinutes = std::to_string(clock.getHour()) + std::to_string(clock.getMinute());
     time.characters = hoursMinutes;
 }

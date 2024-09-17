@@ -36,7 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+extern I2C_HandleTypeDef hi2c1;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -95,7 +95,13 @@ void Error_Handler(void);
 #define Display_Reset_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
+#define OLED_DC_Pin GPIO_PIN_8 // NC
+#define OLED_DC_GPIO_Port GPIOB  // NC
+#define OLED_CS_Pin GPIO_PIN_9 // NC
+#define OLED_CS_GPIO_Port GPIOB // NC
 
+#define OLED_RST_Pin GPIO_PIN_3
+#define OLED_RST_GPIO_Port GPIOB
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

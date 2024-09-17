@@ -9,6 +9,7 @@
 #include "Stopwatch.h"
 #include "Snake.h"
 #include "SpaceInvaders.h"
+#include "DateTime.h"
 
 class System
 {
@@ -29,8 +30,11 @@ class System
         
         //Application -> System
         virtual void displayImage(std::vector<DisplayItem> image)=0;
-        virtual std::string getSystemTime()=0;
-        
+        virtual DateTime getSystemTime()=0;
+        virtual int8_t getSeconds() =0;
+        virtual void setSystemTime(DateTime newTime)=0;
+        // virtual void playSound(uint8_t soundFile, uint8_t soundFolder)=0;
+
     protected:
         enum App{BaseApp,SmartEgg,EggTimer,AlarmClock,Stopwatch,Snake,SpaceInvaders,Empty};
         App current = Empty;

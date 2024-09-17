@@ -199,8 +199,7 @@ int8_t DS3231::bcdToDec(int8_t val) {
 }
 
 
-
-int16_t calculateDSTWithSummerAndWintertime(int8_t month, int8_t wday, int8_t date, int8_t hour) {
+int16_t DS3231::calculateDSTWithSummerAndWintertime(int8_t month, int8_t wday, int8_t date, int8_t hour) {
     // summertime starts at the last sunday in March at 2:00 -> the clock is set from 2:00 to 3:00
     // wintertime starts at the last sunday in October at 3:00 -> the clock is set from 3:00 to 2:00
     // set to summertime between april and september
