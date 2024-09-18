@@ -23,9 +23,20 @@ void EmulatedSystem::displayImage(std::vector<DisplayItem> image)
         std::cout<<"Error: EmulatedSystem::displayImage nullptr"<<std::endl;
 }
 
-std::string EmulatedSystem::getSystemTime()
+DateTime EmulatedSystem::getSystemTime()
 {
+    /*
     auto end = std::chrono::system_clock::now();
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
     return std::string(std::ctime(&end_time));
+    */
+    
+    DateTime timeHourMin(2024,9,27,12,34,56,0,-1);
+    return timeHourMin;
+}
+
+void EmulatedSystem::setSystemTime(DateTime newTime)
+{
+    std::string time = std::to_string(newTime.getHour())+":"+std::to_string(newTime.getMinute());
+    std::cout<<"Set time to:"<<time<<std::endl;
 }

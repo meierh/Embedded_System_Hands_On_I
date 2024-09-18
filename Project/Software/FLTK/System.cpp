@@ -48,14 +48,10 @@ void System::buttonModePress()
                 current = Stopwatch;
                 break;
             case Stopwatch:
-                app = new class Snake(this);
-                current = Snake;
+                app = new class SetClock(this);
+                current = SetClock;
                 break;
-            case Snake:
-                app = new class SpaceInvaders(this);
-                current = SpaceInvaders;
-                break;
-            case SpaceInvaders:
+            case SetClock:
                 app = new class BaseApp(this);
                 current = BaseApp;
                 break;
