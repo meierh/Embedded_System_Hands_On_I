@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "System_STM32.h"
+#include "test.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -34,7 +35,7 @@
 /* USER CODE BEGIN PD */
 
 // our hardware handler
-System_STM32 hardware;
+System_STM32 *hardware;
 int8_t lastSecond = 0;
 
 /* USER CODE END PD */
@@ -50,6 +51,7 @@ ADC_HandleTypeDef hadc1;
 I2C_HandleTypeDef hi2c1;
 
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 
 UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
@@ -66,6 +68,7 @@ static void MX_TIM2_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART3_UART_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -78,27 +81,27 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     switch (GPIO_Pin) {
         case Button_1_Pin:
             // call button left press
-            hardware.buttonLeftPress();
+            hardware->buttonLeftPress();
             break;
         case Button_2_Pin:
             // call button center press
-            hardware.buttonCenterPress();
+            hardware->buttonCenterPress();
             break;
         case Button_3_Pin:
             // call button right press
-            hardware.buttonRightPress();
+            hardware->buttonRightPress();
             break;
         case Button_4_Pin:
             // call mode button press
-            hardware.buttonModePress();
+            hardware->buttonModePress();
             break;
         case Rotary_Encoder_A_Pin:
             // call clockwise rotate @todo?
-            hardware.rotate(System::Direction::Clockwise);
+            hardware->rotate(System::Direction::Clockwise);
             break;
         case Rotary_Encoder_B_Pin:
             // call counterclockwise rotate
-            hardware.rotate(System::Direction::Counterclockwise);
+            hardware->rotate(System::Direction::Counterclockwise);
             break;
         default:
             // do nothing
@@ -109,13 +112,21 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 // handle timer interrupt
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-    if (htim == &htim2)
+    if (htim == &htim3)
     {
-        int8_t currentSecond = hardware.getSeconds();
+        int8_t currentSecond = hardware->getSeconds();
         // check if current second has changed, if yes, call period elapsed
         if(currentSecond != lastSecond) {
             lastSecond = currentSecond;
-            hardware.periodElapsed();
+            //hardware->periodElapsed();
+            DisplayItem timeItem;
+            std::vector<DisplayItem> items;
+            timeItem = DisplayItem(10, 15, DisplayItem::Font12, std::to_string(hardware->getSeconds()), 255);
+            items.push_back(timeItem);
+
+            hardware->displayImage(items);
+
+            items.clear();
         }
     }
 }
@@ -146,6 +157,7 @@ int main(void)
 
     /* USER CODE BEGIN SysInit */
 
+    //hardware = new System_STM32();
     /* USER CODE END SysInit */
 
     /* Initialize all configured peripherals */
@@ -155,16 +167,39 @@ int main(void)
     MX_ADC1_Init();
     MX_USART2_UART_Init();
     MX_USART3_UART_Init();
+    MX_TIM3_Init();
     /* USER CODE BEGIN 2 */
+
+    hardware = new System_STM32();
+
+
+    // Starts the TIM3 Base generation in interrupt mode.
+    if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
+    {
+        Error_Handler();
+    }
+
+
+
+
+
     DisplayItem testItem;
     DisplayItem testItem_2;
-    testItem = DisplayItem(10, 15, DisplayItem::Font12, "Hello World", 255);
-    testItem_2 = DisplayItem(120, 0, 120, 128, 255);
     std::vector<DisplayItem> items;
+
+    testItem = DisplayItem(10, 15, DisplayItem::Font12, "SmartEggTimer", 255);
+    testItem_2 = DisplayItem(120, 0, 120, 128, 255);
+
     items.push_back(testItem);
     items.push_back(testItem_2);
 
-    hardware.displayImage(items);
+    hardware->displayImage(items);
+    //test_system.displayImage(items);
+    items.clear();
+    //volatile DateTime time = hardware->getSystemTime();
+    //DateTime time = hardware->getSystemTime();
+
+    //OLED_1in5_test();
 
     /* USER CODE END 2 */
 
@@ -173,6 +208,15 @@ int main(void)
     while (1)
     {
         /* USER CODE END WHILE */
+
+        /*timeItem = DisplayItem(10, 15, DisplayItem::Font12, std::to_string(time.getSecond()), 255);
+        items.push_back(timeItem);
+
+        // hardware->displayImage(items);
+        test_system.displayImage(items);
+        items.clear();
+         */
+        // HAL_Delay(500);
 
         /* USER CODE BEGIN 3 */
     }
@@ -197,7 +241,7 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI_DIV2;
-    RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL8;
+    RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
         Error_Handler();
@@ -212,7 +256,7 @@ void SystemClock_Config(void)
     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
     {
         Error_Handler();
     }
@@ -344,8 +388,56 @@ static void MX_TIM2_Init(void)
     }
     /* USER CODE BEGIN TIM2_Init 2 */
 
+    __HAL_TIM_URS_ENABLE(&htim2); // enable timer's URS bit
+
     /* USER CODE END TIM2_Init 2 */
     HAL_TIM_MspPostInit(&htim2);
+}
+
+/**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+    /* USER CODE BEGIN TIM3_Init 0 */
+
+    /* USER CODE END TIM3_Init 0 */
+
+    TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+    TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+    /* USER CODE BEGIN TIM3_Init 1 */
+
+    /* USER CODE END TIM3_Init 1 */
+    htim3.Instance = TIM3;
+    htim3.Init.Prescaler = 64000 - 1;
+    htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+    htim3.Init.Period = 500;
+    htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+    htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+    if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+    {
+        Error_Handler();
+    }
+    sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+    if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+    {
+        Error_Handler();
+    }
+    sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+    sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+    if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+    {
+        Error_Handler();
+    }
+    /* USER CODE BEGIN TIM3_Init 2 */
+    __HAL_TIM_URS_ENABLE(&htim3);
+
+    /* USER CODE END TIM3_Init 2 */
+
 }
 
 /**
