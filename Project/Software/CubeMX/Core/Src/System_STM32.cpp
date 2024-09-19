@@ -46,7 +46,7 @@ void System_STM32::displayImage(std::vector <DisplayItem> image) {
     printf("Drawing\r\n");
     // 1.Select Image
     Paint_SelectImage(BlackImage);
-    Driver_Delay_ms(500); //@todo remove later?
+    //Driver_Delay_ms(500); //@todo remove later? or change prio
     Paint_Clear(BLACK);
 
 
