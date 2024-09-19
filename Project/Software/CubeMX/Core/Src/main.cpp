@@ -164,14 +164,21 @@ int main(void)
     MX_GPIO_Init();
     MX_I2C1_Init();
     MX_TIM2_Init();
-    MX_TIM3_Init();
     MX_ADC1_Init();
     MX_USART2_UART_Init();
     MX_USART3_UART_Init();
+    MX_TIM3_Init();
     /* USER CODE BEGIN 2 */
 
-
     hardware = new System_STM32();
+
+
+    // Starts the TIM3 Base generation in interrupt mode.
+    if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
+    {
+        Error_Handler();
+    }
+
 
 
 
@@ -381,7 +388,7 @@ static void MX_TIM2_Init(void)
     }
     /* USER CODE BEGIN TIM2_Init 2 */
 
-    __HAL_TIM_URS_ENABLE(&htim2); // enable timer
+    __HAL_TIM_URS_ENABLE(&htim2); // enable timer's URS bit
 
     /* USER CODE END TIM2_Init 2 */
     HAL_TIM_MspPostInit(&htim2);
@@ -406,9 +413,9 @@ static void MX_TIM3_Init(void)
 
     /* USER CODE END TIM3_Init 1 */
     htim3.Instance = TIM3;
-    htim3.Init.Prescaler = 48000 - 1;
+    htim3.Init.Prescaler = 64000 - 1;
     htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim3.Init.Period = 65535;
+    htim3.Init.Period = 500;
     htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
     if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -429,11 +436,6 @@ static void MX_TIM3_Init(void)
     /* USER CODE BEGIN TIM3_Init 2 */
     __HAL_TIM_URS_ENABLE(&htim3);
 
-    // Starts the TIM Base generation in interrupt mode.
-    if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
-    {
-        Error_Handler();
-    }
     /* USER CODE END TIM3_Init 2 */
 
 }
