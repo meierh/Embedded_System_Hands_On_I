@@ -8,9 +8,9 @@
 DS3231::DS3231() : i2c_sensor(DS3231_ADDRESS)
 {
     // set clock to 24h
-    setClockMode(false);
+    //setClockMode(false); //@todo later
     // enable clock
-    enableOscillator(true, true, 3);
+    // enableOscillator(true, true, 3);
 }
 
 DateTime DS3231::getCurrentTime() {
