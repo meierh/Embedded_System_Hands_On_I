@@ -37,9 +37,7 @@ alarmMinutes(0)
     leftButtonLabel.offsetW -= 5 ;
     centerButtonLabel.characters = "Enter";
     rightButtonLabel.characters = "Min";
-        
-    displayCommand();
-    std::cout<<"Setup AlarmClock"<<std::endl;
+
     updateClock();
 }
 

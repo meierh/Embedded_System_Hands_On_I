@@ -52,6 +52,10 @@ void System::buttonModePress()
                 current = SetClock;
                 break;
             case SetClock:
+                app = new class TestImage(this);
+                current = TestImage;
+                break;
+            case TestImage:
                 app = new class BaseApp(this);
                 current = BaseApp;
                 break;

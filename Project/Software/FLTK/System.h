@@ -9,6 +9,7 @@
 #include "AlarmClock.h"
 #include "Stopwatch.h"
 #include "SetClock.h"
+#include "TestImage.h"
 #include "DateTime.h"
 
 class System
@@ -36,7 +37,7 @@ class System
         // virtual void playSound(uint8_t soundFile, uint8_t soundFolder)=0;
         
     protected:
-        enum App{BaseApp,SmartEgg,EggTimer,AlarmClock,Stopwatch,SetClock,Empty};
+        enum App{BaseApp,SmartEgg,EggTimer,AlarmClock,Stopwatch,SetClock,TestImage,Empty};
         App current = Empty;
         Application* app = nullptr;
 };

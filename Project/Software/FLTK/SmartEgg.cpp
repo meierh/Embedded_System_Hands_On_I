@@ -32,7 +32,6 @@ EggTimerBase(system)
     centerButtonLabel.characters = "Enter";
     rightButtonLabel.characters = "Right";
 
-    displayCommand();
     std::cout<<"Setup SmartEgg"<<std::endl;
 }
 

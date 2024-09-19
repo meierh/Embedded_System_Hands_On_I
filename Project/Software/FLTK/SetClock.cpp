@@ -28,7 +28,6 @@ periodCounter(0)
     setToCurrentTime();
     writeDate();
     
-    displayCommand();
     std::cout<<"Setup SetClock"<<std::endl;
 }
 

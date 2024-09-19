@@ -25,7 +25,6 @@ alienReachedBottom(false)
     rightButtonLabel.characters = "Fire";
     endItem.setType(DisplayItem::ItemType::Empty);    
 
-    displayCommand();
     std::cout<<"Setup SpaceInvaders"<<std::endl;
 }
 

@@ -31,7 +31,6 @@ intermediateSeconds(0)
     interTimeMin.setType(DisplayItem::Empty);
     interTimeSec.setType(DisplayItem::Empty);
     
-    displayCommand();
     std::cout<<"Setup Stopwatch"<<std::endl;
 }
 

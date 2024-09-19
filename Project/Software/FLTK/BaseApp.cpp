@@ -12,7 +12,6 @@ peroidCounter(0)
 {
     modeStatus.characters = "Base";
     actionItem.setType(DisplayItem::ItemType::Empty);
-    displayCommand();
     std::cout<<"Setup BaseApp"<<std::endl;
 }
 
