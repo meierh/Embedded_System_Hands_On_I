@@ -2,8 +2,8 @@
 #define SYSTEM_H
 
 #include <iostream>
+#include <functional>
 #include "DisplayItem.h"
-#include "HardwareEmulator.h"
 #include "BaseApp.h"
 #include "EggTimer.h"
 #include "SmartEgg.h"

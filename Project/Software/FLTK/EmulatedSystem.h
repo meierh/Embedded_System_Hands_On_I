@@ -3,6 +3,7 @@
 #include <chrono>
 #include <ctime>
 #include "System.h"
+#include "HardwareEmulator.h"
 
 class EmulatedSystem : public System
 {
