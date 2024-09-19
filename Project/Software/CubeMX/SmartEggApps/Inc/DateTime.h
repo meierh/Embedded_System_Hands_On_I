@@ -1,7 +1,7 @@
-#ifndef DISPLAYTEST3_DATETIME_H
-#define DISPLAYTEST3_DATETIME_H
+#ifndef DATETIME_H
+#define DATETIME_H
 
-
+#include <cstdint>
 #include <ctime>
 #include <vector>
 
@@ -48,4 +48,4 @@ protected:
 };
 
 
-#endif //DISPLAYTEST3_DATETIME_H
+#endif //DATETIME_H
