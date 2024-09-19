@@ -81,27 +81,39 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     switch (GPIO_Pin) {
         case Button_1_Pin:
             // call button left press
-            hardware->buttonLeftPress();
+            if(hardware != nullptr){
+                hardware->buttonModePress();
+            }
             break;
         case Button_2_Pin:
             // call button center press
-            hardware->buttonCenterPress();
+            if(hardware != nullptr){
+                hardware->buttonLeftPress();
+            }
             break;
         case Button_3_Pin:
             // call button right press
-            hardware->buttonRightPress();
+            if(hardware != nullptr){
+                hardware->buttonCenterPress();
+            }
             break;
         case Button_4_Pin:
             // call mode button press
-            hardware->buttonModePress();
+            if(hardware != nullptr){
+                hardware->buttonRightPress();
+            }
             break;
         case Rotary_Encoder_A_Pin:
             // call clockwise rotate @todo?
-            hardware->rotate(System::Direction::Clockwise);
+            if(hardware != nullptr){
+                hardware->rotate(System::Direction::Clockwise);
+            }
             break;
         case Rotary_Encoder_B_Pin:
             // call counterclockwise rotate
-            hardware->rotate(System::Direction::Counterclockwise);
+            if(hardware != nullptr){
+                hardware->rotate(System::Direction::Counterclockwise);
+            }
             break;
         default:
             // do nothing
@@ -114,20 +126,29 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
     if (htim == &htim3)
     {
-        int8_t currentSecond = hardware->getSeconds();
-        // check if current second has changed, if yes, call period elapsed
-        if(currentSecond != lastSecond) {
-            lastSecond = currentSecond;
-            //hardware->periodElapsed();
-            DisplayItem timeItem;
-            std::vector<DisplayItem> items;
-            timeItem = DisplayItem(10, 15, DisplayItem::Font12, std::to_string(hardware->getSeconds()), 255);
-            items.push_back(timeItem);
+        if (HAL_I2C_GetState(&hi2c1) == HAL_I2C_STATE_READY) {
+            // check if hardware is already existing
+            if(hardware != nullptr){
+                int8_t currentSecond = hardware->getSeconds();
+                // check if current second has changed, if yes, call period elapsed
+                if(currentSecond != lastSecond) {
+                    lastSecond = currentSecond;
+                    hardware->periodElapsed();
+                    /*DisplayItem timeItem;
+                    std::vector<DisplayItem> items;
+                    timeItem = DisplayItem(10, 15, DisplayItem::Font12, std::to_string(hardware->getSeconds()), 255);
+                    items.push_back(timeItem);
 
-            hardware->displayImage(items);
+                    hardware->displayImage(items);
 
-            items.clear();
+                    items.clear();
+                     */
+
+                }
+            }
         }
+
+
     }
 }
 
@@ -170,7 +191,11 @@ int main(void)
     MX_TIM3_Init();
     /* USER CODE BEGIN 2 */
 
+    // create system
     hardware = new System_STM32();
+
+    // start base app to say welcome
+    hardware->buttonModePress();
 
 
     // Starts the TIM3 Base generation in interrupt mode.
@@ -179,28 +204,6 @@ int main(void)
         Error_Handler();
     }
 
-
-
-
-
-    DisplayItem testItem;
-    DisplayItem testItem_2;
-    std::vector<DisplayItem> items;
-
-    testItem = DisplayItem(10, 15, DisplayItem::Font12, "SmartEggTimer", 255);
-    testItem_2 = DisplayItem(120, 0, 120, 128, 255);
-
-    items.push_back(testItem);
-    items.push_back(testItem_2);
-
-    hardware->displayImage(items);
-    //test_system.displayImage(items);
-    items.clear();
-    //volatile DateTime time = hardware->getSystemTime();
-    //DateTime time = hardware->getSystemTime();
-
-    //OLED_1in5_test();
-
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -208,15 +211,6 @@ int main(void)
     while (1)
     {
         /* USER CODE END WHILE */
-
-        /*timeItem = DisplayItem(10, 15, DisplayItem::Font12, std::to_string(time.getSecond()), 255);
-        items.push_back(timeItem);
-
-        // hardware->displayImage(items);
-        test_system.displayImage(items);
-        items.clear();
-         */
-        // HAL_Delay(500);
 
         /* USER CODE BEGIN 3 */
     }
