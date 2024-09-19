@@ -4,6 +4,7 @@ System_STM32::System_STM32()
 {
     //std::cout<<"Setup System"<<std::endl;
     OLED_1in5_Init();
+    Driver_Delay_ms(500); //@todo necessary?
     OLED_1in5_Clear();
 }
 
@@ -28,6 +29,8 @@ void System_STM32::displayImage(std::vector <DisplayItem> image) {
     if(System_Init() != 0) {
         // @todo error handling
         //return -1;
+        OLED_1in5_Init();
+        OLED_1in5_Clear();
     }
 
     // 0.Create a new image cache
@@ -38,12 +41,12 @@ void System_STM32::displayImage(std::vector <DisplayItem> image) {
         //return -1;
     }
     printf("Paint_NewImage\r\n");
-    Paint_NewImage(BlackImage, OLED_1in5_WIDTH, OLED_1in5_HEIGHT, 270, BLACK); //@todo rotate by 90?
+    Paint_NewImage(BlackImage, OLED_1in5_WIDTH, OLED_1in5_HEIGHT, 180, BLACK); //@todo rotate by 90?
     Paint_SetScale(16);
     printf("Drawing\r\n");
     // 1.Select Image
     Paint_SelectImage(BlackImage);
-    // Driver_Delay_ms(500);
+    Driver_Delay_ms(500); //@todo remove later?
     Paint_Clear(BLACK);
 
 
@@ -62,20 +65,23 @@ void System_STM32::displayImage(std::vector <DisplayItem> image) {
                 // draw text on the display
                 switch (displayItem.size) {
                     // draw the text with the co
-                    case 8:
+                    case DisplayItem::Font8:
                         Paint_DrawString_EN(displayItem.offsetW, displayItem.offsetH, displayItem.characters.c_str(), &Font8, 0xb, 0x0);
                         break;
-                    case 12:
+                    case DisplayItem::Font12:
                         Paint_DrawString_EN(displayItem.offsetW, displayItem.offsetH, displayItem.characters.c_str(), &Font12, 0xb, 0x0);
                         break;
-                    case 16:
+                    case DisplayItem::Font16:
                         Paint_DrawString_EN(displayItem.offsetW, displayItem.offsetH, displayItem.characters.c_str(), &Font16, 0xb, 0x0);
                         break;
-                    case 20:
+                    case DisplayItem::Font20:
                         Paint_DrawString_EN(displayItem.offsetW, displayItem.offsetH, displayItem.characters.c_str(), &Font20, 0xb, 0x0);
                         break;
-                    case 24:
+                    case DisplayItem::Font24:
                         Paint_DrawString_EN(displayItem.offsetW, displayItem.offsetH, displayItem.characters.c_str(), &Font24, 0xb, 0x0);
+                        break;
+                    default:
+                        Paint_DrawString_EN(displayItem.offsetW, displayItem.offsetH, displayItem.characters.c_str(), &Font12, 0xb, 0x0);
                         break;
                 }
                 break;
@@ -98,6 +104,8 @@ void System_STM32::displayImage(std::vector <DisplayItem> image) {
         }
         OLED_1in5_Display(BlackImage);
     }
+
+    free(BlackImage);
 }
 
 
