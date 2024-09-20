@@ -60,6 +60,8 @@ void 	I2C_Write_Byte(UBYTE value, UBYTE Cmd);
 
 void Driver_Delay_ms(uint32_t xms);
 void Driver_Delay_us(uint32_t xus);
+// write multi data via I2C
+void I2C_Write_Multi_data(uint8_t reg, uint8_t* data, uint16_t count);
 
 #ifdef __cplusplus
 }

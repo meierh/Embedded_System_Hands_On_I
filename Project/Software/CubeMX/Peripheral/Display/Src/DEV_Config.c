@@ -104,6 +104,16 @@ void I2C_Write_Byte(uint8_t value, uint8_t Cmd)
     }
 }
 
+void I2C_Write_Multi_data(uint8_t reg, uint8_t* data, uint16_t count)
+{
+    uint8_t dt[256];
+    dt[0] = reg;
+    uint8_t i;
+    for(i = 0; i < count; i++)
+        dt[i+1] = data[i];
+    HAL_I2C_Master_Transmit(&hi2c1, (I2C_ADR << 1) | 0X00, dt, count+1, 10);
+}
+
 /********************************************************************************
 function:	Delay function
 note:

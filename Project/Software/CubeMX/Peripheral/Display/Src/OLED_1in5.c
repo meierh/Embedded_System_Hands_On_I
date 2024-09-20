@@ -190,11 +190,24 @@ function:   Update all memory to OLED
 void OLED_1in5_Display(const UBYTE *Image)
 {
     UWORD i, j, temp;
+    uint8_t write_buffer[OLED_1in5_HEIGHT*OLED_1in5_WIDTH/2];
+    uint16_t counter = 0;
     OLED_SetWindow(0, 0, 128, 128);
     for(i=0; i<OLED_1in5_HEIGHT; i++)
         for(j=0; j<OLED_1in5_WIDTH/2; j++)
         {
-            temp = Image[j + i*64];
-            OLED_WriteData(temp);
+            write_buffer[counter] = Image[j + i*64];
+            counter++;
+
+            // old methode to transfer image -> slow
+            //temp = Image[j + i*64];
+            //OLED_WriteData(temp);
         }
+
+    uint8_t m;
+
+    for (m = 0; m <64; m++) {
+        // Write multi data -> faster
+        I2C_Write_Multi_data(0x40, &write_buffer[128 * m], 128);
+     }
 }
