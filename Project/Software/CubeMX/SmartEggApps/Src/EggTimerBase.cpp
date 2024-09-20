@@ -21,12 +21,13 @@ setSeconds(0)
 
 void EggTimerBase::onPeriod()
 {
-    peroidCounter++;
+    inputActions.push(Action::OnePeriod);
+    /*peroidCounter++;
     if(peroidCounter>=100)
     {
         peroidCounter=0;
         inputActions.push(Action::OnePeriod);
-    }
+    }*/
 }
 
 void EggTimerBase::displayCommand()

@@ -19,6 +19,8 @@ class Application
          *  Internal action
          */
         virtual void work()=0;
+
+        void close();
                 
         /**
          *  Input action

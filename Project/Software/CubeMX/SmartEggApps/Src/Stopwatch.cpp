@@ -31,7 +31,6 @@ intermediateSeconds(0)
     interTimeMin.setType(DisplayItem::Empty);
     interTimeSec.setType(DisplayItem::Empty);
     
-    displayCommand();
     std::cout<<"Setup Stopwatch"<<std::endl;
 }
 
@@ -104,12 +103,13 @@ void Stopwatch::work()
 
 void Stopwatch::onPeriod()
 {
-    periodCounter++;
+    inputActions.push(Action::OnePeriod);
+    /*periodCounter++;
     if(periodCounter>=100)
     {
         periodCounter=0;
         inputActions.push(Action::OnePeriod);
-    }
+    }*/
 }
 
 void Stopwatch::displayCommand()

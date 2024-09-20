@@ -37,10 +37,9 @@ alarmMinutes(0)
     leftButtonLabel.offsetW -= 5 ;
     centerButtonLabel.characters = "Enter";
     rightButtonLabel.characters = "Min";
-        
-    displayCommand();
-    std::cout<<"Setup AlarmClock"<<std::endl;
+
     updateClock();
+    displayCommand();
 }
 
 void AlarmClock::work()
@@ -179,7 +178,7 @@ void AlarmClock::work()
 void AlarmClock::onPeriod()
 {
     peroidCounter++;
-    if(peroidCounter>=60*100)
+    if(peroidCounter>=60)
     {
         peroidCounter=0;
         inputActions.push(Action::OnePeriod);

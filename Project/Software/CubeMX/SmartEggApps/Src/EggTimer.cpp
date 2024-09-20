@@ -19,7 +19,6 @@ EggTimerBase(system)
     centerButtonLabel.characters = "Enter";
     rightButtonLabel.characters = "Secs";
     
-    displayCommand();
     std::cout<<"Setup EggTimer"<<std::endl;
     updateClock();
 }

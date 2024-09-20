@@ -3,7 +3,6 @@
 #include "Application.h"
 #include <cstdint>
 #include <string>
-#include <iostream>
 
 class EggTimerBase : public Application
 {

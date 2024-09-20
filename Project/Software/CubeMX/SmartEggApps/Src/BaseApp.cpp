@@ -4,6 +4,7 @@
 BaseApp::BaseApp
 (
     System* system
+
 ):
 Application(system),
 baseItem(54,20,DisplayItem::Font20,"Welcome",255),
@@ -12,12 +13,13 @@ peroidCounter(0)
 {
     modeStatus.characters = "Base";
     actionItem.setType(DisplayItem::ItemType::Empty);
-    displayCommand();
     std::cout<<"Setup BaseApp"<<std::endl;
 }
 
+
 void BaseApp::work()
 {
+    volatile int test = 5;
     if(!inputActions.empty())
     {
         Action action = inputActions.front();
@@ -68,12 +70,13 @@ void BaseApp::work()
 
 void BaseApp::onPeriod()
 {
-    peroidCounter++;
-    if(peroidCounter>=100)
-    {
-        peroidCounter=0;
-        inputActions.push(Action::OnePeriod);
-    }
+    inputActions.push(Action::OnePeriod);
+    //peroidCounter++;
+    //if(peroidCounter>=1) //@todo
+    //{
+    //    peroidCounter=0;
+    //
+    //}
 }
 
 void BaseApp::displayCommand()

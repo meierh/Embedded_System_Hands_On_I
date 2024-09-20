@@ -5,7 +5,6 @@
 #include <string>
 #include "Application.h"
 #include <list>
-#include <functional>
 
 class SpaceInvaders : public Application
 {

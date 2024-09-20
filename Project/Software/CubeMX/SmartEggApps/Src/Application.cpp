@@ -9,9 +9,9 @@ modeText(10,2,DisplayItem::Font8,"Mode",255),
 modeStatus(10,30,DisplayItem::Font8,"",128),
 batteryStatus(10,110,DisplayItem::Font8,"73%",255),
 time(115,100,DisplayItem::Font8,"00:00",255),
-buttonLine(120,0,120,128,255),
-leftCenterButtonLine(120,43,128,43,255),
-centerRightButtonLine(120,85,128,85,255),
+buttonLine(118,0,118,128,255),
+leftCenterButtonLine(118,43,128,43,255),
+centerRightButtonLine(118,85,128,85,255),
 leftButtonLabel(127,15,DisplayItem::Font8,"Left",200),
 centerButtonLabel(127,52,DisplayItem::Font8,"Center",200),
 rightButtonLabel(127,98,DisplayItem::Font8,"Right",200),
@@ -69,7 +69,12 @@ void Application::collectItems()
 
 void Application::updateClock()
 {
-    DateTime clock = system->getSystemTime();
-    std::string hoursMinutes = std::to_string(clock.getHour()) + std::to_string(clock.getMinute());
-    time.characters = hoursMinutes;
+    DateTime timeHourMin = system->getSystemTime();
+    time.characters = std::to_string(timeHourMin.getHour())+":"+std::to_string(timeHourMin.getMinute());
+}
+
+void Application::close() {
+    while (!inputActions.empty()) {
+        work();
+    }
 }

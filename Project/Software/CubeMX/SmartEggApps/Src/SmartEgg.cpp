@@ -17,10 +17,10 @@ EggTimerBase(system)
     
     eggText =       DisplayItem(100, 2,DisplayItem::Font16,"Egg"  ,255);
     
-    eggSize =       DisplayItem(115, 2,DisplayItem::Font8,"XX"   ,128);
-    eggIniTemp =    DisplayItem(115,12,DisplayItem::Font8,"XXXX" ,128);
-    eggPressure =   DisplayItem(115,32,DisplayItem::Font8,"XXXXX",128);
-    eggEndTemp =    DisplayItem(115,63,DisplayItem::Font8,"XXXX" ,128);
+    eggSize =       DisplayItem(115, 2,DisplayItem::Font8,"XX"   ,30);
+    eggIniTemp =    DisplayItem(115,10,DisplayItem::Font8,"XXXX" ,30);
+    eggPressure =   DisplayItem(115,32,DisplayItem::Font8,"XXXXX",30);
+    eggEndTemp =    DisplayItem(115,63,DisplayItem::Font8,"XXXX" ,30);
     
     writeSize(sizes[sizeInd]);
     writeIniTemp(setIniTemp);
@@ -32,7 +32,6 @@ EggTimerBase(system)
     centerButtonLabel.characters = "Enter";
     rightButtonLabel.characters = "Right";
 
-    displayCommand();
     std::cout<<"Setup SmartEgg"<<std::endl;
 }
 
@@ -56,22 +55,22 @@ void SmartEgg::work()
                     switch(status)
                     {
                         case SetSize:
-                            eggSize.intensity = 128;
+                            eggSize.intensity = 30;
                             eggIniTemp.intensity = 255;
                             status = SetIniTemp;
                             break;
                         case SetIniTemp:
-                            eggIniTemp.intensity = 128;
+                            eggIniTemp.intensity = 30;
                             eggPressure.intensity = 255;
                             status = SetPressure;
                             break;
                         case SetPressure:
-                            eggPressure.intensity = 128;
+                            eggPressure.intensity = 30;
                             eggEndTemp.intensity = 255;
                             status = SetEndTemp;
                             break;
                         case SetEndTemp:
-                            eggEndTemp.intensity = 128;
+                            eggEndTemp.intensity = 30;
                             eggSize.intensity = 255;
                             status = SetSize;
                             break;
@@ -85,10 +84,10 @@ void SmartEgg::work()
                 if(status!=Run && status!=End)
                 {
                     std::cout<<"Reset"<<std::endl;
-                    eggSize.intensity = 128;
-                    eggIniTemp.intensity = 128;
-                    eggPressure.intensity = 128;
-                    eggEndTemp.intensity = 128;
+                    eggSize.intensity = 30;
+                    eggIniTemp.intensity = 30;
+                    eggPressure.intensity = 30;
+                    eggEndTemp.intensity = 30;
                     remainingSeconds = computePerfectEggTime();
                     std::pair<uint,uint> minSecs = secondsToMinSecs(remainingSeconds);
                     setMinutes = minSecs.first;
@@ -110,22 +109,22 @@ void SmartEgg::work()
                     switch(status)
                     {
                         case SetSize:
-                            eggSize.intensity = 128;
+                            eggSize.intensity = 30;
                             eggIniTemp.intensity = 255;
                             status = SetIniTemp;
                             break;
                         case SetIniTemp:
-                            eggIniTemp.intensity = 128;
+                            eggIniTemp.intensity = 30;
                             eggPressure.intensity = 255;
                             status = SetPressure;
                             break;
                         case SetPressure:
-                            eggPressure.intensity = 128;
+                            eggPressure.intensity = 30;
                             eggEndTemp.intensity = 255;
                             status = SetEndTemp;
                             break;
                         case SetEndTemp:
-                            eggEndTemp.intensity = 128;
+                            eggEndTemp.intensity = 30;
                             eggSize.intensity = 255;
                             status = SetSize;
                             break;
@@ -220,12 +219,13 @@ void SmartEgg::work()
 
 void SmartEgg::onPeriod()
 {
-    peroidCounter++;
+    inputActions.push(Action::OnePeriod);
+    /*peroidCounter++;
     if(peroidCounter>=100)
     {
         peroidCounter=0;
         inputActions.push(Action::OnePeriod);
-    }
+    }*/
 }
 
 void SmartEgg::displayCommand()
@@ -313,7 +313,7 @@ void SmartEgg::writeIniTemp(int temp)
     else
         eggIniTemp.characters = std::to_string(temp);
     
-    eggIniTemp.characters+="°C";
+    eggIniTemp.characters+="C";
 }
 
 void SmartEgg::writePressure(uint pressure)
@@ -329,5 +329,5 @@ void SmartEgg::writePressure(uint pressure)
 void SmartEgg::writeEndTemp(int temp)
 {
     eggEndTemp.characters = std::to_string(temp);
-    eggEndTemp.characters+="°C";
+    eggEndTemp.characters+="C";
 }

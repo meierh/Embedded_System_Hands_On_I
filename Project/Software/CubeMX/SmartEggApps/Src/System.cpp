@@ -28,6 +28,8 @@ void System::buttonModePress()
     }
     else
     {
+        blocked = true;
+        app->close();
         delete app;
         switch(current)
         {
@@ -48,26 +50,27 @@ void System::buttonModePress()
                 current = Stopwatch;
                 break;
             case Stopwatch:
-                app = new class Snake(this);
-                current = Snake;
+                app = new class SetClock(this);
+                current = SetClock;
                 break;
-            case Snake:
-                app = new class SpaceInvaders(this);
-                current = SpaceInvaders;
+            case SetClock:
+                app = new class TestImage(this);
+                current = TestImage;
                 break;
-            case SpaceInvaders:
+            case TestImage:
                 app = new class BaseApp(this);
                 current = BaseApp;
                 break;
             default:
                 break;
         }
+        blocked = false;
     }
 }
 
 void System::buttonLeftPress()
 {
-    if(app!=nullptr)
+    if(app!=nullptr && !blocked)
         app->onButtonLeftClick();
     else
         std::cout<<"Error: System::buttonLeftPress nullptr"<<std::endl;
@@ -75,7 +78,7 @@ void System::buttonLeftPress()
 
 void System::buttonCenterPress()
 {
-    if(app!=nullptr)
+    if(app!=nullptr && !blocked)
         app->onButtonCenterClick();
     else
         std::cout<<"Error: System::buttonCenterPress nullptr"<<std::endl;
@@ -83,7 +86,7 @@ void System::buttonCenterPress()
 
 void System::buttonRightPress()
 {
-    if(app!=nullptr)
+    if(app!=nullptr && !blocked)
         app->onButtonRightClick();
     else
         std::cout<<"Error: System::buttonRightPress nullptr"<<std::endl;
@@ -91,7 +94,7 @@ void System::buttonRightPress()
 
 void System::rotate(Direction dir)
 {
-    if(app!=nullptr)
+    if(app!=nullptr && !blocked)
         app->onRotationClick(static_cast<std::int8_t>(dir));
     else
         std::cout<<"Error: System::rotate nullptr"<<std::endl;
@@ -99,6 +102,6 @@ void System::rotate(Direction dir)
 
 void System::periodElapsed()
 {
-    if(app!=nullptr)
+    if(app!=nullptr && !blocked)
         app->onPeriod();
 }
