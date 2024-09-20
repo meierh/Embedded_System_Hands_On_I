@@ -6,6 +6,7 @@
 #include "GUI_Paint.h"
 #include "OLED_1in5.h"
 #include "DS3231.h"
+#include "main.h"
 
 
 class System_STM32 : public System
@@ -15,6 +16,7 @@ class System_STM32 : public System
         ~System_STM32();
         
         // Application -> System
+        void buttonModePress() override;
         void displayImage(std::vector<DisplayItem> image) override;
         DateTime getSystemTime() override;
         int8_t getSeconds() override;

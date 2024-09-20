@@ -57,6 +57,7 @@ UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
+uint16_t rotaryEncoderPin_first_signal = 0;
 
 /* USER CODE END PV */
 
@@ -105,14 +106,25 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
             break;
         case Rotary_Encoder_A_Pin:
             // call clockwise rotate @todo?
-            if(hardware != nullptr){
-                hardware->rotate(System::Direction::Clockwise);
+
+            if(rotaryEncoderPin_first_signal == Rotary_Encoder_B_Pin) {
+                if(hardware != nullptr){
+                    hardware->rotate(System::Direction::Counterclockwise);
+                }
+                rotaryEncoderPin_first_signal = 0;
+            } else {
+                rotaryEncoderPin_first_signal = Rotary_Encoder_A_Pin;
             }
             break;
         case Rotary_Encoder_B_Pin:
             // call counterclockwise rotate
-            if(hardware != nullptr){
-                hardware->rotate(System::Direction::Counterclockwise);
+            if(rotaryEncoderPin_first_signal == Rotary_Encoder_A_Pin) {
+                if(hardware != nullptr){
+                    hardware->rotate(System::Direction::Clockwise);
+                }
+                rotaryEncoderPin_first_signal = 0;
+            } else {
+                rotaryEncoderPin_first_signal = Rotary_Encoder_B_Pin;
             }
             break;
         default:
@@ -126,29 +138,18 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
     if (htim == &htim3)
     {
-        if (HAL_I2C_GetState(&hi2c1) == HAL_I2C_STATE_READY) {
-            // check if hardware is already existing
-            if(hardware != nullptr){
-                int8_t currentSecond = hardware->getSeconds();
-                // check if current second has changed, if yes, call period elapsed
-                if(currentSecond != lastSecond) {
-                    lastSecond = currentSecond;
-                    hardware->periodElapsed();
-                    /*DisplayItem timeItem;
-                    std::vector<DisplayItem> items;
-                    timeItem = DisplayItem(10, 15, DisplayItem::Font12, std::to_string(hardware->getSeconds()), 255);
-                    items.push_back(timeItem);
-
-                    hardware->displayImage(items);
-
-                    items.clear();
-                     */
-
+        // check if hardware is already existing
+        if(hardware != nullptr){
+            if (HAL_I2C_GetState(&hi2c1) == HAL_I2C_STATE_READY) {
+                    int8_t currentSecond = hardware->getSeconds();
+                    // check if current second has changed, if yes, call period elapsed
+                    if(currentSecond != lastSecond) {
+                        lastSecond = currentSecond;
+                        hardware->periodElapsed();
+                    }
+                    hardware->work();
                 }
             }
-        }
-
-
     }
 }
 
@@ -211,7 +212,6 @@ int main(void)
     while (1)
     {
         /* USER CODE END WHILE */
-
         /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
@@ -407,9 +407,9 @@ static void MX_TIM3_Init(void)
 
     /* USER CODE END TIM3_Init 1 */
     htim3.Instance = TIM3;
-    htim3.Init.Prescaler = 64000 - 1;
+    htim3.Init.Prescaler = 64000/100 - 1; //@todo
     htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim3.Init.Period = 500;
+    htim3.Init.Period = 100;
     htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
     if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
