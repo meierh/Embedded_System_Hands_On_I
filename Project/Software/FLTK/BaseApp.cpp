@@ -7,7 +7,7 @@ BaseApp::BaseApp
 ):
 Application(system),
 baseItem(54,20,DisplayItem::Font20,"Welcome",255),
-actionItem(74,40,DisplayItem::Font12,"",128),
+actionItem(74,30,DisplayItem::Font12,"",128),
 peroidCounter(0)
 {
     modeStatus.characters = "Base";
@@ -17,6 +17,7 @@ peroidCounter(0)
 
 void BaseApp::work()
 {
+    volatile int test = 5;
     if(!inputActions.empty())
     {
         Action action = inputActions.front();
@@ -26,30 +27,35 @@ void BaseApp::work()
             case BtnLeftClick:
             {
                 actionItem.characters="BtnLeftClick";
+                actionItem.offsetW=30;
                 actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case BtnCenterClick:
             {
                 actionItem.characters="BtnCenterClick";
+                actionItem.offsetW=20;
                 actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case BtnRightClick:
             {
                 actionItem.characters="BtnRightClick";
+                actionItem.offsetW=25;
                 actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case RotateClock:
             {                
                 actionItem.characters="RotateClock";
+                actionItem.offsetW=30;
                 actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
             case RotateAntiClock:
             {
                 actionItem.characters="RotateAntiClock";
+                actionItem.offsetW=18;
                 actionItem.setType(DisplayItem::ItemType::Text);
                 break;
             }
@@ -67,25 +73,13 @@ void BaseApp::work()
 
 void BaseApp::onPeriod()
 {
-    peroidCounter++;
-    if(peroidCounter>=100)
-    {
-        peroidCounter=0;
-        inputActions.push(Action::OnePeriod);
-    }
+    inputActions.push(Action::OnePeriod);
 }
 
 void BaseApp::displayCommand()
 {
-    updateClock();
     collectItems();
-    displayCommand(displayImage);
-}
-
-void BaseApp::displayCommand(std::vector<DisplayItem> items)
-{
-    if(system!=nullptr)
-        system->displayImage(displayImage);
+    Application::displayCommand(displayImage);
 }
 
 void BaseApp::speakerCommand()

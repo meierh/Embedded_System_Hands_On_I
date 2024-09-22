@@ -21,30 +21,15 @@ setSeconds(0)
 
 void EggTimerBase::onPeriod()
 {
-    peroidCounter++;
-    if(peroidCounter>=100)
-    {
-        peroidCounter=0;
-        inputActions.push(Action::OnePeriod);
-    }
+    inputActions.push(Action::OnePeriod);
 }
 
 void EggTimerBase::displayCommand()
 {
-    updateClock();
     writeMinutes(setMinutes);
     writeSeconds(setSeconds);
     collectItems();
-    displayCommand(displayImage);
-    
-    for(DisplayItem item : displayImage)
-        std::cout<<" Disp:"<<item.to_string()<<std::endl;
-}
-
-void EggTimerBase::displayCommand(std::vector<DisplayItem> items)
-{
-    if(system!=nullptr)
-        system->displayImage(displayImage);
+    Application::displayCommand(displayImage);
 }
 
 void EggTimerBase::speakerCommand()
@@ -74,6 +59,12 @@ std::pair<uint,uint> EggTimerBase::secondsToMinSecs
 {
     uint minutes = totalSeconds / 60;
     uint seconds = totalSeconds - (minutes*60);
+    if(minutes>99)
+    {
+        minutes = 59;
+        seconds = 59;
+    }
+    
     return {minutes,seconds};
 }
 

@@ -15,6 +15,8 @@ class EmulatedSystem : public System
         DateTime getSystemTime() override;
         int8_t getSeconds() override {return 0;};
         void setSystemTime(DateTime newTime) override;
+        uint8_t getBattery() override;
+        uint8_t batteryStatus = 0;
         
     private:
         HardwareEmulator* hardware = nullptr;

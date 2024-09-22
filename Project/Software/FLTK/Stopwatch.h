@@ -26,7 +26,6 @@ class Stopwatch : public Application
          */
         void speakerCommand() override;
         void displayCommand() override;
-        void displayCommand(std::vector<DisplayItem> items);
     
     private:
         uint periodCounter;

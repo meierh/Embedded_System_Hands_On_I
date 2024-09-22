@@ -17,10 +17,12 @@ EggTimerBase(system)
     
     eggText =       DisplayItem(100, 2,DisplayItem::Font16,"Egg"  ,255);
     
-    eggSize =       DisplayItem(115, 2,DisplayItem::Font8,"XX"   ,128);
-    eggIniTemp =    DisplayItem(115,12,DisplayItem::Font8,"XXXX" ,128);
-    eggPressure =   DisplayItem(115,32,DisplayItem::Font8,"XXXXX",128);
-    eggEndTemp =    DisplayItem(115,63,DisplayItem::Font8,"XXXX" ,128);
+    eggSize =       DisplayItem(115, 2,DisplayItem::Font8,"XX"   ,30);
+    eggIniTemp =    DisplayItem(115,10,DisplayItem::Font8,"XXXX" ,30);
+    eggPressure =   DisplayItem(115,32,DisplayItem::Font8,"XXXXX",30);
+    eggEndTemp =    DisplayItem(115,63,DisplayItem::Font8,"XXXX" ,30);
+    
+    timesUpLabel.characters = "Egg done";
     
     writeSize(sizes[sizeInd]);
     writeIniTemp(setIniTemp);
@@ -50,29 +52,34 @@ void SmartEgg::work()
                     status = SetSize;
                     eggSize.intensity = 255;
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 else
                 {
                     switch(status)
                     {
                         case SetSize:
-                            eggSize.intensity = 128;
-                            eggIniTemp.intensity = 255;
-                            status = SetIniTemp;
-                            break;
-                        case SetIniTemp:
-                            eggIniTemp.intensity = 128;
-                            eggPressure.intensity = 255;
-                            status = SetPressure;
-                            break;
-                        case SetPressure:
-                            eggPressure.intensity = 128;
+                            eggSize.intensity = 30;
                             eggEndTemp.intensity = 255;
                             status = SetEndTemp;
                             break;
-                        case SetEndTemp:
-                            eggEndTemp.intensity = 128;
+                        case SetIniTemp:
+                            eggIniTemp.intensity = 30;
                             eggSize.intensity = 255;
                             status = SetSize;
+                            break;
+                        case SetPressure:
+                            eggPressure.intensity = 30;
+                            eggIniTemp.intensity = 255;
+                            status = SetIniTemp;
+                            break;
+                        case SetEndTemp:
+                            eggEndTemp.intensity = 30;
+                            eggPressure.intensity = 255;
+                            status = SetPressure;
                             break;
                     }
                 }
@@ -81,18 +88,23 @@ void SmartEgg::work()
             case BtnCenterClick:
             {
                 std::cout<<"Enter"<<std::endl;
-                if(status!=Run && status!=End)
+                if(status!=Run && status!=End && status!=Alarm)
                 {
                     std::cout<<"Reset"<<std::endl;
-                    eggSize.intensity = 128;
-                    eggIniTemp.intensity = 128;
-                    eggPressure.intensity = 128;
-                    eggEndTemp.intensity = 128;
+                    eggSize.intensity = 30;
+                    eggIniTemp.intensity = 30;
+                    eggPressure.intensity = 30;
+                    eggEndTemp.intensity = 30;
                     remainingSeconds = computePerfectEggTime();
                     std::pair<uint,uint> minSecs = secondsToMinSecs(remainingSeconds);
                     setMinutes = minSecs.first;
                     setSeconds = minSecs.second;
                     status = Run;             
+                }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
                 }
                 std::cout<<"Stat:"<<std::to_string(status)<<std::endl;
                 break;
@@ -104,27 +116,32 @@ void SmartEgg::work()
                     status = SetSize;
                     eggSize.intensity = 255;
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 else
                 {
                     switch(status)
                     {
                         case SetSize:
-                            eggSize.intensity = 128;
+                            eggSize.intensity = 30;
                             eggIniTemp.intensity = 255;
                             status = SetIniTemp;
                             break;
                         case SetIniTemp:
-                            eggIniTemp.intensity = 128;
+                            eggIniTemp.intensity = 30;
                             eggPressure.intensity = 255;
                             status = SetPressure;
                             break;
                         case SetPressure:
-                            eggPressure.intensity = 128;
+                            eggPressure.intensity = 30;
                             eggEndTemp.intensity = 255;
                             status = SetEndTemp;
                             break;
                         case SetEndTemp:
-                            eggEndTemp.intensity = 128;
+                            eggEndTemp.intensity = 30;
                             eggSize.intensity = 255;
                             status = SetSize;
                             break;
@@ -134,55 +151,71 @@ void SmartEgg::work()
             }
             case RotateClock:
             {
-                switch(status)
+                if(status==Alarm)
                 {
-                    case SetSize:
-                        sizeInd++;
-                        if(sizeInd>=sizes.size())
-                            sizeInd=0;
-                        break;
-                    case SetIniTemp:
-                        setIniTemp++;
-                        if(setIniTemp>upperBoundIniTemp)
-                            setIniTemp=lowerBoundIniTemp;
-                        break;
-                    case SetPressure:
-                        setPressure++;
-                        if(setPressure>upperBoundPressure)
-                            setPressure=lowerBoundPressure;
-                        break;
-                    case SetEndTemp:
-                        setEndTemp++;
-                        if(setEndTemp>upperBoundEndTemp)
-                            setEndTemp=lowerBoundEndTemp;
-                        break;
+                    unsetTimesUp();
+                    status = End;
+                }
+                else
+                {
+                    switch(status)
+                    {
+                        case SetSize:
+                            sizeInd++;
+                            if(sizeInd>=sizes.size())
+                                sizeInd=0;
+                            break;
+                        case SetIniTemp:
+                            setIniTemp++;
+                            if(setIniTemp>upperBoundIniTemp)
+                                setIniTemp=lowerBoundIniTemp;
+                            break;
+                        case SetPressure:
+                            setPressure++;
+                            if(setPressure>upperBoundPressure)
+                                setPressure=lowerBoundPressure;
+                            break;
+                        case SetEndTemp:
+                            setEndTemp++;
+                            if(setEndTemp>upperBoundEndTemp)
+                                setEndTemp=lowerBoundEndTemp;
+                            break;
+                    }
                 }
                 break;
             }
             case RotateAntiClock:
             {
-                switch(status)
+                if(status==Alarm)
                 {
-                    case SetSize:
-                        sizeInd--;
-                        if(sizeInd<0)
-                            sizeInd=3;
-                        break;
-                    case SetIniTemp:
-                        setIniTemp--;
-                        if(setIniTemp<lowerBoundIniTemp)
-                            setIniTemp=upperBoundIniTemp;
-                        break;
-                    case SetPressure:
-                        setPressure--;
-                        if(setPressure<lowerBoundPressure)
-                            setPressure=upperBoundPressure;
-                        break;
-                    case SetEndTemp:
-                        setEndTemp--;
-                        if(setEndTemp<lowerBoundEndTemp)
-                            setEndTemp=upperBoundEndTemp;
-                        break;
+                    unsetTimesUp();
+                    status = End;
+                }
+                else
+                {
+                    switch(status)
+                    {
+                        case SetSize:
+                            sizeInd--;
+                            if(sizeInd<0)
+                                sizeInd=3;
+                            break;
+                        case SetIniTemp:
+                            setIniTemp--;
+                            if(setIniTemp<lowerBoundIniTemp)
+                                setIniTemp=upperBoundIniTemp;
+                            break;
+                        case SetPressure:
+                            setPressure--;
+                            if(setPressure<lowerBoundPressure)
+                                setPressure=upperBoundPressure;
+                            break;
+                        case SetEndTemp:
+                            setEndTemp--;
+                            if(setEndTemp<lowerBoundEndTemp)
+                                setEndTemp=upperBoundEndTemp;
+                            break;
+                    }
                 }
                 break;
             }
@@ -199,14 +232,12 @@ void SmartEgg::work()
                         writeMinutes(secMins.first);
                         writeSeconds(secMins.second);
                         std::cout<<"Rem:"<<remainingSeconds<<std::endl;
-                        displayCommand();
                     }
                     else
-                        status = End;
-                }
-                else if(status!=End)
-                {
-                    displayCommand();
+                    {
+                        setTimesUp();
+                        status = Alarm;
+                    }
                 }
                 break;
             }
@@ -219,35 +250,48 @@ void SmartEgg::work()
 
 void SmartEgg::onPeriod()
 {
-    peroidCounter++;
+    inputActions.push(Action::OnePeriod);
+    /*peroidCounter++;
     if(peroidCounter>=100)
     {
         peroidCounter=0;
         inputActions.push(Action::OnePeriod);
-    }
+    }*/
 }
 
 void SmartEgg::displayCommand()
 {
-    std::cout<<"status:"<<std::to_string(status)<<std::endl;
-    updateClock();
     writeSize(sizes[sizeInd]);
     writeIniTemp(setIniTemp);
     writePressure(setPressure);
     writeEndTemp(setEndTemp);
     
     collectItems();
-    displayCommand(displayImage);
-}
-
-void SmartEgg::displayCommand(std::vector<DisplayItem> items)
-{
-    if(system!=nullptr)
-        system->displayImage(displayImage);
+    Application::displayCommand(displayImage);
 }
 
 void SmartEgg::speakerCommand()
 {
+}
+
+void SmartEgg::setTimesUp()
+{
+    minText.setType(DisplayItem::Empty);
+    secText.setType(DisplayItem::Empty);
+    timeMin.setType(DisplayItem::Empty);
+    timeSeparator.setType(DisplayItem::Empty);
+    timeSec.setType(DisplayItem::Empty);
+    Application::setTimesUp();
+}
+
+void SmartEgg::unsetTimesUp()
+{
+    minText.setType(DisplayItem::Text);
+    secText.setType(DisplayItem::Text);
+    timeMin.setType(DisplayItem::Text);
+    timeSeparator.setType(DisplayItem::Text);
+    timeSec.setType(DisplayItem::Text);
+    Application::unsetTimesUp();
 }
 
 void SmartEgg::collectItems()
@@ -312,7 +356,7 @@ void SmartEgg::writeIniTemp(int temp)
     else
         eggIniTemp.characters = std::to_string(temp);
     
-    eggIniTemp.characters+="°C";
+    eggIniTemp.characters+="C";
 }
 
 void SmartEgg::writePressure(uint pressure)
@@ -328,5 +372,5 @@ void SmartEgg::writePressure(uint pressure)
 void SmartEgg::writeEndTemp(int temp)
 {
     eggEndTemp.characters = std::to_string(temp);
-    eggEndTemp.characters+="°C";
+    eggEndTemp.characters+="C";
 }

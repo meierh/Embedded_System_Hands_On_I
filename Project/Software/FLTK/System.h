@@ -2,7 +2,6 @@
 #define SYSTEM_H
 
 #include <iostream>
-#include <functional>
 #include "DisplayItem.h"
 #include "BaseApp.h"
 #include "EggTimer.h"
@@ -22,7 +21,7 @@ class System
         virtual void work();
         
         //System -> Application
-        void buttonModePress();
+        virtual void buttonModePress();
         void buttonLeftPress();
         void buttonCenterPress();
         void buttonRightPress();
@@ -35,11 +34,13 @@ class System
         virtual DateTime getSystemTime()=0;
         virtual int8_t getSeconds() =0;
         virtual void setSystemTime(DateTime newTime)=0;
+        virtual uint8_t getBattery() =0;
         // virtual void playSound(uint8_t soundFile, uint8_t soundFolder)=0;
         
     protected:
         enum App{BaseApp,SmartEgg,EggTimer,AlarmClock,Stopwatch,SetClock,TestImage,Empty};
         App current = Empty;
         Application* app = nullptr;
+        bool blocked = false;
 };
 #endif

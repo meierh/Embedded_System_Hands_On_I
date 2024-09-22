@@ -8,11 +8,13 @@ TestImage::TestImage
 Application(system),
 periodCounter(0)
 {
+    displayCommand();
 }
+
 
 void TestImage::work()
 {
-    displayCommand();
+    //displayCommand();
 }
 
 void TestImage::onPeriod()

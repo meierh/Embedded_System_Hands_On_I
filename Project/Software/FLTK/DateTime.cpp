@@ -68,7 +68,7 @@ static uint8_t bcd2bin (uint8_t val) {
  * @param timestamp
  */
 DateTime::DateTime (time_t unix_timestamp)
-        : _unix_timestamp{unix_timestamp}, _y2k_timestamp{static_cast<time_t>(unix_timestamp - UNIX_OFFSET)}
+        : _unix_timestamp{unix_timestamp}, _y2k_timestamp{unix_timestamp - UNIX_OFFSET}
 {
     gmtime_r(&_unix_timestamp, &_tm);
 }

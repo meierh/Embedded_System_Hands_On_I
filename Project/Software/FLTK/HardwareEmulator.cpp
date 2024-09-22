@@ -98,7 +98,7 @@ void HardwareEmulator::idleCallback()
     {
         auto timeNow = std::chrono::system_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(timeNow-time);
-        if(duration.count() > 10)
+        if(duration.count() > 1000)
         {
             time = std::chrono::system_clock::now();
             sys->periodElapsed();

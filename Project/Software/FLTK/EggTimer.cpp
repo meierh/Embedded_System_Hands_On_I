@@ -19,6 +19,8 @@ EggTimerBase(system)
     centerButtonLabel.characters = "Enter";
     rightButtonLabel.characters = "Secs";
     
+    timesUpLabel.characters = "Egg done";
+    
     std::cout<<"Setup EggTimer"<<std::endl;
     updateClock();
 }
@@ -47,6 +49,11 @@ void EggTimer::work()
                     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
                     status = SetMin;
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 break;
             }
             case BtnCenterClick:
@@ -57,6 +64,11 @@ void EggTimer::work()
                     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
                     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
                     status = Run;
+                }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
                 }
                 break;
             }
@@ -76,6 +88,11 @@ void EggTimer::work()
                     timeSecUnderline.setType(DisplayItem::ItemType::Line);
                     status = SetSec;
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 break;
             }
             case RotateClock:
@@ -89,6 +106,11 @@ void EggTimer::work()
                 {
                     setSeconds = (setSeconds+1)%60;
                     writeSeconds(setSeconds);
+                }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
                 }
                 break;
             }
@@ -112,6 +134,11 @@ void EggTimer::work()
                     
                     writeSeconds(setSeconds);
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 break;
             }
             case OnePeriod:
@@ -126,14 +153,13 @@ void EggTimer::work()
                         setMinutes = secMins.first;
                         setSeconds = secMins.second;
                         std::cout<<"Rem:"<<remainingSeconds<<std::endl;
-                        displayCommand();
+                        
                     }
                     else
-                        status = End;
-                }
-                else if(status==SetMin || status==SetSec)
-                {
-                    displayCommand();
+                    {
+                        setTimesUp();
+                        status = Alarm;
+                    }
                 }
                 break;
             }
@@ -142,6 +168,26 @@ void EggTimer::work()
         }
         displayCommand();
     }
+}
+
+void EggTimer::setTimesUp()
+{
+    minText.setType(DisplayItem::Empty);
+    secText.setType(DisplayItem::Empty);
+    timeMin.setType(DisplayItem::Empty);
+    timeSeparator.setType(DisplayItem::Empty);
+    timeSec.setType(DisplayItem::Empty);
+    Application::setTimesUp();
+}
+
+void EggTimer::unsetTimesUp()
+{
+    minText.setType(DisplayItem::Text);
+    secText.setType(DisplayItem::Text);
+    timeMin.setType(DisplayItem::Text);
+    timeSeparator.setType(DisplayItem::Text);
+    timeSec.setType(DisplayItem::Text);
+    Application::unsetTimesUp();
 }
 
 void EggTimer::collectItems()

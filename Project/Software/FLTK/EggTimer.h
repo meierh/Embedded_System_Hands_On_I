@@ -12,9 +12,13 @@ class EggTimer : public EggTimerBase
          *  Internal action
          */
         void work() override;
+        
+    protected:
+        void setTimesUp() override;
+        void unsetTimesUp() override;
                            
     private:
-        enum EggTimerStatus{SetMin,SetSec,Run,End,Base};
+        enum EggTimerStatus{SetMin,SetSec,Run,Alarm,End,Base};
         EggTimerStatus status = End;
         
         void collectItems() override;
