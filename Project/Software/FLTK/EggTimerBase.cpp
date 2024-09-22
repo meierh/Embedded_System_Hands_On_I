@@ -32,10 +32,6 @@ void EggTimerBase::displayCommand()
     Application::displayCommand(displayImage);
 }
 
-void EggTimerBase::speakerCommand()
-{
-}
-
 void EggTimerBase::collectItems()
 {
     displayImage.clear();

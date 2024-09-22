@@ -24,7 +24,6 @@ class Stopwatch : public Application
         /**
          *  Output action
          */
-        void speakerCommand() override;
         void displayCommand() override;
     
     private:

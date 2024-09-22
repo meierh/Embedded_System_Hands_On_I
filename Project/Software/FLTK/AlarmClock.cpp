@@ -286,10 +286,6 @@ uint AlarmClock::minutesToHourMins(std::pair<uint,uint> hourMin)
     return hourMin.first*60+hourMin.second;
 }
 
-void AlarmClock::speakerCommand()
-{
-}
-
 void AlarmClock::collectItems()
 {
     displayImage.clear();

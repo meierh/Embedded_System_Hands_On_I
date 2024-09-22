@@ -270,10 +270,6 @@ void SmartEgg::displayCommand()
     Application::displayCommand(displayImage);
 }
 
-void SmartEgg::speakerCommand()
-{
-}
-
 void SmartEgg::setTimesUp()
 {
     minText.setType(DisplayItem::Empty);

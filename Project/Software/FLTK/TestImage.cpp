@@ -33,10 +33,6 @@ void TestImage::displayCommand(std::vector<DisplayItem> items)
         system->displayImage(displayImage);
 }
 
-void TestImage::speakerCommand()
-{
-}
-
 void TestImage::collectItems()
 {
     displayImage.clear();

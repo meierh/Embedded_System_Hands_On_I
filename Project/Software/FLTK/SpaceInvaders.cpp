@@ -226,10 +226,6 @@ void SpaceInvaders::displayCommand(std::vector<DisplayItem> items)
         system->displayImage(displayImage);
 }
 
-void SpaceInvaders::speakerCommand()
-{
-}
-
 uint SpaceInvaders::moveLen(uint speed)
 {
     if(onPeriodCount%4==0)

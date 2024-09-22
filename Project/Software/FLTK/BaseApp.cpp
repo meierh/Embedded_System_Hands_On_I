@@ -82,10 +82,6 @@ void BaseApp::displayCommand()
     Application::displayCommand(displayImage);
 }
 
-void BaseApp::speakerCommand()
-{
-}
-
 void BaseApp::collectItems()
 {
     displayImage.clear();

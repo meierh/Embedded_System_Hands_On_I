@@ -185,10 +185,6 @@ void SetClock::displayCommand()
     Application::displayCommand(displayImage);
 }
 
-void SetClock::speakerCommand()
-{
-}
-
 void SetClock::writeDate()
 {
     clockYear.characters = std::to_string(year);

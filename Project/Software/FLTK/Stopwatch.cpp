@@ -120,10 +120,6 @@ void Stopwatch::displayCommand()
     Application::displayCommand(displayImage);
 }
 
-void Stopwatch::speakerCommand()
-{
-}
-
 void Stopwatch::writeSeconds(uint seconds)
 {
     uint hours = seconds / 3600;

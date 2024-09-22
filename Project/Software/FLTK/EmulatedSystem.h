@@ -17,6 +17,15 @@ class EmulatedSystem : public System
         void setSystemTime(DateTime newTime) override;
         uint8_t getBattery() override;
         uint8_t batteryStatus = 0;
+                        
+        void playerTurnOn();
+        void playerTurnOff();
+        PlayingStatus mp3Status;
+        const uint16_t trackNumber = 12;
+        uint16_t trackID;
+        uint8_t volume;
+        void playerControl(PlayerAction action);
+        void playerGetState(PlayingStatus &status, uint8_t &volume, uint16_t &numberOfTracks, uint16_t &currentTrack);
         
     private:
         HardwareEmulator* hardware = nullptr;

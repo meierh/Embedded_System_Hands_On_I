@@ -41,7 +41,6 @@ class Application
          */
         System* system = nullptr;
     public:
-        virtual void speakerCommand()=0;
         virtual void displayCommand()=0;
         
     protected:

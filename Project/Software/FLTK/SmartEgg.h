@@ -25,7 +25,6 @@ class SmartEgg : public EggTimerBase
         /**
          *  Output action
          */
-        void speakerCommand() override;
         void displayCommand() override;
         
     protected:        

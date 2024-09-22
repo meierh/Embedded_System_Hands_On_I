@@ -115,12 +115,16 @@ void Application::unsetBatteryBar(uint8_t barInd)
 
 void Application::setTimesUp()
 {
+    system->playerTurnOn();
+    system->playerControl(System::PlayerAction::PlayAlarm);
     timesUpLabel.setType(DisplayItem::Text);
 }
 
 void Application::unsetTimesUp()
 {
     timesUpLabel.setType(DisplayItem::Empty);
+    system->playerControl(System::PlayerAction::StopAlarm);
+    system->playerTurnOff();
 }
 
 void Application::updateClock()
