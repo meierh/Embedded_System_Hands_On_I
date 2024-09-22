@@ -130,7 +130,19 @@ void Application::unsetTimesUp()
 void Application::updateClock()
 {
     currTime = system->getSystemTime();
-    time.characters = std::to_string(currTime.getHour())+":"+std::to_string(currTime.getMinute());
+    std::string timeString;
+    
+    if(currTime.getHour()<10)
+        timeString += "0"+ std::to_string(currTime.getHour());
+    else
+        timeString += std::to_string(currTime.getHour());
+    timeString += ":";
+    if(currTime.getMinute()<10)
+        timeString += "0"+ std::to_string(currTime.getMinute());
+    else
+        timeString += std::to_string(currTime.getMinute());
+    
+    time.characters = timeString;
 }
 
 void Application::updateBattery()
