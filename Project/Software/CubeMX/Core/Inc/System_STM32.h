@@ -13,7 +13,7 @@ class System_STM32 : public System
 {
     public:
         System_STM32();
-        ~System_STM32();
+        ~System_STM32() override;
         
         // Application -> System
         void buttonModePress() override;
@@ -21,6 +21,13 @@ class System_STM32 : public System
         DateTime getSystemTime() override;
         int8_t getSeconds() override;
         void setSystemTime(DateTime newTime) override;
-        // void playSound(uint8_t soundFile, uint8_t soundFolder) override;
+
+        uint8_t getBattery() override;
+
+        void playerTurnOn() override;
+        void playerTurnOff() override;
+        void playerControl(PlayerAction action) override;
+        void playerGetState(PlayingStatus &status, uint8_t &volume, uint16_t &numberOfTracks, uint16_t &currentTrack) override;
+
 };
 #endif
