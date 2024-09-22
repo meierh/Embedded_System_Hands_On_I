@@ -128,3 +128,24 @@ void System_STM32::buttonModePress() {
     //__enable_irq();
 }
 
+uint8_t System_STM32::getBattery()
+{
+    return 3;
+}
+
+void System_STM32::playerTurnOn()
+{
+}
+
+void System_STM32::playerTurnOff()
+{
+}
+
+void System_STM32::playerControl(PlayerAction action)
+{
+}
+
+void System_STM32::playerGetState(PlayingStatus& status, uint8_t& volume, uint16_t& numberOfTracks,
+    uint16_t& currentTrack)
+{
+}
