@@ -182,10 +182,6 @@ void Snake::displayCommand(std::vector<DisplayItem> items)
         system->displayImage(displayImage);
 }
 
-void Snake::speakerCommand()
-{
-}
-
 std::array<DisplayItem,31> Snake::drawGridW()
 {
     std::array<DisplayItem,31> gridW;

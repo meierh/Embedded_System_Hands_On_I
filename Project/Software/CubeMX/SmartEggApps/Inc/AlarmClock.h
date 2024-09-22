@@ -21,9 +21,11 @@ class AlarmClock : public Application
         /**
          *  Output action
          */
-        void speakerCommand() override;
         void displayCommand() override;
-        void displayCommand(std::vector<DisplayItem> items);
+
+    protected:
+        void setTimesUp() override;
+        void unsetTimesUp() override;
         
     private:
         void updateClock() override;
@@ -57,7 +59,7 @@ class AlarmClock : public Application
         DisplayItem timeMinUnderline;
         DisplayItem timeSecUnderline;
         
-        enum AlarmClockStatus{SetHour,SetMin,Run,End};
+        enum AlarmClockStatus{SetHour,SetMin,Run,Alarm,End};
         AlarmClockStatus status = End;
         uint remainingMinutes = 0;
         

@@ -9,6 +9,7 @@
 #include "AlarmClock.h"
 #include "Stopwatch.h"
 #include "SetClock.h"
+#include "MP3Player.h"
 #include "TestImage.h"
 #include "DateTime.h"
 
@@ -16,11 +17,8 @@ class System
 {
     public:
         System();
-        virtual ~System();
-
-        enum class PlayerAction:uint8_t{InitAlarm,InitPlayer,PlayAlarm,TogglePause,Next,Previous,IncreaseVolume,DecreaseVolume,Stop};
-        enum class PlayingStatus:uint8_t{STATUS_STOPPED=0x00,STATUS_PLAYING=0x01,STATUS_PAUSED=0x02};
-
+        ~System();
+        
         virtual void work();
         
         //System -> Application
@@ -37,22 +35,27 @@ class System
         virtual DateTime getSystemTime()=0;
         virtual int8_t getSeconds() =0;
         virtual void setSystemTime(DateTime newTime)=0;
-
+        
         /**
          * Measures the current charge level of the battery.
          * @return The current charge level of the battery: 0-3 (0: empty, 3: full)
          */
         virtual uint8_t getBattery()=0;
 
+        enum class PlayerAction:uint8_t{PlayAlarm,StopAlarm,Play,Pause,Next,Previous,IncreaseVolume,DecreaseVolume};
+        enum class PlayingStatus:uint8_t{STATUS_PAUSED=0x00,STATUS_PLAYING=0x01};
+        
+        bool playerActive();
+        
         /**
          * Turns on the MP3 Player
          */
-        virtual void playerTurnOn()=0;
+        virtual void playerTurnOn();
 
         /**
          * Turns off the MP3 Player
          */
-        virtual void playerTurnOff()=0;
+        virtual void playerTurnOff();
 
         /**
          * Performs an action on the MP3 Player
@@ -68,11 +71,12 @@ class System
          * @param currentTrack The index of the currently playing track (in 1 ... numberOfTracks)
          */
         virtual void playerGetState(PlayingStatus &status, uint8_t &volume, uint16_t &numberOfTracks, uint16_t &currentTrack)=0;
-
+        
     protected:
-        enum App{BaseApp,SmartEgg,EggTimer,AlarmClock,Stopwatch,SetClock,TestImage,Empty};
+        enum App{BaseApp,SmartEgg,EggTimer,AlarmClock,Stopwatch,SetClock,MP3Player,TestImage,Empty};
         App current = Empty;
         Application* app = nullptr;
         bool blocked = false;
+        bool mp3PlayerOn = false;
 };
 #endif

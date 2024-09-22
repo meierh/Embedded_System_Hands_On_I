@@ -26,7 +26,6 @@ class Snake : public Application
         /**
          *  Output action
          */
-        void speakerCommand() override;
         void displayCommand() override;
         void displayCommand(std::vector<DisplayItem> items);
     
