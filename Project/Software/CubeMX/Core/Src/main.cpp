@@ -407,7 +407,7 @@ static void MX_TIM3_Init(void)
 
     /* USER CODE END TIM3_Init 1 */
     htim3.Instance = TIM3;
-    htim3.Init.Prescaler = 64000/100 - 1; //@todo
+    htim3.Init.Prescaler = 32000 - 1; //@todo
     htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
     htim3.Init.Period = 100;
     htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -541,10 +541,10 @@ static void MX_GPIO_Init(void)
     HAL_GPIO_Init(Rotary_Encoder_A_GPIO_Port, &GPIO_InitStruct);
 
     /* EXTI interrupt init*/
-    HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI9_5_IRQn, 2, 0);
     HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
+    HAL_NVIC_SetPriority(EXTI15_10_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
     /* USER CODE BEGIN MX_GPIO_Init_2 */
