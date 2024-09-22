@@ -25,3 +25,6 @@ Thumbs.db
 *-backups/
 \#auto_saved_files\#
 _autosave-*
+
+/Project/DFPlayerAudio/test files/out/
+/Project/DFPlayerAudio/production files files/out/
