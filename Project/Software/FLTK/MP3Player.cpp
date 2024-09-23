@@ -31,6 +31,10 @@ periodCounter(0)
         if((w+1)%4==0)
             barHeight++;
     }
+    volumeLabelsCasingLeft = DisplayItem(offsetH-1,offsetW-1,offsetH,offsetW-1,255);
+    volumeLabelsCasingBottom = DisplayItem(offsetH,offsetW-1,offsetH,offsetW+61,255);
+    volumeLabelsCasingTop = DisplayItem(offsetH-1,offsetW-1,offsetH-15,offsetW+62,255);
+    volumeLabelsCasingRight = DisplayItem(offsetH-15,offsetW+62,offsetH,offsetW+62,255);
     
     readMP3Info();
     displayMP3Info();
@@ -146,7 +150,7 @@ void MP3Player::displayMP3Info()
     else if(trackNumber<100)
         trackNumberLabel.characters = "0"+std::to_string(trackNumber);
     else
-        trackNumberLabel.characters = std::to_string(trackID);
+        trackNumberLabel.characters = std::to_string(trackNumber);
     
     displayVolume();    
 }
@@ -156,9 +160,9 @@ void MP3Player::displayVolume()
     for(int w=0; w<volumeLabels.size(); w++)
     {
         if(w<volume*2)
-            volumeLabels[w].intensity=255;
+            volumeLabels[w].setType(DisplayItem::ItemType::Line);
         else
-            volumeLabels[w].intensity=55;
+            volumeLabels[w].setType(DisplayItem::ItemType::Empty);
     }
 }
 
@@ -177,4 +181,8 @@ void MP3Player::collectItems()
     {
         displayImage.push_back(volumeLabels[w]);
     }
+    displayImage.push_back(volumeLabelsCasingLeft);
+    displayImage.push_back(volumeLabelsCasingBottom);
+    displayImage.push_back(volumeLabelsCasingTop);
+    displayImage.push_back(volumeLabelsCasingRight);
 }
