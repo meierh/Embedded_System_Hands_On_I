@@ -154,7 +154,7 @@ void DFP_Controller::previous()
 
 void DFP_Controller::changeVolume(int8_t offset)
 {
-    uint8_t newVolume = this->volume + offset;
+    int8_t newVolume = static_cast<int8_t>(this->volume) + offset;
 
     // Limit the volume to the range [0, 30]
     if (newVolume > 30)
