@@ -5,7 +5,10 @@
 #include <queue>
 #include <string>
 #include <chrono>
+#include <tuple>
+#include <functional>
 #include "DisplayItem.h"
+#include "DateTime.h"
 
 class System;
 
@@ -19,7 +22,6 @@ class Application
          *  Internal action
          */
         virtual void work()=0;
-
         void close();
                 
         /**
@@ -37,20 +39,21 @@ class Application
         /**
          *  Output action
          */
-    protected:
         System* system = nullptr;
     public:
-        virtual void speakerCommand()=0;
         virtual void displayCommand()=0;
         
     protected:
+        void displayCommand(const std::vector<DisplayItem>& items);
         std::vector<DisplayItem> displayImage;
         virtual void collectItems();
         
         const DisplayItem modeText;
         DisplayItem modeStatus;
         
-        DisplayItem batteryStatus;
+        std::array<std::array<DisplayItem,3>,4> batteryStatus;
+        void setBatteryBar(uint8_t barInd);
+        void unsetBatteryBar(uint8_t barInd);
                 
         DisplayItem time;
         
@@ -61,7 +64,13 @@ class Application
         DisplayItem centerButtonLabel;
         DisplayItem rightButtonLabel;
         
+        DisplayItem timesUpLabel;
+        virtual void setTimesUp();
+        virtual void unsetTimesUp();
+        
+        DateTime currTime;
         virtual void updateClock();
+        virtual void updateBattery();
 };
 
 #endif

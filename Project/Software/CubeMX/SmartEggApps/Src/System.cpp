@@ -54,6 +54,10 @@ void System::buttonModePress()
                 current = SetClock;
                 break;
             case SetClock:
+                app = new class MP3Player(this);
+                current = MP3Player;
+                break;
+            case MP3Player:
                 app = new class TestImage(this);
                 current = TestImage;
                 break;
@@ -66,6 +70,7 @@ void System::buttonModePress()
         }
         blocked = false;
     }
+    periodElapsed();
 }
 
 void System::buttonLeftPress()
@@ -104,4 +109,19 @@ void System::periodElapsed()
 {
     if(app!=nullptr && !blocked)
         app->onPeriod();
+}
+
+bool System::playerActive()
+{
+    return mp3PlayerOn;
+}
+
+void System::playerTurnOn()
+{
+    mp3PlayerOn = true;
+}
+
+void System::playerTurnOff()
+{
+    mp3PlayerOn = false;
 }

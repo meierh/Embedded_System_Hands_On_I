@@ -33,6 +33,8 @@ alarmMinutes(0)
     timeSecUnderline = DisplayItem(86,72,86,104,128);
     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
     
+    timesUpLabel.characters = "Time's up";
+    
     leftButtonLabel.characters = "Hour";
     leftButtonLabel.offsetW -= 5 ;
     centerButtonLabel.characters = "Enter";
@@ -63,6 +65,11 @@ void AlarmClock::work()
                     timeMinUnderline.setType(DisplayItem::ItemType::Line);
                     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 break;
             }
             case BtnCenterClick:
@@ -91,6 +98,11 @@ void AlarmClock::work()
                     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
                     status = Run;
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 break;
             }
             case BtnRightClick:
@@ -106,6 +118,11 @@ void AlarmClock::work()
                     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
                     timeSecUnderline.setType(DisplayItem::ItemType::Line);
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 break;
             }
             case RotateClock:
@@ -119,6 +136,11 @@ void AlarmClock::work()
                 {
                     alarmMinutes = (alarmMinutes+1)%60;
                     writeMinutes(alarmMinutes);
+                }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
                 }
                 break;
             }
@@ -142,29 +164,44 @@ void AlarmClock::work()
                     
                     writeMinutes(alarmMinutes);
                 }
+                else if(status==Alarm)
+                {
+                    unsetTimesUp();
+                    status = End;
+                }
                 break;
             }
             case OnePeriod:
             {
                 if(status==Run)
                 {
-                    std::cout<<"Run"<<std::endl;
-                    if(remainingMinutes>0)
+                    if(alarmHours==currTime.getHour() && alarmMinutes==currTime.getMinute())
                     {
-                        remainingMinutes--;
-                        std::cout<<"Rem:"<<remainingMinutes<<std::endl;
-                        displayCommand();
+                        setTimesUp();
+                        status = Alarm;
+                        remainingMinutes = 0;
                     }
                     else
                     {
-                        std::cout<<"ALARM!!!!"<<std::endl;
-                        fireAlarm();
-                        status = End;
+                        uint alarmTimeMinsAfterFullHour = alarmMinutes;
+                        uint currTimeMinsToFullHour = 60-currTime.getMinute();
+                        uint alarmTimeHoursAfterMidnight = alarmHours;
+                        uint currTimeHoursToMidnight = 24-currTime.getHour();
+                                               
+                        uint deltaHours;
+                        if(alarmHours<currTime.getHour())
+                            deltaHours = alarmTimeHoursAfterMidnight+currTimeHoursToMidnight-1;
+                        else
+                            deltaHours = alarmHours-currTime.getHour();
+
+                        uint deltaMinutes;
+                        if(alarmMinutes<currTime.getMinute())
+                            deltaMinutes = alarmTimeMinsAfterFullHour+currTimeMinsToFullHour-1;
+                        else
+                            deltaMinutes = alarmMinutes-currTime.getMinute();
+                        
+                        remainingMinutes = deltaHours*60 + deltaMinutes;
                     }
-                }
-                else if(status==SetHour || status==SetMin)
-                {
-                    displayCommand();
                 }
                 break;
             }
@@ -175,14 +212,41 @@ void AlarmClock::work()
     }
 }
 
+void AlarmClock::setTimesUp()
+{
+    minText.setType(DisplayItem::Empty);
+    secText.setType(DisplayItem::Empty);
+    
+    timeHourClock.setType(DisplayItem::Empty);
+    timeSeparatorClock.setType(DisplayItem::Empty);
+    timeMinClock.setType(DisplayItem::Empty);
+    
+    timeHourAlarm.setType(DisplayItem::Empty);
+    timeSeparatorAlarm.setType(DisplayItem::Empty);
+    timeMinAlarm.setType(DisplayItem::Empty);
+    
+    Application::setTimesUp();
+}
+
+void AlarmClock::unsetTimesUp()
+{
+    minText.setType(DisplayItem::Text);
+    secText.setType(DisplayItem::Text);
+    
+    timeHourClock.setType(DisplayItem::Text);
+    timeSeparatorClock.setType(DisplayItem::Text);
+    timeMinClock.setType(DisplayItem::Text);
+    
+    timeHourAlarm.setType(DisplayItem::Text);
+    timeSeparatorAlarm.setType(DisplayItem::Text);
+    timeMinAlarm.setType(DisplayItem::Text);
+    
+    Application::unsetTimesUp();
+}
+
 void AlarmClock::onPeriod()
 {
-    peroidCounter++;
-    if(peroidCounter>=60)
-    {
-        peroidCounter=0;
-        inputActions.push(Action::OnePeriod);
-    }
+    inputActions.push(Action::OnePeriod);
 }
 
 void AlarmClock::displayCommand()
@@ -194,14 +258,7 @@ void AlarmClock::displayCommand()
     writeRemainingHours(hourMins.first);
     writeRemainingMinutes(hourMins.second);
     collectItems();
-    displayCommand(displayImage);
-}
-
-void AlarmClock::displayCommand(std::vector<DisplayItem> items)
-{
-    
-    if(system!=nullptr)
-        system->displayImage(displayImage);
+    Application::displayCommand(displayImage);
 }
 
 void AlarmClock::updateClock()
@@ -227,10 +284,6 @@ std::pair<uint,uint> AlarmClock::minutesToHourMins
 uint AlarmClock::minutesToHourMins(std::pair<uint,uint> hourMin)
 {
     return hourMin.first*60+hourMin.second;
-}
-
-void AlarmClock::speakerCommand()
-{
 }
 
 void AlarmClock::collectItems()

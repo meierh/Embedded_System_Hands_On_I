@@ -15,14 +15,14 @@ periodCounter(0)
     rightButtonLabel.characters = "->>";
     
     clockHour = DisplayItem(60,15,DisplayItem::Font24,"00",55);
-    clockSeparator = DisplayItem(60,43,DisplayItem::Font24,":",55);
+    clockSeparator = DisplayItem(60,45,DisplayItem::Font24,":",55);
     clockMin = DisplayItem(60,55,DisplayItem::Font24,"00",55);
     clockSec = DisplayItem(60,90,DisplayItem::Font20,"00",55);
     
     clockDay = DisplayItem(90,15,DisplayItem::Font16,"01",55);
-    clockDaySeparator = DisplayItem(90,39,DisplayItem::Font16,".",55);
+    clockDaySeparator = DisplayItem(90,37,DisplayItem::Font16,".",55);
     clockMonth = DisplayItem(90,46,DisplayItem::Font16,"01",55);
-    clockMonthSeparator = DisplayItem(90,69,DisplayItem::Font16,".",55);
+    clockMonthSeparator = DisplayItem(90,67,DisplayItem::Font16,".",55);
     clockYear = DisplayItem(90,75,DisplayItem::Font16,"2000",55);
         
     setToCurrentTime();
@@ -182,17 +182,7 @@ void SetClock::displayCommand()
 {
     updateClock();
     collectItems();
-    displayCommand(displayImage);
-}
-
-void SetClock::displayCommand(std::vector<DisplayItem> items)
-{
-    if(system!=nullptr)
-        system->displayImage(displayImage);
-}
-
-void SetClock::speakerCommand()
-{
+    Application::displayCommand(displayImage);
 }
 
 void SetClock::writeDate()
@@ -223,13 +213,16 @@ void SetClock::writeDate()
 
 void SetClock::restrictTime()
 {
+    std::cout<<"day:"<<day<<std::endl;
     year = std::min<int>(2100,std::max<int>(1900,year));
     month = std::min<int>(12,std::max<int>(1,month));
     day = std::min<int>(31,std::max<int>(1,day));
     hour = std::min<int>(23,std::max<int>(0,hour));
     minute = std::min<int>(59,std::max<int>(0,minute));
     second = std::min<int>(59,std::max<int>(0,second));
+    std::cout<<"day:"<<day<<std::endl;
     restrictDay();
+    std::cout<<"day:"<<day<<std::endl;
 }
 
 void SetClock::setToCurrentTime()
@@ -255,13 +248,13 @@ void SetClock::restrictDay()
         case 8:
         case 10:
         case 12:
-            day = std::max<int>(31,std::min<int>(1,day));
+            day = std::min<int>(31,std::max<int>(1,day));
             break;
         case 4:
         case 6:
         case 9:
         case 11:
-            day = std::max<int>(30,std::min<int>(1,day));
+            day = std::min<int>(30,std::max<int>(1,day));
             break;
         case 2:
         {
@@ -271,17 +264,17 @@ void SetClock::restrictDay()
                 {
                     if(year%400==0)
                     {
-                        day = std::max<int>(29,std::min<int>(1,day));
+                        day = std::min<int>(29,std::max<int>(1,day));
                         break;
                     }
-                    day = std::max<int>(28,std::min<int>(1,day));
+                    day = std::min<int>(28,std::max<int>(1,day));
                     break;
                 }
-                day = std::max<int>(29,std::min<int>(1,day));
+                day = std::min<int>(29,std::max<int>(1,day));
                 break;
             }
             else
-                day = std::max<uint>(28,std::min<uint>(1,day));
+                day = std::min<uint>(28,std::max<uint>(1,day));
             break;
         }
     }

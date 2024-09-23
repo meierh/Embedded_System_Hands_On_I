@@ -25,11 +25,11 @@ class SmartEgg : public EggTimerBase
         /**
          *  Output action
          */
-        void speakerCommand() override;
         void displayCommand() override;
-        void displayCommand(std::vector<DisplayItem> items);
         
     protected:        
+        void setTimesUp() override;
+        void unsetTimesUp() override;
         
     private:
         uint peroidCounter;
@@ -44,7 +44,7 @@ class SmartEgg : public EggTimerBase
         DisplayItem eggPressure;
         DisplayItem eggEndTemp;
         
-        enum SmartEggStatus{SetSize,SetIniTemp,SetPressure,SetEndTemp,Run,End};
+        enum SmartEggStatus{SetSize,SetIniTemp,SetPressure,SetEndTemp,Run,Alarm,End};
         SmartEggStatus status = End;
         
         std::array<std::string,4> sizes = {"S","M","L","XL"};

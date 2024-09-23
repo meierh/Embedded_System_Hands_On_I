@@ -54,7 +54,7 @@ include_directories(Drivers/STM32F1xx_HAL_Driver/Inc Drivers/STM32F1xx_HAL_Drive
 # include startup code
 include_directories(Core/Inc)
 # include custom code
-include_directories(Peripheral/Inc Peripheral/Display/Inc Peripheral/DS3231/Inc SmartEggApps/Inc)
+include_directories(Peripheral/etc/Inc Peripheral/Display/Inc Peripheral/DS3231/Inc Peripheral/DFPlayer/Inc SmartEggApps/Inc)
 
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xE)
