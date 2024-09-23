@@ -149,7 +149,7 @@ uint8_t System_STM32::getBattery()
 void System_STM32::playerTurnOn()
 {
     System::playerTurnOn();
-    mp3Player.turnOn();
+    mp3Player.turnOn(true);
 
     this->mp3PlayerMode = DFP_Mode::Uninitialized;
 }

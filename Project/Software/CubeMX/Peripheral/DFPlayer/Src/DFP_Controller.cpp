@@ -11,7 +11,7 @@
 
 DFP_Controller::DFP_Controller() :
     status(PlayingStatus::STATUS_STOPPED),
-    volume(INIT_VOLUME),
+    volume(0),
     numberOfTracks(0),
     currentTrack(0),
     trackOffset(0),
@@ -20,9 +20,16 @@ DFP_Controller::DFP_Controller() :
 {
 }
 
-void DFP_Controller::turnOn()
+void DFP_Controller::turnOn(bool initState)
 {
     HAL_GPIO_WritePin(DFPlayer_On_Off_GPIO_Port, DFPlayer_On_Off_Pin, GPIO_PIN_SET);
+
+    if (initState)
+    {
+        DFP_Interface::setVolume(INIT_VOLUME);
+        this->numberOfTracks = DFP_Interface::getNumberOfTracksInFolder(FOLDER_MP3);
+        this->currentTrack = 1;
+    }
 }
 
 void DFP_Controller::turnOff()
