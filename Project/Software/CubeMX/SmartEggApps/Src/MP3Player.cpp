@@ -146,7 +146,7 @@ void MP3Player::displayMP3Info()
     else if(trackNumber<100)
         trackNumberLabel.characters = "0"+std::to_string(trackNumber);
     else
-        trackNumberLabel.characters = std::to_string(trackID);
+        trackNumberLabel.characters = std::to_string(trackNumber);
     
     displayVolume();    
 }
@@ -156,9 +156,9 @@ void MP3Player::displayVolume()
     for(int w=0; w<volumeLabels.size(); w++)
     {
         if(w<volume*2)
-            volumeLabels[w].intensity=255;
+            volumeLabels[w].setType(DisplayItem::ItemType::Line);
         else
-            volumeLabels[w].intensity=55;
+            volumeLabels[w].setType(DisplayItem::ItemType::Empty);
     }
 }
 
