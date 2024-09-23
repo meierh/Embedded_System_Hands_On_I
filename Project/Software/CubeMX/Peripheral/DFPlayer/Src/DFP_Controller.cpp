@@ -11,7 +11,7 @@
 
 DFP_Controller::DFP_Controller() :
     status(PlayingStatus::STATUS_STOPPED),
-    volume(0),
+    volume(INIT_VOLUME),
     numberOfTracks(0),
     currentTrack(0),
     trackOffset(0),
