@@ -48,6 +48,10 @@ class MP3Player : public Application
         DisplayItem trackNumberLabel;
         
         std::array<DisplayItem,62> volumeLabels;
+        DisplayItem volumeLabelsCasingLeft;
+        DisplayItem volumeLabelsCasingBottom;
+        DisplayItem volumeLabelsCasingTop;
+        DisplayItem volumeLabelsCasingRight;
         
         void collectItems();
 };

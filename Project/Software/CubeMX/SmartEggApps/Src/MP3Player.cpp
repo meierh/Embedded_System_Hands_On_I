@@ -31,6 +31,10 @@ periodCounter(0)
         if((w+1)%4==0)
             barHeight++;
     }
+    volumeLabelsCasingLeft = DisplayItem(offsetH-1,offsetW-1,offsetH,offsetW-1,255);
+    volumeLabelsCasingBottom = DisplayItem(offsetH,offsetW-1,offsetH,offsetW+61,255);
+    volumeLabelsCasingTop = DisplayItem(offsetH-1,offsetW-1,offsetH-15,offsetW+62,255);
+    volumeLabelsCasingRight = DisplayItem(offsetH-15,offsetW+62,offsetH,offsetW+62,255);
     
     readMP3Info();
     displayMP3Info();
@@ -177,4 +181,8 @@ void MP3Player::collectItems()
     {
         displayImage.push_back(volumeLabels[w]);
     }
+    displayImage.push_back(volumeLabelsCasingLeft);
+    displayImage.push_back(volumeLabelsCasingBottom);
+    displayImage.push_back(volumeLabelsCasingTop);
+    displayImage.push_back(volumeLabelsCasingRight);
 }

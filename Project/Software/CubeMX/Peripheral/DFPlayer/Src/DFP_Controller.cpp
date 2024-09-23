@@ -26,7 +26,7 @@ void DFP_Controller::turnOn(bool initState)
 
     if (initState)
     {
-        DFP_Interface::setVolume(INIT_VOLUME);
+        this->volume = INIT_VOLUME;
         this->numberOfTracks = DFP_Interface::getNumberOfTracksInFolder(FOLDER_MP3);
         this->currentTrack = 1;
     }
