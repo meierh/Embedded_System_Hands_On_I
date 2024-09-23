@@ -9,19 +9,19 @@ extern UART_HandleTypeDef DF_UART;
 
 void DFP_Interface::sendMessage(DFP_Message message)
 {
-    HAL_UART_Transmit(&DF_UART, message.buffer(), DFP_Message::MSG_LENGTH, HAL_MAX_DELAY);
+    HAL_UART_Transmit(&DF_UART, message.buffer(), DFP_Message::MSG_LENGTH, TIMEOUT);
 }
 
 bool DFP_Interface::receiveMessage(DFP_Message& received_message)
 {
     // Receive start byte
-    HAL_UART_Receive(&DF_UART, received_message.buffer(), 1, HAL_MAX_DELAY);
+    HAL_UART_Receive(&DF_UART, received_message.buffer(), 1, TIMEOUT);
 
     // Receive version byte until the version byte is received
     // This is necessary because if the previous data from the DFPlayer were not read, the start byte is sent twice with for next message
     while (received_message.buffer()[DFP_Message::VERSION_OFFSET] != DFP_Message::VERSION_BYTE)
     {
-        HAL_UART_Receive(&DF_UART, received_message.buffer() + DFP_Message::VERSION_OFFSET, 1, HAL_MAX_DELAY);
+        HAL_UART_Receive(&DF_UART, received_message.buffer() + DFP_Message::VERSION_OFFSET, 1, TIMEOUT);
     }
 
     // Receive remaining bytes

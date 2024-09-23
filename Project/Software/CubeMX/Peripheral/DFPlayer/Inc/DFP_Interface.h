@@ -55,6 +55,11 @@ private:
     /** Basic UART communication functions for the DFPlayer Mini **/
 
     /**
+     * Timeout for UART communication with the DFPlayer Mini
+     */
+    static constexpr uint32_t TIMEOUT = 1500; // ms
+
+    /**
      * Send a message to the DFPlayer via UART
      * @param message the message to send
      */
