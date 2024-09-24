@@ -14,7 +14,7 @@ centerRightButtonLine(118,85,128,85,255),
 leftButtonLabel(127,15,DisplayItem::Font8,"Left",200),
 centerButtonLabel(127,52,DisplayItem::Font8,"Center",200),
 rightButtonLabel(127,98,DisplayItem::Font8,"Right",200),
-timesUpLabel(70,8,DisplayItem::Font24,"XXXXXXX",255),
+timesUpLabel(70,8,DisplayItem::Font20,"XXXXXXX",255),
 system(system)
 {
     timesUpLabel.setType(DisplayItem::Empty);

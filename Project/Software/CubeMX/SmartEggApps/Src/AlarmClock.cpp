@@ -11,26 +11,26 @@ alarmMinutes(0)
 {
     modeStatus.characters = "AlarmClock";
     
-    minText = DisplayItem(40,15,DisplayItem::Font16,"Hour",255);
-    secText = DisplayItem(40,75,DisplayItem::Font16,"Min",255);
+    minText = DisplayItem(35,15,DisplayItem::Font16,"Hour",255);
+    secText = DisplayItem(35,75,DisplayItem::Font16,"Min",255);
     
-    timeHourClock = DisplayItem(60,20,DisplayItem::Font24,"00",255);
-    timeSeparatorClock = DisplayItem(60,57,DisplayItem::Font24,":",255);
-    timeMinClock = DisplayItem(60,75,DisplayItem::Font24,"00",255);
+    timeHourClock = DisplayItem(55,20,DisplayItem::Font24,"00",255);
+    timeSeparatorClock = DisplayItem(55,57,DisplayItem::Font24,":",255);
+    timeMinClock = DisplayItem(55,75,DisplayItem::Font24,"00",255);
     
-    timeHourAlarm = DisplayItem(85,20,DisplayItem::Font24,"00",255);
-    timeSeparatorAlarm = DisplayItem(85,57,DisplayItem::Font24,":",255);
-    timeMinAlarm = DisplayItem(85,75,DisplayItem::Font24,"00",255);
+    timeHourAlarm = DisplayItem(80,20,DisplayItem::Font24,"00",255);
+    timeSeparatorAlarm = DisplayItem(80,57,DisplayItem::Font24,":",255);
+    timeMinAlarm = DisplayItem(80,75,DisplayItem::Font24,"00",255);
     
-    remainTimeText = DisplayItem(108,2,DisplayItem::Font12,"Remaining",255);
-    remaingTimeHour = DisplayItem(116,12,DisplayItem::Font8,"00",128);
-    remaingTimeHourSuffix = DisplayItem(116,20,DisplayItem::Font8,"h",128);
-    remaingTimeMinutes = DisplayItem(116,30,DisplayItem::Font8,"00",128);
-    remaingTimeMinutesSuffix = DisplayItem(116,38,DisplayItem::Font8,"m",128);
+    remainTimeText = DisplayItem(103,12,DisplayItem::Font8,"Remaining",255);
+    remaingTimeHour = DisplayItem(113,12,DisplayItem::Font12,"00",128);
+    remaingTimeHourSuffix = DisplayItem(113,27,DisplayItem::Font12,"h",128);
+    remaingTimeMinutes = DisplayItem(113,35,DisplayItem::Font12,"00",128);
+    remaingTimeMinutesSuffix = DisplayItem(113,50,DisplayItem::Font12,"m",128);
     
-    timeMinUnderline = DisplayItem(86,16,86,48,128);
+    timeMinUnderline = DisplayItem(91,20,91,50,128);
     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
-    timeSecUnderline = DisplayItem(86,72,86,104,128);
+    timeSecUnderline = DisplayItem(91,76,91,106,128);
     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
     
     timesUpLabel.characters = "Time's up";

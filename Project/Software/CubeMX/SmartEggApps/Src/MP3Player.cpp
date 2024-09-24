@@ -11,16 +11,16 @@ periodCounter(0)
     system->playerTurnOn(true);
     
     modeStatus.characters = "eiPod";
-    leftButtonLabel.characters = "Previous";
+    leftButtonLabel.characters = "Prev";
     leftButtonLabel.offsetW -= 10 ;
     centerButtonLabel.characters = "Play";
     centerButtonLabel.offsetW += 4 ;
     rightButtonLabel.characters = "Next";
     
-    trackLabel = DisplayItem(55,10,DisplayItem::Font16,"Track",255);
-    trackIDLabel = DisplayItem(55,60,DisplayItem::Font16,"000",255);
-    trackSeparatorLabel = DisplayItem(55,88,DisplayItem::Font16,"/",255);
-    trackNumberLabel = DisplayItem(55,93,DisplayItem::Font16,"000",255);
+    trackLabel = DisplayItem(35,37,DisplayItem::Font16,"Track",255);
+    trackIDLabel = DisplayItem(55,20,DisplayItem::Font16,"000",255);
+    trackSeparatorLabel = DisplayItem(55,60,DisplayItem::Font16,"/",255);
+    trackNumberLabel = DisplayItem(55,80,DisplayItem::Font16,"000",255);
     
     int offsetW = 35;
     int offsetH = 90;

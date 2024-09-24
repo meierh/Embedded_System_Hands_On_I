@@ -9,9 +9,9 @@ EggTimerBase(system)
 {
     modeStatus.characters = "EggTimer";
     
-    timeMinUnderline = DisplayItem(81,8,81,52,128);
+    timeMinUnderline = DisplayItem(81,20,81,52,128);
     timeMinUnderline.setType(DisplayItem::ItemType::Empty);
-    timeSecUnderline = DisplayItem(81,72,81,116,128);
+    timeSecUnderline = DisplayItem(81,72,81,104,128);
     timeSecUnderline.setType(DisplayItem::ItemType::Empty);
 
     leftButtonLabel.characters = "Mins";
