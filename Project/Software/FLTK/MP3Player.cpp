@@ -58,6 +58,8 @@ void MP3Player::work()
             case BtnLeftClick:
             {
                 system->playerControl(System::PlayerAction::Previous);
+                centerButtonLabel.characters = "Pause";
+                playing = true;
                 break;
             }
             case BtnCenterClick:
@@ -72,13 +74,15 @@ void MP3Player::work()
                 {
                     system->playerControl(System::PlayerAction::Play);
                     centerButtonLabel.characters = "Pause";
-                    playing = false;
+                    playing = true;
                 }
                 break;
             }
             case BtnRightClick:
             {
                 system->playerControl(System::PlayerAction::Next);
+                centerButtonLabel.characters = "Pause";
+                playing = true;
                 break;
             }
             case RotateClock:
