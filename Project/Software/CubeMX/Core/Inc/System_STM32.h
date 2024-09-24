@@ -2,6 +2,8 @@
 #define SYSTEM_STM32_H
 
 #include <vector>
+
+#include "Battery_ADC.h"
 #include "System.h"
 #include "GUI_Paint.h"
 #include "OLED_1in5.h"
@@ -35,6 +37,7 @@ private:
 
     DFP_Controller mp3Player;
     DFP_Mode mp3PlayerMode;
+    Battery_ADC batteryADC;
 
     void playerControlPlayerMode(PlayerAction action);
     void playerControlAlarmMode(PlayerAction action);

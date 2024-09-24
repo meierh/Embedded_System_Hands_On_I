@@ -143,7 +143,7 @@ void System_STM32::buttonModePress()
 
 uint8_t System_STM32::getBattery()
 {
-    return 3;
+    return batteryADC.getValue();
 }
 
 void System_STM32::playerTurnOn(bool initializePlayer)
