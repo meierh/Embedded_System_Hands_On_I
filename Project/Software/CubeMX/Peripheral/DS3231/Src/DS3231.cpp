@@ -3,24 +3,32 @@
 #define DS3231_ADDRESS   0x68 //0b0011100
 #define CLOCK_ADDRESS 0x68 //?
 
-//bool DS3231::alreadyReset = false;
+bool setupDone = false;
 
 DS3231::DS3231() : i2c_sensor(DS3231_ADDRESS)
 {
-    // set clock to 24h
-    //setClockMode(false); //@todo later
-    // enable clock
-    // enableOscillator(true, true, 3);
+    if(!setupDone) {
+        setup();
+    }
 }
+
+void DS3231::setup() {
+    // set clock to 24h
+    setClockMode(false); //@todo later
+    // enable clock
+    enableOscillator(true, true, 3);
+    setupDone = true;
+}
+
 
 DateTime DS3231::getCurrentTime() {
     std::vector<uint8_t> senorData;
-    readVector(senorData, SECOND, 6);
+    readVector(senorData, SECOND, 7);
     int8_t sec = bcdToDec(senorData[0]);
     int8_t min = bcdToDec(senorData[1]);
-    int8_t hour = bcdToDec(senorData[2]);
+    int8_t hour = bcdToDec(senorData[2] & 0b00111111 ) ;
     int8_t dayOfWeek = bcdToDec(senorData[3]);
-    int8_t dayOfMonth = bcdToDec(senorData[4]);
+    int8_t dayOfMonth = bcdToDec(senorData[4] &0b00011111);
     int8_t  month = bcdToDec(senorData[5]);
     // the rtc stores only the last o digits of the year. So we have to add 2000
     int16_t year = bcdToDec(senorData[6])+2000;
@@ -31,8 +39,12 @@ DateTime DS3231::getCurrentTime() {
 
 
 void DS3231::setCurrentTime(DateTime currentTime) {
-    static std::vector<uint8_t> dateTimeVector = currentTime.getDatetimeAsVector();
-    writeVector(dateTimeVector, SECOND);
+    std::vector<uint8_t> dateTimeVector = currentTime.getDatetimeAsVector();
+    std::vector<uint8_t> dataTimeVectorBcd = {};
+    for(unsigned char i : dateTimeVector) {
+        dataTimeVectorBcd.push_back(decToBcd(i));
+    }
+    writeVector(dataTimeVectorBcd, SECOND);
 }
 
 
@@ -234,6 +246,8 @@ int16_t DS3231::calculateDSTWithSummerAndWintertime(int8_t month, int8_t wday, i
     }
     return 1;
 }
+
+
 
 
 

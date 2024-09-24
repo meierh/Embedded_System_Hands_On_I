@@ -156,14 +156,14 @@ size_t DateTime::strf_DateTime(char *buffer, size_t buffersize, const char *form
 }
 
 std::vector<uint8_t> DateTime::getDatetimeAsVector(void) {
-    std::vector<uint8_t> datetime;
+    std::vector<uint8_t> datetime = {};
     datetime.push_back(_tm.tm_sec);
     datetime.push_back(_tm.tm_min);
-    datetime.push_back(_tm.tm_hour);
+    datetime.push_back(_tm.tm_hour & 0b00111111);
     datetime.push_back(_tm.tm_wday);
-    datetime.push_back(_tm.tm_mday);
+    datetime.push_back(_tm.tm_mday & 0b00111111);
     datetime.push_back(_tm.tm_mon);
-    datetime.push_back(_tm.tm_year);
+    datetime.push_back(_tm.tm_year-2000);
 
     return datetime;
 }
