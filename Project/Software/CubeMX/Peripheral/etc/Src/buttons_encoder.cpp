@@ -8,8 +8,9 @@
 
 extern System_STM32* hardware;
 
-
 static uint32_t lastRotation = 0;
+static GPIO_PinState a0 = GPIO_PIN_SET; // both pins set to high s.t. the first rotation is detected
+static GPIO_PinState c0 = GPIO_PIN_SET;
 
 void handleEncoder(System::Direction dir);
 
@@ -39,12 +40,24 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         break;
 
     case Rotary_Encoder_A_Pin:
-        // handle rotation
-        if (HAL_GPIO_ReadPin(Rotary_Encoder_B_GPIO_Port, Rotary_Encoder_B_Pin) == GPIO_PIN_SET)
-            handleEncoder(System::Direction::Clockwise);
-        else
-            handleEncoder(System::Direction::Counterclockwise);
-        break;
+        {
+            // handle rotation
+
+            // debouncing, source: http://www.technoblogy.com/show?1YHJ
+            GPIO_PinState a = HAL_GPIO_ReadPin(Rotary_Encoder_A_GPIO_Port, Rotary_Encoder_A_Pin);
+            GPIO_PinState b = HAL_GPIO_ReadPin(Rotary_Encoder_B_GPIO_Port, Rotary_Encoder_B_Pin);
+            if (a != a0)
+            {
+                a0 = a;
+
+                if (b != c0)
+                {
+                    c0 = b;
+                    handleEncoder(a == b ? System::Direction::Counterclockwise : System::Direction::Clockwise);
+                }
+            }
+            break;
+        }
 
     default:
         // do nothing
@@ -61,5 +74,6 @@ void handleEncoder(System::Direction dir)
     }
 
     lastRotation = HAL_GetTick();
+
     hardware->rotate(dir);
 }
