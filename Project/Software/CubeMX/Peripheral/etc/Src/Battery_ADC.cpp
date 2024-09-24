@@ -46,6 +46,10 @@ uint8_t Battery_ADC::getValue()
 
 void Battery_ADC::readADC()
 {
+    // Read a new value only if the minimum update interval has passed
+    if (initialized && (HAL_GetTick() - this->lastUpdate < MIN_UPDATE_INTERVAL))
+        return;
+
     // Calibration of the ADC if ADC has not been initialized yet
     if (!this->initialized)
     {
@@ -53,10 +57,6 @@ void Battery_ADC::readADC()
             Error_Handler();
         this->initialized = true;
     }
-
-    // Read a new value only if the minimum update interval has passed
-    if (initialized && (HAL_GetTick() - this->lastUpdate < MIN_UPDATE_INTERVAL))
-        return;
 
     // Get a new measurement from the ADC
     uint32_t measurementSum = 0;
