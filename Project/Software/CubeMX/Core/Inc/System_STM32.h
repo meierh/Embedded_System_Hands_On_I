@@ -24,7 +24,7 @@ public:
 
     uint8_t getBattery() override;
 
-    void playerTurnOn() override;
+    void playerTurnOn(bool initializePlayer) override;
     void playerTurnOff() override;
     void playerControl(PlayerAction action) override;
     void playerGetState(PlayingStatus& status, uint8_t& volume, uint16_t& numberOfTracks,

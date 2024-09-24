@@ -8,7 +8,7 @@ MP3Player::MP3Player
 Application(system),
 periodCounter(0)
 {
-    system->playerTurnOn();
+    system->playerTurnOn(true);
     
     modeStatus.characters = "eiPod";
     leftButtonLabel.characters = "Previous";

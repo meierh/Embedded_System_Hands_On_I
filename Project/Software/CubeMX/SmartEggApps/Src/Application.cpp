@@ -115,7 +115,7 @@ void Application::unsetBatteryBar(uint8_t barInd)
 
 void Application::setTimesUp()
 {
-    system->playerTurnOn();
+    system->playerTurnOn(true);
     system->playerControl(System::PlayerAction::PlayAlarm);
     timesUpLabel.setType(DisplayItem::Text);
 }
