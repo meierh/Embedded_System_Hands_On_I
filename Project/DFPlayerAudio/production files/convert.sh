@@ -33,7 +33,7 @@ do
   for file in "${SRC[i_folder]}"/*
   do
     file_name=$(printf "%04d" $i_file)
-    lame -b 128k --resample 48 --quiet "$file" ${file_name}.mp3
+    lame -b 128k --resample 24 --quiet "$file" ${file_name}.mp3
 
     (( current++ ))
     (( i_file++ ))

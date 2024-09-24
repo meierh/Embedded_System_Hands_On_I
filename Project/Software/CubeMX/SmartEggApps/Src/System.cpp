@@ -116,7 +116,7 @@ bool System::playerActive()
     return mp3PlayerOn;
 }
 
-void System::playerTurnOn()
+void System::playerTurnOn(bool initializePlayer)
 {
     mp3PlayerOn = true;
 }

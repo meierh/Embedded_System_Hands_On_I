@@ -16,7 +16,7 @@ setSeconds(0)
     timeSeparator = DisplayItem(70,57,DisplayItem::Font24,":",255);
     timeSec = DisplayItem(70,75,DisplayItem::Font24,"00",255);
     
-    eggText = DisplayItem(110,2,DisplayItem::Font16,"Egg",255);
+
 }
 
 void EggTimerBase::onPeriod()

@@ -77,62 +77,6 @@ static void MX_TIM3_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-// button interrupt handler
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-    switch (GPIO_Pin) {
-        case Button_1_Pin:
-            // call button left press
-            if(hardware != nullptr){
-                hardware->buttonModePress();
-            }
-            break;
-        case Button_2_Pin:
-            // call button center press
-            if(hardware != nullptr){
-                hardware->buttonLeftPress();
-            }
-            break;
-        case Button_3_Pin:
-            // call button right press
-            if(hardware != nullptr){
-                hardware->buttonCenterPress();
-            }
-            break;
-        case Button_4_Pin:
-            // call mode button press
-            if(hardware != nullptr){
-                hardware->buttonRightPress();
-            }
-            break;
-        case Rotary_Encoder_A_Pin:
-            // call clockwise rotate @todo?
-
-            if(rotaryEncoderPin_first_signal == Rotary_Encoder_B_Pin) {
-                if(hardware != nullptr){
-                    hardware->rotate(System::Direction::Counterclockwise);
-                }
-                rotaryEncoderPin_first_signal = 0;
-            } else {
-                rotaryEncoderPin_first_signal = Rotary_Encoder_A_Pin;
-            }
-            break;
-        case Rotary_Encoder_B_Pin:
-            // call counterclockwise rotate
-            if(rotaryEncoderPin_first_signal == Rotary_Encoder_A_Pin) {
-                if(hardware != nullptr){
-                    hardware->rotate(System::Direction::Clockwise);
-                }
-                rotaryEncoderPin_first_signal = 0;
-            } else {
-                rotaryEncoderPin_first_signal = Rotary_Encoder_B_Pin;
-            }
-            break;
-        default:
-            // do nothing
-            break;
-    }
-}
-
 // handle timer interrupt
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
@@ -528,20 +472,14 @@ static void MX_GPIO_Init(void)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-    /*Configure GPIO pin : Rotary_Encoder_B_Pin */
-    GPIO_InitStruct.Pin = Rotary_Encoder_B_Pin;
+    /*Configure GPIO pins : Rotary_Encoder_B_Pin Rotary_Encoder_A_Pin */
+    GPIO_InitStruct.Pin = Rotary_Encoder_B_Pin | Rotary_Encoder_A_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(Rotary_Encoder_B_GPIO_Port, &GPIO_InitStruct);
-
-    /*Configure GPIO pin : Rotary_Encoder_A_Pin */
-    GPIO_InitStruct.Pin = Rotary_Encoder_A_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(Rotary_Encoder_A_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* EXTI interrupt init*/
-    HAL_NVIC_SetPriority(EXTI9_5_IRQn, 2, 0);
+    HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
     HAL_NVIC_SetPriority(EXTI15_10_IRQn, 3, 0);

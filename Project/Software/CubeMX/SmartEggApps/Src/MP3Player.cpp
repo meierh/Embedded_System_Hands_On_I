@@ -8,19 +8,19 @@ MP3Player::MP3Player
 Application(system),
 periodCounter(0)
 {
-    system->playerTurnOn();
+    system->playerTurnOn(true);
     
     modeStatus.characters = "eiPod";
-    leftButtonLabel.characters = "Previous";
+    leftButtonLabel.characters = "Prev";
     leftButtonLabel.offsetW -= 10 ;
     centerButtonLabel.characters = "Play";
     centerButtonLabel.offsetW += 4 ;
     rightButtonLabel.characters = "Next";
     
-    trackLabel = DisplayItem(55,10,DisplayItem::Font16,"Track",255);
-    trackIDLabel = DisplayItem(55,60,DisplayItem::Font16,"000",255);
-    trackSeparatorLabel = DisplayItem(55,88,DisplayItem::Font16,"/",255);
-    trackNumberLabel = DisplayItem(55,93,DisplayItem::Font16,"000",255);
+    trackLabel = DisplayItem(35,37,DisplayItem::Font16,"Track",255);
+    trackIDLabel = DisplayItem(55,20,DisplayItem::Font16,"000",255);
+    trackSeparatorLabel = DisplayItem(55,60,DisplayItem::Font16,"/",255);
+    trackNumberLabel = DisplayItem(55,80,DisplayItem::Font16,"000",255);
     
     int offsetW = 35;
     int offsetH = 90;
@@ -31,6 +31,10 @@ periodCounter(0)
         if((w+1)%4==0)
             barHeight++;
     }
+    volumeLabelsCasingLeft = DisplayItem(offsetH-1,offsetW-1,offsetH,offsetW-1,255);
+    volumeLabelsCasingBottom = DisplayItem(offsetH,offsetW-1,offsetH,offsetW+61,255);
+    volumeLabelsCasingTop = DisplayItem(offsetH-1,offsetW-1,offsetH-15,offsetW+62,255);
+    volumeLabelsCasingRight = DisplayItem(offsetH-15,offsetW+62,offsetH,offsetW+62,255);
     
     readMP3Info();
     displayMP3Info();
@@ -177,4 +181,8 @@ void MP3Player::collectItems()
     {
         displayImage.push_back(volumeLabels[w]);
     }
+    displayImage.push_back(volumeLabelsCasingLeft);
+    displayImage.push_back(volumeLabelsCasingBottom);
+    displayImage.push_back(volumeLabelsCasingTop);
+    displayImage.push_back(volumeLabelsCasingRight);
 }

@@ -49,8 +49,10 @@ class System
         
         /**
          * Turns on the MP3 Player
+         * @param initializePlayer Indicates whether the player should be initialized.
+         *        This is useful if you want to use getPlayerState() immediately after turning on the player, but may cause blocking.
          */
-        virtual void playerTurnOn();
+        virtual void playerTurnOn(bool initializePlayer);
 
         /**
          * Turns off the MP3 Player

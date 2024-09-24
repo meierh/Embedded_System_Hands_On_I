@@ -2,6 +2,8 @@
 #define SYSTEM_STM32_H
 
 #include <vector>
+
+#include "Battery_ADC.h"
 #include "System.h"
 #include "GUI_Paint.h"
 #include "OLED_1in5.h"
@@ -24,7 +26,7 @@ public:
 
     uint8_t getBattery() override;
 
-    void playerTurnOn() override;
+    void playerTurnOn(bool initializePlayer) override;
     void playerTurnOff() override;
     void playerControl(PlayerAction action) override;
     void playerGetState(PlayingStatus& status, uint8_t& volume, uint16_t& numberOfTracks,
@@ -35,6 +37,7 @@ private:
 
     DFP_Controller mp3Player;
     DFP_Mode mp3PlayerMode;
+    Battery_ADC batteryADC;
 
     void playerControlPlayerMode(PlayerAction action);
     void playerControlAlarmMode(PlayerAction action);
