@@ -51,7 +51,8 @@ class Application
         const DisplayItem modeText;
         DisplayItem modeStatus;
         
-        std::array<std::array<DisplayItem,3>,4> batteryStatus;
+        std::array<std::array<DisplayItem,5>,4> batteryStatus;
+        std::array<std::array<DisplayItem,2>,4> batteryStatusOverline;
         void setBatteryBar(uint8_t barInd);
         void unsetBatteryBar(uint8_t barInd);
                 
