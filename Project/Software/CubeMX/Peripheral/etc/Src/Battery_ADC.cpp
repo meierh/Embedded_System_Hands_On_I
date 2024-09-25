@@ -54,7 +54,7 @@ void Battery_ADC::readADC()
     if (!this->initialized)
     {
         if (HAL_ADCEx_Calibration_Start(&BATTERY_ADC_HANDLE) != HAL_OK)
-            Error_Handler();
+            Error_Handler_Message("Battery ADC calib-ration failed");
         this->initialized = true;
     }
 
@@ -64,7 +64,7 @@ void Battery_ADC::readADC()
     {
         HAL_ADC_Start(&BATTERY_ADC_HANDLE);
         if (HAL_ADC_PollForConversion(&BATTERY_ADC_HANDLE, ADC_TIMEOUT) != HAL_OK)
-            Error_Handler();
+            Error_Handler_Message("Battery ADC conv-ersion failed");
 
         measurementSum += HAL_ADC_GetValue(&BATTERY_ADC_HANDLE);
     }

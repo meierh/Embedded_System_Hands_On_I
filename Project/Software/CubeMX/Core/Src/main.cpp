@@ -145,7 +145,7 @@ int main(void)
     // Starts the TIM3 Base generation in interrupt mode.
     if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("TIM3 start failed");
     }
 
     /* USER CODE END 2 */
@@ -181,7 +181,7 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("Oscillator config failed");
     }
 
     /** Initializes the CPU, AHB and APB buses clocks
@@ -195,13 +195,13 @@ void SystemClock_Config(void)
 
     if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("Clock config      failed");
     }
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
     PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV8;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("Clock config      failed");
     }
 }
 
@@ -233,7 +233,7 @@ static void MX_ADC1_Init(void)
     hadc1.Init.NbrOfConversion = 1;
     if (HAL_ADC_Init(&hadc1) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("ADC1 init failed  (general)");
     }
 
     /** Configure Regular Channel
@@ -243,7 +243,7 @@ static void MX_ADC1_Init(void)
     sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
     if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("ADC1 init failed  (channel)");
     }
     /* USER CODE BEGIN ADC1_Init 2 */
 
@@ -275,7 +275,7 @@ static void MX_I2C1_Init(void)
     hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
     if (HAL_I2C_Init(&hi2c1) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("I2C1 init failed");
     }
     /* USER CODE BEGIN I2C1_Init 2 */
 
@@ -307,13 +307,13 @@ static void MX_TIM2_Init(void)
     htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
     if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("TIM3 init failed  (base)");
     }
     sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
     sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
     if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("TIM2 init failed  (clock)");
     }
     sConfigOC.OCMode = TIM_OCMODE_PWM1;
     sConfigOC.Pulse = 0;
@@ -321,7 +321,7 @@ static void MX_TIM2_Init(void)
     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
     if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("TIM2 init failed  (master/slave)");
     }
     /* USER CODE BEGIN TIM2_Init 2 */
 
@@ -357,18 +357,18 @@ static void MX_TIM3_Init(void)
     htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
     if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("TIM3 init failed  (base)");
     }
     sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
     if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("TIM3 init failed  (clock)");
     }
     sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
     sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
     if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("TIM3 init failed  (master/slave)");
     }
     /* USER CODE BEGIN TIM3_Init 2 */
     __HAL_TIM_URS_ENABLE(&htim3);
@@ -401,7 +401,7 @@ static void MX_USART2_UART_Init(void)
     huart2.Init.OverSampling = UART_OVERSAMPLING_16;
     if (HAL_UART_Init(&huart2) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("UART2 init failed");
     }
     /* USER CODE BEGIN USART2_Init 2 */
 
@@ -432,7 +432,7 @@ static void MX_USART3_UART_Init(void)
     huart3.Init.OverSampling = UART_OVERSAMPLING_16;
     if (HAL_UART_Init(&huart3) != HAL_OK)
     {
-        Error_Handler();
+        Error_Handler_Message("UART3 init failed");
     }
     /* USER CODE BEGIN USART3_Init 2 */
 

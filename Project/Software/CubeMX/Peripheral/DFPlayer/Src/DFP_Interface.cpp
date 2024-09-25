@@ -4,6 +4,8 @@
 
 #include "DFP_Interface.h"
 
+#include <cstdio>
+
 extern UART_HandleTypeDef DF_UART;
 
 
@@ -19,9 +21,15 @@ bool DFP_Interface::receiveMessage(DFP_Message& received_message)
 
     // Receive version byte until the version byte is received
     // This is necessary because if the previous data from the DFPlayer were not read, the start byte is sent twice with for next message
+    uint8_t maxVersionRetries = 10;
     while (received_message.buffer()[DFP_Message::VERSION_OFFSET] != DFP_Message::VERSION_BYTE)
     {
-        HAL_UART_Receive(&DF_UART, received_message.buffer() + DFP_Message::VERSION_OFFSET, 1, TIMEOUT);
+        if (maxVersionRetries-- == 0)
+        {
+            return false;
+        }
+
+        HAL_UART_Receive(&DF_UART, received_message.buffer() + DFP_Message::VERSION_OFFSET, 1, TIMEOUT / 10);
     }
 
     // Receive remaining bytes
@@ -45,7 +53,10 @@ void DFP_Interface::sendAndACKData(MessageType command, uint16_t commandParamete
             return;
         }
     }
-    Error_Handler();
+
+    char errorMessage[37];
+    snprintf(errorMessage, 37, "DFPlayer send %x  failed", static_cast<int>(command));
+    Error_Handler_Message(errorMessage);
 }
 
 uint16_t DFP_Interface::queryAndGetData(MessageType command, uint16_t commandParameter)
@@ -61,7 +72,9 @@ uint16_t DFP_Interface::queryAndGetData(MessageType command, uint16_t commandPar
             return received_message.getParam();
         }
     }
-    Error_Handler();
+    char errorMessage[37];
+    snprintf(errorMessage, 37, "DFPlayer recv %x  failed", static_cast<int>(command));
+    Error_Handler_Message(errorMessage);
     return 0;
 }
 
@@ -72,7 +85,7 @@ void DFP_Interface::initialize()
     // if SD card is not online, throw an error
     if (data != 2)
     {
-        Error_Handler();
+        Error_Handler_Message("DFPlayer SD Card  offline");
     }
 }
 
