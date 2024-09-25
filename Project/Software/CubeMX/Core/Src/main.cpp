@@ -18,11 +18,11 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "System_STM32.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ErrorMessage.h"
+#include "System_STM32.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -489,6 +489,22 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void Error_Handler_Message(const char* errorMessage)
+{
+    // Prevent additional calls to this function if another error occurs while the error is displayed
+    static bool calledAlready = false;
+    if (calledAlready)
+        Error_Handler();
+
+    calledAlready = true;
+
+    // Display error message
+    displayError(errorMessage);
+
+    Error_Handler();
+}
+
 
 /* USER CODE END 4 */
 

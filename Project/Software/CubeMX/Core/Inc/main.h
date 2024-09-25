@@ -50,12 +50,13 @@ extern TIM_HandleTypeDef htim3;
 
 /* USER CODE END EM */
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim);
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void Error_Handler_Message(const char *errorMessage);
 
 /* USER CODE END EFP */
 
@@ -106,6 +107,7 @@ void Error_Handler(void);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
+
 }
 #endif
 
