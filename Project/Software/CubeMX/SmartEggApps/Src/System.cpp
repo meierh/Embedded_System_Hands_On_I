@@ -58,13 +58,11 @@ void System::buttonModePress()
                 current = MP3Player;
                 break;
             case MP3Player:
-                app = new class TestImage(this);
-                current = TestImage;
-                break;
-            case TestImage:
                 app = new class BaseApp(this);
                 current = BaseApp;
                 break;
+            // TestImage: removed from selection
+
             default:
                 break;
         }
