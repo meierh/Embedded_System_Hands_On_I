@@ -493,7 +493,7 @@
       "pos_files": "fab_output/BOM and Centroid Files/",
       "specctra_dsn": "",
       "step": "smartEggTimer.step",
-      "svg": "",
+      "svg": "/Users/tobii/dev/CLionProjects/esho1/Project/Documentation/",
       "vrml": ""
     },
     "page_layout_descr_file": ""
@@ -623,7 +623,7 @@
     },
     "net_format_name": "",
     "page_layout_descr_file": "",
-    "plot_directory": "",
+    "plot_directory": "/Users/tobii/dev/CLionProjects/esho1/Project/Documentation/",
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
     "spice_model_current_sheet_as_root": true,
