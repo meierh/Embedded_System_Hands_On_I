@@ -104,13 +104,13 @@ void Application::collectItems()
 void Application::setBatteryBar(uint8_t barInd)
 {
     for(int w=0; w<3; w++)
-        batteryStatus[barInd][w].intensity = 255;
+        batteryStatus[barInd][w].setType(DisplayItem::Line);
 }
 
 void Application::unsetBatteryBar(uint8_t barInd)
 {
     for(int w=0; w<3; w++)
-        batteryStatus[barInd][w].intensity = 50;
+        batteryStatus[barInd][w].setType(DisplayItem::Empty);
 }
 
 void Application::setTimesUp()

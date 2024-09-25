@@ -151,10 +151,7 @@ void System_STM32::playerTurnOn(bool initializePlayer)
     System::playerTurnOn(initializePlayer);
     mp3Player.turnOn(initializePlayer);
 
-    if (initializePlayer)
-        this->mp3PlayerMode = DFP_Mode::Player;
-    else
-        this->mp3PlayerMode = DFP_Mode::Uninitialized;
+    this->mp3PlayerMode = DFP_Mode::Uninitialized;
 }
 
 void System_STM32::playerTurnOff()
@@ -256,11 +253,22 @@ void System_STM32::playerControlUninitialized(PlayerAction action)
 
     case PlayerAction::Play:
     case PlayerAction::Pause:
+        mp3Player.init();
+        mp3Player.startPlayer();
+        mp3PlayerMode = DFP_Mode::Player;
+        break;
+
     case PlayerAction::Next:
+        mp3Player.init();
+        mp3Player.startPlayer();
+        mp3Player.next();
+        mp3PlayerMode = DFP_Mode::Player;
+        break;
+
     case PlayerAction::Previous:
         mp3Player.init();
         mp3Player.startPlayer();
-
+        mp3Player.previous();
         mp3PlayerMode = DFP_Mode::Player;
         break;
 
