@@ -28,7 +28,7 @@ DateTime DS3231::getCurrentTime() {
     int8_t min = bcdToDec(senorData[1]);
     int8_t hour = bcdToDec(senorData[2] & 0b00111111 ) ;
     int8_t dayOfWeek = bcdToDec(senorData[3]);
-    int8_t dayOfMonth = bcdToDec(senorData[4] &0b00011111);
+    int8_t dayOfMonth = bcdToDec(senorData[4] &0b00111111);
     int8_t  month = bcdToDec(senorData[5]);
     // the rtc stores only the last o digits of the year. So we have to add 2000
     int16_t year = bcdToDec(senorData[6])+2000;

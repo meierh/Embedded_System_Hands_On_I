@@ -17,7 +17,7 @@ public:
     DateTime (const char *date, const char *time);
 
     int16_t getYear()   const	{ return _tm.tm_year ; }
-    int8_t getMonth()   const   { return _tm.tm_mon + 1; }
+    int8_t getMonth()   const   { return _tm.tm_mon ; }
     int8_t getDay()     const   { return _tm.tm_mday; }
     int8_t getHour()    const   { return _tm.tm_hour; }
     int8_t getMinute()  const   { return _tm.tm_min; }
