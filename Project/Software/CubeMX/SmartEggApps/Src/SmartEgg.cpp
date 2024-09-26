@@ -345,10 +345,8 @@ void SmartEgg::writeSize(std::string size)
 
 void SmartEgg::writeIniTemp(int temp)
 {
-    if(temp<0)
+    if(temp<10)
         eggIniTemp.characters = " "+std::to_string(temp);
-    else if(temp<10)
-        eggIniTemp.characters = "  "+std::to_string(temp);
     else
         eggIniTemp.characters = std::to_string(temp);
     
