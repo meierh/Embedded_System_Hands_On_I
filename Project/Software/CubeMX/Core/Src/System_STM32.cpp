@@ -273,9 +273,23 @@ void System_STM32::playerControlUninitialized(PlayerAction action)
         break;
 
     case PlayerAction::StopAlarm:
-    case PlayerAction::IncreaseVolume:
-    case PlayerAction::DecreaseVolume:
         // unsupported in this mode
+        break;
+
+    case PlayerAction::IncreaseVolume:
+        mp3Player.init();
+        mp3Player.startPlayer();
+        mp3Player.pause();
+        mp3Player.changeVolume(+1);
+        mp3PlayerMode = DFP_Mode::Player;
+        break;
+
+    case PlayerAction::DecreaseVolume:
+        mp3Player.init();
+        mp3Player.startPlayer();
+        mp3Player.pause();
+        mp3Player.changeVolume(-1);
+        mp3PlayerMode = DFP_Mode::Player;
         break;
     }
 }
