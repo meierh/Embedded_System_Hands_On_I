@@ -18,16 +18,20 @@ timesUpLabel(70,8,DisplayItem::Font20,"XXXXXXX",255),
 system(system)
 {
     timesUpLabel.setType(DisplayItem::Empty);
-    
-    int offsetW = 108;
-    int offsetH = 9;
+
+    int offsetW = 100;
+    int offsetH = 10;
     int barHeight = 2;
-    for(int batteryStep=0; batteryStep<4; batteryStep++)
+    for(int batteryStep=0; batteryStep<batteryStatus.size(); batteryStep++)
     {
-        for(int w=0; w<3; w++)
+        batteryStatusOverline[batteryStep][0] = DisplayItem(offsetH,offsetW,offsetH,offsetW+4,255);
+        batteryStatusOverline[batteryStep][1] = DisplayItem(offsetH-barHeight-1,offsetW,offsetH-barHeight-1,offsetW+4,255);
+
+        for(int w=0; w<batteryStatus[batteryStep].size(); w++)
             batteryStatus[batteryStep][w] = DisplayItem(offsetH-barHeight,offsetW+w,offsetH,offsetW+w,255);
-        offsetW += 5;
+        offsetW += 7;
         barHeight += 2;
+
     }
 
     collectItems();
@@ -87,6 +91,8 @@ void Application::collectItems()
     {
         for(int w=0; w<6; w++)
             displayImage.push_back(batteryStatus[batteryStep][w]);
+        displayImage.push_back(batteryStatusOverline[batteryStep][0]);
+        displayImage.push_back(batteryStatusOverline[batteryStep][1]);
     }
     
     updateClock();
@@ -103,13 +109,13 @@ void Application::collectItems()
 
 void Application::setBatteryBar(uint8_t barInd)
 {
-    for(int w=0; w<3; w++)
+    for(int w=1; w<4; w++)
         batteryStatus[barInd][w].setType(DisplayItem::Line);
 }
 
 void Application::unsetBatteryBar(uint8_t barInd)
 {
-    for(int w=0; w<3; w++)
+    for(int w=1; w<4; w++)
         batteryStatus[barInd][w].setType(DisplayItem::Empty);
 }
 

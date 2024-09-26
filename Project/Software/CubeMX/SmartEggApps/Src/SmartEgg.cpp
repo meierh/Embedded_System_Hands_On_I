@@ -15,12 +15,12 @@ EggTimerBase(system)
     timeSeparator = DisplayItem(70,57,DisplayItem::Font24,":",255);
     timeSec = DisplayItem(70,75,DisplayItem::Font24,"00",255);
     
-    eggText =       DisplayItem(100, 2,DisplayItem::Font16,"Egg"  ,255);
+    eggText =       DisplayItem(90, 2,DisplayItem::Font16,"Egg"  ,255);
     
-    eggSize =       DisplayItem(115, 2,DisplayItem::Font8,"XX"   ,30);
-    eggIniTemp =    DisplayItem(115,10,DisplayItem::Font8,"XXXX" ,30);
-    eggPressure =   DisplayItem(115,32,DisplayItem::Font8,"XXXXX",30);
-    eggEndTemp =    DisplayItem(115,63,DisplayItem::Font8,"XXXX" ,30);
+    eggSize =       DisplayItem(105, 2,DisplayItem::Font12,"XX"   ,30);
+    eggIniTemp =    DisplayItem(105,10,DisplayItem::Font12,"XXXX" ,30);
+    eggPressure =   DisplayItem(105,42,DisplayItem::Font12,"XXXXX",30);
+    eggEndTemp =    DisplayItem(105,80,DisplayItem::Font12,"XXXX" ,30);
     
     timesUpLabel.characters = "Egg done";
     
