@@ -9,18 +9,18 @@ EggTimerBase(system)
 {
     modeStatus.characters = "SmartEgg";
     
-    minText = DisplayItem(40,15,DisplayItem::Font16,"Min",255);
-    secText = DisplayItem(40,70,DisplayItem::Font16,"Sec",255);
-    timeMin = DisplayItem(70,20,DisplayItem::Font24,"00",255);
-    timeSeparator = DisplayItem(70,57,DisplayItem::Font24,":",255);
-    timeSec = DisplayItem(70,75,DisplayItem::Font24,"00",255);
+    minText = DisplayItem(35,17,DisplayItem::Font16,"Min",255);
+    secText = DisplayItem(35,76,DisplayItem::Font16,"Sec",255);
+    timeMin = DisplayItem(55,20,DisplayItem::Font24,"00",255);
+    timeSeparator = DisplayItem(55,57,DisplayItem::Font24,":",255);
+    timeSec = DisplayItem(55,75,DisplayItem::Font24,"00",255);
     
-    eggText =       DisplayItem(90, 2,DisplayItem::Font16,"Egg"  ,255);
+    eggText =       DisplayItem(90, 2,DisplayItem::Font12,"Egg"  ,255);
     
-    eggSize =       DisplayItem(105, 2,DisplayItem::Font12,"XX"   ,30);
-    eggIniTemp =    DisplayItem(105,10,DisplayItem::Font12,"XXXX" ,30);
-    eggPressure =   DisplayItem(105,42,DisplayItem::Font12,"XXXXX",30);
-    eggEndTemp =    DisplayItem(105,80,DisplayItem::Font12,"XXXX" ,30);
+    eggSize =       DisplayItem(101, 2,DisplayItem::Font12,"XX"   ,30);
+    eggIniTemp =    DisplayItem(101,22,DisplayItem::Font12,"XXX"  ,30);
+    eggPressure =   DisplayItem(101,49,DisplayItem::Font12,"XXXXX",30);
+    eggEndTemp =    DisplayItem(101,90,DisplayItem::Font12,"XXXX" ,30);
     
     timesUpLabel.characters = "Egg done";
     
